@@ -47,8 +47,24 @@ int main(){
  *
  */
 void software_simulation(){
+    
     // TODO
-    for(int i = 0; i < 100000000; i++);
+
+    // initialize a planet with the initial values
+    // mass = 1
+    // radius = 1
+    // pos = (1, 0, 0)
+    // vel = (0, 1, 0)
+    planet p1 = { 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 };
+    
+    // initialize another planet with the initial values
+    // mass = 1
+    // radius = 1
+    // pos = (-1, 0, 0)
+    // vel = (0, -1, 0)
+    planet p2 = { 1.0, 1.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0 };
+
+    
 }
 
 /* hardware_simulation()
