@@ -20,7 +20,8 @@ TODO
 Our team currently does not accept outside contributions. For inquiries please contact `gravsim@scott-liu.com`
 
 ## License
-TODO
+This project is licensed under the MIT License.
+You may copy, modify, and distribute it how you like.
 
 ## Acknowledgements
 TODO
