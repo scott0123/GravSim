@@ -3,8 +3,17 @@ GravSim main file
 
 Scott Liu, Spring 2018
 
-For use with ECE 385 Final Project
-University of Illinois ECE Department
+For use in
+
+ ███████╗ ██████╗███████╗██████╗  █████╗ ███████╗
+ ██╔════╝██╔════╝██╔════╝╚════██╗██╔══██╗██╔════╝
+ █████╗  ██║     █████╗   █████╔╝╚█████╔╝███████╗
+ ██╔══╝  ██║     ██╔══╝   ╚═══██╗██╔══██╗╚════██║
+ ███████╗╚██████╗███████╗██████╔╝╚█████╔╝███████║
+ ╚══════╝ ╚═════╝╚══════╝╚═════╝  ╚════╝ ╚══════╝
+ 
+University of Illinois Electrical & Computer Engineering Department
+(This is used to prevent a simple Google search giving free code to future students)
 ************************************************************************/
 
 #include <stdlib.h>
