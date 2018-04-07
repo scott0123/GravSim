@@ -1,8 +1,12 @@
 #ifndef _PHYSICS_H
 #define _PHYSICS_H
 
-// constants
+// universal constants
 #define G 6.673E-11
+
+// magic numbers
+#define THREE_HALFS 1.5f
+#define QUAKE_MAGIC 0x5f3759df
 
 /*
  * Force struct
