@@ -20,13 +20,10 @@ University of Illinois Electrical & Computer Engineering Department
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#include "planet.h"
+#include "physics.h"
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
 #define SIM_MODE 0
-
-// constants
-#define G 6.673E-11
 
 void debug();
 void software_simulation();
