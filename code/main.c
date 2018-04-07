@@ -18,14 +18,21 @@ University of Illinois Electrical & Computer Engineering Department
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include <time.h>
 #include "planet.h"
 
-// 0 for software simulation, 1 for hardware simulation
+// 0 for debug, 1 for software simulation, 2 for hardware simulation
 #define SIM_MODE 0
 
+// constants
+#define G 6.673E-11
+
+void debug();
 void software_simulation();
 void hardware_simulation();
+
+float get_force_between_planets(planet a, planet b);
 
 // Pointer to base address of GravSim Hardware memory,
 // this needs to exactly match the address in Qsys
@@ -40,8 +47,10 @@ int main(){
 
     clock_t begin = clock();
     #if SIM_MODE == 0
-    software_simulation();
+    debug();
     #elif SIM_MODE == 1
+    software_simulation();
+    #elif SIM_MODE == 2
     hardware_simulation();
     #endif
     clock_t end = clock();
@@ -50,6 +59,15 @@ int main(){
     printf("Time spent: %.2fs\n", time_spent);
 
 	return 0;
+}
+
+
+void debug(){
+    
+    planet p1 = { 1000000.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 };
+    planet p2 = { 1000000.0, 1.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0 };
+    float force = get_force_between_planets(p1, p2);
+    printf("we think the force is %.2fN\n", force);
 }
 
 /* software_simulation()
@@ -82,3 +100,14 @@ void software_simulation(){
 void hardware_simulation(){
     // TODO
 }
+
+
+float get_force_between_planets(planet a, planet b){
+
+    float rel_pos_squared = fabs(a.pos_x - b.pos_x) * fabs(a.pos_x - b.pos_x)
+                          + fabs(a.pos_y - b.pos_y) * fabs(a.pos_y - b.pos_y)
+                          + fabs(a.pos_z - b.pos_z) * fabs(a.pos_z - b.pos_z);
+
+    return G * a.mass * b.mass / rel_pos_squared;
+}
+
