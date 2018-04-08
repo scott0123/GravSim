@@ -31,4 +31,12 @@ typedef struct
     float acc_x, acc_y, acc_z;
 } planet;
 
+
+// functions
+force get_force_between_planets(planet a, planet b);
+force get_force_between_planets_fast(planet a, planet b);
+force negative_force(force f);
+float fast_invsqrt(float f);
+float fast_invsqrt_2(float f);
+
 #endif

@@ -1,4 +1,4 @@
 default:
-	clang main.c -o test
+	clang main.c physics.c -o test
 clean:
 	rm -f *.o
