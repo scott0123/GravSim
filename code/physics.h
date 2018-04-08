@@ -33,6 +33,7 @@ typedef struct
 
 
 // functions
+void timestep(planet *p);
 force get_force_between_planets(planet a, planet b);
 force get_force_between_planets_fast(planet a, planet b);
 force negative_force(force f);

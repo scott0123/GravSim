@@ -2,6 +2,23 @@
 #include "physics.h"
 
 /*
+ *  timestep(planet &p)
+ *
+ *  Apply a timestep to the planet.
+ *  This involves calculating the new velocity given the acceleration,
+ *      as well as the new position, given the velocity.
+ */
+void timestep(planet *p){
+
+    p->vel_x += p->acc_x * DT;
+    p->vel_y += p->acc_y * DT;
+    p->vel_z += p->acc_z * DT;
+    p->pos_x += p->vel_x * DT;
+    p->pos_x += p->vel_x * DT;
+    p->pos_x += p->vel_x * DT;
+}
+
+/*
  *  get_force_between_planets(planet a, planet b)
  *
  *  The resulting force is the force planet B applies to planet A.
