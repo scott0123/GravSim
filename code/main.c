@@ -40,6 +40,7 @@ void hardware_simulation();
 
 force get_force_between_planets(planet a, planet b);
 force get_force_between_planets_fast(planet a, planet b);
+force negative_force(force f);
 float fast_invsqrt(float f);
 float fast_invsqrt_2(float f);
 
@@ -76,10 +77,13 @@ void debug(){
     planet p1 = { 1000000.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 };
     planet p2 = { 1000000.0, 1.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0 };
     force f = get_force_between_planets_fast(p1, p2);
+    force n = negative_force(f);
     printf("Planet 1 is at (%.2f, %.2f, %.2f)\n", p1.pos_x, p1.pos_y, p1.pos_z);
     printf("Planet 2 is at (%.2f, %.2f, %.2f)\n", p2.pos_x, p2.pos_y, p2.pos_z);
     printf("This force has magnitude %.2fN\n", f.magnitude);
     printf("This force is in direction (%.2f, %.2f, %.2f)\n", f.dir_x, f.dir_y, f.dir_z);
+    printf("Neg force has magnitude %.2fN\n", n.magnitude);
+    printf("Neg force is in direction (%.2f, %.2f, %.2f)\n", n.dir_x, n.dir_y, n.dir_z);
 }
 
 /* 
@@ -161,6 +165,17 @@ force get_force_between_planets_fast(planet a, planet b){
 
     force f = {G * a.mass * b.mass / rel_pos_squared, dir_x, dir_y, dir_z};
     return f;
+}
+
+/*
+ *  negative_force(force f)
+ *
+ *  Get the negative of the input force.
+ *  The magnitude stays the same while the direction becomes the opposite.
+ */
+force negative_force(force f){
+    force n = {f.magnitude, -f.dir_x, -f.dir_y, -f.dir_z};
+    return n;
 }
 
 /*
