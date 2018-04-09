@@ -114,6 +114,7 @@ void unit_test(){
 
         #if CPP_COMPILE == 1
         gif.drawPixel((int)(p1.pos_x * 100), (int)(p1.pos_y * 100));
+        gif.drawPixel((int)(p2.pos_x * 100), (int)(p2.pos_y * 100));
 
         gif.addFrame();
         #endif
