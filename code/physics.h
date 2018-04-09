@@ -3,7 +3,7 @@
 
 // universal constants
 //#define G 6.673E-11
-#define G 1
+#define G 4
 
 // standard constants
 #define THREE_HALFS 1.5f

@@ -25,11 +25,17 @@ University of Illinois Electrical & Computer Engineering Department
 
 ************************************************************************************/
 
+#define CPP_COMPILE 1
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
 #include "physics.h"
+
+#if CPP_COMPILE == 1
+#include "GifGenerator.h"
+#endif
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
 #define SIM_MODE 0
@@ -67,11 +73,15 @@ int main(){
 
 
 void unit_test(){
-    
+
+    #if CPP_COMPILE == 1
+    GifGenerator gif(200, 200);
+    #endif
+        
     planet p1 = { 1.0, 1.0, 
                 1.0, 0.0, 0.0, 
                 0.0, 1.0, 0.0, 
-                1.0, 1.0, 1.0 };
+                0.0, 0.0, 1.0 };
     planet p2 = { 1.0, 1.0, 
                 -1.0, 0.0, 0.0, 
                 0.0, -1.0, 0.0, 
@@ -87,6 +97,10 @@ void unit_test(){
     
     printf("===== Begin Simulation =====\n");
     for(int i = 0; i < 100; i++){
+        #if CPP_COMPILE == 1
+        gif.newFrame();
+        #endif
+
         clear_acceleration(&p1);
         clear_acceleration(&p2);
         force f = get_force_between_planets(p1, p2);
@@ -97,7 +111,17 @@ void unit_test(){
         timestep(&p2);
         printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
         printf("After timestep %d, planet 2 is at (%.2f, %.2f, %.2f)\n", i, p2.pos_x, p2.pos_y, p2.pos_z);
+
+        #if CPP_COMPILE == 1
+        gif.drawPixel((int)(p1.pos_x * 100), (int)(p1.pos_y * 100));
+
+        gif.addFrame();
+        #endif
     }
+    #if CPP_COMPILE == 1
+    char fp[20] = "sample.gif";
+    gif.output(fp);
+    #endif
 }
 
 /* 

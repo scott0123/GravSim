@@ -11,6 +11,8 @@ The simulation will first be written in software and run on the NIOS II for a ba
 ## Getting Started
 
 ### Prerequisites
+Mac:
+imagemagick (via homebrew)
 
 ### Installing
 Download the project by navigating to the desired install directory and cloning this git repository using the command
