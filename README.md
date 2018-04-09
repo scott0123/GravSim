@@ -1,5 +1,5 @@
 # GravSim
-A gravitational simulation the N-body problem using hardware acceleration from a FPGA.
+A gravitational simulation of the N-body problem using hardware acceleration from a FPGA.
 
 ## Overview
 TODO
