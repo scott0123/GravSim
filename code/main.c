@@ -68,14 +68,14 @@ int main(){
 
 void unit_test(){
     
-    planet p1 = { 1000000.0, 1.0, 
+    planet p1 = { 1.0, 1.0, 
                 1.0, 0.0, 0.0, 
                 0.0, 1.0, 0.0, 
-                10.0, 10.0, 10.0 };
-    planet p2 = { 1000000.0, 1.0, 
+                1.0, 1.0, 1.0 };
+    planet p2 = { 1.0, 1.0, 
                 -1.0, 0.0, 0.0, 
                 0.0, -1.0, 0.0, 
-                2.0, 2.0, 2.0 };
+                0.0, 0.0, -1.0 };
     force f = get_force_between_planets_fast(p1, p2);
     force n = negative_force(f);
     printf("Planet 1 is at (%.2f, %.2f, %.2f)\n", p1.pos_x, p1.pos_y, p1.pos_z);
@@ -84,7 +84,15 @@ void unit_test(){
     printf("This force is in direction (%.2f, %.2f, %.2f)\n", f.dir_x, f.dir_y, f.dir_z);
     printf("Neg force has magnitude %.2fN\n", n.magnitude);
     printf("Neg force is in direction (%.2f, %.2f, %.2f)\n", n.dir_x, n.dir_y, n.dir_z);
-    for(int i = 0; i < 20; i++){
+    
+    printf("===== Begin Simulation =====\n");
+    for(int i = 0; i < 100; i++){
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
         timestep(&p1);
         timestep(&p2);
         printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);

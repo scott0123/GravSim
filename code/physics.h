@@ -2,7 +2,8 @@
 #define _PHYSICS_H
 
 // universal constants
-#define G 6.673E-11
+//#define G 6.673E-11
+#define G 1
 
 // standard constants
 #define THREE_HALFS 1.5f
@@ -34,6 +35,8 @@ typedef struct
 
 // functions
 void timestep(planet *p);
+void apply_force_to_planet(force f, planet *p);
+void clear_acceleration(planet *p);
 force get_force_between_planets(planet a, planet b);
 force get_force_between_planets_fast(planet a, planet b);
 force negative_force(force f);

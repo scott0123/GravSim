@@ -14,10 +14,35 @@ void timestep(planet *p){
     p->vel_y += p->acc_y * DT;
     p->vel_z += p->acc_z * DT;
     p->pos_x += p->vel_x * DT;
-    p->pos_x += p->vel_x * DT;
-    p->pos_x += p->vel_x * DT;
+    p->pos_y += p->vel_y * DT;
+    p->pos_z += p->vel_z * DT;
 }
 
+/*
+ *  apply_force_to_planet(force f, planet *p)
+ *
+ *  Apply the force to the planet by adjusting
+ *      the acceleration depending on its mass.
+ */
+void apply_force_to_planet(force f, planet *p){
+
+    p->acc_x += f.magnitude * f.dir_x / p->mass;
+    p->acc_y += f.magnitude * f.dir_y / p->mass;
+    p->acc_z += f.magnitude * f.dir_z / p->mass;
+}
+
+/*
+ *  clear_acceleration(planet *p)
+ *
+ *  Clears the acceleration to begin a new round
+ *      of force addition.
+ */
+void clear_acceleration(planet *p){
+
+    p->acc_x = 0;
+    p->acc_y = 0;
+    p->acc_z = 0;
+}
 /*
  *  get_force_between_planets(planet a, planet b)
  *
