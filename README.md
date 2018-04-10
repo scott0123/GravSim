@@ -38,9 +38,14 @@ This will compile the main.c file along with its dependencies.
 Finally run the generated binary "test"
 
 `./test`
-## Demo
-![GravSim demo 1](./images/4_body_demo_1.gif)
-![GravSim demo 2](./images/4_body_demo_2.gif)
+## Demo (C Simulated)
+![GravSim demo 1](./images/4_harmony.gif)
+![GravSim demo 2](./images/4_chaotic_1.gif)
+![GravSim demo 3](./images/4_chaotic_2.gif)
+
+## Demo (Unity simulated)
+![GravSim unity demo 1](./images/4_body_demo_1.gif)
+![GravSim unity demo 2](./images/4_body_demo_2.gif)
 
 ## Mathematics
 All operations are done under a right-hand Cartesian coordinate system with
