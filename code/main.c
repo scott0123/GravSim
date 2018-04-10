@@ -25,7 +25,7 @@ University of Illinois Electrical & Computer Engineering Department
 
 ************************************************************************************/
 
-#define CPP_COMPILE 1
+#define CPP_COMPILE 0
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -79,9 +79,9 @@ void unit_test(){
     GifGenerator gif(400, 400);
     #endif
     #if CPP_COMPILE == 0
-    for(int l = -10; l <= 10; l++){
-    for(int k = -10; k <= 10; k++){
-    for(int j = -10; j <= 10; j++){
+    //for(int l = -10; l <= 10; l++){
+    //for(int k = -10; k <= 10; k++){
+    //for(int j = -10; j <= 10; j++){
     #endif
     planet p1 = { 1.0, 1.0, 
                 1.0, 0.0, 0.0, 
@@ -102,21 +102,25 @@ void unit_test(){
                 0.0, 0.0, -1.0 };
     #endif
     #if CPP_COMPILE == 0
-    planet p4 = { 1.0+(float)k/100, 1.0, 
-                0.0, -1.0+(float)l/100, 0.0, 
-                1.0f+(float)j/100, 0.0, 0.0, 
+    planet p4 = { 0.92, 1.0, 
+                0.0, -1.07, 0.0, 
+                0.97, 0.0, 0.0, 
                 0.0, 0.0, -1.0 };
+    //planet p4 = { 1.0+(float)k/100, 1.0, 
+    //            0.0, -1.0+(float)l/100, 0.0, 
+    //           1.0f+(float)j/100, 0.0, 0.0, 
+    //            0.0, 0.0, -1.0 };
     #endif
-    //force f = get_force_between_planets(p1, p2);
-    //force n = negative_force(f);
-    //printf("Planet 1 is at (%.2f, %.2f, %.2f)\n", p1.pos_x, p1.pos_y, p1.pos_z);
-    //printf("Planet 2 is at (%.2f, %.2f, %.2f)\n", p2.pos_x, p2.pos_y, p2.pos_z);
-    //printf("This force has magnitude %.2fN\n", f.magnitude);
-    //printf("This force is in direction (%.2f, %.2f, %.2f)\n", f.dir_x, f.dir_y, f.dir_z);
-    //printf("Neg force has magnitude %.2fN\n", n.magnitude);
-    //printf("Neg force is in direction (%.2f, %.2f, %.2f)\n", n.dir_x, n.dir_y, n.dir_z);
+    force f = get_force_between_planets(p1, p2);
+    force n = negative_force(f);
+    printf("Planet 1 is at (%.2f, %.2f, %.2f)\n", p1.pos_x, p1.pos_y, p1.pos_z);
+    printf("Planet 2 is at (%.2f, %.2f, %.2f)\n", p2.pos_x, p2.pos_y, p2.pos_z);
+    printf("This force has magnitude %.2fN\n", f.magnitude);
+    printf("This force is in direction (%.2f, %.2f, %.2f)\n", f.dir_x, f.dir_y, f.dir_z);
+    printf("Neg force has magnitude %.2fN\n", n.magnitude);
+    printf("Neg force is in direction (%.2f, %.2f, %.2f)\n", n.dir_x, n.dir_y, n.dir_z);
     
-    //printf("===== Begin Simulation =====\n");
+    printf("===== Begin Simulation =====\n");
     for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
         #if CPP_COMPILE == 1
         gif.newFrame();
@@ -156,7 +160,7 @@ void unit_test(){
         timestep(&p2);
         timestep(&p3);
         timestep(&p4);
-        //printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+        printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
 
         #if CPP_COMPILE == 1
         gif.drawLargePixel((int)(p1.pos_x * 100), (int)(p1.pos_y * 100));
@@ -172,14 +176,14 @@ void unit_test(){
     gif.output(fp);
     #endif
     #if CPP_COMPILE == 0
-    if( p1.pos_x <= 1 && p1.pos_y <= 1 &&
+    /*if( p1.pos_x <= 1 && p1.pos_y <= 1 &&
         p2.pos_x <= 1 && p2.pos_y <= 1 &&
         p3.pos_x <= 1 && p3.pos_y <= 1 &&
         p4.pos_x <= 1 && p4.pos_y <= 1)
         printf("mass %.2f, pos %.2f and vel %.2f works\n", 1+(float)k/100, -1.0+(float)l/100, 1+(float)j/100);
     }
     }
-    }
+    }*/
     #endif
 }
 
