@@ -6,7 +6,7 @@ It is generally known that the famous n-body problem (see https://en.wikipedia.o
 
 ![Block diagram](./images/block_diagram.png)
 
-The simulation will first be written in software and run on the NIOS II for a baseline control performance. Afterwards, the gravitational calculations will be ported to the FPGA for a significant perfomance boost. In both cases we will be using a VGA monitor to display the simulation.  User input will be taken from the USB keyboard, and wil control the start/pause/reset of the simulation. The NIOS II processor will be used for remaining software overhead. The Avalon MM interfaces between the NIOS II and the FPGA.
+The simulation will first be written in software and run on the NIOS II for a baseline control performance. Afterwards, the gravitational calculations will be ported to the FPGA for a significant perfomance boost. In both cases we will be using a VGA monitor to display the simulation.  User input will be taken from the USB keyboard, and will control the start/pause/reset of the simulation. The NIOS II processor will be used for remaining software overhead. The Avalon MM interfaces between the NIOS II and the FPGA.
 
 ## Getting Started
 
