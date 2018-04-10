@@ -3,11 +3,13 @@
 
 // universal constants
 //#define G 6.673E-11
-#define G 4
+#define G 1
 
 // standard constants
 #define THREE_HALFS 1.5f
-#define DT 0.01667f // for 60 fps
+//#define DT 0.01667f // for 60 fps
+#define DT 0.03333f // for 30 fps
+#define SIM_FPS 30
 
 // magic numbers
 #define QUAKE_MAGIC 0x5f3759df

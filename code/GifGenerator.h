@@ -1,5 +1,5 @@
-#include "../../../PNG/png.h"
-#include "../../../PNG/animation.h"
+#include "PNG/png.h"
+#include "PNG/animation.h"
 
 class GifGenerator {
 
@@ -9,6 +9,7 @@ class GifGenerator {
         void init(int w, int h);
         void newFrame();
         void drawPixel(int x, int y);
+        void drawLargePixel(int x, int y);
         void addFrame();
         void output(char* fp);
     private:

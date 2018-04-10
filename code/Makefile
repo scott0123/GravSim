@@ -16,22 +16,22 @@ cpp : $(EXENAME)
 $(EXENAME) : $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-main.o : ../../../PNG/png.h ../../../PNG/rgbapixel.h ../../../PNG/rgbapixel.h
+main.o : PNG/png.h PNG/rgbapixel.h PNG/rgbapixel.h
 	$(CXX) $(CXXFLAGS) main.c
 
 physics.o : physics.h
 	$(CXX) $(CXXFLAGS) physics.c
 
-png.o : ../../../PNG/png.h ../../../PNG/rgbapixel.h
-	$(CXX) $(CXXFLAGS) ../../../PNG/png.cpp
+png.o : PNG/png.h PNG/rgbapixel.h
+	$(CXX) $(CXXFLAGS) PNG/png.cpp
 
-rgbapixel.o : ../../../PNG/rgbapixel.h
-	$(CXX) $(CXXFLAGS) ../../../PNG/rgbapixel.cpp
+rgbapixel.o : PNG/rgbapixel.h
+	$(CXX) $(CXXFLAGS) PNG/rgbapixel.cpp
 
-animation.o : ../../../PNG/animation.h ../../../PNG/rgbapixel.h ../../../PNG/png.h ../../../PNG/animation.h
-	$(CXX) $(CXXFLAGS) ../../../PNG/animation.cpp
+animation.o : PNG/animation.h PNG/rgbapixel.h PNG/png.h PNG/animation.h
+	$(CXX) $(CXXFLAGS) PNG/animation.cpp
 
-GifGenerator.o : GifGenerator.h ../../../PNG/animation.h ../../../PNG/rgbapixel.h ../../../PNG/png.h ../../../PNG/animation.h
+GifGenerator.o : GifGenerator.h PNG/animation.h PNG/rgbapixel.h PNG/png.h PNG/animation.h
 	$(CXX) $(CXXFLAGS) GifGenerator.cpp
 
 clean :

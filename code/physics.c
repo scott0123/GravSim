@@ -53,7 +53,9 @@ force get_force_between_planets(planet a, planet b){
     float rel_pos_squared = fabs(a.pos_x - b.pos_x) * fabs(a.pos_x - b.pos_x)
                           + fabs(a.pos_y - b.pos_y) * fabs(a.pos_y - b.pos_y)
                           + fabs(a.pos_z - b.pos_z) * fabs(a.pos_z - b.pos_z);
-    
+
+    // prevent div by 0
+    if(rel_pos_squared < 0.01) rel_pos_squared = 0.01;
     // direction needs to be normallized
     float mag = sqrt(rel_pos_squared);
     float dir_x = (b.pos_x - a.pos_x) / mag;
@@ -76,7 +78,9 @@ force get_force_between_planets_fast(planet a, planet b){
     float rel_pos_squared = fabs(a.pos_x - b.pos_x) * fabs(a.pos_x - b.pos_x)
                           + fabs(a.pos_y - b.pos_y) * fabs(a.pos_y - b.pos_y)
                           + fabs(a.pos_z - b.pos_z) * fabs(a.pos_z - b.pos_z);
-    
+
+    // prevent div by 0
+    if(rel_pos_squared < 0.01) rel_pos_squared = 0.01;
     // direction needs to be normallized
     // Quake magic
     float inv_mag = fast_invsqrt(rel_pos_squared);
