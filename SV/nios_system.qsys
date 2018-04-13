@@ -203,22 +203,6 @@
          type = "String";
       }
    }
-   element planet1
-   {
-      datum _sortIndex
-      {
-         value = "15";
-         type = "int";
-      }
-   }
-   element planet1.P1_Slave
-   {
-      datum baseAddress
-      {
-         value = "64";
-         type = "String";
-      }
-   }
    element sdram
    {
       datum _sortIndex
@@ -329,11 +313,6 @@
    internal="otg_hpi_w.external_connection"
    type="conduit"
    dir="end" />
- <interface
-   name="planet1_export"
-   internal="planet1.Export_Data"
-   type="conduit"
-   dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface name="sdram_clk" internal="sdram_pll.c1" type="clock" dir="start" />
  <interface name="sdram_wire" internal="sdram.wire" type="conduit" dir="end" />
@@ -404,7 +383,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="28" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='planet1.P1_Slave' start='0x40' end='0x80' /><slave name='keycode.s1' start='0xD0' end='0xE0' /><slave name='otg_hpi_reset.s1' start='0xE0' end='0xF0' /><slave name='otg_hpi_cs.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_w.s1' start='0x100' end='0x110' /><slave name='otg_hpi_r.s1' start='0x110' end='0x120' /><slave name='otg_hpi_data.s1' start='0x120' end='0x130' /><slave name='otg_hpi_address.s1' start='0x130' end='0x140' /><slave name='led.s1' start='0x140' end='0x150' /><slave name='sdram_pll.pll_slave' start='0x150' end='0x160' /><slave name='sysid_qsys_1.control_slave' start='0x168' end='0x170' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x170' end='0x178' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='keycode.s1' start='0xD0' end='0xE0' /><slave name='otg_hpi_reset.s1' start='0xE0' end='0xF0' /><slave name='otg_hpi_cs.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_w.s1' start='0x100' end='0x110' /><slave name='otg_hpi_r.s1' start='0x110' end='0x120' /><slave name='otg_hpi_data.s1' start='0x120' end='0x130' /><slave name='otg_hpi_address.s1' start='0x130' end='0x140' /><slave name='led.s1' start='0x140' end='0x150' /><slave name='sdram_pll.pll_slave' start='0x150' end='0x160' /><slave name='sysid_qsys_1.control_slave' start='0x168' end='0x170' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x170' end='0x178' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -649,7 +628,6 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="1" />
  </module>
- <module name="planet1" kind="planet1" version="1.0" enabled="1" />
  <module
    name="sdram"
    kind="altera_avalon_new_sdram_controller"
@@ -853,15 +831,6 @@
    enabled="1">
   <parameter name="id" value="0" />
  </module>
- <connection
-   kind="avalon"
-   version="17.1"
-   start="nios2_qsys_1.data_master"
-   end="planet1.P1_Slave">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0040" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
  <connection
    kind="avalon"
    version="17.1"
@@ -1097,7 +1066,6 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="17.1" start="sdram_pll.c0" end="sdram.clk" />
- <connection kind="clock" version="17.1" start="clk_0.clk" end="planet1.CLK" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="nios2_qsys_1.clk" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="sysid_qsys_1.clk" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="led.clk" />
@@ -1130,11 +1098,6 @@
    end="jtag_uart_0.irq">
   <parameter name="irqNumber" value="5" />
  </connection>
- <connection
-   kind="reset"
-   version="17.1"
-   start="clk_0.clk_reset"
-   end="planet1.RESET" />
  <connection
    kind="reset"
    version="17.1"
@@ -1197,11 +1160,6 @@
    version="17.1"
    start="clk_0.clk_reset"
    end="nios2_qsys_1.reset_n" />
- <connection
-   kind="reset"
-   version="17.1"
-   start="nios2_qsys_1.jtag_debug_module_reset"
-   end="planet1.RESET" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
