@@ -211,10 +211,10 @@ void software_simulation(){
 
         // send the data through the memory pointer
         
-        MEM_PTR[0] = 10 * p1.rad;
-        MEM_PTR[1] = 320 + 100 * p1.pos_x;
-        MEM_PTR[2] = 240 + 100 * p1.pos_y;
-        MEM_PTR[3] = p1.pos_z;
+        MEM_PTR[0] = (int)(10 * p1.rad);
+        MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
+        MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
+        MEM_PTR[3] = (int)(p1.pos_z);
         
 
         clear_acceleration(&p1);
