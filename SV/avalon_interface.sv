@@ -37,8 +37,8 @@ module avalon_interface (
 	// Added inputs used by ball.sv
 	input logic			  Reset_h,
 	input logic			  VGA_VS,
-	input logic 		  DrawX,
-	input logic 		  DrawY,
+	input logic [9:0]	  DrawX,
+	input logic [9:0]	  DrawY,
 	
 	// Added outputs that must go to top-level entity
 	output logic        is_ball
@@ -138,10 +138,11 @@ ball ball_instance(
 // inputs
 .Reset(Reset_h),		// not sure how to deal with this
 .Clk(CLK),				// 50 MHz clock from top_level
-.frame_clk(VGA_VS)
+.frame_clk(VGA_VS),
 //.keycode,
 .DrawX,
 .DrawY,
+.radius(regfile[0]),
 .posX(regfile[1]),
 .posY(regfile[2]),
 .posZ(regfile[3]),

@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-//      gravsim.sv                                                       --
+//      GravSim.sv                                                       --
 //      Anish Bhattacharya																 --
 //		  Scott Liu                                                        --
 //      Spring 2018                                                      --
@@ -27,7 +27,7 @@ module GravSim( input            CLOCK_50,
              input               OTG_INT,      //CY7C67200 Interrupt
              // SDRAM Interface for Nios II Software
              output logic [12:0] DRAM_ADDR,    //SDRAM Address 13 Bits
-             inout  wire  [31:0] DRAM_DQ,      //SDRAM Data 32 Bits
+             inout  wire  [15:0] DRAM_DQ,      //SDRAM Data 32 Bits
              output logic [1:0]  DRAM_BA,      //SDRAM Bank Address 2 Bits
              output logic [3:0]  DRAM_DQM,     //SDRAM Data Mast 4 Bits
              output logic        DRAM_RAS_N,   //SDRAM Row Address Strobe
@@ -71,7 +71,7 @@ module GravSim( input            CLOCK_50,
 		.OTG_RST_N(OTG_RST_N)
 	);
 
-	logic [31:0] Planet1_Data;
+	logic [31:0] EXPORT_DATA;
   
 	// You need to make sure that the port names here match the ports in Qsys-generated codes.
 	nios_system nios_system(
@@ -95,9 +95,10 @@ module GravSim( input            CLOCK_50,
 	  .otg_hpi_r_export(hpi_r),
 	  .otg_hpi_w_export(hpi_w),
 	  .otg_hpi_reset_export(hpi_reset),
-	  .planet1_export_export_data(Planet1_Data),
+	  .avalon_interface_export_data_new_signal(EXPORT_DATA)
 	  
 	  // Added inputs and outputs
+	  ,
 	  .Reset_h,
 	  .VGA_VS,
 	  .DrawX,
