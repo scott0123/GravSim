@@ -38,7 +38,7 @@ University of Illinois Electrical & Computer Engineering Department
 #endif
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
-#define SIM_MODE 0
+#define SIM_MODE 1
 #define SIM_TIME 20 // (seconds)
 
 void unit_test();
@@ -193,24 +193,43 @@ void unit_test(){
  *  This function handles the entirety of the software simulation.
  */
 void software_simulation(){
-    
-    // TODO
 
-    // initialize a planet with the initial values
-    // mass = 1
-    // radius = 1
-    // pos = (1, 0, 0)
-    // vel = (0, 1, 0)
-    planet p1 = { 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 };
+    // for this simulation we need G to be equal to 4
+    planet p1 = { 1.0, 1.0, 
+                1.0, 0.0, 0.0, 
+                0.0, 1.0, 0.0, 
+                0.0, 0.0, 1.0 };
+    planet p2 = { 1.0, 1.0, 
+                -1.0, 0.0, 0.0, 
+                0.0, -1.0, 0.0, 
+                0.0, 0.0, -1.0 };
     
-    // initialize another planet with the initial values
-    // mass = 1
-    // radius = 1
-    // pos = (-1, 0, 0)
-    // vel = (0, -1, 0)
-    planet p2 = { 1.0, 1.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0 };
+    for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
 
-    
+        // wait until the state machine wants to continue
+        //while(MEM_PTR[15] == 0);
+
+        // send the data through the memory pointer
+        /*
+        MEM_PTR[0] = p1.rad;
+        MEM_PTR[1] = p1.pos_x;
+        MEM_PTR[2] = p1.pos_y;
+        MEM_PTR[3] = p1.pos_z;
+        */
+
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
+
+        timestep(&p1);
+        timestep(&p2);
+
+        printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+    }
 }
 
 /* 
