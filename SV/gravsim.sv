@@ -127,7 +127,7 @@ module GravSim( input            CLOCK_50,
 		.DrawY
 	);
 	
-	color_mapper color_instance(
+	color_mapper CM_instance(
 		// inputs
 		.is_ball,
 		.DrawX,
@@ -142,5 +142,7 @@ module GravSim( input            CLOCK_50,
 //	HexDriver hex_inst_0 (keycode[3:0], HEX0);
 //	HexDriver hex_inst_1 (keycode[7:4], HEX1);
 
+	HexDriver hex_inst_0 (EXPORT_DATA[31:28], HEX0);
+//	HexDriver hex_inst_1 (, HEX1);
 
 endmodule

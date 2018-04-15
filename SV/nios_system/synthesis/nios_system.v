@@ -160,7 +160,7 @@ module nios_system (
 		.VGA_VS(VGA_VS),
 		.DrawX(DrawX),
 		.DrawY(DrawY),
-		.is_ball(is_ball)
+		.is_ball_out(is_ball)
 	);
 
 	nios_system_jtag_uart_0 jtag_uart_0 (

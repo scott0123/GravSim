@@ -41,7 +41,7 @@ module avalon_interface (
 	input logic [9:0]	  DrawY,
 	
 	// Added outputs that must go to top-level entity
-	output logic        is_ball
+	output logic        is_ball_out
 
 );
 
@@ -134,7 +134,11 @@ end
 
 // -----------------------------------------------------------------
 
-ball ball_instance(
+logic is_ball_1, is_ball_2;
+
+assign is_ball_out = is_ball_1 | is_ball_2;
+
+ball ball_1 (
 // inputs
 .Reset(Reset_h),		// not sure how to deal with this
 .Clk(CLK),				// 50 MHz clock from top_level
@@ -147,7 +151,27 @@ ball ball_instance(
 .posY(regfile[2]),
 .posZ(regfile[3]),
 //outputs
-.is_ball
+.is_ball(is_ball_1)
 );
+
+ball ball_2 (
+// inputs
+.Reset(Reset_h),		// not sure how to deal with this
+.Clk(CLK),				// 50 MHz clock from top_level
+.frame_clk(VGA_VS),
+//.keycode,
+.DrawX,
+.DrawY,
+.radius(regfile[4]),
+.posX(regfile[5]),
+.posY(regfile[6]),
+.posZ(regfile[7]),
+//outputs
+.is_ball(is_ball_2)
+);
+
+
+
+
 
 endmodule

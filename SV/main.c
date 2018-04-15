@@ -200,7 +200,7 @@ void software_simulation(){
                 1.0, 0.0, 0.0, 
                 0.0, 1.0, 0.0, 
                 0.0, 0.0, 1.0 };
-    planet p2 = { 1.0, 1.0, 
+    planet p2 = { 1.0, 1.5,
                 -1.0, 0.0, 0.0, 
                 0.0, -1.0, 0.0, 
                 0.0, 0.0, -1.0 };
@@ -212,11 +212,17 @@ void software_simulation(){
 
         // send the data through the memory pointer
         
+    	// body 1
         MEM_PTR[0] = (int)(10 * p1.rad);
         MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
         MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
         MEM_PTR[3] = (int)(p1.pos_z);
         
+        // body 2
+        MEM_PTR[4] = (int)(10 * p2.rad);
+		MEM_PTR[5] = (int)(320 + 100 * p2.pos_x);
+		MEM_PTR[6] = (int)(240 + 100 * p2.pos_y);
+		MEM_PTR[7] = (int)(p2.pos_z);
 
         clear_acceleration(&p1);
         clear_acceleration(&p2);
