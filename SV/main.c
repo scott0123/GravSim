@@ -56,6 +56,7 @@ volatile unsigned int * MEM_PTR = (unsigned int *) 0x00000040;
  */
 int main(){
 
+    srand(time(NULL));
     clock_t begin = clock();
     #if SIM_MODE == 0
     unit_test();
@@ -204,12 +205,12 @@ void software_simulation(){
 	                0.0, -1.0, 0.0,
 	                0.0, 0.0, -1.0 };
 	    planet p3 = { 1.0, 1.0,
-	                0.0, 1.0, 0.0,
+	                0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
 	                -1.0, 0.0, 0.0,
 	                0.0, 0.0, -1.0 };
 	    planet p4 = { 0.92, 1.0,
-	                0.0, -1.07, 0.0,
-	                0.97, 0.0, 0.0,
+	                0.0, -0.98, 0.0,
+	                1.04, 0.0, 0.0,
 	                0.0, 0.0, -1.0 };
 
 	// hard-code delay to make up for screen refresh time
