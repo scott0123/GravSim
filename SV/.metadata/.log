@@ -189,3 +189,91 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.e
 
 !ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 20:23:02.889
 !MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523755035 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-04-14 20:43:54.625
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: System timestamp mismatch - connected: "1523756074", expected: "1523755035".
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:631)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-04-14 20:43:54.643
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: System timestamp mismatch - connected: "1523756074", expected: "1523755035".
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:631)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 20:44:44.593
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523756074]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 20:44:46.912
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523756074 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+!SESSION 2018-04-14 20:57:47.231 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/intelfpga_lite/17.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/intelfpga_lite/17.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.core.resources 2 10035 2018-04-14 20:57:51.018
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 20:59:02.049
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523757269]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 20:59:04.439
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523757269 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:00:11.125
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523757269]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:00:13.510
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523757269 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:02:49.845
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523757269]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:02:52.222
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523757269 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:03:24.078
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523757269]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:03:26.402
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523757269 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:03:59.927
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523757269]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:04:02.286
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523757269 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:04:38.655
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523757269]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:04:40.945
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523757269 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:05:28.706
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x168 --id=0x0 --timestamp=1523757269]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-04-14 21:05:31.059
+!MESSAGE Executing: [C:/intelfpga_lite/17.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x168 --id=0x0 --timestamp=1523757269 /cygdrive/c/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim/GravSim.elf]

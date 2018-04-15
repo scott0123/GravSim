@@ -76,7 +76,7 @@ module GravSim( input            CLOCK_50,
 	// You need to make sure that the port names here match the ports in Qsys-generated codes.
 	nios_system nios_system(
 	  .clk_clk(Clk),         
-	  .reset_reset_n(1'b1),    // Never reset NIOS
+	  .reset_reset_n(KEY[0]),    // NOT - Never reset NIOS (instead, reset by Key)
 	  .sdram_wire_addr(DRAM_ADDR), 
 	  .sdram_wire_ba(DRAM_BA),   
 	  .sdram_wire_cas_n(DRAM_CAS_N),

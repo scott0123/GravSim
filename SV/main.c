@@ -39,8 +39,7 @@ University of Illinois Electrical & Computer Engineering Department
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
 #define SIM_MODE 1
-#define SIM_TIME 20 // (seconds)
-#define SIM_FPS 30
+#define SIM_TIME 200 // (seconds)
 
 void unit_test();
 void software_simulation();
@@ -196,15 +195,27 @@ void unit_test(){
 void software_simulation(){
 
     // for this simulation we need G to be equal to 4
-    planet p1 = { 1.0, 1.0, 
-                1.0, 0.0, 0.0, 
-                0.0, 1.0, 0.0, 
-                0.0, 0.0, 1.0 };
-    planet p2 = { 1.0, 1.5,
-                -1.0, 0.0, 0.0, 
-                0.0, -1.0, 0.0, 
-                0.0, 0.0, -1.0 };
-    
+	planet p1 = { 1.0, 1.0,
+	                1.0, 0.0, 0.0,
+	                0.0, 1.0, 0.0,
+	                0.0, 0.0, 1.0 };
+	    planet p2 = { 1.0, 1.0,
+	                -1.0, 0.0, 0.0,
+	                0.0, -1.0, 0.0,
+	                0.0, 0.0, -1.0 };
+	    planet p3 = { 1.0, 1.0,
+	                0.0, 1.0, 0.0,
+	                -1.0, 0.0, 0.0,
+	                0.0, 0.0, -1.0 };
+	    planet p4 = { 0.92, 1.0,
+	                0.0, -1.07, 0.0,
+	                0.97, 0.0, 0.0,
+	                0.0, 0.0, -1.0 };
+
+	// hard-code delay to make up for screen refresh time
+	for(int i = 0; i < 10000 * SIM_FPS; i++) ;
+
+
     for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
 
         // wait until the state machine wants to continue
@@ -224,16 +235,52 @@ void software_simulation(){
 		MEM_PTR[6] = (int)(240 + 100 * p2.pos_y);
 		MEM_PTR[7] = (int)(p2.pos_z);
 
-        clear_acceleration(&p1);
-        clear_acceleration(&p2);
-        
-        force f = get_force_between_planets(p1, p2);
-        force n = negative_force(f);
-        apply_force_to_planet(f, &p1);
-        apply_force_to_planet(n, &p2);
+		// body 3
+		MEM_PTR[8] = (int)(10 * p3.rad);
+		MEM_PTR[9] = (int)(320 + 100 * p3.pos_x);
+		MEM_PTR[10] = (int)(240 + 100 * p3.pos_y);
+		MEM_PTR[11] = (int)(p3.pos_z);
 
-        timestep(&p1);
-        timestep(&p2);
+		// body 4
+		MEM_PTR[12] = (int)(10 * p4.rad);
+		MEM_PTR[13] = (int)(320 + 100 * p4.pos_x);
+		MEM_PTR[14] = (int)(240 + 100 * p4.pos_y);
+		MEM_PTR[15] = (int)(p4.pos_z);
+
+		clear_acceleration(&p1);
+		clear_acceleration(&p2);
+		clear_acceleration(&p3);
+		clear_acceleration(&p4);
+
+		force f = get_force_between_planets(p1, p2);
+		force n = negative_force(f);
+		apply_force_to_planet(f, &p1);
+		apply_force_to_planet(n, &p2);
+		f = get_force_between_planets(p1, p3);
+		n = negative_force(f);
+		apply_force_to_planet(f, &p1);
+		apply_force_to_planet(n, &p3);
+		f = get_force_between_planets(p1, p4);
+		n = negative_force(f);
+		apply_force_to_planet(f, &p1);
+		apply_force_to_planet(n, &p4);
+		f = get_force_between_planets(p2, p3);
+		n = negative_force(f);
+		apply_force_to_planet(f, &p2);
+		apply_force_to_planet(n, &p3);
+		f = get_force_between_planets(p2, p4);
+		n = negative_force(f);
+		apply_force_to_planet(f, &p2);
+		apply_force_to_planet(n, &p4);
+		f = get_force_between_planets(p3, p4);
+		n = negative_force(f);
+		apply_force_to_planet(f, &p3);
+		apply_force_to_planet(n, &p4);
+
+		timestep(&p1);
+		timestep(&p2);
+		timestep(&p3);
+		timestep(&p4);
 
         printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
     }

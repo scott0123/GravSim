@@ -74,6 +74,14 @@ always_ff @(posedge CLK) begin
 		regfile[5] <= 32'h00000000;
 		regfile[6] <= 32'h00000000;
 		regfile[7] <= 32'h00000000;
+		regfile[8] <= 32'h00000000;
+		regfile[9] <= 32'h00000000;
+		regfile[10] <= 32'h00000000;
+		regfile[11] <= 32'h00000000;
+		regfile[12] <= 32'h00000000;
+		regfile[13] <= 32'h00000000;
+		regfile[14] <= 32'h00000000;
+		regfile[15] <= 32'h00000000;
 	end
 	
 	else begin
@@ -134,9 +142,9 @@ end
 
 // -----------------------------------------------------------------
 
-logic is_ball_1, is_ball_2;
+logic is_ball_1, is_ball_2, is_ball_3, is_ball_4;
 
-assign is_ball_out = is_ball_1 | is_ball_2;
+assign is_ball_out = is_ball_1 | is_ball_2 | is_ball_3 | is_ball_4;
 
 ball ball_1 (
 // inputs
@@ -170,7 +178,37 @@ ball ball_2 (
 .is_ball(is_ball_2)
 );
 
+ball ball_3 (
+// inputs
+.Reset(Reset_h),		// not sure how to deal with this
+.Clk(CLK),				// 50 MHz clock from top_level
+.frame_clk(VGA_VS),
+//.keycode,
+.DrawX,
+.DrawY,
+.radius(regfile[8]),
+.posX(regfile[9]),
+.posY(regfile[10]),
+.posZ(regfile[11]),
+//outputs
+.is_ball(is_ball_3)
+);
 
+ball ball_4 (
+// inputs
+.Reset(Reset_h),		// not sure how to deal with this
+.Clk(CLK),				// 50 MHz clock from top_level
+.frame_clk(VGA_VS),
+//.keycode,
+.DrawX,
+.DrawY,
+.radius(regfile[12]),
+.posX(regfile[13]),
+.posY(regfile[14]),
+.posZ(regfile[15]),
+//outputs
+.is_ball(is_ball_4)
+);
 
 
 
