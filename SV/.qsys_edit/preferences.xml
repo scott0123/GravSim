@@ -13,7 +13,8 @@
    <endaddress preferredWidth="189" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project,Project/GravSim IPs" />
+ <library
+   expandedCategories="Library/Processors and Peripherals/Peripherals,Project,Project/GravSim IPs,Library/Processors and Peripherals,Library" />
  <window width="3026" height="1946" x="-13" y="-13" />
  <hdlexample language="VHDL" />
 </preferences>

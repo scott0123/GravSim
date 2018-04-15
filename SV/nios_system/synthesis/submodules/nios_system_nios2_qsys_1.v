@@ -615,9 +615,9 @@ wire             write_strobe;
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          oci_ienable <= 32'b00000000000000000000000000100000;
+          oci_ienable <= 32'b00000000000000000000000000100010;
       else if (take_action_oci_intr_mask_reg)
-          oci_ienable <= writedata | ~(32'b00000000000000000000000000100000);
+          oci_ienable <= writedata | ~(32'b00000000000000000000000000100010);
     end
 
 
@@ -4173,7 +4173,7 @@ reg              wait_for_one_post_bret_inst;
   //custom_instruction_master, which is an e_custom_instruction_master
   assign no_ci_readra = 1'b0;
   assign E_ci_multi_stall = 1'b0;
-  assign iactive = d_irq[31 : 0] & 32'b00000000000000000000000000100000;
+  assign iactive = d_irq[31 : 0] & 32'b00000000000000000000000000100010;
   assign F_pc_sel_nxt = R_ctrl_exception                          ? 2'b00 :
     R_ctrl_break                              ? 2'b01 :
     (W_br_taken | R_ctrl_uncond_cti_non_br)   ? 2'b10 :
@@ -4776,9 +4776,9 @@ defparam nios_system_nios2_qsys_1_register_bank_b.lpm_file = "nios_system_nios2_
 
   assign W_bstatus_reg_nxt = E_valid ? W_bstatus_reg_inst_nxt : W_bstatus_reg;
   assign W_ienable_reg_nxt = ((E_wrctl_ienable & E_valid) ? 
-    E_src1[31 : 0] : W_ienable_reg) & 32'b00000000000000000000000000100000;
+    E_src1[31 : 0] : W_ienable_reg) & 32'b00000000000000000000000000100010;
 
-  assign W_ipending_reg_nxt = iactive & W_ienable_reg & oci_ienable & 32'b00000000000000000000000000100000;
+  assign W_ipending_reg_nxt = iactive & W_ienable_reg & oci_ienable & 32'b00000000000000000000000000100010;
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)

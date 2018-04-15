@@ -33,6 +33,22 @@
          type = "String";
       }
    }
+   element TIMER
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
+      }
+   }
+   element TIMER.s1
+   {
+      datum baseAddress
+      {
+         value = "32";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -53,7 +69,7 @@
    {
       datum baseAddress
       {
-         value = "368";
+         value = "400";
          type = "String";
       }
    }
@@ -74,7 +90,7 @@
       }
       datum baseAddress
       {
-         value = "208";
+         value = "240";
          type = "String";
       }
    }
@@ -90,7 +106,7 @@
    {
       datum baseAddress
       {
-         value = "320";
+         value = "352";
          type = "String";
       }
    }
@@ -151,7 +167,7 @@
    {
       datum baseAddress
       {
-         value = "304";
+         value = "336";
          type = "String";
       }
    }
@@ -167,7 +183,7 @@
    {
       datum baseAddress
       {
-         value = "240";
+         value = "272";
          type = "String";
       }
    }
@@ -183,7 +199,7 @@
    {
       datum baseAddress
       {
-         value = "288";
+         value = "320";
          type = "String";
       }
    }
@@ -204,7 +220,7 @@
    {
       datum baseAddress
       {
-         value = "272";
+         value = "304";
          type = "String";
       }
    }
@@ -220,7 +236,7 @@
    {
       datum baseAddress
       {
-         value = "224";
+         value = "256";
          type = "String";
       }
    }
@@ -236,7 +252,7 @@
    {
       datum baseAddress
       {
-         value = "256";
+         value = "288";
          type = "String";
       }
    }
@@ -268,7 +284,7 @@
    {
       datum baseAddress
       {
-         value = "336";
+         value = "368";
          type = "String";
       }
    }
@@ -284,7 +300,7 @@
    {
       datum baseAddress
       {
-         value = "360";
+         value = "392";
          type = "String";
       }
    }
@@ -363,6 +379,18 @@
    kind="Avalon_Interface"
    version="1.1"
    enabled="1" />
+ <module name="TIMER" kind="altera_avalon_timer" version="17.1" enabled="1">
+  <parameter name="alwaysRun" value="false" />
+  <parameter name="counterSize" value="32" />
+  <parameter name="fixedPeriod" value="false" />
+  <parameter name="period" value="1" />
+  <parameter name="periodUnits" value="MSEC" />
+  <parameter name="resetOutput" value="false" />
+  <parameter name="snapshot" value="true" />
+  <parameter name="systemFrequency" value="50000000" />
+  <parameter name="timeoutPulseOutput" value="false" />
+  <parameter name="watchdogPulse" value="2" />
+ </module>
  <module name="clk_0" kind="clock_source" version="17.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -430,7 +458,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="28" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='Avalon_Interface_0.AMM_Slave' start='0x40' end='0x80' /><slave name='keycode.s1' start='0xD0' end='0xE0' /><slave name='otg_hpi_reset.s1' start='0xE0' end='0xF0' /><slave name='otg_hpi_cs.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_w.s1' start='0x100' end='0x110' /><slave name='otg_hpi_r.s1' start='0x110' end='0x120' /><slave name='otg_hpi_data.s1' start='0x120' end='0x130' /><slave name='otg_hpi_address.s1' start='0x130' end='0x140' /><slave name='led.s1' start='0x140' end='0x150' /><slave name='sdram_pll.pll_slave' start='0x150' end='0x160' /><slave name='sysid_qsys_1.control_slave' start='0x168' end='0x170' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x170' end='0x178' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='TIMER.s1' start='0x20' end='0x40' /><slave name='Avalon_Interface_0.AMM_Slave' start='0x40' end='0x80' /><slave name='keycode.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_reset.s1' start='0x100' end='0x110' /><slave name='otg_hpi_cs.s1' start='0x110' end='0x120' /><slave name='otg_hpi_w.s1' start='0x120' end='0x130' /><slave name='otg_hpi_r.s1' start='0x130' end='0x140' /><slave name='otg_hpi_data.s1' start='0x140' end='0x150' /><slave name='otg_hpi_address.s1' start='0x150' end='0x160' /><slave name='led.s1' start='0x160' end='0x170' /><slave name='sdram_pll.pll_slave' start='0x170' end='0x180' /><slave name='sysid_qsys_1.control_slave' start='0x188' end='0x190' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x190' end='0x198' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -457,8 +485,8 @@
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Tiny" />
   <parameter name="instAddrWidth" value="28" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='keycode.s1' start='0xD0' end='0xE0' /><slave name='otg_hpi_reset.s1' start='0xE0' end='0xF0' /><slave name='otg_hpi_cs.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_w.s1' start='0x100' end='0x110' /><slave name='otg_hpi_r.s1' start='0x110' end='0x120' /><slave name='otg_hpi_data.s1' start='0x120' end='0x130' /><slave name='otg_hpi_address.s1' start='0x130' end='0x140' /><slave name='sdram_pll.pll_slave' start='0x150' end='0x160' /><slave name='sysid_qsys_1.control_slave' start='0x168' end='0x170' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></parameter>
-  <parameter name="internalIrqMaskSystemInfo" value="32" />
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='keycode.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_reset.s1' start='0x100' end='0x110' /><slave name='otg_hpi_cs.s1' start='0x110' end='0x120' /><slave name='otg_hpi_w.s1' start='0x120' end='0x130' /><slave name='otg_hpi_r.s1' start='0x130' end='0x140' /><slave name='otg_hpi_data.s1' start='0x140' end='0x150' /><slave name='otg_hpi_address.s1' start='0x150' end='0x160' /><slave name='sdram_pll.pll_slave' start='0x170' end='0x180' /><slave name='sysid_qsys_1.control_slave' start='0x188' end='0x190' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></parameter>
+  <parameter name="internalIrqMaskSystemInfo" value="34" />
   <parameter name="manuallyAssignCpuID" value="true" />
   <parameter name="mmu_TLBMissExcOffset" value="0" />
   <parameter name="mmu_TLBMissExcSlave" value="None" />
@@ -893,7 +921,7 @@
    start="nios2_qsys_1.data_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0170" />
+  <parameter name="baseAddress" value="0x0190" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -902,7 +930,7 @@
    start="nios2_qsys_1.data_master"
    end="sysid_qsys_1.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0168" />
+  <parameter name="baseAddress" value="0x0188" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -920,7 +948,7 @@
    start="nios2_qsys_1.data_master"
    end="sdram_pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0150" />
+  <parameter name="baseAddress" value="0x0170" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -938,7 +966,7 @@
    start="nios2_qsys_1.data_master"
    end="led.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0140" />
+  <parameter name="baseAddress" value="0x0160" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -956,7 +984,7 @@
    start="nios2_qsys_1.data_master"
    end="otg_hpi_address.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0130" />
+  <parameter name="baseAddress" value="0x0150" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -965,7 +993,7 @@
    start="nios2_qsys_1.data_master"
    end="otg_hpi_data.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0120" />
+  <parameter name="baseAddress" value="0x0140" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -974,7 +1002,7 @@
    start="nios2_qsys_1.data_master"
    end="otg_hpi_r.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0110" />
+  <parameter name="baseAddress" value="0x0130" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -983,7 +1011,7 @@
    start="nios2_qsys_1.data_master"
    end="otg_hpi_w.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0100" />
+  <parameter name="baseAddress" value="0x0120" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -992,7 +1020,7 @@
    start="nios2_qsys_1.data_master"
    end="otg_hpi_cs.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00f0" />
+  <parameter name="baseAddress" value="0x0110" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1001,7 +1029,7 @@
    start="nios2_qsys_1.data_master"
    end="otg_hpi_reset.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00e0" />
+  <parameter name="baseAddress" value="0x0100" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1010,7 +1038,16 @@
    start="nios2_qsys_1.data_master"
    end="keycode.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00d0" />
+  <parameter name="baseAddress" value="0x00f0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="nios2_qsys_1.data_master"
+   end="TIMER.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1019,7 +1056,7 @@
    start="nios2_qsys_1.instruction_master"
    end="sysid_qsys_1.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0168" />
+  <parameter name="baseAddress" value="0x0188" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1037,7 +1074,7 @@
    start="nios2_qsys_1.instruction_master"
    end="sdram_pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0150" />
+  <parameter name="baseAddress" value="0x0170" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1064,7 +1101,7 @@
    start="nios2_qsys_1.instruction_master"
    end="otg_hpi_address.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0130" />
+  <parameter name="baseAddress" value="0x0150" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1073,7 +1110,7 @@
    start="nios2_qsys_1.instruction_master"
    end="otg_hpi_data.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0120" />
+  <parameter name="baseAddress" value="0x0140" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1082,7 +1119,7 @@
    start="nios2_qsys_1.instruction_master"
    end="otg_hpi_r.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0110" />
+  <parameter name="baseAddress" value="0x0130" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1091,7 +1128,7 @@
    start="nios2_qsys_1.instruction_master"
    end="otg_hpi_w.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0100" />
+  <parameter name="baseAddress" value="0x0120" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1100,7 +1137,7 @@
    start="nios2_qsys_1.instruction_master"
    end="otg_hpi_cs.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00f0" />
+  <parameter name="baseAddress" value="0x0110" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1109,7 +1146,7 @@
    start="nios2_qsys_1.instruction_master"
    end="otg_hpi_reset.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00e0" />
+  <parameter name="baseAddress" value="0x0100" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1118,7 +1155,7 @@
    start="nios2_qsys_1.instruction_master"
    end="keycode.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00d0" />
+  <parameter name="baseAddress" value="0x00f0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="17.1" start="sdram_pll.c0" end="sdram.clk" />
@@ -1142,6 +1179,7 @@
  <connection kind="clock" version="17.1" start="clk_0.clk" end="otg_hpi_reset.clk" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="keycode.clk" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="jtag_uart_0.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="TIMER.clk" />
  <connection
    kind="clock"
    version="17.1"
@@ -1158,6 +1196,13 @@
    start="nios2_qsys_1.d_irq"
    end="jtag_uart_0.irq">
   <parameter name="irqNumber" value="5" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="17.1"
+   start="nios2_qsys_1.d_irq"
+   end="TIMER.irq">
+  <parameter name="irqNumber" value="1" />
  </connection>
  <connection
    kind="reset"
@@ -1216,6 +1261,7 @@
    version="17.1"
    start="clk_0.clk_reset"
    end="jtag_uart_0.reset" />
+ <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="TIMER.reset" />
  <connection
    kind="reset"
    version="17.1"
@@ -1231,6 +1277,11 @@
    version="17.1"
    start="nios2_qsys_1.jtag_debug_module_reset"
    end="Avalon_Interface_0.RESET" />
+ <connection
+   kind="reset"
+   version="17.1"
+   start="nios2_qsys_1.jtag_debug_module_reset"
+   end="TIMER.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />

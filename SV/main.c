@@ -39,7 +39,7 @@ University of Illinois Electrical & Computer Engineering Department
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
 #define SIM_MODE 1
-#define SIM_TIME 200 // (seconds)
+#define SIM_TIME 20 // (seconds)
 
 void unit_test();
 void software_simulation();
@@ -197,8 +197,10 @@ void software_simulation(){
 
     // for this simulation we need G to be equal to 4
 	planet p1 = { 1.0, 1.0,
-	                1.0, 0.0, 0.0,
-	                0.0, 1.0, 0.0,
+//					1.0, 0.0, 0.0,
+	                1.0, 0.0, -3.0,
+//	                0.0, 1.0, 0.0,
+	                0.0, 1.0, 3.0,
 	                0.0, 0.0, 1.0 };
 	    planet p2 = { 1.0, 1.0,
 	                -1.0, 0.0, 0.0,
@@ -209,8 +211,10 @@ void software_simulation(){
 	                -1.0, 0.0, 0.0,
 	                0.0, 0.0, -1.0 };
 	    planet p4 = { 0.92, 1.0,
-	                0.0, -0.98, 0.0,
-	                1.04, 0.0, 0.0,
+//	                0.0, -0.98, 0.0,
+	                0.0, -0.98, 3.0,
+//	                1.04, 0.0, 0.0,
+	                1.04, 0.0, -3.0,
 	                0.0, 0.0, -1.0 };
 
 	// hard-code delay to make up for screen refresh time
@@ -228,25 +232,25 @@ void software_simulation(){
         MEM_PTR[0] = (int)(10 * p1.rad);
         MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
         MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
-        MEM_PTR[3] = (int)(p1.pos_z);
+        MEM_PTR[3] = (int)(p1.pos_z * 2 + 20);
         
         // body 2
         MEM_PTR[4] = (int)(10 * p2.rad);
 		MEM_PTR[5] = (int)(320 + 100 * p2.pos_x);
 		MEM_PTR[6] = (int)(240 + 100 * p2.pos_y);
-		MEM_PTR[7] = (int)(p2.pos_z);
+		MEM_PTR[7] = (int)(p2.pos_z * 2 + 20);
 
 		// body 3
 		MEM_PTR[8] = (int)(10 * p3.rad);
 		MEM_PTR[9] = (int)(320 + 100 * p3.pos_x);
 		MEM_PTR[10] = (int)(240 + 100 * p3.pos_y);
-		MEM_PTR[11] = (int)(p3.pos_z);
+		MEM_PTR[11] = (int)(p3.pos_z * 2 + 20);
 
 		// body 4
 		MEM_PTR[12] = (int)(10 * p4.rad);
 		MEM_PTR[13] = (int)(320 + 100 * p4.pos_x);
 		MEM_PTR[14] = (int)(240 + 100 * p4.pos_y);
-		MEM_PTR[15] = (int)(p4.pos_z);
+		MEM_PTR[15] = (int)(p4.pos_z * 2 + 20);
 
 		clear_acceleration(&p1);
 		clear_acceleration(&p2);

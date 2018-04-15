@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys_1' in SOPC Builder design 'nios_system'
  * SOPC Builder design path: ../../nios_system.sopcinfo
  *
- * Generated: Sat Apr 14 20:58:12 CDT 2018
+ * Generated: Sat Apr 14 21:13:18 CDT 2018
  */
 
 /*
@@ -142,6 +142,7 @@
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
+#define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_QSYS
 #define __ALTPLL
 #define __AVALON_INTERFACE
@@ -163,19 +164,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x170
+#define ALT_STDERR_BASE 0x190
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x170
+#define ALT_STDIN_BASE 0x190
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x170
+#define ALT_STDOUT_BASE 0x190
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -184,12 +185,38 @@
 
 
 /*
+ * TIMER configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_TIMER altera_avalon_timer
+#define TIMER_ALWAYS_RUN 0
+#define TIMER_BASE 0x20
+#define TIMER_COUNTER_SIZE 32
+#define TIMER_FIXED_PERIOD 0
+#define TIMER_FREQ 50000000
+#define TIMER_IRQ 1
+#define TIMER_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define TIMER_LOAD_VALUE 49999
+#define TIMER_MULT 0.001
+#define TIMER_NAME "/dev/TIMER"
+#define TIMER_PERIOD 1
+#define TIMER_PERIOD_UNITS "ms"
+#define TIMER_RESET_OUTPUT 0
+#define TIMER_SNAPSHOT 1
+#define TIMER_SPAN 32
+#define TIMER_TICKS_PER_SEC 1000
+#define TIMER_TIMEOUT_PULSE_OUTPUT 0
+#define TIMER_TYPE "altera_avalon_timer"
+
+
+/*
  * hal configuration
  *
  */
 
 #define ALT_MAX_FD 32
-#define ALT_SYS_CLK none
+#define ALT_SYS_CLK TIMER
 #define ALT_TIMESTAMP_CLK none
 
 
@@ -199,7 +226,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x170
+#define JTAG_UART_0_BASE 0x190
 #define JTAG_UART_0_IRQ 5
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -217,7 +244,7 @@
  */
 
 #define ALT_MODULE_CLASS_keycode altera_avalon_pio
-#define KEYCODE_BASE 0xd0
+#define KEYCODE_BASE 0xf0
 #define KEYCODE_BIT_CLEARING_EDGE_REGISTER 0
 #define KEYCODE_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define KEYCODE_CAPTURE 0
@@ -244,7 +271,7 @@
  */
 
 #define ALT_MODULE_CLASS_led altera_avalon_pio
-#define LED_BASE 0x140
+#define LED_BASE 0x160
 #define LED_BIT_CLEARING_EDGE_REGISTER 0
 #define LED_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LED_CAPTURE 0
@@ -300,7 +327,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_address altera_avalon_pio
-#define OTG_HPI_ADDRESS_BASE 0x130
+#define OTG_HPI_ADDRESS_BASE 0x150
 #define OTG_HPI_ADDRESS_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_ADDRESS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_ADDRESS_CAPTURE 0
@@ -327,7 +354,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_cs altera_avalon_pio
-#define OTG_HPI_CS_BASE 0xf0
+#define OTG_HPI_CS_BASE 0x110
 #define OTG_HPI_CS_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_CS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_CS_CAPTURE 0
@@ -354,7 +381,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_data altera_avalon_pio
-#define OTG_HPI_DATA_BASE 0x120
+#define OTG_HPI_DATA_BASE 0x140
 #define OTG_HPI_DATA_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_DATA_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_DATA_CAPTURE 0
@@ -381,7 +408,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_r altera_avalon_pio
-#define OTG_HPI_R_BASE 0x110
+#define OTG_HPI_R_BASE 0x130
 #define OTG_HPI_R_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_R_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_R_CAPTURE 0
@@ -408,7 +435,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_reset altera_avalon_pio
-#define OTG_HPI_RESET_BASE 0xe0
+#define OTG_HPI_RESET_BASE 0x100
 #define OTG_HPI_RESET_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_RESET_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_RESET_CAPTURE 0
@@ -435,7 +462,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_w altera_avalon_pio
-#define OTG_HPI_W_BASE 0x100
+#define OTG_HPI_W_BASE 0x120
 #define OTG_HPI_W_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_W_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_W_CAPTURE 0
@@ -501,7 +528,7 @@
  */
 
 #define ALT_MODULE_CLASS_sdram_pll altpll
-#define SDRAM_PLL_BASE 0x150
+#define SDRAM_PLL_BASE 0x170
 #define SDRAM_PLL_IRQ -1
 #define SDRAM_PLL_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SDRAM_PLL_NAME "/dev/sdram_pll"
@@ -515,13 +542,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_1 altera_avalon_sysid_qsys
-#define SYSID_QSYS_1_BASE 0x168
+#define SYSID_QSYS_1_BASE 0x188
 #define SYSID_QSYS_1_ID 0
 #define SYSID_QSYS_1_IRQ -1
 #define SYSID_QSYS_1_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_1_NAME "/dev/sysid_qsys_1"
 #define SYSID_QSYS_1_SPAN 8
-#define SYSID_QSYS_1_TIMESTAMP 1523757269
+#define SYSID_QSYS_1_TIMESTAMP 1523758294
 #define SYSID_QSYS_1_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

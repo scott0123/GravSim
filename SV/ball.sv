@@ -49,10 +49,47 @@ module  ball ( input         Clk,                // 50 MHz clock
     int DistX, DistY, Size;
     assign DistX = DrawX - posX;
     assign DistY = DrawY - posY;
-    assign Size = radius;
+	 
+	 // absolute value of Dists
+	 int absDistX, absDistY;
+	 
+	 logic [31:0] adjRadius;
+
+	 // perform absolute value operations and calculate Z size adjust limit
+	 always_comb begin
+//		if ( DistX < 0 ) begin
+//			absDistX = -DistX;
+//		end
+//		else begin
+//			absDistX = DistX;
+//		end
+//		
+//		if ( DistY < 0 ) begin
+//			absDistY = -DistY;
+//		end
+//		else begin
+//			absDistY = DistY;
+//		end
+		
+		// radius adjust
+		if ( posZ < 1 ) begin
+			adjRadius = 1;
+		end
+		else if ( posZ > 80 ) begin
+			adjRadius = 80;
+		end
+		else begin
+			adjRadius = posZ;
+		end
+		
+	 end
+	 
+	 // currently depends ONLY on Z
+    assign Size = adjRadius;
 	 
     always_comb begin
         if ( ( DistX*DistX + DistY*DistY) <= (Size*Size) )
+//			if ( ( absDistX + absDistY) <= (Size) )
             is_ball = 1'b1;
         else
             is_ball = 1'b0;
