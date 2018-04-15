@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="175" />
+   <irq preferredWidth="34" />
+   <name preferredWidth="336" />
+   <description preferredWidth="355" />
+   <export preferredWidth="276" />
+   <inputclock preferredWidth="167" />
+   <baseaddress preferredWidth="221" />
+   <endaddress preferredWidth="189" />
+  </columns>
+ </systemtable>
+ <library expandedCategories="Library,Project,Project/GravSim IPs" />
+ <window width="3026" height="1946" x="-13" y="-13" />
+ <hdlexample language="VHDL" />
+</preferences>

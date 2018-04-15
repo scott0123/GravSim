@@ -139,8 +139,8 @@ module GravSim( input            CLOCK_50,
 	);
 	
 	// Display keycode on hex display
-	HexDriver hex_inst_0 (keycode[3:0], HEX0);
-	HexDriver hex_inst_1 (keycode[7:4], HEX1);
+//	HexDriver hex_inst_0 (keycode[3:0], HEX0);
+//	HexDriver hex_inst_1 (keycode[7:4], HEX1);
 
 
 endmodule
