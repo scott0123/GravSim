@@ -38,10 +38,11 @@ University of Illinois Electrical & Computer Engineering Department
 #endif
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
-#define SIM_MODE 1
+#define SIM_MODE 0
 #define SIM_TIME 20 // (seconds)
 
 void unit_test();
+void quake_test();
 void software_simulation();
 void hardware_simulation();
 
@@ -58,7 +59,8 @@ int main(){
 
     clock_t begin = clock();
     #if SIM_MODE == 0
-    unit_test();
+    //unit_test();
+    quake_test();
     #elif SIM_MODE == 1
     software_simulation();
     #elif SIM_MODE == 2
@@ -71,7 +73,6 @@ int main(){
 
 	return 0;
 }
-
 
 void unit_test(){
 
@@ -186,6 +187,32 @@ void unit_test(){
     }*/
     #endif
 }
+
+/*
+ *  quake_test()
+ *
+ *  test the accuracy of the quake magic for inv_sqrt
+ */
+void quake_test(){
+
+    printf("Number --- actual_invsqrt --- fast_invsqrt --- accuracy\n");
+
+    for(int i = 0; i < 100; i++){
+        float number = (i + 1) / 100.0;
+        float actual = 1.0 / sqrt(number);
+        float fast = fast_invsqrt(number);
+        printf("%.6f ---    %.6f      ---    %.6f    ---    %.6f\n",
+        number, actual, fast, 1 - fabs(actual - fast) / actual);
+    }
+    for(int i = 0; i < 10; i++){
+        float number = 10.0 * (i + 1);
+        float actual = 1.0 / sqrt(number);
+        float fast = fast_invsqrt(number);
+        printf("%.6f ---    %.6f      ---    %.6f    ---    %.6f\n",
+        number, actual, fast, 1 - fabs(actual - fast) / actual);
+    }
+}
+
 
 /* 
  *  software_simulation()

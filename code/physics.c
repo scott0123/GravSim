@@ -1,4 +1,5 @@
 #include <math.h> // needed for fabs
+#include <stdint.h> // needed for uint_32
 #include "physics.h"
 
 /*
@@ -113,17 +114,19 @@ force negative_force(force f){
  *      in many graphics calculations.
  *  Magic number used: 0x5f3759df
  */
-float fast_invsqrt(float f){
+float fast_invsqrt(float n){
 
-    long i;
-    float x2, y;
-    x2 = f * 0.5f;
-    y = f;
-    i = *(long*) &y;                        // evil cast
-    i = QUAKE_MAGIC - (i >> 1);             // magic hack
-    y = *(float*) &i;                       // evil cast again
-    y = y * (THREE_HALFS - (x2 * y * y));   // Newton method iteration one
-    return y;
+    union {
+        float f;
+        uint32_t i;
+    } conv;
+
+    float x2;
+    x2 = n * 0.5f;
+    conv.f = n;
+    conv.i = QUAKE_MAGIC - (conv.i >> 1);                       // magic hack
+    conv.f = conv.f * (THREE_HALFS - (x2 * conv.f * conv.f));   // Newton method iteration one
+    return conv.f;
 }
 
 /*
@@ -136,16 +139,18 @@ float fast_invsqrt(float f){
  *      in many graphics calculations.
  *  Magic number used: 0x5f3759df
  */
-float fast_invsqrt_2(float f){
+float fast_invsqrt_2(float n){
+    union {
+        float f;
+        uint32_t i;
+    } conv;
 
-    long i;
-    float x2, y;
-    x2 = f * 0.5f;
-    y = f;
-    i = *(long*) &y;                        // evil cast
-    i = QUAKE_MAGIC - (i >> 1);             // magic hack
-    y = *(float*) &i;                       // evil cast again
-    y = y * (THREE_HALFS - (x2 * y * y));   // Newton method iteration one
-    y = y * (THREE_HALFS - (x2 * y * y));   // Newton method iteration two
-    return y;
+    float x2;
+    x2 = n * 0.5f;
+    conv.f = n;
+    conv.i = QUAKE_MAGIC - (conv.i >> 1);                       // magic hack
+    conv.f = conv.f * (THREE_HALFS - (x2 * conv.f * conv.f));   // Newton method iteration one
+    conv.f = conv.f * (THREE_HALFS - (x2 * conv.f * conv.f));   // Newton method iteration two
+    return conv.f;
+
 }
