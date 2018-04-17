@@ -1,5 +1,6 @@
 #include <math.h> // needed for fabs
 #include <stdint.h> // needed for uint_32
+#include <stdlib.h> // needed for NULL
 #include "physics.h"
 
 /*
@@ -153,4 +154,26 @@ float fast_invsqrt_2(float n){
     conv.f = conv.f * (THREE_HALFS - (x2 * conv.f * conv.f));   // Newton method iteration two
     return conv.f;
 
+}
+
+/*
+ *  append_planet_node(planet_node* head, planet* p)
+ *
+ *  create a planet node from a planet and append it to the given linked list
+ */
+planet_node* append_planet_node(planet_node* head, planet* p){
+
+    planet_node* node = (planet_node*)malloc(sizeof(planet_node));
+    node->data = p;
+    node->next = NULL;
+
+    if(head == NULL)
+        return node;
+
+    planet_node* curr = head;
+    while(curr->next != NULL)
+        curr = curr->next;
+
+    curr->next = node;
+    return head;
 }

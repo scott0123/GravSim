@@ -59,8 +59,8 @@ int main(){
 
     clock_t begin = clock();
     #if SIM_MODE == 0
-    //unit_test();
-    quake_test();
+    unit_test();
+    //quake_test();
     #elif SIM_MODE == 1
     software_simulation();
     #elif SIM_MODE == 2
@@ -112,56 +112,48 @@ void unit_test(){
     //           1.0f+(float)j/100, 0.0, 0.0, 
     //            0.0, 0.0, -1.0 };
     #endif
-    force f = get_force_between_planets(p1, p2);
-    force n = negative_force(f);
-    printf("Planet 1 is at (%.2f, %.2f, %.2f)\n", p1.pos_x, p1.pos_y, p1.pos_z);
-    printf("Planet 2 is at (%.2f, %.2f, %.2f)\n", p2.pos_x, p2.pos_y, p2.pos_z);
-    printf("This force has magnitude %.2fN\n", f.magnitude);
-    printf("This force is in direction (%.2f, %.2f, %.2f)\n", f.dir_x, f.dir_y, f.dir_z);
-    printf("Neg force has magnitude %.2fN\n", n.magnitude);
-    printf("Neg force is in direction (%.2f, %.2f, %.2f)\n", n.dir_x, n.dir_y, n.dir_z);
-    
+
+    planet_node* head = NULL;
+    head = append_planet_node(head, &p1);
+    head = append_planet_node(head, &p2);
+    head = append_planet_node(head, &p3);
+    head = append_planet_node(head, &p4);
+
     printf("===== Begin Simulation =====\n");
     for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
         #if CPP_COMPILE == 1
         gif.newFrame();
         #endif
 
-        clear_acceleration(&p1);
-        clear_acceleration(&p2);
-        clear_acceleration(&p3);
-        clear_acceleration(&p4);
+        planet_node* curr;
+        
+        curr = head;
+        while(curr != NULL){
+            clear_acceleration(curr->data);
+            curr = curr->next;
+        }
 
-        force f = get_force_between_planets(p1, p2);
-        force n = negative_force(f);
-        apply_force_to_planet(f, &p1);
-        apply_force_to_planet(n, &p2);
-        f = get_force_between_planets(p1, p3);
-        n = negative_force(f);
-        apply_force_to_planet(f, &p1);
-        apply_force_to_planet(n, &p3);
-        f = get_force_between_planets(p1, p4);
-        n = negative_force(f);
-        apply_force_to_planet(f, &p1);
-        apply_force_to_planet(n, &p4);
-        f = get_force_between_planets(p2, p3);
-        n = negative_force(f);
-        apply_force_to_planet(f, &p2);
-        apply_force_to_planet(n, &p3);
-        f = get_force_between_planets(p2, p4);
-        n = negative_force(f);
-        apply_force_to_planet(f, &p2);
-        apply_force_to_planet(n, &p4);
-        f = get_force_between_planets(p3, p4);
-        n = negative_force(f);
-        apply_force_to_planet(f, &p3);
-        apply_force_to_planet(n, &p4);
+        curr = head;
+        planet_node* neighbor = NULL;
 
-        timestep(&p1);
-        timestep(&p2);
-        timestep(&p3);
-        timestep(&p4);
-        printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+        while(curr != NULL){
+            neighbor = curr->next;
+            while(neighbor != NULL){
+                force f = get_force_between_planets_fast(*(curr->data), *(neighbor->data));
+                force n = negative_force(f);
+                apply_force_to_planet(f, curr->data);
+                apply_force_to_planet(n, neighbor->data);
+                neighbor = neighbor->next;
+            }
+            curr = curr->next;
+        }
+        
+        curr = head;
+        while(curr != NULL){
+            timestep(curr->data);
+            curr = curr->next;
+        }
+        //printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
 
         #if CPP_COMPILE == 1
         gif.drawLargePixel((int)(p1.pos_x * 100), (int)(p1.pos_y * 100));
