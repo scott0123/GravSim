@@ -1,0 +1,2 @@
+ALTFP_ADD_SUB IP CORE
+https://www.altera.com/en_US/pdfs/literature/ug/ug_altfp_mfug.pdf
