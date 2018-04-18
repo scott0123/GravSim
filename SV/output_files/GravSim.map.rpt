@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GravSim
-Tue Apr 17 16:27:05 2018
+Wed Apr 18 16:47:39 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -44,7 +44,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Apr 17 16:27:05 2018       ;
+; Analysis & Synthesis Status        ; Successful - Wed Apr 18 16:47:39 2018       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; GravSim                                     ;
 ; Top-level Entity Name              ; FPU                                         ;
@@ -301,7 +301,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Tue Apr 17 16:26:45 2018
+    Info: Processing started: Wed Apr 18 16:47:20 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GravSim -c GravSim
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -543,10 +543,10 @@ Info (21057): Implemented 1232 device resources after synthesis - the final reso
     Info (21059): Implemented 32 output pins
     Info (21061): Implemented 1135 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 49 warnings
-    Info: Peak virtual memory: 693 megabytes
-    Info: Processing ended: Tue Apr 17 16:27:05 2018
+    Info: Peak virtual memory: 695 megabytes
+    Info: Processing ended: Wed Apr 18 16:47:40 2018
     Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:37
+    Info: Total CPU time (on all processors): 00:00:36
 
 
 +------------------------------------------+

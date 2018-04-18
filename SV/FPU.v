@@ -251,5 +251,7 @@ module FPU (
                   underflow                        ? 32'b0 :
                   (pre_frac == 0)                  ? 32'b0 :
                   {buf_oSum_s, oSum_e, oSum_f};
+						// sign bit + exponent + fraction
+						//    1     +   8      +    23
 
 endmodule
