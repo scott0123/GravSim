@@ -16,18 +16,18 @@ logic CLK = 0;
 // input
 
 logic [31:0] A;
-assign A = 32'hc1133333; // -9.2 decimal
+assign A = 32'h41133333; // +9.2 decimal
 
 logic [31:0] B;
 assign B = 32'h40f00000; // 7.5 decimal
 
 // output
 
-logic [31:0] Sum;
+logic [31:0] Out;
 
 // Instantiating the DUT
 // Make sure the module and signal names match with those in your design
-FPU fpu_add (
+FPU fpuInvSqrt (
 //	input             iCLK,
 //	input      [26:0] iA,
 //	input      [26:0] iB,
@@ -36,10 +36,10 @@ FPU fpu_add (
 	// inputs
 	.iCLK(CLK),
 	.iA(A),
-	.iB(B),
+//	.iB(B),
 	
 	// outputs
-	.oSum(Sum)
+	.oInvSqrt(Out)
 );
 
 // Toggle the clock

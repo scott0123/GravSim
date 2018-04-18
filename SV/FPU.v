@@ -22,52 +22,59 @@
  * 1.5 = 32'h3fc00000                                                     *
  *************************************************************************/
  // already changed to 32bit
-module FpInvSqrt (
+module FPU (
     input             iCLK,
-    input      [26:0] iA,
-    output     [26:0] oInvSqrt
+    input      [31:0] iA,
+    output     [31:0] oInvSqrt
 );
 
     // Extract fields of A and B.
     wire        A_s;
     wire [7:0]  A_e;
-    wire [17:0] A_f;
-    assign A_s = iA[26];
-    assign A_e = iA[25:18];
-    assign A_f = iA[17:0];
+    wire [22:0] A_f;
+    assign A_s = iA[31];
+    assign A_e = iA[30:23];
+    assign A_f = iA[22:0];
 
     //Stage 1
-    wire [26:0] y_1, y_1_out, half_iA_1;
-    assign y_1 = 27'd49920718 - (iA>>1);
+    wire [31:0] y_1, y_1_out, half_iA_1;
+    assign y_1 = 32'h5f3759df - (iA>>1);
     assign half_iA_1 = {A_s, A_e-8'd1,A_f};
-    FpMul s1_mult ( .iA(y_1), .iB(y_1), .oProd(y_1_out) );
+    FPmult s1_mult ( .iA(y_1), .iB(y_1), .oProd(y_1_out) );
+	 
     //Stage 2
-    reg [26:0] y_2, mult_2_in, half_iA_2;
-    wire [26:0] y_2_out;
-    FpMul s2_mult ( .iA(half_iA_2), .iB(mult_2_in), .oProd(y_2_out) );
+    reg [31:0] y_2, mult_2_in, half_iA_2;
+    wire [31:0] y_2_out;
+    FPmult s2_mult ( .iA(half_iA_2), .iB(mult_2_in), .oProd(y_2_out) );
+	 
     //Stage 3
-    reg [26:0] y_3, add_3_in;
-    wire [26:0] y_3_out;
-    FpAdd s3_add ( .iCLK(iCLK), .iA({~add_3_in[26],add_3_in[25:0]}), .iB(27'd33423360), .oSum(y_3_out) );
+    reg [31:0] y_3, add_3_in;
+    wire [31:0] y_3_out;
+    FPadd s3_add ( .iCLK(iCLK), .iA({~add_3_in[31],add_3_in[30:0]}), .iB(32'h3fc00000), .oSum(y_3_out) );
+	 
     //Stage 4
-    reg [26:0] y_4;
+    reg [31:0] y_4;
+	 
     //Stage 5
-    reg [26:0] y_5, mult_5_in;
-    FpMul s5_mult ( .iA(y_5), .iB(mult_5_in), .oProd(oInvSqrt) );
+    reg [31:0] y_5, mult_5_in;
+    FPmult s5_mult ( .iA(y_5), .iB(mult_5_in), .oProd(oInvSqrt) );
 
     always @(posedge iCLK) begin
-    //Stage 1 to 2
-    y_2 <= y_1;
-    mult_2_in <= y_1_out;
-    half_iA_2 <= half_iA_1;
-    //Stage 2 to 3
-    y_3 <= y_2;
-    add_3_in <= y_2_out;
-    //Stage 3 to 4
-    y_4 <= y_3;
-    //Stage 4 to 5
-    y_5 <= y_4;
-    mult_5_in <= y_3_out;
+		 //Stage 1 to 2
+		 y_2 <= y_1;
+		 mult_2_in <= y_1_out;
+		 half_iA_2 <= half_iA_1;
+		 
+		 //Stage 2 to 3
+		 y_3 <= y_2;
+		 add_3_in <= y_2_out;
+		 
+		 //Stage 3 to 4
+		 y_4 <= y_3;
+		 
+		 //Stage 4 to 5
+		 y_5 <= y_4;
+		 mult_5_in <= y_3_out;
     end
 
 
@@ -77,7 +84,7 @@ endmodule
  * Floating Point Multiplier                                              *
  * Combinational                                                          *
  *************************************************************************/
-module FpMult (
+module FPmult (
     input      [31:0] iA,    // First input
     input      [31:0] iB,    // Second input
     output     [31:0] oProd  // Product
@@ -132,7 +139,7 @@ endmodule
  * Floating Point Adder                                                   *
  * 2-stage pipeline                                                       *
  *************************************************************************/
-module FPU (
+module FPadd (
     input             iCLK,
     input      [31:0] iA,
     input      [31:0] iB,
@@ -242,13 +249,13 @@ module FPU (
     assign oSum_e = buf_larger_exp - shft_amt + 8'b1;
 
     // Detect underflow
-    wire underflow;
-    assign underflow = ~oSum_e[7] && buf_larger_exp[7] && (shft_amt != 8'b0);
+//    wire underflow;
+//    assign underflow = ~oSum_e[7] && buf_larger_exp[7] && (shft_amt != 8'b0);
 
     assign oSum = (buf_A_e_zero && buf_B_e_zero)   ? 32'b0 :
                   buf_A_e_zero                     ? buf_B :
                   buf_B_e_zero                     ? buf_A :
-                  underflow                        ? 32'b0 :
+//                  underflow                        ? 32'b0 :
                   (pre_frac == 0)                  ? 32'b0 :
                   {buf_oSum_s, oSum_e, oSum_f};
 						// sign bit + exponent + fraction
