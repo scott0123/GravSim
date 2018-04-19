@@ -248,6 +248,7 @@ module FPadd (
     wire [7:0] oSum_e;
     assign oSum_e = buf_larger_exp - shft_amt + 8'b1;
 
+	 // this is broken until further notice
     // Detect underflow
 //    wire underflow;
 //    assign underflow = ~oSum_e[7] && buf_larger_exp[7] && (shft_amt != 8'b0);

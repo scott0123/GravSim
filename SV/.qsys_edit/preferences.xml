@@ -14,7 +14,7 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/Processors and Peripherals/Peripherals,Project,Project/GravSim IPs,Library/Processors and Peripherals,Library" />
+   expandedCategories="Library/DSP/Primitive DSP,Project,Library/Interface Protocols/Transceiver PLL,Library/DSP,Library/Interface Protocols/Audio &amp; Video,Library/Basic Functions/Arithmetic,Library,Library/Interface Protocols,Library/Basic Functions" />
  <window width="3026" height="1946" x="-13" y="-13" />
  <hdlexample language="VHDL" />
 </preferences>

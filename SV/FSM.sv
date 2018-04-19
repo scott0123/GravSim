@@ -22,7 +22,20 @@ module FSM (
 	
 );
 
-
+const int OFFSET_NUM = 0;
+const int OFFSET_START = 1;
+const int OFFSET_DONE = 2;
+const int OFFSET_MASS = 3-1;
+const int OFFSET_RAD = 13-1;
+const int OFFSET_POS_X = 23-1;
+const int OFFSET_POS_Y = 33-1;
+const int OFFSET_POS_Z = 43-1;
+const int OFFSET_VEL_X = 53-1;
+const int OFFSET_VEL_Y = 63-1;
+const int OFFSET_VEL_Z = 73-1;
+const int OFFSET_ACC_X = 83-1;
+const int OFFSET_ACC_Y = 93-1;
+const int OFFSET_ACC_Z = 103-1;
 
 // declare internal state counters here
 
@@ -41,10 +54,11 @@ enum logic [5:0] {
 					WAIT,
 					DONE,
 					
-					ClearAcc,
-					GetForce,
-					ApplyForce,
-					ResolveForce
+//					ClearAcc,
+//					GetForce,
+//					ApplyForce,
+					ResolveForce_CalcVel
+					ResolveForce_CalcPos
 					
 					// intermediate states here
 					
@@ -66,7 +80,9 @@ always_ff @(posedge CLK) begin
 		state <= next_state;
 		// set internal state counters to next_state counters here
 		
-		
+		regfile[OFFSET_ACC_X] <= FPmult_AccX_out;
+		regfile[OFFSET_ACC_Y] <= FPmult_AccY_out;
+		regfile[OFFSET_ACC_Z] <= FPmult_AccZ_out;
 		
 	end
 
@@ -94,7 +110,7 @@ always_comb begin
 		WAIT:
 			begin
 				if (FSM_START == 1'b1)
-					next_state = ClearAcc;
+					next_state = ResolveForce_CalcVel;
 			end
 			
 		
@@ -103,213 +119,28 @@ always_comb begin
 		
 		ClearAcc:
 			begin
-			
 				
-			
 			end
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// Decryption SM states
-		KExp:
+		GetForce:
 			begin
-//				next_state = DONE;
-				if (KExp_counter > 7'd12) // might have to test other values
-					next_state = ARK0;
+				
 			end
 		
-		// comment out here for debug purposes
-		
-		
-		ARK0:
-			next_state = ISR1;
-		
-		
-		
-		ISR1:
-			next_state = ISB1;
-		
-		ISB1:
-			next_state = ARK1;
-			
-		ARK1:
-			next_state = IMC1;
-
-		IMC1:
+		ApplyForce:
 			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR2;
+				
 			end
 		
-		
-		ISR2:
-			next_state = ISB2;
-		
-		ISB2:
-			next_state = ARK2;
-			
-		ARK2:
-			next_state = IMC2;
-		
-		IMC2:
+		ResolveForce_CalcVel:
 			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR3;
+				next_state = ResolveForce_CalcPos;
 			end
 		
-		
-		ISR3:
-			next_state = ISB3;
-		
-		ISB3:
-			next_state = ARK3;
-			
-		ARK3:
-			next_state = IMC3;
-		
-		IMC3:
+		ResolveForce_CalcPos:
 			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR4;
+				next_state = DONE;
 			end
-		
-		
-		
-		ISR4:
-			next_state = ISB4;
-		
-		ISB4:
-			next_state = ARK4;
-			
-		ARK4:
-			next_state = IMC4;
-		
-		IMC4:
-			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR5;
-			end
-		
-		
-		
-		ISR5:
-			next_state = ISB5;
-		
-		ISB5:
-			next_state = ARK5;
-			
-		ARK5:
-			next_state = IMC5;
-		
-		IMC5:
-			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR6;
-			end
-		
-		
-		
-		ISR6:
-			next_state = ISB6;
-		
-		ISB6:
-			next_state = ARK6;
-			
-		ARK6:
-			next_state = IMC6;
-		
-		IMC6:
-			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR7;
-			end
-		
-		
-		
-		ISR7:
-			next_state = ISB7;
-		
-		ISB7:
-			next_state = ARK7;
-			
-		ARK7:
-			next_state = IMC7;
-		
-		IMC7:
-			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR8;
-			end
-		
-		
-		
-		ISR8:
-			next_state = ISB8;
-		
-		ISB8:
-			next_state = ARK8;
-			
-		ARK8:
-			next_state = IMC8;
-		
-		IMC8:
-			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR9;
-			end
-		
-		
-		
-		ISR9:
-			next_state = ISB9;
-		
-		ISB9:
-			next_state = ARK9;
-			
-		ARK9:
-			next_state = IMC9;
-		
-		IMC9:
-			begin
-				if (IMC_counter > 3'd3)
-					next_state = ISR10;
-			end
-			
-		
-		
-		ISR10:
-			next_state = ISB10;
-		
-		ISB10:
-			next_state = ARK10;
-		
-		ARK10:
-			next_state = DONE;
 		
 		
 		
@@ -327,10 +158,10 @@ always_comb begin
 	// ------------------------------------------------------------- //
 	
 	
-	
-	
 	// define operations of each state
 	case(state)
+	
+		// General FSM states
 	
 		DONE:
 			begin
@@ -339,231 +170,41 @@ always_comb begin
 		
 		WAIT:
 			AES_DONE = 1'b0;
-		
-		// Decryption SM states
-		KExp:
+	
+		// Calculation states
+	
+		ClearAcc:
 			begin
-				if (KExp_counter < 7'd13) // might have to test other values
-					KExp_counter_next = KExp_counter + 7'b1;
-				if (KExp_counter == 7'b0)
-					msg_next_state = AES_MSG_ENC;
+				
 			end
 		
-		//comment here for debug
-		
-		ARK0:
+		GetForce:
 			begin
-				KExp_counter_next = 7'b0;
-				msg_next_state = msg_state ^ key_schedule[127:0];
+				
 			end
 		
-		
-		ISR1:
-			msg_next_state = msg_next_state_ISR;
-		
-		ISB1:
-			msg_next_state = msg_next_state_ISB;
-			
-		ARK1:
-			msg_next_state = msg_state ^ key_schedule[255:128];
-		
-		IMC1:
+		ApplyForce:
 			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
 				
-				
-		ISR2:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB2:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK2:
-			msg_next_state = msg_state ^ key_schedule[383:256];
-
-		IMC2:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-
-				
-				
-		ISR3:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB3:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK3:
-			msg_next_state = msg_state ^ key_schedule[511:384];
-
-		IMC3:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-
-				
-				
-		ISR4:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB4:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK4:
-			msg_next_state = msg_state ^ key_schedule[639:512];
-
-		IMC4:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-
-				
-				
-		ISR5:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB5:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK5:
-			msg_next_state = msg_state ^ key_schedule[767:640];
-
-		IMC5:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-
-				
-				
-		ISR6:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB6:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK6:
-			msg_next_state = msg_state ^ key_schedule[895:768];
-
-		IMC6:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-
-				
-				
-		ISR7:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB7:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK7:
-			msg_next_state = msg_state ^ key_schedule[1023:896];
-
-		IMC7:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-
-				
-				
-		ISR8:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB8:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK8:
-			msg_next_state = msg_state ^ key_schedule[1151:1024];
-
-		IMC8:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-
-				
-				
-		ISR9:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
-			end
-
-		ISB9:
-			msg_next_state = msg_next_state_ISB;
-
-		ARK9:
-			msg_next_state = msg_state ^ key_schedule[1279:1152];
-
-		IMC9:
-			begin
-				if (IMC_counter < 3'd4) // might have to test other values
-					IMC_counter_next = IMC_counter + 3'b1;
-				else
-					msg_next_state = msg_next_state_IMC;
-			end
-			
-		
-		
-		ISR10:
-			begin
-				IMC_counter_next = 3'b0;
-				msg_next_state = msg_next_state_ISR;
 			end
 		
-		ISB10:
-			msg_next_state = msg_next_state_ISB;
+		ResolveForce_CalcVel:
+			begin
+				FPmult_AccX_opA = regfile[OFFSET_ACC_X]
+				FPmult_AccX_opB = regfile[OFFSET_ACC_X]
+				
+				FPmult_AccY_opA = regfile[OFFSET_ACC_Y]
+				FPmult_AccY_opB = regfile[OFFSET_ACC_Y]
+				
+				FPmult_AccZ_opA = regfile[OFFSET_ACC_Z]
+				FPmult_AccZ_opB = regfile[OFFSET_ACC_Z]
+			end
 		
-		ARK10:
-			msg_next_state = msg_state ^ key_schedule[1407:1280];
-			
+		ResolveForce_CalcPos:
+			begin
+				
+			end
+		
 		
 		default: ;
 		
@@ -575,27 +216,29 @@ end
 
 
 // instantiate necessary modules
-KeyExpansion KExp_module (
-.clk(CLK),
-.Cipherkey(AES_KEY),
-.KeySchedule(key_schedule)
+
+FPmult FPmult_AccX (
+	// inputs
+	.iA(FPmult_AccX_opA),
+	.iB(FPmult_AccX_opB),
+	// outputs
+	.oProd(FPmult_AccX_out)
 );
 
-InvShiftRows ISR_module (
-.data_in(msg_state),
-.data_out(msg_next_state_ISR)
+FPmult FPmult_AccY (
+	// inputs
+	.iA(FPmult_AccY_opA),
+	.iB(FPmult_AccY_opB),
+	// outputs
+	.oProd(FPmult_AccY_out)
 );
 
-InvSubBytes128 ISB_module (
-.clk(CLK),
-.data_in(msg_state),
-.data_out(msg_next_state_ISB)
-);
-
-InvMixColumns128 IMC_module (
-.clk(CLK),
-.data_in(msg_state),
-.data_out(msg_next_state_IMC)
+FPmult FPmult_AccZ (
+	// inputs
+	.iA(FPmult_AccZ_opA),
+	.iB(FPmult_AccZ_opB),
+	// outputs
+	.oProd(FPmult_AccZ_out)
 );
 
 

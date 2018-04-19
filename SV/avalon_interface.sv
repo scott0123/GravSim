@@ -45,8 +45,36 @@ module avalon_interface (
 
 );
 
+// SIZE = 113
+// 3 "Misc" data:
+//						Number of balls being used
+// 					FSM_START bit
+//						FSM_DONE bit
+// Body data (x10 size per var):
+//						Mass
+//						 ...
+//						Radius
+//						 ...
+//						X_pos
+//						 ...
+//						Y_pos
+//						 ...
+//						Z_pos
+//						 ...
+//						X_vel
+//						 ...
+//						Y_vel
+//						 ...
+//						Z_vel
+//						 ...
+//						X_acc
+//						 ...
+//						Y_acc
+//						 ...
+//						Z_acc
+//						 ...
 
-logic [31:0] regfile [16];
+logic [31:0] regfile [113];
 
 always_comb begin
 
@@ -66,22 +94,9 @@ end
 always_ff @(posedge CLK) begin
 	
 	if (RESET) begin
-		regfile[0] <= 32'h00000000;
-		regfile[1] <= 32'h00000000;
-		regfile[2] <= 32'h00000000;
-		regfile[3] <= 32'h00000000;
-		regfile[4] <= 32'h00000000;
-		regfile[5] <= 32'h00000000;
-		regfile[6] <= 32'h00000000;
-		regfile[7] <= 32'h00000000;
-		regfile[8] <= 32'h00000000;
-		regfile[9] <= 32'h00000000;
-		regfile[10] <= 32'h00000000;
-		regfile[11] <= 32'h00000000;
-		regfile[12] <= 32'h00000000;
-		regfile[13] <= 32'h00000000;
-		regfile[14] <= 32'h00000000;
-		regfile[15] <= 32'h00000000;
+		for (integer i = 0; i < 113; i += 1) begin
+			regfile[i] <= 32'b0;
+		end
 	end
 	
 	else begin
