@@ -194,7 +194,7 @@ FSM RESOLVE_FORCE (
 	.CLK,
 	.RESET,
 	.FSM_START(regfile[OFFSET_START][0]),
-//	.datafile(regfile),
+	.datafile(regfile),
 	
 	// outputs
 	.FSM_DONE(FSM_DONE_temp),

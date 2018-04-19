@@ -76,11 +76,11 @@ module  ball ( input         Clk,                // 50 MHz clock
 	 always_comb begin
 		
 		// radius adjust
-		if ( (intPosZ + 32'd20) < 1 ) begin
-			adjRadius = 1;
+		if ( (intPosZ + 32'd20) < 32'd1 ) begin
+			adjRadius = 32'd1;
 		end
-		else if ( (intPosZ + 32'd20) > 80 ) begin
-			adjRadius = 80;
+		else if ( (intPosZ + 32'd20) > 32'd80 ) begin
+			adjRadius = 32'd80;
 		end
 		else begin
 			adjRadius = (intPosZ + 32'd20);

@@ -12,21 +12,17 @@
 # 
 # vlog -vlog01compat -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV {C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 00:27:28 on Apr 19,2018
+# Start time: 07:19:05 on Apr 19,2018
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v 
 # -- Compiling module FPinvsqrt
 # -- Compiling module FPmult
 # -- Compiling module FPadd
-# -- Compiling module FPU
 # -- Compiling module fp2int
-# -- Compiling module fp2int_pos
 # 
 # Top level modules:
 # 	FPinvsqrt
-# 	FPU
 # 	fp2int
-# 	fp2int_pos
-# End time: 00:27:29 on Apr 19,2018, Elapsed time: 0:00:01
+# End time: 07:19:05 on Apr 19,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlib nios_system
 # ** Warning: (vlib-34) Library already exists at "nios_system".
@@ -36,48 +32,20 @@
 # Modifying modelsim.ini
 # vlog -sv -work nios_system +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules {C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 00:27:29 on Apr 19,2018
+# Start time: 07:19:05 on Apr 19,2018
 # vlog -reportprogress 300 -sv -work nios_system "+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules" C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv 
 # -- Compiling module avalon_interface
-# 
-# Top level modules:
-# 	avalon_interface
-# End time: 00:27:29 on Apr 19,2018, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -sv -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV {C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/ball.sv}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 00:27:29 on Apr 19,2018
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/ball.sv 
-# -- Compiling module ball
-# 
-# Top level modules:
-# 	ball
-# End time: 00:27:29 on Apr 19,2018, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# 
-# vlog -sv -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV {C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 00:27:29 on Apr 19,2018
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv 
-# -- Compiling module testbench_FPU
-# 
-# Top level modules:
-# 	testbench_FPU
-# End time: 00:27:29 on Apr 19,2018, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -L nios_system -voptargs="+acc"  testbench_FPU
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -L nios_system -voptargs=""+acc"" testbench_FPU 
-# Start time: 00:27:30 on Apr 19,2018
-# Loading sv_std.std
-# Loading work.testbench_FPU
-# Loading work.FPU
-# 
-# add wave *
-# view structure
-# .main_pane.structure.interior.cs.body.struct
-# view signals
-# .main_pane.objects.interior.cs.body.tree
-# run 10000 ns
-# End time: 00:30:14 on Apr 19,2018, Elapsed time: 0:02:44
-# Errors: 0, Warnings: 0
+# ** Error: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv(158): (vlog-2730) Undefined variable: 'FSM_we'.
+# ** Error: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv(160): (vlog-2730) Undefined variable: 'FSM_ADDR1'.
+# ** Error: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv(160): (vlog-2730) Undefined variable: 'FSM_data1'.
+# ** Error: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv(161): (vlog-2730) Undefined variable: 'FSM_ADDR2'.
+# ** Error: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv(161): (vlog-2730) Undefined variable: 'FSM_data2'.
+# ** Error: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv(162): (vlog-2730) Undefined variable: 'FSM_ADDR3'.
+# ** Error: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv(162): (vlog-2730) Undefined variable: 'FSM_data3'.
+# End time: 07:19:06 on Apr 19,2018, Elapsed time: 0:00:01
+# Errors: 7, Warnings: 0
+# ** Error: C:/intelFPGA_lite/17.1/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./GravSim_run_msim_rtl_systemverilog.do line 11
+# C:/intelFPGA_lite/17.1/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog -sv -work nios_system +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules {C:/Users/anish/Document..."

@@ -13,50 +13,59 @@ timeprecision 1ns;
 // instantiated as a submodule in testbench.
 logic CLK = 0;
 
-// input
 
-logic [31:0] A;
-assign A = 32'h41133333; // +9.2 decimal
+const int OFFSET_NUM = 0;
+const int OFFSET_START = 1;
+const int OFFSET_DONE = 2;
+const int OFFSET_MASS = 3-1;
+const int OFFSET_RAD = 13-1;
+const int OFFSET_POS_X = 23-1;
+const int OFFSET_POS_Y = 33-1;
+const int OFFSET_POS_Z = 43-1;
+const int OFFSET_VEL_X = 53-1;
+const int OFFSET_VEL_Y = 63-1;
+const int OFFSET_VEL_Z = 73-1;
+const int OFFSET_ACC_X = 83-1;
+const int OFFSET_ACC_Y = 93-1;
+const int OFFSET_ACC_Z = 103-1;
 
-logic [31:0] B;
-assign B = 32'h40f00000; // +7.5 decimal
 
-logic [31:0] C;
-assign C = 32'h4216cccd; // +37.7 decimal
-
-logic [31:0] D;
-assign D = 32'hc2f1cccd; // -120.9 decimal
-
+// inputs
+//input	 logic CLK;
 logic RESET;
+logic FSM_START;
+logic [31:0] regfile [113];
 
-// output
+// outputs
+logic FSM_DONE;
+logic FSM_we;
+logic [31:0] ADDR1, ADDR2, ADDR3;
+logic [31:0] data1, data2, data3;
 
-logic [31:0] Out;
-logic Done, Error;
+
+
 
 // Instantiating the DUT
 // Make sure the module and signal names match with those in your design
-FPU fp2int (
+FSM FSM_instance (
 
-//		input clk,
-//    input rst,
-//    input [31:0] vin,
-//    output reg [31:0] vout,
-//    output reg done,
-//    output reg error
-
-//	// inputs
-//	.clk(CLK),
-//	.rst(RESET),
-//	.vin(A),
-//	// outputs
-//	.vout(Out),
-//	.done(Done),
-//	.error(Error)
-
-	.fp_in(D),
-	.int_out(Out)
-
+	// inputs
+	.CLK(CLK),
+	.RESET(RESET),
+	.FSM_START(regfile[OFFSET_START][0]),
+	.datafile(regfile),
+	
+	// outputs
+	.FSM_DONE,
+	
+	// added outputs
+	.FSM_we,
+	.ADDR1,
+	.ADDR2,
+	.ADDR3,
+	.data1,
+	.data2,
+	.data3
 
 );
 
@@ -75,10 +84,29 @@ end
 // Everything happens sequentially inside an initial block
 // as in a software program
 initial begin: TEST_VECTORS
+RESET = 1;
 
-//RESET = 1;
+//for (integer i = 0; i < 113; i += 1) begin
+//	datafile[i] = 32'b0;
+//end
 
-//#5 RESET = 0;
+#10
+RESET = 0;
+
+regfile[OFFSET_RAD + 1] = 32'h3f800000; // 1 
+regfile[OFFSET_POS_X + 1] = 32'h0; // 0 
+regfile[OFFSET_POS_Y + 1] = 32'h0; // 0 
+regfile[OFFSET_POS_Z + 1] = 32'h0; // 0
+regfile[OFFSET_VEL_X + 1] = 32'h3f800000; // 1 
+regfile[OFFSET_VEL_Y + 1] = 32'h0; // 0
+regfile[OFFSET_VEL_Z + 1] = 32'h0; // 0 
+regfile[OFFSET_ACC_X + 1] = 32'h0; // 0
+regfile[OFFSET_ACC_Y + 1] = 32'h0; // 0 
+regfile[OFFSET_ACC_Z + 1] = 32'h0; // 0 
+
+regfile[OFFSET_START] = 32'b1; // 1
+
+
 
 end
 
