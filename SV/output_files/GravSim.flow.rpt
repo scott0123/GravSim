@@ -1,5 +1,5 @@
 Flow report for GravSim
-Thu Apr 19 00:26:39 2018
+Thu Apr 19 06:21:48 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,22 +40,22 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Apr 19 00:26:39 2018       ;
+; Flow Status                        ; Successful - Thu Apr 19 06:21:48 2018       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; GravSim                                     ;
-; Top-level Entity Name              ; FPU                                         ;
+; Top-level Entity Name              ; GravSim                                     ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 149                                         ;
-;     Total combinational functions  ; 149                                         ;
-;     Dedicated logic registers      ; 0                                           ;
-; Total registers                    ; 0                                           ;
-; Total pins                         ; 64                                          ;
+; Total logic elements               ; 12,649 / 114,480 ( 11 % )                   ;
+;     Total combinational functions  ; 10,474 / 114,480 ( 9 % )                    ;
+;     Dedicated logic registers      ; 5,863 / 114,480 ( 5 % )                     ;
+; Total registers                    ; 5932                                        ;
+; Total pins                         ; 112 / 529 ( 21 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
+; Total memory bits                  ; 11,392 / 3,981,312 ( < 1 % )                ;
+; Embedded Multiplier 9-bit elements ; 136 / 532 ( 26 % )                          ;
+; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/19/2018 00:26:17 ;
+; Start date & time ; 04/19/2018 06:17:57 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GravSim             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                                         ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 169736358548164.152411557615984                               ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 169736358548164.152413667714192                               ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                            ; --            ; --          ; testbench_FPU  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench_FPU                                                 ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                                             ; --            ; --          ; eda_simulation ;
@@ -91,44 +91,55 @@ refer to the applicable agreement for further details.
 ; MISC_FILE                            ; nios_system/synthesis/../nios_system.cmp                      ; --            ; --          ; --             ;
 ; MISC_FILE                            ; nios_system/synthesis/../../nios_system.qsys                  ; --            ; --          ; --             ;
 ; NOMINAL_CORE_SUPPLY_VOLTAGE          ; 1.2V                                                          ; --            ; --          ; --             ;
-; PARTITION_COLOR                      ; -- (Not supported for targeted family)                        ; --            ; FPU         ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family)                        ; --            ; FPU         ; Top            ;
-; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family)                        ; --            ; FPU         ; Top            ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family)                        ; --            ; --          ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family)                        ; --            ; --          ; Top            ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family)                        ; --            ; --          ; Top            ;
 ; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                           ; --            ; --          ; --             ;
 ; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                         ; --            ; --          ; --             ;
 ; PROJECT_OUTPUT_DIRECTORY             ; output_files                                                  ; --            ; --          ; --             ;
 ; SLD_FILE                             ; nios_system/synthesis/nios_system.regmap                      ; --            ; --          ; --             ;
 ; SLD_FILE                             ; nios_system/synthesis/nios_system.debuginfo                   ; --            ; --          ; --             ;
-; SLD_INFO                             ; QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1523758294 ; --            ; nios_system ; --             ;
+; SLD_INFO                             ; QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1524130369 ; --            ; nios_system ; --             ;
 ; SOPCINFO_FILE                        ; nios_system/synthesis/../../nios_system.sopcinfo              ; --            ; --          ; --             ;
 ; SYNTHESIS_ONLY_QIP                   ; On                                                            ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                     ; FPU                                                           ; GravSim       ; --          ; --             ;
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                        ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:22     ; 1.0                     ; 683 MB              ; 00:00:40                           ;
-; Total                ; 00:00:22     ; --                      ; --                  ; 00:00:40                           ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:01:59     ; 1.0                     ; 1003 MB             ; 00:02:32                           ;
+; Fitter                    ; 00:01:10     ; 1.0                     ; 1611 MB             ; 00:01:36                           ;
+; Assembler                 ; 00:00:05     ; 1.0                     ; 657 MB              ; 00:00:05                           ;
+; TimeQuest Timing Analyzer ; 00:00:08     ; 1.1                     ; 866 MB              ; 00:00:08                           ;
+; EDA Netlist Writer        ; 00:00:16     ; 1.0                     ; 713 MB              ; 00:00:15                           ;
+; Total                     ; 00:03:38     ; --                      ; --                  ; 00:04:36                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                    ;
-+----------------------+------------------+------------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; AnishSB          ; Windows 10 ; 10.0       ; x86_64         ;
-+----------------------+------------------+------------+------------+----------------+
++-----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                         ;
++---------------------------+------------------+------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++---------------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis      ; AnishSB          ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter                    ; AnishSB          ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler                 ; AnishSB          ; Windows 10 ; 10.0       ; x86_64         ;
+; TimeQuest Timing Analyzer ; AnishSB          ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer        ; AnishSB          ; Windows 10 ; 10.0       ; x86_64         ;
++---------------------------+------------------+------------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off GravSim -c GravSim
+quartus_fit --read_settings_files=off --write_settings_files=off GravSim -c GravSim
+quartus_asm --read_settings_files=off --write_settings_files=off GravSim -c GravSim
+quartus_sta GravSim -c GravSim
+quartus_eda --read_settings_files=off --write_settings_files=off GravSim -c GravSim
 
 
 

@@ -1,4 +1,5 @@
 	nios_system u0 (
+		.avalon_interface_export_data_new_signal (<connected-to-avalon_interface_export_data_new_signal>), // avalon_interface_export_data.new_signal
 		.clk_clk                                 (<connected-to-clk_clk>),                                 //                          clk.clk
 		.keycode_export                          (<connected-to-keycode_export>),                          //                      keycode.export
 		.led_wire_export                         (<connected-to-led_wire_export>),                         //                     led_wire.export
@@ -19,7 +20,6 @@
 		.sdram_wire_dq                           (<connected-to-sdram_wire_dq>),                           //                             .dq
 		.sdram_wire_dqm                          (<connected-to-sdram_wire_dqm>),                          //                             .dqm
 		.sdram_wire_ras_n                        (<connected-to-sdram_wire_ras_n>),                        //                             .ras_n
-		.sdram_wire_we_n                         (<connected-to-sdram_wire_we_n>),                         //                             .we_n
-		.avalon_interface_export_data_new_signal (<connected-to-avalon_interface_export_data_new_signal>)  // avalon_interface_export_data.new_signal
+		.sdram_wire_we_n                         (<connected-to-sdram_wire_we_n>)                          //                             .we_n
 	);
 

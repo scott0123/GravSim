@@ -24,7 +24,7 @@ module nios_system_mm_interconnect_0 (
 		output wire        nios2_qsys_1_instruction_master_waitrequest,          //                                               .waitrequest
 		input  wire        nios2_qsys_1_instruction_master_read,                 //                                               .read
 		output wire [31:0] nios2_qsys_1_instruction_master_readdata,             //                                               .readdata
-		output wire [3:0]  Avalon_Interface_0_AMM_Slave_address,                 //                   Avalon_Interface_0_AMM_Slave.address
+		output wire [7:0]  Avalon_Interface_0_AMM_Slave_address,                 //                   Avalon_Interface_0_AMM_Slave.address
 		output wire        Avalon_Interface_0_AMM_Slave_write,                   //                                               .write
 		output wire        Avalon_Interface_0_AMM_Slave_read,                    //                                               .read
 		input  wire [31:0] Avalon_Interface_0_AMM_Slave_readdata,                //                                               .readdata
@@ -1395,7 +1395,7 @@ module nios_system_mm_interconnect_0 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (4),
+		.AV_ADDRESS_W                   (8),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

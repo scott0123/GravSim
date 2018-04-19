@@ -18,7 +18,14 @@ module FSM (
 	input  logic RESET,
 	input  logic FSM_START,
 	output logic FSM_DONE,
-	input  logic [31:0] datafile [93]
+	input  logic [31:0] datafile [113],
+	
+	// added outputs
+	output logic FSM_we,
+	output logic [31:0] ADDR1, ADDR2, ADDR3,
+	output logic [31:0] data1, data2, data3
+	
+	
 	
 );
 
@@ -46,7 +53,25 @@ const int DT = 32'h3c888889; // 1/60 in single precision float
 // declare internal data here
 logic updateV;
 logic updateP;
+logic [31:0] FPaddX_opA;
+logic [31:0] FPaddX_opB;
+logic [31:0] FPaddY_opA;
+logic [31:0] FPaddY_opB;
+logic [31:0] FPaddZ_opA;
+logic [31:0] FPaddZ_opB;
+logic [31:0] FPmultX_opA;
+logic [31:0] FPmultX_opB;
+logic [31:0] FPmultY_opA;
+logic [31:0] FPmultY_opB;
+logic [31:0] FPmultZ_opA;
+logic [31:0] FPmultZ_opB;
 
+logic [31:0] FPaddX_out;
+logic [31:0] FPaddY_out;
+logic [31:0] FPaddZ_out;
+logic [31:0] FPmultX_out;
+logic [31:0] FPmultY_out;
+logic [31:0] FPmultZ_out;
 
 // next state holders for module outputs
 
@@ -57,10 +82,10 @@ enum logic [5:0] {
 					WAIT,
 					DONE,
 					
-//					ClearAcc,
-//					GetForce,
-//					ApplyForce,
-					ResolveForce_CalcVel
+					ClearAcc,
+					GetForce,
+					ApplyForce,
+					ResolveForce_CalcVel,
 					ResolveForce_CalcPos
 					
 					// intermediate states here
@@ -74,38 +99,59 @@ always_ff @(posedge CLK) begin
 
 	if (RESET) begin
 		state <= WAIT;
-		// reset internal state counters here
-		
-		
 		
 	end
+	
 	else begin
 	
 		state <= next_state;
 		
-		if (updateV) begin
-			datafile[OFFSET_VEL_X+1] <= FPaddX_out;
-			datafile[OFFSET_VEL_Y+1] <= FPaddY_out;
-			datafile[OFFSET_VEL_Z+1] <= FPaddZ_out;
-		end
+//		if (updateV) begin
+//			datafile[OFFSET_VEL_X+1] <= FPaddX_out;
+//			datafile[OFFSET_VEL_Y+1] <= FPaddY_out;
+//			datafile[OFFSET_VEL_Z+1] <= FPaddZ_out;
+			
+//		end
 		
-		if (updateP) begin
-			datafile[OFFSET_POS_X+1] <= FPaddX_out;
-			datafile[OFFSET_POS_Y+1] <= FPaddY_out;
-			datafile[OFFSET_POS_Z+1] <= FPaddZ_out;
-		end
+//		if (updateP) begin
+//			datafile[OFFSET_POS_X+1] <= FPaddX_out;
+//			datafile[OFFSET_POS_Y+1] <= FPaddY_out;
+//			datafile[OFFSET_POS_Z+1] <= FPaddZ_out;
+//		end
 		
 	end
 
 end
 
+
+
 always_comb begin
 
 	// defaults
 	FSM_DONE = 0;
+	FSM_we = 0;
 	updateV = 0;
 	updateP = 0;
-	
+	next_state = state;
+	FPaddX_opA = 32'b0;
+	FPaddX_opB = 32'b0;
+	FPaddY_opA = 32'b0;
+	FPaddY_opB = 32'b0;
+	FPaddZ_opA = 32'b0;
+	FPaddZ_opB = 32'b0;
+	FPmultX_opA = 32'b0;
+	FPmultX_opB = 32'b0;
+	FPmultY_opA = 32'b0;
+	FPmultY_opB = 32'b0;
+	FPmultZ_opA = 32'b0;
+	FPmultZ_opB = 32'b0;
+	ADDR1 = 32'b0;
+	ADDR2 = 32'b0;
+	ADDR3 = 32'b0;
+	data1 = 32'b0;
+	data2 = 32'b0;
+	data3 = 32'b0;
+
 	// ------------------------------------------------------------- //
 	
 	//									BEGIN NEXT_STATE DEFS
@@ -205,7 +251,7 @@ always_comb begin
 				
 			end
 		
-		ResolveForce_CalcVel_mult:
+		ResolveForce_CalcVel:
 			begin
 			
 				// multiply DT * new_ACC
@@ -219,16 +265,24 @@ always_comb begin
 				FPmultZ_opB = DT;
 				
 				// add new_VEL = old_VEL + DVEL
-				FPadd_opA = FPmultX_out;
-				FPadd_opB = datafile[OFFSET_VEL_X+1];
+				FPaddX_opA = FPmultX_out;
+				FPaddX_opB = datafile[OFFSET_VEL_X+1];
 				
-				FPadd_opA = FPmultY_out;
-				FPadd_opB = datafile[OFFSET_VEL_Y+1];
+				FPaddY_opA = FPmultY_out;
+				FPaddY_opB = datafile[OFFSET_VEL_Y+1];
 				
-				FPadd_opA = FPmultZ_out;
-				FPadd_opB = datafile[OFFSET_VEL_Z+1];
-
-				updateV = 1;
+				FPaddZ_opA = FPmultZ_out;
+				FPaddZ_opB = datafile[OFFSET_VEL_Z+1];
+				
+				ADDR1 = OFFSET_VEL_X+1;
+				ADDR2 = OFFSET_VEL_Y+1;
+				ADDR3 = OFFSET_VEL_Z+1;
+				
+				data1 = FPaddX_out;
+				data2 = FPaddY_out;
+				data3 = FPaddZ_out;
+				
+				FSM_we = 1;
 				
 			end
 			
@@ -248,16 +302,24 @@ always_comb begin
 				FPmultZ_opB = DT;
 				
 				// add new_POS = old_POS + DPOS
-				FPadd_opA = FPmultX_out;
-				FPadd_opB = datafile[OFFSET_POS_X+1];
+				FPaddX_opA = FPmultX_out;
+				FPaddX_opB = datafile[OFFSET_POS_X+1];
 				
-				FPadd_opA = FPmultY_out;
-				FPadd_opB = datafile[OFFSET_POS_Y+1];
+				FPaddY_opA = FPmultY_out;
+				FPaddY_opB = datafile[OFFSET_POS_Y+1];
 				
-				FPadd_opA = FPmultZ_out;
-				FPadd_opB = datafile[OFFSET_POS_Z+1];
+				FPaddZ_opA = FPmultZ_out;
+				FPaddZ_opB = datafile[OFFSET_POS_Z+1];
 
-				updateP = 1;
+				ADDR1 = OFFSET_POS_X+1;
+				ADDR2 = OFFSET_POS_Y+1;
+				ADDR3 = OFFSET_POS_Z+1;
+				
+				data1 = FPaddX_out;
+				data2 = FPaddY_out;
+				data3 = FPaddZ_out;
+				
+				FSM_we = 1;
 				
 			end
 		

@@ -277,12 +277,12 @@ endmodule
  * StackOverflow (see references)														 *
  * *************************************************************************/
 module fp2int(
-	fp_in,
-	int_out
+	input wire [31:0] fp_in,
+	output signed [31:0] int_out
 );
 
-	input wire [31:0] fp_in;
-	output signed  [31:0] int_out ;
+//	input wire [31:0] fp_in;
+//	output signed  [31:0] int_out ;
 	
 	wire [31:0] abs_int;
 	wire sign;
@@ -290,7 +290,8 @@ module fp2int(
 	wire [7:0] e_in; // exponent
 	
 	
-	assign sign = (m_in[22])? fp_in[31] : 1'h0;
+	//assign sign = (m_in[22])? fp_in[31] : 1'h0;
+	assign sign = fp_in[31];
 	assign m_in = {1'b1, fp_in[22:0]};
 	assign e_in = fp_in[30:23] ;
 

@@ -27,7 +27,7 @@ module avalon_interface (
 	input  logic AVL_WRITE,					// Avalon-MM Write
 	input  logic AVL_CS,						// Avalon-MM Chip Select
 	input  logic [3:0] AVL_BYTE_EN,		// Avalon-MM Byte Enable
-	input  logic [3:0] AVL_ADDR,			// Avalon-MM Address
+	input  logic [7:0] AVL_ADDR,			// Avalon-MM Address
 	input  logic [31:0] AVL_WRITEDATA,	// Avalon-MM Write Data
 	output logic [31:0] AVL_READDATA,	// Avalon-MM Read Data
 	
@@ -45,8 +45,53 @@ module avalon_interface (
 
 );
 
+const int OFFSET_NUM = 0;
+const int OFFSET_START = 1;
+const int OFFSET_DONE = 2;
+const int OFFSET_MASS = 3-1;
+const int OFFSET_RAD = 13-1;
+const int OFFSET_POS_X = 23-1;
+const int OFFSET_POS_Y = 33-1;
+const int OFFSET_POS_Z = 43-1;
+const int OFFSET_VEL_X = 53-1;
+const int OFFSET_VEL_Y = 63-1;
+const int OFFSET_VEL_Z = 73-1;
+const int OFFSET_ACC_X = 83-1;
+const int OFFSET_ACC_Y = 93-1;
+const int OFFSET_ACC_Z = 103-1;
 
-logic [31:0] regfile [16];
+
+// SIZE = 113
+// 3 "Misc" data:
+//						Number of balls being used
+// 					FSM_START bit
+//						FSM_DONE bit
+// Body data (x10 size per var):
+//						Mass
+//						 ...
+//						Radius
+//						 ...
+//						X_pos
+//						 ...
+//						Y_pos
+//						 ...
+//						Z_pos
+//						 ...
+//						X_vel
+//						 ...
+//						Y_vel
+//						 ...
+//						Z_vel
+//						 ...
+//						X_acc
+//						 ...
+//						Y_acc
+//						 ...
+//						Z_acc
+//						 ...
+
+logic [31:0] regfile [113];
+logic FSM_DONE_temp;
 
 always_comb begin
 
@@ -66,22 +111,9 @@ end
 always_ff @(posedge CLK) begin
 	
 	if (RESET) begin
-		regfile[0] <= 32'h00000000;
-		regfile[1] <= 32'h00000000;
-		regfile[2] <= 32'h00000000;
-		regfile[3] <= 32'h00000000;
-		regfile[4] <= 32'h00000000;
-		regfile[5] <= 32'h00000000;
-		regfile[6] <= 32'h00000000;
-		regfile[7] <= 32'h00000000;
-		regfile[8] <= 32'h00000000;
-		regfile[9] <= 32'h00000000;
-		regfile[10] <= 32'h00000000;
-		regfile[11] <= 32'h00000000;
-		regfile[12] <= 32'h00000000;
-		regfile[13] <= 32'h00000000;
-		regfile[14] <= 32'h00000000;
-		regfile[15] <= 32'h00000000;
+		for (integer i = 0; i < 113; i += 1) begin
+			regfile[i] <= 32'b0;
+		end
 	end
 	
 	else begin
@@ -123,11 +155,19 @@ always_ff @(posedge CLK) begin
 			
 		end
 		
+		else if (FSM_we) begin
+		
+			regfile[FSM_ADDR1] <= FSM_data1;
+			regfile[FSM_ADDR2] <= FSM_data2;
+			regfile[FSM_ADDR3] <= FSM_data3;
+		
+		end
+		
 //		else if (!(AVL_CS && AVL_READ)) begin
 		else begin
 
-//			regfile[15][0] <= AVL_done_temp;
-//			{regfile[8], regfile[9], regfile[10], regfile[11]} <= AVL_decrypt_temp;
+			regfile[OFFSET_DONE][0] <= FSM_DONE_temp;
+			
 		end
 		
 	
@@ -142,6 +182,37 @@ end
 
 // -----------------------------------------------------------------
 
+
+// added internal logic for FSM
+logic FSM_we;
+logic [31:0] FSM_ADDR1, FSM_ADDR2, FSM_ADDR3;
+logic [31:0] FSM_data1, FSM_data2, FSM_data3;
+
+FSM RESOLVE_FORCE (
+
+	// inputs
+	.CLK,
+	.RESET,
+	.FSM_START(regfile[OFFSET_START][0]),
+//	.datafile(regfile),
+	
+	// outputs
+	.FSM_DONE(FSM_DONE_temp),
+	
+	// added outputs
+	.FSM_we,
+	.ADDR1(FSM_ADDR1),
+	.ADDR2(FSM_ADDR2),
+	.ADDR3(FSM_ADDR3),
+	.data1(FSM_data1),
+	.data2(FSM_data2),
+	.data3(FSM_data3)
+	
+);
+
+
+
+
 logic is_ball_1, is_ball_2, is_ball_3, is_ball_4;
 
 assign is_ball_out = is_ball_1 | is_ball_2 | is_ball_3 | is_ball_4;
@@ -154,10 +225,10 @@ ball ball_1 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[0]),
-.posX(regfile[1]),
-.posY(regfile[2]),
-.posZ(regfile[3]),
+.radius(regfile[OFFSET_RAD+32'd1]),
+.posX(regfile[OFFSET_POS_X+32'd1]),
+.posY(regfile[OFFSET_POS_Y+32'd1]),
+.posZ(regfile[OFFSET_POS_Z+32'd1]),
 //outputs
 .is_ball(is_ball_1)
 );
@@ -170,10 +241,10 @@ ball ball_2 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[4]),
-.posX(regfile[5]),
-.posY(regfile[6]),
-.posZ(regfile[7]),
+.radius(regfile[OFFSET_RAD+32'd2]),
+.posX(regfile[OFFSET_POS_X+32'd2]),
+.posY(regfile[OFFSET_POS_Y+32'd2]),
+.posZ(regfile[OFFSET_POS_Z+32'd2]),
 //outputs
 .is_ball(is_ball_2)
 );
@@ -186,10 +257,10 @@ ball ball_3 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[8]),
-.posX(regfile[9]),
-.posY(regfile[10]),
-.posZ(regfile[11]),
+.radius(regfile[OFFSET_RAD+32'd3]),
+.posX(regfile[OFFSET_POS_X+32'd3]),
+.posY(regfile[OFFSET_POS_Y+32'd3]),
+.posZ(regfile[OFFSET_POS_Z+32'd3]),
 //outputs
 .is_ball(is_ball_3)
 );
@@ -202,14 +273,12 @@ ball ball_4 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[12]),
-.posX(regfile[13]),
-.posY(regfile[14]),
-.posZ(regfile[15]),
+.radius(regfile[OFFSET_RAD+32'd4]),
+.posX(regfile[OFFSET_POS_X+32'd4]),
+.posY(regfile[OFFSET_POS_Y+32'd4]),
+.posZ(regfile[OFFSET_POS_Z+32'd4]),
 //outputs
 .is_ball(is_ball_4)
 );
-
-
 
 endmodule

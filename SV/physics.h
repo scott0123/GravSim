@@ -3,21 +3,20 @@
 
 // universal constants
 //#define G 6.673E-11
-//#define G 1 // unit tests are mostly built around this
-#define G 3
+#define G 1 // unit tests are mostly built around this
 //#define G 4 // this is good for 2 planet orbit
 
 // standard constants
 #define THREE_HALFS 1.5f
-#define DT 0.01667f // for 60 fps
-//#define DT 0.03333f // for 30 fps
-#define SIM_FPS 60
+//#define DT 0.01667f // for 60 fps
+#define DT 0.03333f // for 30 fps
+#define SIM_FPS 30
 
 // magic numbers
 #define QUAKE_MAGIC 0x5f3759df
 
 /*
- * Force struct
+ *  Force struct
  */
 typedef struct
 {
@@ -26,7 +25,7 @@ typedef struct
 } force;
 
 /*
- * Planet struct
+ *  Planet struct
  */
 typedef struct
 {
@@ -36,6 +35,15 @@ typedef struct
     float acc_x, acc_y, acc_z;
 } planet;
 
+/*
+ *  Planet node struct (singly linked)
+ */
+struct planet_node_t
+{
+    planet* data;
+    struct planet_node_t* next;
+};
+typedef struct planet_node_t planet_node;
 
 // functions
 void timestep(planet *p);
@@ -46,5 +54,7 @@ force get_force_between_planets_fast(planet a, planet b);
 force negative_force(force f);
 float fast_invsqrt(float f);
 float fast_invsqrt_2(float f);
+
+planet_node* append_planet_node(planet_node* head, planet* p);
 
 #endif

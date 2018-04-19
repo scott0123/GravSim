@@ -1,0 +1,26 @@
+
+
+
+// Added inputs used by ball.sv
+		,
+		input wire			  Reset_h,
+		input wire			  VGA_VS,
+		input wire [9:0]	  DrawX,
+		input wire [9:0]	  DrawY,
+		
+		// Added outputs that must go to top-level entity
+		output wire        is_ball
+
+
+
+
+
+// Added inputs used by ball.sv
+		,
+		.Reset_h(Reset_h),
+		.VGA_VS(VGA_VS),
+		.DrawX(DrawX),
+		.DrawY(DrawY),
+		
+		// Added outputs that must go to top-level entity
+		.is_ball_out(is_ball)

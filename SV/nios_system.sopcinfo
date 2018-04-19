@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="nios_system" kind="nios_system" version="1.0" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2018.04.14.21:11:34 -->
+ <!-- 2018.04.19.04:32:49 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1523758294</value>
+  <value>1524130369</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -98,7 +98,7 @@
  <module
    name="Avalon_Interface_0"
    kind="Avalon_Interface"
-   version="1.1"
+   version="1.2"
    path="Avalon_Interface_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
@@ -262,7 +262,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>64</value>
+    <value>1024</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -561,7 +561,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>AVL_ADDR</name>
     <direction>Input</direction>
-    <width>4</width>
+    <width>8</width>
     <role>address</role>
    </port>
    <port>
@@ -5265,7 +5265,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="instSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='keycode.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_reset.s1' start='0x100' end='0x110' /><slave name='otg_hpi_cs.s1' start='0x110' end='0x120' /><slave name='otg_hpi_w.s1' start='0x120' end='0x130' /><slave name='otg_hpi_r.s1' start='0x130' end='0x140' /><slave name='otg_hpi_data.s1' start='0x140' end='0x150' /><slave name='otg_hpi_address.s1' start='0x150' end='0x160' /><slave name='sdram_pll.pll_slave' start='0x170' end='0x180' /><slave name='sysid_qsys_1.control_slave' start='0x188' end='0x190' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='keycode.s1' start='0xB0' end='0xC0' /><slave name='otg_hpi_reset.s1' start='0xC0' end='0xD0' /><slave name='otg_hpi_cs.s1' start='0xD0' end='0xE0' /><slave name='otg_hpi_w.s1' start='0xE0' end='0xF0' /><slave name='otg_hpi_r.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_data.s1' start='0x100' end='0x110' /><slave name='otg_hpi_address.s1' start='0x110' end='0x120' /><slave name='sdram_pll.pll_slave' start='0x130' end='0x140' /><slave name='sysid_qsys_1.control_slave' start='0x148' end='0x150' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -5275,7 +5275,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="dataSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='TIMER.s1' start='0x20' end='0x40' /><slave name='Avalon_Interface_0.AMM_Slave' start='0x40' end='0x80' /><slave name='keycode.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_reset.s1' start='0x100' end='0x110' /><slave name='otg_hpi_cs.s1' start='0x110' end='0x120' /><slave name='otg_hpi_w.s1' start='0x120' end='0x130' /><slave name='otg_hpi_r.s1' start='0x130' end='0x140' /><slave name='otg_hpi_data.s1' start='0x140' end='0x150' /><slave name='otg_hpi_address.s1' start='0x150' end='0x160' /><slave name='led.s1' start='0x160' end='0x170' /><slave name='sdram_pll.pll_slave' start='0x170' end='0x180' /><slave name='sysid_qsys_1.control_slave' start='0x188' end='0x190' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x190' end='0x198' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='TIMER.s1' start='0x20' end='0x40' /><slave name='keycode.s1' start='0xB0' end='0xC0' /><slave name='otg_hpi_reset.s1' start='0xC0' end='0xD0' /><slave name='otg_hpi_cs.s1' start='0xD0' end='0xE0' /><slave name='otg_hpi_w.s1' start='0xE0' end='0xF0' /><slave name='otg_hpi_r.s1' start='0xF0' end='0x100' /><slave name='otg_hpi_data.s1' start='0x100' end='0x110' /><slave name='otg_hpi_address.s1' start='0x110' end='0x120' /><slave name='led.s1' start='0x120' end='0x130' /><slave name='sdram_pll.pll_slave' start='0x130' end='0x140' /><slave name='sysid_qsys_1.control_slave' start='0x148' end='0x150' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x150' end='0x158' /><slave name='Avalon_Interface_0.AMM_Slave' start='0x400' end='0x800' /><slave name='nios2_qsys_1.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x8000000' end='0xC000000' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -5858,15 +5858,15 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>Avalon_Interface_0</moduleName>
     <slaveName>AMM_Slave</slaveName>
     <name>Avalon_Interface_0.AMM_Slave</name>
-    <baseAddress>64</baseAddress>
-    <span>64</span>
+    <baseAddress>1024</baseAddress>
+    <span>1024</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>jtag_uart_0</moduleName>
     <slaveName>avalon_jtag_slave</slaveName>
     <name>jtag_uart_0.avalon_jtag_slave</name>
-    <baseAddress>400</baseAddress>
+    <baseAddress>336</baseAddress>
     <span>8</span>
    </memoryBlock>
    <memoryBlock>
@@ -5874,7 +5874,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sysid_qsys_1</moduleName>
     <slaveName>control_slave</slaveName>
     <name>sysid_qsys_1.control_slave</name>
-    <baseAddress>392</baseAddress>
+    <baseAddress>328</baseAddress>
     <span>8</span>
    </memoryBlock>
    <memoryBlock>
@@ -5890,7 +5890,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sdram_pll</moduleName>
     <slaveName>pll_slave</slaveName>
     <name>sdram_pll.pll_slave</name>
-    <baseAddress>368</baseAddress>
+    <baseAddress>304</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5906,7 +5906,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led</moduleName>
     <slaveName>s1</slaveName>
     <name>led.s1</name>
-    <baseAddress>352</baseAddress>
+    <baseAddress>288</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5922,7 +5922,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_address</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_address.s1</name>
-    <baseAddress>336</baseAddress>
+    <baseAddress>272</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5930,7 +5930,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_data</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_data.s1</name>
-    <baseAddress>320</baseAddress>
+    <baseAddress>256</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5938,7 +5938,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_r</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_r.s1</name>
-    <baseAddress>304</baseAddress>
+    <baseAddress>240</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5946,7 +5946,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_w</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_w.s1</name>
-    <baseAddress>288</baseAddress>
+    <baseAddress>224</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5954,7 +5954,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_cs</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_cs.s1</name>
-    <baseAddress>272</baseAddress>
+    <baseAddress>208</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5962,7 +5962,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_reset</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_reset.s1</name>
-    <baseAddress>256</baseAddress>
+    <baseAddress>192</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -5970,7 +5970,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>keycode</moduleName>
     <slaveName>s1</slaveName>
     <name>keycode.s1</name>
-    <baseAddress>240</baseAddress>
+    <baseAddress>176</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6273,7 +6273,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sysid_qsys_1</moduleName>
     <slaveName>control_slave</slaveName>
     <name>sysid_qsys_1.control_slave</name>
-    <baseAddress>392</baseAddress>
+    <baseAddress>328</baseAddress>
     <span>8</span>
    </memoryBlock>
    <memoryBlock>
@@ -6289,7 +6289,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sdram_pll</moduleName>
     <slaveName>pll_slave</slaveName>
     <name>sdram_pll.pll_slave</name>
-    <baseAddress>368</baseAddress>
+    <baseAddress>304</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6313,7 +6313,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_address</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_address.s1</name>
-    <baseAddress>336</baseAddress>
+    <baseAddress>272</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6321,7 +6321,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_data</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_data.s1</name>
-    <baseAddress>320</baseAddress>
+    <baseAddress>256</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6329,7 +6329,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_r</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_r.s1</name>
-    <baseAddress>304</baseAddress>
+    <baseAddress>240</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6337,7 +6337,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_w</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_w.s1</name>
-    <baseAddress>288</baseAddress>
+    <baseAddress>224</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6345,7 +6345,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_cs</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_cs.s1</name>
-    <baseAddress>272</baseAddress>
+    <baseAddress>208</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6353,7 +6353,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>otg_hpi_reset</moduleName>
     <slaveName>s1</slaveName>
     <name>otg_hpi_reset.s1</name>
-    <baseAddress>256</baseAddress>
+    <baseAddress>192</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -6361,7 +6361,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>keycode</moduleName>
     <slaveName>s1</slaveName>
     <name>keycode.s1</name>
-    <baseAddress>240</baseAddress>
+    <baseAddress>176</baseAddress>
     <span>16</span>
    </memoryBlock>
   </interface>
@@ -15422,7 +15422,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1523758294</value>
+   <value>1524130369</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -15442,7 +15442,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1523758294</value>
+   <value>1524130369</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -15458,7 +15458,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1523758294</value>
+   <value>1524130369</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -15931,7 +15931,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0040</value>
+   <value>0x0400</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -15982,7 +15982,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0190</value>
+   <value>0x0150</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16033,7 +16033,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0188</value>
+   <value>0x0148</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16135,7 +16135,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0170</value>
+   <value>0x0130</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16237,7 +16237,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0160</value>
+   <value>0x0120</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16339,7 +16339,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0150</value>
+   <value>0x0110</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16390,7 +16390,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0140</value>
+   <value>0x0100</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16441,7 +16441,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0130</value>
+   <value>0x00f0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16492,7 +16492,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0120</value>
+   <value>0x00e0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16543,7 +16543,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0110</value>
+   <value>0x00d0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16594,7 +16594,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0100</value>
+   <value>0x00c0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16645,7 +16645,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x00f0</value>
+   <value>0x00b0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16747,7 +16747,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0188</value>
+   <value>0x0148</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -16849,7 +16849,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0170</value>
+   <value>0x0130</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -17002,7 +17002,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0150</value>
+   <value>0x0110</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -17053,7 +17053,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0140</value>
+   <value>0x0100</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -17104,7 +17104,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0130</value>
+   <value>0x00f0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -17155,7 +17155,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0120</value>
+   <value>0x00e0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -17206,7 +17206,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0110</value>
+   <value>0x00d0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -17257,7 +17257,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0100</value>
+   <value>0x00c0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -17308,7 +17308,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x00f0</value>
+   <value>0x00b0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -18337,7 +18337,7 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
   <displayName>Avalon Interface</displayName>
-  <version>1.1</version>
+  <version>1.2</version>
  </plugin>
  <plugin>
   <instanceCount>16</instanceCount>

@@ -11,11 +11,17 @@ module  ball ( input         Clk,                // 50 MHz clock
 //               input [7:0]   keycode,            // Keycode from the keyboard
                input [9:0]   DrawX, DrawY,       // Current pixel coordinates
 					
-					input [31:0]  radius, posX, posY, posZ,
+					input [31:0]  radius, posX, posY, posZ, // floats
 					
                output logic  is_ball             // Whether current pixel belongs to ball or background
               );
     
+	 // consts needed to scale radius, posX, posY, posZ
+	 const int FLOAT2 = 32'h40000000;
+	 const int FLOAT10 = 32'h41200000;
+	 const int FLOAT100 = 32'h42c80000;
+	 
+	 
     parameter [9:0] Ball_X_Center = 10'd320;  // Center position on the X axis
     parameter [9:0] Ball_Y_Center = 10'd240;  // Center position on the Y axis
     parameter [9:0] Ball_X_Min = 10'd0;       // Leftmost point on the X axis
@@ -34,6 +40,17 @@ module  ball ( input         Clk,                // 50 MHz clock
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
     logic [9:0] Ball_X_Pos_in, Ball_X_Motion_in, Ball_Y_Pos_in, Ball_Y_Motion_in;
     
+	 // integer (pixel) versions of radius, posX, posY, posZ
+	 logic [31:0] intRad, intPosX, intPosY, intPosZ;
+	 
+	 always_comb begin
+	 
+		
+	 
+	 end
+	 
+	 
+	 
     //////// Do not modify the always_ff blocks. ////////
     // Detect rising edge of frame_clk
     logic frame_clk_delayed, frame_clk_rising_edge;
@@ -47,8 +64,8 @@ module  ball ( input         Clk,                // 50 MHz clock
     /* Since the multiplicants are required to be signed, we have to first cast them
        from logic to int (signed by default) before they are multiplied. */
     int DistX, DistY, Size;
-    assign DistX = DrawX - posX;
-    assign DistY = DrawY - posY;
+    assign DistX = DrawX - (intPosX + 32'd320);
+    assign DistY = DrawY - (intPosY + 32'd240);
 	 
 	 // absolute value of Dists
 	 int absDistX, absDistY;
@@ -57,29 +74,16 @@ module  ball ( input         Clk,                // 50 MHz clock
 
 	 // perform absolute value operations and calculate Z size adjust limit
 	 always_comb begin
-//		if ( DistX < 0 ) begin
-//			absDistX = -DistX;
-//		end
-//		else begin
-//			absDistX = DistX;
-//		end
-//		
-//		if ( DistY < 0 ) begin
-//			absDistY = -DistY;
-//		end
-//		else begin
-//			absDistY = DistY;
-//		end
 		
 		// radius adjust
-		if ( posZ < 1 ) begin
+		if ( (intPosZ + 32'd20) < 1 ) begin
 			adjRadius = 1;
 		end
-		else if ( posZ > 80 ) begin
+		else if ( (intPosZ + 32'd20) > 80 ) begin
 			adjRadius = 80;
 		end
 		else begin
-			adjRadius = posZ;
+			adjRadius = (intPosZ + 32'd20);
 		end
 		
 	 end
@@ -97,5 +101,82 @@ module  ball ( input         Clk,                // 50 MHz clock
            the single line is quite powerful descriptively, it causes the synthesis tool to use up three
            of the 12 available multipliers on the chip! */
     end
-    
+
+
+
+// -----------------------------------------------------------------
+
+//	   Modules are instantiated here so they have access to regfile
+
+// -----------------------------------------------------------------
+
+
+logic [31:0] FPmultRad_out;
+logic [31:0] FPmultX_out;
+logic [31:0] FPmultY_out;
+logic [31:0] FPmultZ_out;
+logic [31:0] FPaddX_out;
+logic [31:0] FPaddY_out;
+logic [31:0] FPaddZ_out;
+
+FPmult FPmultRad (
+	// inputs
+	.iA(radius),
+	.iB(FLOAT10),
+	// outputs
+	.oProd(FPmultRad_out)
+);
+
+FPmult FPmultX (
+	// inputs
+	.iA(posX),
+	.iB(FLOAT100),
+	// outputs
+	.oProd(FPmultX_out)
+);
+
+FPmult FPmultY (
+	// inputs
+	.iA(posY),
+	.iB(FLOAT100),
+	// outputs
+	.oProd(FPmultY_out)
+);
+
+FPmult FPmultZ (
+	// inputs
+	.iA(posZ),
+	.iB(FLOAT2),
+	// outputs
+	.oProd(FPmultZ_out)
+);
+
+fp2int fp2intRad (
+	// inputs
+	.fp_in(FPmultRad_out),
+	//outputs
+	.int_out(intRad)
+);
+
+fp2int fp2intX (
+	// inputs
+	.fp_in(FPmultX_out),
+	//outputs
+	.int_out(intPosX)
+);
+
+fp2int fp2intY (
+	// inputs
+	.fp_in(FPmultY_out),
+	//outputs
+	.int_out(intPosY)
+);
+
+fp2int fp2intZ (
+	// inputs
+	.fp_in(FPmultZ_out),
+	//outputs
+	.int_out(intPosZ)
+);
+
 endmodule

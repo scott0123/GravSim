@@ -1,5 +1,6 @@
 	component nios_system is
 		port (
+			avalon_interface_export_data_new_signal : out   std_logic_vector(31 downto 0);                    -- new_signal
 			clk_clk                                 : in    std_logic                     := 'X';             -- clk
 			keycode_export                          : out   std_logic_vector(7 downto 0);                     -- export
 			led_wire_export                         : out   std_logic_vector(7 downto 0);                     -- export
@@ -20,13 +21,13 @@
 			sdram_wire_dq                           : inout std_logic_vector(15 downto 0) := (others => 'X'); -- dq
 			sdram_wire_dqm                          : out   std_logic_vector(1 downto 0);                     -- dqm
 			sdram_wire_ras_n                        : out   std_logic;                                        -- ras_n
-			sdram_wire_we_n                         : out   std_logic;                                        -- we_n
-			avalon_interface_export_data_new_signal : out   std_logic_vector(31 downto 0)                     -- new_signal
+			sdram_wire_we_n                         : out   std_logic                                         -- we_n
 		);
 	end component nios_system;
 
 	u0 : component nios_system
 		port map (
+			avalon_interface_export_data_new_signal => CONNECTED_TO_avalon_interface_export_data_new_signal, -- avalon_interface_export_data.new_signal
 			clk_clk                                 => CONNECTED_TO_clk_clk,                                 --                          clk.clk
 			keycode_export                          => CONNECTED_TO_keycode_export,                          --                      keycode.export
 			led_wire_export                         => CONNECTED_TO_led_wire_export,                         --                     led_wire.export
@@ -47,7 +48,6 @@
 			sdram_wire_dq                           => CONNECTED_TO_sdram_wire_dq,                           --                             .dq
 			sdram_wire_dqm                          => CONNECTED_TO_sdram_wire_dqm,                          --                             .dqm
 			sdram_wire_ras_n                        => CONNECTED_TO_sdram_wire_ras_n,                        --                             .ras_n
-			sdram_wire_we_n                         => CONNECTED_TO_sdram_wire_we_n,                         --                             .we_n
-			avalon_interface_export_data_new_signal => CONNECTED_TO_avalon_interface_export_data_new_signal  -- avalon_interface_export_data.new_signal
+			sdram_wire_we_n                         => CONNECTED_TO_sdram_wire_we_n                          --                             .we_n
 		);
 
