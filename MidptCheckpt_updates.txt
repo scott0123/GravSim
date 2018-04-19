@@ -1,0 +1,18 @@
+
+
+Full software simulation on NIOS II
+Displaying via FPGA + VGA
+4 balls
+3D
+
+
+All floating point operations on FPGA have been unit tested
+ - Adapted to IEEE 754 single-point standard (bugs involved)
+All flops are currently being run on the FPGA
+ - FPadd
+ - FPmult
+ - FP2int
+ - FPinvsqrt (fast invsqrt)
+Offloaded all force resolving calculations
+
+Fixed Z-adjustment bug

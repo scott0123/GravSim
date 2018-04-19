@@ -322,10 +322,10 @@ void hardware_simulation(){
 	printf("hardware simulation entered\n");
     // for this simulation we need G to be equal to 4
     planet p1 = { 1.0, 1.0,
-        //                1.0, 0.0, 0.0,
-        1.0, 0.0, -3.0,
-        //                  0.0, 1.0, 0.0,
-        0.0, 1.0, 3.0,
+//                        1.0, 0.0, 0.0,
+        1.0, 0.0, -2.0,
+//                          0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0,
         0.0, 0.0, 1.0 };
     planet p2 = { 1.0, 1.0,
         -1.0, 0.0, 0.0,
@@ -356,6 +356,13 @@ void hardware_simulation(){
     MEM_PTR[OFFSET_POS_Y + 1] = comb.i;
     comb.f = p1.pos_z;
     MEM_PTR[OFFSET_POS_Z + 1] = comb.i;
+
+    comb.f = p1.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 1] = comb.i;
+    comb.f = p1.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 1] = comb.i;
+    comb.f = p1.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 1] = comb.i;
 
     // body 2
     comb.f = p2.rad;
@@ -389,7 +396,7 @@ void hardware_simulation(){
 
 
     // hard-code delay to make up for screen refresh time
-    //for(int i = 0; i < 10000 * SIM_FPS; i++) ;
+    for(int i = 0; i < 10000 * SIM_FPS; i++) ;
 
     printf("===== Begin Simulation =====\n");
 

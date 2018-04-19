@@ -41,7 +41,8 @@ module avalon_interface (
 	input logic [9:0]	  DrawY,
 	
 	// Added outputs that must go to top-level entity
-	output logic        is_ball_out
+	output logic        is_ball_out,
+	output logic [1:0]  ballID
 
 );
 
@@ -216,6 +217,20 @@ FSM RESOLVE_FORCE (
 logic is_ball_1, is_ball_2, is_ball_3, is_ball_4;
 
 assign is_ball_out = is_ball_1 | is_ball_2 | is_ball_3 | is_ball_4;
+
+always_comb begin
+
+	ballID = 2'bx;
+
+	if (is_ball_1 == 1)
+		ballID = 2'd0;
+	else if (is_ball_2 == 1)
+		ballID = 2'd1;
+	else if (is_ball_3 == 1)
+		ballID = 2'd2;
+	else if (is_ball_4 == 1)
+		ballID = 2'd3;
+end
 
 ball ball_1 (
 // inputs

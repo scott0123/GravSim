@@ -103,7 +103,8 @@ module GravSim( input            CLOCK_50,
 	  .VGA_VS,
 	  .DrawX,
 	  .DrawY,
-	  .is_ball
+	  .is_ball,
+	  .ballID
 	);
  
 	// Use PLL to generate the 25MHZ VGA_CLK.
@@ -112,6 +113,7 @@ module GravSim( input            CLOCK_50,
 
 	logic [9:0] DrawX, DrawY;
 	logic is_ball;
+	logic [1:0] ballID;
 	 
 	VGA_controller vga_controller_instance(
 		// inputs
@@ -130,6 +132,7 @@ module GravSim( input            CLOCK_50,
 	color_mapper CM_instance(
 		// inputs
 		.is_ball,
+		.ballID,
 		.DrawX,
 		.DrawY,
 		// outputs
