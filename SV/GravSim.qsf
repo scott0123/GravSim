@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE115F29C7
-set_global_assignment -name TOP_LEVEL_ENTITY FSM
+set_global_assignment -name TOP_LEVEL_ENTITY GravSim
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "02:03:44  APRIL 09, 2018"
 set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
@@ -164,9 +164,6 @@ set_location_assignment PIN_C10 -to VGA_SYNC_N
 set_location_assignment PIN_C13 -to VGA_VS
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH testbench_FSM -section_id eda_simulation
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name QIP_FILE nios_system/synthesis/nios_system.qip
 set_global_assignment -name SYSTEMVERILOG_FILE avalon_interface.sv
 set_global_assignment -name SYSTEMVERILOG_FILE VGA_controller.sv
@@ -185,4 +182,7 @@ set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id testbench_FS
 set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "10000 ns" -section_id testbench_FSM
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME testbench_FSM -section_id testbench_FSM
 set_global_assignment -name EDA_TEST_BENCH_FILE testbench_FSM.sv -section_id testbench_FSM
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

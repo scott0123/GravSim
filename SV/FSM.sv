@@ -25,8 +25,6 @@ module FSM (
 	output logic [31:0] ADDR1, ADDR2, ADDR3,
 	output logic [31:0] data1, data2, data3
 	
-	
-	
 );
 
 // declare constants here
@@ -85,8 +83,10 @@ enum logic [5:0] {
 					ClearAcc,
 					GetForce,
 					ApplyForce,
-					ResolveForce_CalcVel,
-					ResolveForce_CalcPos
+					ResolveForce_CalcVel_1,
+					ResolveForce_CalcVel_2,
+					ResolveForce_CalcPos_1,
+					ResolveForce_CalcPos_2
 					
 					// intermediate states here
 					
@@ -171,7 +171,7 @@ always_comb begin
 		WAIT:
 			begin
 				if (FSM_START == 1)
-					next_state = ResolveForce_CalcVel;
+					next_state = ResolveForce_CalcVel_1;
 			end
 			
 		
@@ -193,16 +193,26 @@ always_comb begin
 				
 			end
 		
-		ResolveForce_CalcVel:
+		ResolveForce_CalcVel_1:
 			begin
-				next_state = ResolveForce_CalcPos;
+				next_state = ResolveForce_CalcVel_2;
+			end
+			
+		ResolveForce_CalcVel_2:
+			begin
+				next_state = ResolveForce_CalcPos_1;
+			end
+
+		
+		ResolveForce_CalcPos_1:
+			begin
+				next_state = ResolveForce_CalcPos_2;
 			end
 		
-		ResolveForce_CalcPos:
+		ResolveForce_CalcPos_2:
 			begin
 				next_state = DONE;
 			end
-		
 		
 		
 		default: ;
@@ -251,7 +261,7 @@ always_comb begin
 				
 			end
 		
-		ResolveForce_CalcVel:
+		ResolveForce_CalcVel_1:
 			begin
 			
 				// multiply DT * new_ACC
@@ -273,6 +283,11 @@ always_comb begin
 				
 				FPaddZ_opA = FPmultZ_out;
 				FPaddZ_opB = datafile[OFFSET_VEL_Z+1];
+								
+			end
+			
+		ResolveForce_CalcVel_2:
+			begin
 				
 				ADDR1 = OFFSET_VEL_X+1;
 				ADDR2 = OFFSET_VEL_Y+1;
@@ -285,10 +300,8 @@ always_comb begin
 				FSM_we = 1;
 				
 			end
-			
-			
 		
-		ResolveForce_CalcPos:
+		ResolveForce_CalcPos_1:
 			begin
 			
 				// multiply DT * new_VEL
@@ -310,7 +323,12 @@ always_comb begin
 				
 				FPaddZ_opA = FPmultZ_out;
 				FPaddZ_opB = datafile[OFFSET_POS_Z+1];
-
+				
+			end
+		
+		ResolveForce_CalcPos_2:
+			begin
+			
 				ADDR1 = OFFSET_POS_X+1;
 				ADDR2 = OFFSET_POS_Y+1;
 				ADDR3 = OFFSET_POS_Z+1;
@@ -322,7 +340,6 @@ always_comb begin
 				FSM_we = 1;
 				
 			end
-		
 
 		
 		default: ;
