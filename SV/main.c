@@ -1,29 +1,29 @@
 /***********************************************************************************
-
-            â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ–ˆâ•—
-           â–ˆâ–ˆâ•”â•�â•�â•�â•�â•� â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ•‘
-           â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â–ˆâ–ˆâ–ˆâ–ˆâ•”â–ˆâ–ˆâ•‘
-           â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•”â•�â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ•‘
-           â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•� â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘ â•šâ•�â•� â–ˆâ–ˆâ•‘
-            â•šâ•�â•�â•�â•�â•�â•� â•šâ•�â•�  â•šâ•�â•�â•šâ•�â•�  â•šâ•�â•�  â•šâ•�â•�â•�â•�  â•šâ•�â•�â•�â•�â•�â•�â•�â•šâ•�â•�â•šâ•�â•�     â•šâ•�â•�
-
-GravSim main file
-
-Scott Liu, Spring 2018
-
-For use in
-
-             â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
-             â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�
-             â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
-             â–ˆâ–ˆâ•”â•�â•�â•�  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•”â•�â•�â•�   â•šâ•�â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•‘
-             â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘
-             â•šâ•�â•�â•�â•�â•�â•�â•� â•šâ•�â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â•�â•�  â•šâ•�â•�â•�â•�â•� â•šâ•�â•�â•�â•�â•�â•�â•�
  
-University of Illinois Electrical & Computer Engineering Department
-(This is used to prevent a simple Google search giving free code to future students)
-
-************************************************************************************/
+ ██████╗ ██████╗  █████╗ ██╗   ██╗███████╗██╗███╗   ███╗
+ ██╔════╝ ██╔══██╗██╔══██╗██║   ██║██╔════╝██║████╗ ████║
+ ██║  ███╗██████╔╝███████║██║   ██║███████╗██║██╔████╔██║
+ ██║   ██║██╔══██╗██╔══██║╚██╗ ██╔╝╚════██║██║██║╚██╔╝██║
+ ╚██████╔╝██║  ██║██║  ██║ ╚████╔╝ ███████║██║██║ ╚═╝ ██║
+ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝╚═╝     ╚═╝
+ 
+ GravSim main file
+ 
+ Scott Liu, Spring 2018
+ 
+ For use in
+ 
+ ███████╗ ██████╗███████╗██████╗  █████╗ ███████╗
+ ██╔════╝██╔════╝██╔════╝╚════██╗██╔══██╗██╔════╝
+ █████╗  ██║     █████╗   █████╔╝╚█████╔╝███████╗
+ ██╔══╝  ██║     ██╔══╝   ╚═══██╗██╔══██╗╚════██║
+ ███████╗╚██████╗███████╗██████╔╝╚█████╔╝███████║
+ ╚══════╝ ╚═════╝╚══════╝╚═════╝  ╚════╝ ╚══════╝
+ 
+ University of Illinois Electrical & Computer Engineering Department
+ (This is used to prevent a simple Google search giving free code to future students)
+ 
+ ************************************************************************************/
 
 #define CPP_COMPILE 0
 
@@ -38,8 +38,25 @@ University of Illinois Electrical & Computer Engineering Department
 #endif
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
-#define SIM_MODE 1
+#define SIM_MODE 2
 #define SIM_TIME 20 // (seconds)
+
+// constants for mem regfile
+#define OFFSET_NUM 0
+#define OFFSET_START 1
+#define OFFSET_DONE 2
+#define OFFSET_MASS 3-1
+#define OFFSET_RAD 13-1
+#define OFFSET_POS_X 23-1
+#define OFFSET_POS_Y 33-1
+#define OFFSET_POS_Z 43-1
+#define OFFSET_VEL_X 53-1
+#define OFFSET_VEL_Y 63-1
+#define OFFSET_VEL_Z 73-1
+#define OFFSET_ACC_X 83-1
+#define OFFSET_ACC_Y 93-1
+#define OFFSET_ACC_Z 103-1
+
 
 void unit_test();
 void software_simulation();
@@ -196,39 +213,39 @@ void unit_test(){
 void software_simulation(){
 
     // for this simulation we need G to be equal to 4
-	planet p1 = { 1.0, 1.0,
-//					1.0, 0.0, 0.0,
-	                1.0, 0.0, -3.0,
-//	                0.0, 1.0, 0.0,
-	                0.0, 1.0, 3.0,
-	                0.0, 0.0, 1.0 };
-	    planet p2 = { 1.0, 1.0,
-	                -1.0, 0.0, 0.0,
-	                0.0, -1.0, 0.0,
-	                0.0, 0.0, -1.0 };
-	    planet p3 = { 1.0, 1.0,
-	                0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
-	                -1.0, 0.0, 0.0,
-	                0.0, 0.0, -1.0 };
-	    planet p4 = { 0.92, 1.0,
-//	                0.0, -0.98, 0.0,
-	                0.0, -0.98, 3.0,
-//	                1.04, 0.0, 0.0,
-	                1.04, 0.0, -3.0,
-	                0.0, 0.0, -1.0 };
-
-	// hard-code delay to make up for screen refresh time
-	for(int i = 0; i < 10000 * SIM_FPS; i++) ;
-
-
+    planet p1 = { 1.0, 1.0,
+        //                    1.0, 0.0, 0.0,
+        1.0, 0.0, -3.0,
+        //                    0.0, 1.0, 0.0,
+        0.0, 1.0, 3.0,
+        0.0, 0.0, 1.0 };
+    planet p2 = { 1.0, 1.0,
+        -1.0, 0.0, 0.0,
+        0.0, -1.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p3 = { 1.0, 1.0,
+        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
+        -1.0, 0.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p4 = { 0.92, 1.0,
+        //                    0.0, -0.98, 0.0,
+        0.0, -0.98, 3.0,
+        //                    1.04, 0.0, 0.0,
+        1.04, 0.0, -3.0,
+        0.0, 0.0, -1.0 };
+    
+    // hard-code delay to make up for screen refresh time
+    for(int i = 0; i < 10000 * SIM_FPS; i++) ;
+    
+    
     for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
-
+        
         // wait until the state machine wants to continue
-//        while(MEM_PTR[15] == 0);
-
+        //        while(MEM_PTR[15] == 0);
+        
         // send the data through the memory pointer
         
-    	// body 1
+        // body 1
         MEM_PTR[0] = (int)(10 * p1.rad);
         MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
         MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
@@ -236,57 +253,57 @@ void software_simulation(){
         
         // body 2
         MEM_PTR[4] = (int)(10 * p2.rad);
-		MEM_PTR[5] = (int)(320 + 100 * p2.pos_x);
-		MEM_PTR[6] = (int)(240 + 100 * p2.pos_y);
-		MEM_PTR[7] = (int)(p2.pos_z * 2 + 20);
-
-		// body 3
-		MEM_PTR[8] = (int)(10 * p3.rad);
-		MEM_PTR[9] = (int)(320 + 100 * p3.pos_x);
-		MEM_PTR[10] = (int)(240 + 100 * p3.pos_y);
-		MEM_PTR[11] = (int)(p3.pos_z * 2 + 20);
-
-		// body 4
-		MEM_PTR[12] = (int)(10 * p4.rad);
-		MEM_PTR[13] = (int)(320 + 100 * p4.pos_x);
-		MEM_PTR[14] = (int)(240 + 100 * p4.pos_y);
-		MEM_PTR[15] = (int)(p4.pos_z * 2 + 20);
-
-		clear_acceleration(&p1);
-		clear_acceleration(&p2);
-		clear_acceleration(&p3);
-		clear_acceleration(&p4);
-
-		force f = get_force_between_planets(p1, p2);
-		force n = negative_force(f);
-		apply_force_to_planet(f, &p1);
-		apply_force_to_planet(n, &p2);
-		f = get_force_between_planets(p1, p3);
-		n = negative_force(f);
-		apply_force_to_planet(f, &p1);
-		apply_force_to_planet(n, &p3);
-		f = get_force_between_planets(p1, p4);
-		n = negative_force(f);
-		apply_force_to_planet(f, &p1);
-		apply_force_to_planet(n, &p4);
-		f = get_force_between_planets(p2, p3);
-		n = negative_force(f);
-		apply_force_to_planet(f, &p2);
-		apply_force_to_planet(n, &p3);
-		f = get_force_between_planets(p2, p4);
-		n = negative_force(f);
-		apply_force_to_planet(f, &p2);
-		apply_force_to_planet(n, &p4);
-		f = get_force_between_planets(p3, p4);
-		n = negative_force(f);
-		apply_force_to_planet(f, &p3);
-		apply_force_to_planet(n, &p4);
-
-		timestep(&p1);
-		timestep(&p2);
-		timestep(&p3);
-		timestep(&p4);
-
+        MEM_PTR[5] = (int)(320 + 100 * p2.pos_x);
+        MEM_PTR[6] = (int)(240 + 100 * p2.pos_y);
+        MEM_PTR[7] = (int)(p2.pos_z * 2 + 20);
+        
+        // body 3
+        MEM_PTR[8] = (int)(10 * p3.rad);
+        MEM_PTR[9] = (int)(320 + 100 * p3.pos_x);
+        MEM_PTR[10] = (int)(240 + 100 * p3.pos_y);
+        MEM_PTR[11] = (int)(p3.pos_z * 2 + 20);
+        
+        // body 4
+        MEM_PTR[12] = (int)(10 * p4.rad);
+        MEM_PTR[13] = (int)(320 + 100 * p4.pos_x);
+        MEM_PTR[14] = (int)(240 + 100 * p4.pos_y);
+        MEM_PTR[15] = (int)(p4.pos_z * 2 + 20);
+        
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        clear_acceleration(&p3);
+        clear_acceleration(&p4);
+        
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
+        f = get_force_between_planets(p1, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p1, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p2, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p2, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p3, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p3);
+        apply_force_to_planet(n, &p4);
+        
+        timestep(&p1);
+        timestep(&p2);
+        timestep(&p3);
+        timestep(&p4);
+        
         printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
     }
 }
@@ -297,6 +314,142 @@ void software_simulation(){
  *  This function handles the entirety of the hardware simulation.
  */
 void hardware_simulation(){
-    // TODO
+
+    // for this simulation we need G to be equal to 4
+    planet p1 = { 1.0, 1.0,
+        //                1.0, 0.0, 0.0,
+        1.0, 0.0, -3.0,
+        //                  0.0, 1.0, 0.0,
+        0.0, 1.0, 3.0,
+        0.0, 0.0, 1.0 };
+    planet p2 = { 1.0, 1.0,
+        -1.0, 0.0, 0.0,
+        0.0, -1.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p3 = { 1.0, 1.0,
+        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
+        -1.0, 0.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p4 = { 0.92, 1.0,
+        //                    0.0, -0.98, 0.0,
+        0.0, -0.98, 3.0,
+        //                    1.04, 0.0, 0.0,
+        1.04, 0.0, -3.0,
+        0.0, 0.0, -1.0 };
+    
+    // body 1
+    MEM_PTR[OFFSET_RAD + 1] = (int)(10 * p1.rad);
+    MEM_PTR[OFFSET_POS_X + 1] = (int)(320 + 100 * p1.pos_x);
+    MEM_PTR[OFFSET_POS_Y + 1] = (int)(240 + 100 * p1.pos_y);
+    MEM_PTR[OFFSET_POS_Z + 1] = (int)(p1.pos_z * 2 + 20);
+    
+    // body 2
+    MEM_PTR[OFFSET_RAD + 2] = (int)(10 * p2.rad);
+    MEM_PTR[OFFSET_POS_X + 2] = (int)(320 + 100 * p2.pos_x);
+    MEM_PTR[OFFSET_POS_Y + 2] = (int)(240 + 100 * p2.pos_y);
+    MEM_PTR[OFFSET_POS_Z + 2] = (int)(p2.pos_z * 2 + 20);
+    
+    // body 3
+    MEM_PTR[OFFSET_RAD + 3] = (int)(10 * p3.rad);
+    MEM_PTR[OFFSET_POS_X + 3] = (int)(320 + 100 * p3.pos_x);
+    MEM_PTR[OFFSET_POS_Y + 3] = (int)(240 + 100 * p3.pos_y);
+    MEM_PTR[OFFSET_POS_Z + 3] = (int)(p3.pos_z * 2 + 20);
+    
+    // body 4
+    MEM_PTR[OFFSET_RAD + 4] = (int)(10 * p4.rad);
+    MEM_PTR[OFFSET_POS_X + 4] = (int)(320 + 100 * p4.pos_x);
+    MEM_PTR[OFFSET_POS_Y + 4] = (int)(240 + 100 * p4.pos_y);
+    MEM_PTR[OFFSET_POS_Z + 4] = (int)(p4.pos_z * 2 + 20);
+    
+    
+    // hard-code delay to make up for screen refresh time
+    for(int i = 0; i < 10000 * SIM_FPS; i++) ;
+    
+    
+    for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
+        
+        // wait until the state machine wants to continue
+        //        while(MEM_PTR[15] == 0);
+        
+        // send the data through the memory pointer
+        
+        // body 1
+        /*
+         MEM_PTR[0] = (int)(10 * p1.rad);
+         MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
+         MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
+         MEM_PTR[3] = (int)(p1.pos_z * 2 + 20);
+         */
+        // body 2
+        MEM_PTR[4] = (int)(10 * p2.rad);
+        MEM_PTR[5] = (int)(320 + 100 * p2.pos_x);
+        MEM_PTR[6] = (int)(240 + 100 * p2.pos_y);
+        MEM_PTR[7] = (int)(p2.pos_z * 2 + 20);
+        
+        // body 3
+        MEM_PTR[8] = (int)(10 * p3.rad);
+        MEM_PTR[9] = (int)(320 + 100 * p3.pos_x);
+        MEM_PTR[10] = (int)(240 + 100 * p3.pos_y);
+        MEM_PTR[11] = (int)(p3.pos_z * 2 + 20);
+        
+        // body 4
+        MEM_PTR[12] = (int)(10 * p4.rad);
+        MEM_PTR[13] = (int)(320 + 100 * p4.pos_x);
+        MEM_PTR[14] = (int)(240 + 100 * p4.pos_y);
+        MEM_PTR[15] = (int)(p4.pos_z * 2 + 20);
+        
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        clear_acceleration(&p3);
+        clear_acceleration(&p4);
+        
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
+        f = get_force_between_planets(p1, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p1, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p2, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p2, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p3, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p3);
+        apply_force_to_planet(n, &p4);
+        
+        // provide the acceleration
+        MEM_PTR[OFFSET_ACC_X + 1] = (int)(p1.pos_x);
+        MEM_PTR[OFFSET_ACC_Y + 1] = (int)(240 + 100 * p1.pos_y);
+        MEM_PTR[OFFSET_ACC_Z + 1] = (int)(p1.pos_z * 2 + 20);
+        
+        // initiate the start signal
+        MEM_PTR[OFFSET_START] = 1;
+        
+        // wait for the calculation to be done
+        while(MEM_PTR[OFFSET_DONE] == 0);
+        
+        // retrieve data and write
+        MEM_PTR[OFFSET_ACC_X + 1] = (int)(p1.pos_x);
+        MEM_PTR[OFFSET_ACC_Y + 1] = (int)(240 + 100 * p1.pos_y);
+        MEM_PTR[OFFSET_ACC_Z + 1] = (int)(p1.pos_z * 2 + 20);
+        
+        //timestep(&p1);
+        timestep(&p2);
+        timestep(&p3);
+        timestep(&p4);
+        
+        printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+    }
 }
 
