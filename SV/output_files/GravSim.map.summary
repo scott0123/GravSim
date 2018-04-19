@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Thu Apr 19 07:18:55 2018
+Analysis & Synthesis Status : Successful - Thu Apr 19 14:10:33 2018
 Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 Revision Name : GravSim
-Top-level Entity Name : FSM
+Top-level Entity Name : GravSim
 Family : Cyclone IV E
-Total logic elements : 4,050
-    Total combinational functions : 4,050
-    Dedicated logic registers : 370
-Total registers : 370
-Total pins : 3,813
+Total logic elements : 18,756
+    Total combinational functions : 14,461
+    Dedicated logic registers : 6,274
+Total registers : 6274
+Total pins : 112
 Total virtual pins : 0
-Total memory bits : 0
-Embedded Multiplier 9-bit elements : 21
-Total PLLs : 0
+Total memory bits : 11,392
+Embedded Multiplier 9-bit elements : 157
+Total PLLs : 2

@@ -21,6 +21,21 @@ module  ball ( input         Clk,                // 50 MHz clock
 	 const int FLOAT10 = 32'h41200000;
 	 const int FLOAT100 = 32'h42c80000;
 	 
+	logic [31:0] FPmultRad_out;
+	logic [31:0] FPmultX_out;
+	logic [31:0] FPmultY_out;
+	logic [31:0] FPmultZ_out;
+	// integer (pixel) versions of radius, posX, posY, posZ
+	logic [31:0] intRad, intPosX, intPosY, intPosZ;
+
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
     parameter [9:0] Ball_X_Center = 10'd320;  // Center position on the X axis
     parameter [9:0] Ball_Y_Center = 10'd240;  // Center position on the Y axis
@@ -40,17 +55,7 @@ module  ball ( input         Clk,                // 50 MHz clock
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
     logic [9:0] Ball_X_Pos_in, Ball_X_Motion_in, Ball_Y_Pos_in, Ball_Y_Motion_in;
     
-	 // integer (pixel) versions of radius, posX, posY, posZ
-	 logic [31:0] intRad, intPosX, intPosY, intPosZ;
-	 
-	 always_comb begin
-	 
-		
-	 
-	 end
-	 
-	 
-	 
+
     //////// Do not modify the always_ff blocks. ////////
     // Detect rising edge of frame_clk
     logic frame_clk_delayed, frame_clk_rising_edge;
@@ -70,20 +75,29 @@ module  ball ( input         Clk,                // 50 MHz clock
 	 // absolute value of Dists
 	 int absDistX, absDistY;
 	 
+	 logic [31:0] temp_posZadd;
 	 logic [31:0] adjRadius;
 
 	 // perform absolute value operations and calculate Z size adjust limit
 	 always_comb begin
 		
 		// radius adjust
-		if ( (intPosZ + 32'd20) < 32'd1 ) begin
+		
+		temp_posZadd = intPosZ + 32'd20;
+		
+		// added to ensure that negative temp_posZadd < positive 1
+		if ( temp_posZadd[31] == 1 ) begin
 			adjRadius = 32'd1;
 		end
-		else if ( (intPosZ + 32'd20) > 32'd80 ) begin
+
+		else if ( temp_posZadd < 32'd1 ) begin
+			adjRadius = 32'd1;
+		end
+		else if ( temp_posZadd > 32'd80 ) begin
 			adjRadius = 32'd80;
 		end
 		else begin
-			adjRadius = (intPosZ + 32'd20);
+			adjRadius = temp_posZadd;
 		end
 		
 	 end
@@ -109,15 +123,6 @@ module  ball ( input         Clk,                // 50 MHz clock
 //	   Modules are instantiated here so they have access to regfile
 
 // -----------------------------------------------------------------
-
-
-logic [31:0] FPmultRad_out;
-logic [31:0] FPmultX_out;
-logic [31:0] FPmultY_out;
-logic [31:0] FPmultZ_out;
-logic [31:0] FPaddX_out;
-logic [31:0] FPaddY_out;
-logic [31:0] FPaddZ_out;
 
 FPmult FPmultRad (
 	// inputs
