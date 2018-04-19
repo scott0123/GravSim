@@ -19,27 +19,45 @@ logic [31:0] A;
 assign A = 32'h41133333; // +9.2 decimal
 
 logic [31:0] B;
-assign B = 32'h40f00000; // 7.5 decimal
+assign B = 32'h40f00000; // +7.5 decimal
+
+logic [31:0] C;
+assign C = 32'h4216cccd; // +37.7 decimal
+
+logic [31:0] D;
+assign D = 32'hc2f1cccd; // -120.9 decimal
+
+logic RESET;
 
 // output
 
 logic [31:0] Out;
+logic Done, Error;
 
 // Instantiating the DUT
 // Make sure the module and signal names match with those in your design
-FPU fpuInvSqrt (
-//	input             iCLK,
-//	input      [26:0] iA,
-//	input      [26:0] iB,
-//	output     [26:0] oSum
+FPU fp2int (
 
-	// inputs
-	.iCLK(CLK),
-	.iA(A),
-//	.iB(B),
-	
-	// outputs
-	.oInvSqrt(Out)
+//		input clk,
+//    input rst,
+//    input [31:0] vin,
+//    output reg [31:0] vout,
+//    output reg done,
+//    output reg error
+
+//	// inputs
+//	.clk(CLK),
+//	.rst(RESET),
+//	.vin(A),
+//	// outputs
+//	.vout(Out),
+//	.done(Done),
+//	.error(Error)
+
+	.fp_in(D),
+	.int_out(Out)
+
+
 );
 
 // Toggle the clock
@@ -58,9 +76,9 @@ end
 // as in a software program
 initial begin: TEST_VECTORS
 
+//RESET = 1;
 
-
-
+//#5 RESET = 0;
 
 end
 

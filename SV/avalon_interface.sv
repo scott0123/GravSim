@@ -45,6 +45,22 @@ module avalon_interface (
 
 );
 
+const int OFFSET_NUM = 0;
+const int OFFSET_START = 1;
+const int OFFSET_DONE = 2;
+const int OFFSET_MASS = 3-1;
+const int OFFSET_RAD = 13-1;
+const int OFFSET_POS_X = 23-1;
+const int OFFSET_POS_Y = 33-1;
+const int OFFSET_POS_Z = 43-1;
+const int OFFSET_VEL_X = 53-1;
+const int OFFSET_VEL_Y = 63-1;
+const int OFFSET_VEL_Z = 73-1;
+const int OFFSET_ACC_X = 83-1;
+const int OFFSET_ACC_Y = 93-1;
+const int OFFSET_ACC_Z = 103-1;
+
+
 // SIZE = 113
 // 3 "Misc" data:
 //						Number of balls being used
@@ -75,6 +91,7 @@ module avalon_interface (
 //						 ...
 
 logic [31:0] regfile [113];
+logic FSM_DONE_temp;
 
 always_comb begin
 
@@ -141,8 +158,8 @@ always_ff @(posedge CLK) begin
 //		else if (!(AVL_CS && AVL_READ)) begin
 		else begin
 
-//			regfile[15][0] <= AVL_done_temp;
-//			{regfile[8], regfile[9], regfile[10], regfile[11]} <= AVL_decrypt_temp;
+			regfile[OFFSET_DONE][0] <= FSM_DONE_temp;
+			
 		end
 		
 	
@@ -157,6 +174,26 @@ end
 
 // -----------------------------------------------------------------
 
+
+
+
+
+FSM RESOLVE_FORCE (
+
+	// inputs
+	.CLK,
+	.RESET,
+	.FSM_START(regfile[OFFSET_START][0]),
+	.datafile(regfile),
+	
+	// inputs
+	.FSM_DONE(FSM_DONE_temp)
+	
+);
+
+
+
+
 logic is_ball_1, is_ball_2, is_ball_3, is_ball_4;
 
 assign is_ball_out = is_ball_1 | is_ball_2 | is_ball_3 | is_ball_4;
@@ -169,10 +206,10 @@ ball ball_1 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[0]),
-.posX(regfile[1]),
-.posY(regfile[2]),
-.posZ(regfile[3]),
+.radius(regfile[OFFSET_RAD+1]),
+.posX(regfile[OFFSET_POSX+1]),
+.posY(regfile[OFFSET_POSY+1]),
+.posZ(regfile[OFFSET_POSZ+1]),
 //outputs
 .is_ball(is_ball_1)
 );
@@ -185,10 +222,10 @@ ball ball_2 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[4]),
-.posX(regfile[5]),
-.posY(regfile[6]),
-.posZ(regfile[7]),
+.radius(regfile[OFFSET_RAD+2]),
+.posX(regfile[OFFSET_POSX+2]),
+.posY(regfile[OFFSET_POSY+2]),
+.posZ(regfile[OFFSET_POSZ+2]),
 //outputs
 .is_ball(is_ball_2)
 );
@@ -201,10 +238,10 @@ ball ball_3 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[8]),
-.posX(regfile[9]),
-.posY(regfile[10]),
-.posZ(regfile[11]),
+.radius(regfile[OFFSET_RAD+3]),
+.posX(regfile[OFFSET_POSX+3]),
+.posY(regfile[OFFSET_POSY+3]),
+.posZ(regfile[OFFSET_POSZ+3]),
 //outputs
 .is_ball(is_ball_3)
 );
@@ -217,14 +254,12 @@ ball ball_4 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[12]),
-.posX(regfile[13]),
-.posY(regfile[14]),
-.posZ(regfile[15]),
+.radius(regfile[OFFSET_RAD+4]),
+.posX(regfile[OFFSET_POSX+4]),
+.posY(regfile[OFFSET_POSY+4]),
+.posZ(regfile[OFFSET_POSZ+4]),
 //outputs
 .is_ball(is_ball_4)
 );
-
-
 
 endmodule

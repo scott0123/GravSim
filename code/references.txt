@@ -1,2 +1,8 @@
 ALTFP_ADD_SUB IP CORE
 https://www.altera.com/en_US/pdfs/literature/ug/ug_altfp_mfug.pdf
+
+Cornell
+http://people.ece.cornell.edu/land/courses/ece5760/FloatingPoint/index.html
+
+StackOverflow
+https://stackoverflow.com/questions/20318911/converting-float-to-an-int-float2int-using-only-bitwise-manipulation?rq=1

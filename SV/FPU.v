@@ -22,7 +22,7 @@
  * 1.5 = 32'h3fc00000                                                     *
  *************************************************************************/
  // already changed to 32bit
-module FPU (
+module FPinvsqrt (
     input             iCLK,
     input      [31:0] iA,
     output     [31:0] oInvSqrt
@@ -263,3 +263,39 @@ module FPadd (
 						//    1     +   8      +    23
 
 endmodule
+
+/****************************************************************************
+ * floating point to integer															    *
+ * output: 32-bit signed integer 													    *
+ * input: -- sign bit -- 8-bit exponent -- 23-bit mantissa 					    *
+ * NO denorms, no flags, no NAN, no infinity, no rounding!						 *
+ * Truncates floating point to integer													 *
+ * 																								 *
+ * ADAPTED FROM															  					 *
+ * Bruce R Land, Cornell University														 *
+ * WITH REFERENCE TO																			 *
+ * StackOverflow (see references)														 *
+ * *************************************************************************/
+module fp2int(
+	fp_in,
+	int_out
+);
+
+	input wire [31:0] fp_in;
+	output signed  [31:0] int_out ;
+	
+	wire [31:0] abs_int;
+	wire sign;
+	wire [23:0] m_in; // mantissa (length + 1)
+	wire [7:0] e_in; // exponent
+	
+	
+	assign sign = (m_in[22])? fp_in[31] : 1'h0;
+	assign m_in = {1'b1, fp_in[22:0]};
+	assign e_in = fp_in[30:23] ;
+
+	assign abs_int = (e_in>8'h80)? (m_in >> (8'd150 - e_in)) : 32'd0;
+	assign int_out = (sign? (~abs_int)+32'd1 : abs_int);
+endmodule
+
+
