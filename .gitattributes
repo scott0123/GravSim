@@ -1,1 +1,2 @@
-code/usb/ linguist-vendored
+usb_kb/ linguist-vendored
+usb_kb_bsp/ linguist-vendored
