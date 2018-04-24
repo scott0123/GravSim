@@ -1,0 +1,723 @@
+Analysis & Synthesis report for testbench_project
+Tue Apr 24 16:34:44 2018
+Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for Inferred Entity Instance: FPinvsqrt:fpinvsqrt|FPmult:s5_mult|lpm_mult:Mult0
+ 14. Parameter Settings for Inferred Entity Instance: FPmult:fpmult|lpm_mult:Mult0
+ 15. Parameter Settings for Inferred Entity Instance: FPinvsqrt:fpinvsqrt|FPmult:s2_mult|lpm_mult:Mult0
+ 16. Parameter Settings for Inferred Entity Instance: FPinvsqrt:fpinvsqrt|FPmult:s1_mult|lpm_mult:Mult0
+ 17. lpm_mult Parameter Settings by Entity Instance
+ 18. Port Connectivity Checks: "FPinvsqrt:fpinvsqrt|FPadd:s3_add"
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Apr 24 16:34:43 2018       ;
+; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                      ; testbench_project                           ;
+; Top-level Entity Name              ; FPU                                         ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 1,356                                       ;
+;     Total combinational functions  ; 1,241                                       ;
+;     Dedicated logic registers      ; 298                                         ;
+; Total registers                    ; 298                                         ;
+; Total pins                         ; 65                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 28                                          ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; FPU                ; testbench_project  ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                              ; Enable             ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                                        ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                  ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                              ; Library ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
+; FPU.v                            ; yes             ; User Verilog HDL File        ; C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v           ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf       ;         ;
+; aglobal171.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/aglobal171.inc     ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_add_sub.inc    ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/multcore.inc       ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/bypassff.inc       ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altshift.inc       ;         ;
+; db/mult_7dt.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/db/mult_7dt.tdf ;         ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++---------------------------------------------+------------+
+; Resource                                    ; Usage      ;
++---------------------------------------------+------------+
+; Estimated Total logic elements              ; 1,356      ;
+;                                             ;            ;
+; Total combinational functions               ; 1241       ;
+; Logic element usage by number of LUT inputs ;            ;
+;     -- 4 input functions                    ; 524        ;
+;     -- 3 input functions                    ; 532        ;
+;     -- <=2 input functions                  ; 185        ;
+;                                             ;            ;
+; Logic elements by mode                      ;            ;
+;     -- normal mode                          ; 888        ;
+;     -- arithmetic mode                      ; 353        ;
+;                                             ;            ;
+; Total registers                             ; 298        ;
+;     -- Dedicated logic registers            ; 298        ;
+;     -- I/O registers                        ; 0          ;
+;                                             ;            ;
+; I/O pins                                    ; 65         ;
+;                                             ;            ;
+; Embedded Multiplier 9-bit elements          ; 28         ;
+;                                             ;            ;
+; Maximum fan-out node                        ; iCLK~input ;
+; Maximum fan-out                             ; 298        ;
+; Total fan-out                               ; 5103       ;
+; Average fan-out                             ; 3.00       ;
++---------------------------------------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                            ;
++---------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
+; Compilation Hierarchy Node            ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                            ; Entity Name ; Library Name ;
++---------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
+; |FPU                                  ; 1241 (1)            ; 298 (0)                   ; 0           ; 28           ; 4       ; 12        ; 65   ; 0            ; |FPU                                                                           ; FPU         ; work         ;
+;    |FPinvsqrt:fpinvsqrt|              ; 1141 (75)           ; 298 (242)                 ; 0           ; 21           ; 3       ; 9         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt                                                       ; FPinvsqrt   ; work         ;
+;       |FPadd:s3_add|                  ; 772 (772)           ; 56 (56)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add                                          ; FPadd       ; work         ;
+;       |FPmult:s1_mult|                ; 88 (36)             ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s1_mult                                        ; FPmult      ; work         ;
+;          |lpm_mult:Mult0|             ; 52 (0)              ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s1_mult|lpm_mult:Mult0                         ; lpm_mult    ; work         ;
+;             |mult_7dt:auto_generated| ; 52 (52)             ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s1_mult|lpm_mult:Mult0|mult_7dt:auto_generated ; mult_7dt    ; work         ;
+;       |FPmult:s2_mult|                ; 95 (43)             ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s2_mult                                        ; FPmult      ; work         ;
+;          |lpm_mult:Mult0|             ; 52 (0)              ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s2_mult|lpm_mult:Mult0                         ; lpm_mult    ; work         ;
+;             |mult_7dt:auto_generated| ; 52 (52)             ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s2_mult|lpm_mult:Mult0|mult_7dt:auto_generated ; mult_7dt    ; work         ;
+;       |FPmult:s5_mult|                ; 111 (59)            ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s5_mult                                        ; FPmult      ; work         ;
+;          |lpm_mult:Mult0|             ; 52 (0)              ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s5_mult|lpm_mult:Mult0                         ; lpm_mult    ; work         ;
+;             |mult_7dt:auto_generated| ; 52 (52)             ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s5_mult|lpm_mult:Mult0|mult_7dt:auto_generated ; mult_7dt    ; work         ;
+;    |FPmult:fpmult|                    ; 99 (47)             ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPmult:fpmult                                                             ; FPmult      ; work         ;
+;       |lpm_mult:Mult0|                ; 52 (0)              ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPmult:fpmult|lpm_mult:Mult0                                              ; lpm_mult    ; work         ;
+;          |mult_7dt:auto_generated|    ; 52 (52)             ; 0 (0)                     ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |FPU|FPmult:fpmult|lpm_mult:Mult0|mult_7dt:auto_generated                      ; mult_7dt    ; work         ;
++---------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 4           ;
+; Simple Multipliers (18-bit)           ; 12          ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 28          ;
+; Signed Embedded Multipliers           ; 0           ;
+; Unsigned Embedded Multipliers         ; 16          ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++-----------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                      ;
++------------------------------------------------+----------------------------------------+
+; Register name                                  ; Reason for Removal                     ;
++------------------------------------------------+----------------------------------------+
+; FPinvsqrt:fpinvsqrt|mult_5_in[31]              ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_oSum_s    ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[31]     ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[31]     ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|y_5[31]                    ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|y_4[31]                    ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|y_3[31]                    ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|y_2[31]                    ; Lost fanout                            ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[1..21]  ; Stuck at GND due to stuck port data_in ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[22..29] ; Stuck at VCC due to stuck port data_in ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[30]     ; Stuck at GND due to stuck port data_in ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B_e_zero  ; Stuck at GND due to stuck port data_in ;
+; FPinvsqrt:fpinvsqrt|mult_2_in[31]              ; Stuck at GND due to stuck port data_in ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[1..30]  ; Lost fanout                            ;
+; Total Number of Removed Registers = 70         ;                                        ;
++------------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                        ;
++--------------------------------------------+---------------------------+-----------------------------------------------------------+
+; Register name                              ; Reason for Removal        ; Registers Removed due to This Register                    ;
++--------------------------------------------+---------------------------+-----------------------------------------------------------+
+; FPinvsqrt:fpinvsqrt|mult_5_in[31]          ; Lost Fanouts              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_oSum_s,              ;
+;                                            ;                           ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[31],               ;
+;                                            ;                           ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[31]                ;
+; FPinvsqrt:fpinvsqrt|y_5[31]                ; Lost Fanouts              ; FPinvsqrt:fpinvsqrt|y_4[31], FPinvsqrt:fpinvsqrt|y_3[31], ;
+;                                            ;                           ; FPinvsqrt:fpinvsqrt|y_2[31]                               ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[6]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[6]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[5]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[5]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[4]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[4]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[3]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[3]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[2]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[2]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[1]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[1]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[7]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[7]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[8]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[8]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[9]  ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[9]                 ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[10] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[10]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[11] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[11]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[12] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[12]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[13] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[13]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[14] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[14]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[15] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[15]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[16] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[16]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[17] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[17]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[18] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[18]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[19] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[19]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[20] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[20]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[21] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[21]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[22] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[22]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[23] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[23]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[24] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[24]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[25] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[25]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[26] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[26]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[27] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[27]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[28] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[28]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[29] ; Stuck at VCC              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[29]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
+; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_B[30] ; Stuck at GND              ; FPinvsqrt:fpinvsqrt|FPadd:s3_add|buf_A[30]                ;
+;                                            ; due to stuck port data_in ;                                                           ;
++--------------------------------------------+---------------------------+-----------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 298   ;
+; Number of registers using Synchronous Clear  ; 15    ;
+; Number of registers using Synchronous Load   ; 22    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_5_in[27]            ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_2_in[29]            ;
+; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|add_3_in[28]             ;
+; 4:1                ; 22 bits   ; 44 LEs        ; 44 LEs               ; 0 LEs                  ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_2_in[13]            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_5_in[6]             ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_5_in[18]            ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 10 LEs               ; 2 LEs                  ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_5_in[19]            ;
+; 10:1               ; 7 bits    ; 42 LEs        ; 28 LEs               ; 14 LEs                 ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_5_in[11]            ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 12 LEs               ; 2 LEs                  ; Yes        ; |FPU|FPinvsqrt:fpinvsqrt|mult_5_in[22]            ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |FPU|FPmult:fpmult|oProd[7]                       ;
+; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPmult:s5_mult|oProd[29] ;
+; 10:1               ; 13 bits   ; 78 LEs        ; 26 LEs               ; 52 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 10:1               ; 14 bits   ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 10:1               ; 13 bits   ; 78 LEs        ; 39 LEs               ; 39 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 12:1               ; 15 bits   ; 120 LEs       ; 30 LEs               ; 90 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 12:1               ; 8 bits    ; 64 LEs        ; 48 LEs               ; 16 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 6 LEs                ; 10 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 12:1               ; 7 bits    ; 56 LEs        ; 42 LEs               ; 14 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 12:1               ; 7 bits    ; 56 LEs        ; 35 LEs               ; 21 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 14:1               ; 6 bits    ; 54 LEs        ; 36 LEs               ; 18 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|Add2        ;
+; 32:1               ; 2 bits    ; 42 LEs        ; 24 LEs               ; 18 LEs                 ; No         ; |FPU|FPinvsqrt:fpinvsqrt|FPadd:s3_add|shft_amt[5] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: FPinvsqrt:fpinvsqrt|FPmult:s5_mult|lpm_mult:Mult0 ;
++------------------------------------------------+--------------+------------------------------------+
+; Parameter Name                                 ; Value        ; Type                               ;
++------------------------------------------------+--------------+------------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY                         ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY                       ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE                       ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE                     ;
+; LPM_WIDTHA                                     ; 23           ; Untyped                            ;
+; LPM_WIDTHB                                     ; 23           ; Untyped                            ;
+; LPM_WIDTHP                                     ; 46           ; Untyped                            ;
+; LPM_WIDTHR                                     ; 46           ; Untyped                            ;
+; LPM_WIDTHS                                     ; 1            ; Untyped                            ;
+; LPM_REPRESENTATION                             ; UNSIGNED     ; Untyped                            ;
+; LPM_PIPELINE                                   ; 0            ; Untyped                            ;
+; LATENCY                                        ; 0            ; Untyped                            ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped                            ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped                            ;
+; USE_EAB                                        ; OFF          ; Untyped                            ;
+; MAXIMIZE_SPEED                                 ; 5            ; Untyped                            ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped                            ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped                            ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K                ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped                            ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped                            ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped                            ;
+; CBXI_PARAMETER                                 ; mult_7dt     ; Untyped                            ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped                            ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped                            ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped                            ;
++------------------------------------------------+--------------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: FPmult:fpmult|lpm_mult:Mult0       ;
++------------------------------------------------+--------------+---------------------+
+; Parameter Name                                 ; Value        ; Type                ;
++------------------------------------------------+--------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 23           ; Untyped             ;
+; LPM_WIDTHB                                     ; 23           ; Untyped             ;
+; LPM_WIDTHP                                     ; 46           ; Untyped             ;
+; LPM_WIDTHR                                     ; 46           ; Untyped             ;
+; LPM_WIDTHS                                     ; 1            ; Untyped             ;
+; LPM_REPRESENTATION                             ; UNSIGNED     ; Untyped             ;
+; LPM_PIPELINE                                   ; 0            ; Untyped             ;
+; LATENCY                                        ; 0            ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped             ;
+; USE_EAB                                        ; OFF          ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5            ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_7dt     ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped             ;
++------------------------------------------------+--------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: FPinvsqrt:fpinvsqrt|FPmult:s2_mult|lpm_mult:Mult0 ;
++------------------------------------------------+--------------+------------------------------------+
+; Parameter Name                                 ; Value        ; Type                               ;
++------------------------------------------------+--------------+------------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY                         ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY                       ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE                       ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE                     ;
+; LPM_WIDTHA                                     ; 23           ; Untyped                            ;
+; LPM_WIDTHB                                     ; 23           ; Untyped                            ;
+; LPM_WIDTHP                                     ; 46           ; Untyped                            ;
+; LPM_WIDTHR                                     ; 46           ; Untyped                            ;
+; LPM_WIDTHS                                     ; 1            ; Untyped                            ;
+; LPM_REPRESENTATION                             ; UNSIGNED     ; Untyped                            ;
+; LPM_PIPELINE                                   ; 0            ; Untyped                            ;
+; LATENCY                                        ; 0            ; Untyped                            ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped                            ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped                            ;
+; USE_EAB                                        ; OFF          ; Untyped                            ;
+; MAXIMIZE_SPEED                                 ; 5            ; Untyped                            ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped                            ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped                            ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K                ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped                            ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped                            ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped                            ;
+; CBXI_PARAMETER                                 ; mult_7dt     ; Untyped                            ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped                            ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped                            ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped                            ;
++------------------------------------------------+--------------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: FPinvsqrt:fpinvsqrt|FPmult:s1_mult|lpm_mult:Mult0 ;
++------------------------------------------------+--------------+------------------------------------+
+; Parameter Name                                 ; Value        ; Type                               ;
++------------------------------------------------+--------------+------------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY                         ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY                       ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE                       ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE                     ;
+; LPM_WIDTHA                                     ; 23           ; Untyped                            ;
+; LPM_WIDTHB                                     ; 23           ; Untyped                            ;
+; LPM_WIDTHP                                     ; 46           ; Untyped                            ;
+; LPM_WIDTHR                                     ; 46           ; Untyped                            ;
+; LPM_WIDTHS                                     ; 1            ; Untyped                            ;
+; LPM_REPRESENTATION                             ; UNSIGNED     ; Untyped                            ;
+; LPM_PIPELINE                                   ; 0            ; Untyped                            ;
+; LATENCY                                        ; 0            ; Untyped                            ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped                            ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped                            ;
+; USE_EAB                                        ; OFF          ; Untyped                            ;
+; MAXIMIZE_SPEED                                 ; 5            ; Untyped                            ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped                            ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped                            ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K                ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped                            ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped                            ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped                            ;
+; CBXI_PARAMETER                                 ; mult_7dt     ; Untyped                            ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped                            ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped                            ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped                            ;
++------------------------------------------------+--------------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                                            ;
++---------------------------------------+---------------------------------------------------+
+; Name                                  ; Value                                             ;
++---------------------------------------+---------------------------------------------------+
+; Number of entity instances            ; 4                                                 ;
+; Entity Instance                       ; FPinvsqrt:fpinvsqrt|FPmult:s5_mult|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 23                                                ;
+;     -- LPM_WIDTHB                     ; 23                                                ;
+;     -- LPM_WIDTHP                     ; 46                                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                                ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                                ;
+;     -- USE_EAB                        ; OFF                                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                                ;
+; Entity Instance                       ; FPmult:fpmult|lpm_mult:Mult0                      ;
+;     -- LPM_WIDTHA                     ; 23                                                ;
+;     -- LPM_WIDTHB                     ; 23                                                ;
+;     -- LPM_WIDTHP                     ; 46                                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                                ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                                ;
+;     -- USE_EAB                        ; OFF                                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                                ;
+; Entity Instance                       ; FPinvsqrt:fpinvsqrt|FPmult:s2_mult|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 23                                                ;
+;     -- LPM_WIDTHB                     ; 23                                                ;
+;     -- LPM_WIDTHP                     ; 46                                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                                ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                                ;
+;     -- USE_EAB                        ; OFF                                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                                ;
+; Entity Instance                       ; FPinvsqrt:fpinvsqrt|FPmult:s1_mult|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 23                                                ;
+;     -- LPM_WIDTHB                     ; 23                                                ;
+;     -- LPM_WIDTHP                     ; 46                                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                                ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                                ;
+;     -- USE_EAB                        ; OFF                                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                                ;
++---------------------------------------+---------------------------------------------------+
+
+
++--------------------------------------------------------------+
+; Port Connectivity Checks: "FPinvsqrt:fpinvsqrt|FPadd:s3_add" ;
++------------+-------+----------+------------------------------+
+; Port       ; Type  ; Severity ; Details                      ;
++------------+-------+----------+------------------------------+
+; iB[29..22] ; Input ; Info     ; Stuck at VCC                 ;
+; iB[31..30] ; Input ; Info     ; Stuck at GND                 ;
+; iB[21..0]  ; Input ; Info     ; Stuck at GND                 ;
++------------+-------+----------+------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 65                          ;
+; cycloneiii_ff         ; 298                         ;
+;     SCLR SLD          ; 15                          ;
+;     SLD               ; 7                           ;
+;     plain             ; 276                         ;
+; cycloneiii_lcell_comb ; 1242                        ;
+;     arith             ; 353                         ;
+;         2 data inputs ; 91                          ;
+;         3 data inputs ; 262                         ;
+;     normal            ; 889                         ;
+;         0 data inputs ; 7                           ;
+;         1 data inputs ; 21                          ;
+;         2 data inputs ; 67                          ;
+;         3 data inputs ; 270                         ;
+;         4 data inputs ; 524                         ;
+; cycloneiii_mac_mult   ; 16                          ;
+; cycloneiii_mac_out    ; 16                          ;
+;                       ;                             ;
+; Max LUT depth         ; 15.00                       ;
+; Average LUT depth     ; 6.52                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:04     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Tue Apr 24 16:34:27 2018
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off testbench_project -c testbench_project
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file testbench_fpu.sv
+    Info (12023): Found entity 1: testbench_FPU File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv Line: 6
+Info (12021): Found 7 design units, including 7 entities, in source file fpu.v
+    Info (12023): Found entity 1: FPinvsqrt File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 25
+    Info (12023): Found entity 2: FPmult File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 87
+    Info (12023): Found entity 3: FPU File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 138
+    Info (12023): Found entity 4: FPadd File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 194
+    Info (12023): Found entity 5: fp2int File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 331
+    Info (12023): Found entity 6: FPinv File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 365
+    Info (12023): Found entity 7: fpadd File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 454
+Info (12127): Elaborating entity "FPU" for the top level hierarchy
+Info (12128): Elaborating entity "FPinvsqrt" for hierarchy "FPinvsqrt:fpinvsqrt" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 154
+Info (12128): Elaborating entity "FPmult" for hierarchy "FPinvsqrt:fpinvsqrt|FPmult:s1_mult" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 43
+Warning (10230): Verilog HDL assignment warning at FPU.v(122): truncated value with size 9 to match size of target (8) File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 122
+Info (12128): Elaborating entity "FPadd" for hierarchy "FPinvsqrt:fpinvsqrt|FPadd:s3_add" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 53
+Info (278001): Inferred 4 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "FPinvsqrt:fpinvsqrt|FPmult:s5_mult|Mult0" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "FPmult:fpmult|Mult0" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "FPinvsqrt:fpinvsqrt|FPmult:s2_mult|Mult0" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "FPinvsqrt:fpinvsqrt|FPmult:s1_mult|Mult0" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+Info (12130): Elaborated megafunction instantiation "FPinvsqrt:fpinvsqrt|FPmult:s5_mult|lpm_mult:Mult0" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+Info (12133): Instantiated megafunction "FPinvsqrt:fpinvsqrt|FPmult:s5_mult|lpm_mult:Mult0" with the following parameter: File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+    Info (12134): Parameter "LPM_WIDTHA" = "23"
+    Info (12134): Parameter "LPM_WIDTHB" = "23"
+    Info (12134): Parameter "LPM_WIDTHP" = "46"
+    Info (12134): Parameter "LPM_WIDTHR" = "46"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_7dt.tdf
+    Info (12023): Found entity 1: mult_7dt File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/db/mult_7dt.tdf Line: 30
+Info (12130): Elaborated megafunction instantiation "FPmult:fpmult|lpm_mult:Mult0" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+Info (12133): Instantiated megafunction "FPmult:fpmult|lpm_mult:Mult0" with the following parameter: File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 113
+    Info (12134): Parameter "LPM_WIDTHA" = "23"
+    Info (12134): Parameter "LPM_WIDTHB" = "23"
+    Info (12134): Parameter "LPM_WIDTHP" = "46"
+    Info (12134): Parameter "LPM_WIDTHR" = "46"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (13014): Ignored 585 buffer(s)
+    Info (13019): Ignored 585 SOFT buffer(s)
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "out[31]" is stuck at GND File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 144
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 38 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "in[0]" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v Line: 141
+Info (21057): Implemented 1480 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 33 input pins
+    Info (21059): Implemented 32 output pins
+    Info (21061): Implemented 1387 logic cells
+    Info (21062): Implemented 28 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 686 megabytes
+    Info: Processing ended: Tue Apr 24 16:34:44 2018
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:32
+
+
