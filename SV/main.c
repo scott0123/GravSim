@@ -43,20 +43,21 @@
 #define SIM_TIME 40 // (seconds)
 
 // constants for mem regfile
-#define OFFSET_NUM 0
-#define OFFSET_START 1
-#define OFFSET_DONE 2
-#define OFFSET_MASS 3-1
-#define OFFSET_RAD 13-1
-#define OFFSET_POS_X 23-1
-#define OFFSET_POS_Y 33-1
-#define OFFSET_POS_Z 43-1
-#define OFFSET_VEL_X 53-1
-#define OFFSET_VEL_Y 63-1
-#define OFFSET_VEL_Z 73-1
-#define OFFSET_ACC_X 83-1
-#define OFFSET_ACC_Y 93-1
-#define OFFSET_ACC_Z 103-1
+#define OFFSET_G 0
+#define OFFSET_NUM 1
+#define OFFSET_START 2
+#define OFFSET_DONE 3
+#define OFFSET_MASS 4-1
+#define OFFSET_RAD 14-1
+#define OFFSET_POS_X 24-1
+#define OFFSET_POS_Y 34-1
+#define OFFSET_POS_Z 44-1
+#define OFFSET_VEL_X 54-1
+#define OFFSET_VEL_Y 64-1
+#define OFFSET_VEL_Z 74-1
+#define OFFSET_ACC_X 84-1
+#define OFFSET_ACC_Y 94-1
+#define OFFSET_ACC_Z 104-1
 
 
 void unit_test();
@@ -347,6 +348,10 @@ void hardware_simulation(){
     	uint32_t i;
     }comb;
 
+    // set G
+    MEM_PTR[OFFSET_G] = G;
+    // set num planets
+    MEM_PTR[OFFSET_NUM] = 4;
     // body 1
     comb.f = p1.rad;
     MEM_PTR[OFFSET_RAD + 1] = comb.i;
