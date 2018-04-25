@@ -9,21 +9,21 @@ z2
 cModel Technology
 Z0 dC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/simulation/modelsim
 vfp2int
-Z1 !s110 1524140345
+Z1 !s110 1524605690
 !i10b 1
-!s100 RFKQg_;Uz]Y@MZz9oznAS3
-IK3i;b[gP?CZ=>K:[`3bTY3
+!s100 <_a_CX=;H^hG_l@;jUhNm1
+IXS8cWNjmeP<ga6=SHALDO2
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1524135966
+Z3 w1524605666
 Z4 8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v
 Z5 FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v
-L0 279
+L0 331
 Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1524140345.000000
+Z7 !s108 1524605690.000000
 Z8 !s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v|
 !i113 1
@@ -33,14 +33,14 @@ Z12 tCvgOpt 0
 vFPadd
 R1
 !i10b 1
-!s100 :;ZMjg97hemoG1G``1TTd1
-I2AW4<B0VO2d7H5<fdDCgW0
+!s100 ;J46ACmh?NO]UGRS9UNEP2
+ImUkV[^`;FCE=;n=mRKPD73
 R2
 R0
 R3
 R4
 R5
-L0 142
+L0 194
 R6
 r1
 !s85 0
@@ -53,6 +53,51 @@ R10
 R11
 R12
 n@f@padd
+vfpadd
+R1
+!i10b 1
+!s100 BoI4kFHaQYnPh9HhSL>hf0
+I51Q^B;1C@Cz7?T_HMiZUV2
+R2
+R0
+R3
+R4
+R5
+L0 454
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vFPinv
+R1
+!i10b 1
+!s100 VMhZ52R]jm5O^QjY4Ja5f3
+Iz7XG0gN<@fecUzM9<P?zN2
+R2
+R0
+R3
+R4
+R5
+L0 365
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+n@f@pinv
 vFPinvsqrt
 R1
 !i10b 1
@@ -99,3 +144,52 @@ R10
 R11
 R12
 n@f@pmult
+vFPU
+R1
+!i10b 1
+!s100 _[z]bgXmz<0nY>QP0@Z4_1
+IO=J[mNm63I^e75]Xc8O_m3
+R2
+R0
+R3
+R4
+R5
+L0 138
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+n@f@p@u
+vtestbench_FPU
+DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+R1
+!i10b 1
+!s100 f5nBKW?JA`dJ?z8NG6]2`0
+ITo4CVfH95MHZ;O[Ca:CU^3
+R2
+!s105 testbench_FPU_sv_unit
+S1
+R0
+w1524605237
+8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv
+FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv
+L0 6
+R6
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv|
+!i113 1
+o-sv -work work
+!s92 -sv -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV
+R12
+ntestbench_@f@p@u

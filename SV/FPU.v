@@ -135,6 +135,58 @@ module FPmult (
 endmodule
 
 
+module FPU (
+	
+	input iCLK,
+	input [31:0] in,
+	output [31:0] out
+
+);
+
+wire [31:0] Out_invsqrt;
+
+FPinvsqrt fpinvsqrt (
+
+	.iCLK(iCLK),
+	.iA(in),
+	.oInvSqrt(Out_invsqrt)
+	
+);
+
+FPmult fpmult (
+
+	.iA(Out_invsqrt),
+	.iB(Out_invsqrt),
+	.oProd(out)
+	
+);
+
+endmodule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**************************************************************************
  * Floating Point Adder                                                   *
  * 2-stage pipeline                                                       *
@@ -300,3 +352,273 @@ module fp2int(
 endmodule
 
 
+// TAKEN FROM DIFFERENT SOURCE (FP_operations_design.v local)
+//////////////////////////////////////////////////////////
+// floating point reciprocal  (invert)
+// -- sign bit -- 8-bit exponent -- 9-bit mantissa
+//
+// NO denorms, no flags, no NAN, no infinity, no rounding!
+//////////////////////////////////////////////////////////
+// f1 = {s1, e1, m1)
+// If f1 is zero, set output to max number (about 1e38)
+///////////////////////////////////////////////////////////	
+module FPinv (f1, fout);
+
+	input [31:0] f1 ;
+	output [31:0] fout ;
+	
+	wire [31:0] fout ;
+	reg sout ;
+	reg [22:0] mout ;
+	reg [8:0] eout ; // 9-bits for overflow
+	
+	wire s1;
+	wire [22:0] m1 ;
+	wire [8:0] e1 ; // extend to 9 bits to avoid overflow
+	wire [31:0] inv_out ;	// 
+	
+	// parse f1
+	assign s1 = f1[31]; 	// sign
+	assign e1 = {1'b0, f1[30:23]};	// exponent
+	assign m1 = f1[22:0] ;	// mantissa
+	
+	// assemble output bits from 'always @' below
+	assign fout = {sout, eout[7:0], mout} ;
+	
+	// newton iteration: linear approx + 2 steps
+	// x0 = T1 - 2*input (input 0.5<=input<=1.0
+	// x1 = x0*(2-input*x0)
+	// x2 = x1*(2-input*x1)
+	// from http://en.wikipedia.org/wiki/Division_%28digital%29
+	wire [31:0] x0, x1, x2, reduced_input, reduced_input_x_2 ;
+	wire [31:0] input_x_x0, input_x_x1 ;
+	wire [31:0] two_minus_input_x_x0, two_minus_input_x_x1 ;
+	
+//	parameter T1 = 18'h10575 ; // T1=2.9142 							// NEEDS TO CHANGE
+	parameter T1 = 32'h3ff0f0f1 ; // T1=2.9142
+//	parameter T2 = {1'b0, 8'h82, 9'h100} ;							// NEEDS TO CHANGE
+	parameter T2 = 32'h4034b4b5 ;
+		
+	// form (T1-2*input)
+	// BUT limit input range on 0.5 to 1.0 (just the mantissa)
+	// THEN mult by two by setting exp to 8'h81
+	// AND make it negative by setting the sign bit
+	assign reduced_input = {1'b1, 8'h80, m1} ;
+	assign reduced_input_x_2 = {1'b1, 8'h81, m1} ;
+	FPadd init_newton(reduced_input_x_2, T1, x0) ;
+	
+	// form x1 = x0*(2-input*x0)
+	FPmult newton11(reduced_input, x0, input_x_x0) ;
+	FPadd newton12(T2, input_x_x0, two_minus_input_x_x0);
+	FPmult newton13(x0, two_minus_input_x_x0, x1) ;
+	
+	// form x2 = x1*(2-input*x1)
+	FPmult newton21(reduced_input, x1, input_x_x1) ;
+	FPadd newton22(T2, input_x_x1, two_minus_input_x_x1);
+	FPmult newton23(x1, two_minus_input_x_x1, x2) ;
+	
+	// select between zero and nonzero input
+	always @(*)
+	begin
+		// if input is zero
+		if (m1[22]==1'd0) 
+		begin 
+			// make the biggest possible output
+			mout = 23'b10000000000000000000000 ; 
+			eout = 9'h0ff ;
+			sout = 0; // output sign
+		end
+		
+		else // input is nonzero 
+		begin 
+			eout = (m1==23'b10000000000000000000000)? 9'h102 - e1 : 9'h101 - e1 ; // h81+(h81-e1)
+			sout = s1; // output sign
+			mout = x2[22:0] ; // the newton result		
+		end // input is nonzero
+	end
+endmodule
+
+// TAKEN FROM DIFFERENT SOURCE (FP_operations_design.v local)
+/////////////////////////////////////////////////////////////////////////////
+// floating point Add 
+// -- sign bit -- 8-bit exponent -- 9-bit mantissa
+// NO denorms, no flags, no NAN, no infinity, no rounding!
+/////////////////////////////////////////////////////////////////////////////
+// f1 = {s1, e1, m1), f2 = {s2, e2, m2)
+// If either input is zero (zero MSB of mantissa) then output is the remaining input.
+// If either input is <(other input)/2**9 then output is the remaining input.
+// Sign of the output is the sign of the greater magnitude input
+// Add the two inputs if their signs are the same. 
+// Subtract the two inputs (bigger-smaller) if their signs are different
+//////////////////////////////////////////////////////////////////////////////	
+module fpadd (fout, f1, f2);
+
+	input [31:0] f1, f2 ;
+	output [31:0] fout ;
+	
+	wire  [31:0] fout ;
+	wire sout ;
+	reg [22:0] mout ;
+	reg [7:0] eout ;
+	reg [23:0] shift_small, denorm_mout ; //9th bit is overflow bit
+	
+	wire s1, s2 ; // input signs
+	reg  sb, ss ; // signs of bigger and smaller
+	wire [22:0] m1, m2 ; // input mantissas
+	reg  [22:0] mb, ms ; // mantissas of bigger and smaller
+	wire [7:0] e1, e2 ; // input exp
+	wire [7:0] ediff ;  // exponent difference
+	reg  [7:0] eb, es ; // exp of bigger and smaller
+	reg  [7:0] num_zeros ; // high order zeros in the difference calc
+	
+	// parse f1
+	assign s1 = f1[31]; 	// sign
+	assign e1 = f1[30:23];	// exponent
+	assign m1 = {1'b1, f1[22:1]} ;	// mantissa
+	// parse f2
+	assign s2 = f2[31];
+	assign e2 = f2[30:23];
+	assign m2 = {1'b1, f2[22:1]} ;
+	
+	// find biggest magnitude
+	always @(*)
+	begin
+		if (e1>e2) // f1 is bigger
+		begin
+			sb = s1 ; // the bigger number (absolute value)
+			eb = e1 ;
+			mb = m1 ;
+			ss = s2 ; // the smaller number
+			es = e2 ;
+			ms = m2 ;
+		end
+		else if (e2>e1) //f2 is bigger
+		begin
+			sb = s2 ; // the bigger number (absolute value)
+			eb = e2 ;
+			mb = m2 ;
+			ss = s1 ; // the smaller number
+			es = e1 ;
+			ms = m1 ;
+		end
+		else // e1==e2, so need to look at mantissa to determine bigger/smaller
+		begin
+			if (m1>m2) // f1 is bigger
+			begin
+				sb = s1 ; // the bigger number (absolute value)
+				eb = e1 ;
+				mb = m1 ;
+				ss = s2 ; // the smaller number
+				es = e2 ;
+				ms = m2 ;
+			end
+			else // f2 is bigger or same size
+			begin
+				sb = s2 ; // the bigger number (absolute value)
+				eb = e2 ;
+				mb = m2 ;
+				ss = s1 ; // the smaller number
+				es = e1 ;
+				ms = m1 ;
+			end
+		end
+	end //found the bigger number
+	
+	// sign of output is the sign of the bigger (magnitude) input
+	assign sout = sb ;
+	// form the output
+	assign fout = {sout, eout, mout} ;	
+	
+	// do the actual add:
+	// -- equalize exponents
+	// -- add/sub
+	// -- normalize
+	assign ediff = eb - es ; // the actual difference in exponents
+	always @(*)
+	begin
+		if ((ms[22]==0) && (mb[22]==0))  // both inputs are zero
+		begin
+			mout = 23'b0 ;
+			eout = 8'b0 ; 
+		end
+		else if ((ms[22]==0) || ediff>8)  // smaller is too small to matter
+		begin
+			mout = mb ;
+			eout = eb ;
+		end
+		else  // shift/add/normalize
+		begin
+			// now shift but save the low order bits by extending the registers
+			// need a high order bit for 1.0<sum<2.0
+			shift_small = {1'b0, ms} >> ediff ;
+			// same signs means add -- different means subtract
+			if (sb==ss) //do the add
+			begin
+				denorm_mout = {1'b0, mb} + shift_small ;
+				// normalize --
+				// when adding result has to be 0.5<sum<2.0
+				if (denorm_mout[23]==1) // sum bigger than 1
+				begin
+					mout = denorm_mout[23:1] ; // take the top bits (shift-right)
+					eout = eb + 8'b1 ; // compensate for the shift-right
+				end
+				else //0.5<sum<1.0
+				begin
+					mout = denorm_mout[22:0] ; // drop the top bit (no-shift-right)
+					eout = eb ; // 
+				end
+			end // end add logic
+			else // otherwise sb!=ss, so subtract
+			begin
+				denorm_mout = {1'b0, mb} - shift_small ;
+				// the denorm_mout is always smaller then the bigger input
+				// (and never an overflow, so bit 9 is always zero)
+				// and can be as low as zero! Thus up to 8 shifts may be necessary
+				// to normalize denorm_mout
+				if (denorm_mout[22:0]==23'd0)
+				begin
+					mout = 23'b0 ;
+					eout = 8'b0 ;
+				end
+				else
+				begin
+					// detect leading zeros
+					casex (denorm_mout[22:0])
+						23'b1xxxxxxxxxxxxxxxxxxxxxx: num_zeros = 8'd0 ;
+						23'b01xxxxxxxxxxxxxxxxxxxxx: num_zeros = 8'd1 ;
+						23'b001xxxxxxxxxxxxxxxxxxxx: num_zeros = 8'd2 ;
+						23'b0001xxxxxxxxxxxxxxxxxxx: num_zeros = 8'd3 ;
+						23'b00001xxxxxxxxxxxxxxxxxx: num_zeros = 8'd4 ;
+						23'b000001xxxxxxxxxxxxxxxxx: num_zeros = 8'd5 ;
+						23'b0000001xxxxxxxxxxxxxxxx: num_zeros = 8'd6 ;
+						23'b00000001xxxxxxxxxxxxxxx: num_zeros = 8'd7 ;
+						23'b000000001xxxxxxxxxxxxxx: num_zeros = 8'd8 ;
+						23'b0000000001xxxxxxxxxxxxx: num_zeros = 8'd9 ;
+						23'b00000000001xxxxxxxxxxxx: num_zeros = 8'd10 ;
+						23'b000000000001xxxxxxxxxxx: num_zeros = 8'd11 ;
+						23'b0000000000001xxxxxxxxxx: num_zeros = 8'd12 ;
+						23'b00000000000001xxxxxxxxx: num_zeros = 8'd13 ;
+						23'b000000000000001xxxxxxxx: num_zeros = 8'd14 ;
+						23'b0000000000000001xxxxxxx: num_zeros = 8'd15 ;
+						23'b00000000000000001xxxxxx: num_zeros = 8'd16 ;
+						23'b000000000000000001xxxxx: num_zeros = 8'd17 ;
+						23'b0000000000000000001xxxx: num_zeros = 8'd18 ;
+						23'b00000000000000000001xxx: num_zeros = 8'd19 ;
+						23'b000000000000000000001xx: num_zeros = 8'd20 ;
+						23'b0000000000000000000001x: num_zeros = 8'd21 ;
+						23'b00000000000000000000001: num_zeros = 8'd22 ;
+
+						
+						default:       num_zeros = 8'd23 ;
+					endcase	
+					// shift out leading zeros
+					// and adjust exponent
+					eout = eb - num_zeros ;
+					mout = denorm_mout[22:0] << num_zeros ;
+				end
+			end // end subtract logic
+			// format the output
+			//fout = {sout, eout, mout} ;	
+		end // end shift/add(sub)/normailize/
+	end // always @(*) to compute sum/diff	
+endmodule 

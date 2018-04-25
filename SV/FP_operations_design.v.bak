@@ -244,7 +244,7 @@ module DE2_Top (
    assign UART_TXD = 1'b0;
 	
 	// input on switches
-	// form  * input == 1
+	// form inverse * input == 1
 	// output 1 to LEDs 0 10000001 100000000
 	//                  s   exp     mantissa
 	//                  17  16:9    8:0
