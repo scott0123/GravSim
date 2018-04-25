@@ -12,7 +12,7 @@
 # 
 # vlog -vlog01compat -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV {C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:34:50 on Apr 24,2018
+# Start time: 22:04:32 on Apr 24,2018
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v 
 # -- Compiling module FPinvsqrt
 # -- Compiling module FPmult
@@ -27,23 +27,23 @@
 # 	fp2int
 # 	FPinv
 # 	fpadd
-# End time: 16:34:50 on Apr 24,2018, Elapsed time: 0:00:00
+# End time: 22:04:32 on Apr 24,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlog -sv -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV {C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:34:50 on Apr 24,2018
+# Start time: 22:04:32 on Apr 24,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv 
 # -- Compiling module testbench_FPU
 # 
 # Top level modules:
 # 	testbench_FPU
-# End time: 16:34:50 on Apr 24,2018, Elapsed time: 0:00:00
+# End time: 22:04:32 on Apr 24,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  testbench_FPU
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" testbench_FPU 
-# Start time: 16:34:50 on Apr 24,2018
+# Start time: 22:04:33 on Apr 24,2018
 # Loading sv_std.std
 # Loading work.testbench_FPU
 # Loading work.FPU
@@ -57,5 +57,3 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run 1000 ns
-# End time: 16:36:39 on Apr 24,2018, Elapsed time: 0:01:49
-# Errors: 0, Warnings: 0

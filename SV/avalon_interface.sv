@@ -46,20 +46,21 @@ module avalon_interface (
 
 );
 
-const int OFFSET_NUM = 0;
-const int OFFSET_START = 1;
-const int OFFSET_DONE = 2;
-const int OFFSET_MASS = 3-1;
-const int OFFSET_RAD = 13-1;
-const int OFFSET_POS_X = 23-1;
-const int OFFSET_POS_Y = 33-1;
-const int OFFSET_POS_Z = 43-1;
-const int OFFSET_VEL_X = 53-1;
-const int OFFSET_VEL_Y = 63-1;
-const int OFFSET_VEL_Z = 73-1;
-const int OFFSET_ACC_X = 83-1;
-const int OFFSET_ACC_Y = 93-1;
-const int OFFSET_ACC_Z = 103-1;
+const int OFFSET_G = 0;
+const int OFFSET_NUM = 1;
+const int OFFSET_START = 2;
+const int OFFSET_DONE = 3;
+const int OFFSET_MASS = 4-1;
+const int OFFSET_RAD = 14-1;
+const int OFFSET_POS_X = 24-1;
+const int OFFSET_POS_Y = 34-1;
+const int OFFSET_POS_Z = 44-1;
+const int OFFSET_VEL_X = 54-1;
+const int OFFSET_VEL_Y = 64-1;
+const int OFFSET_VEL_Z = 74-1;
+const int OFFSET_ACC_X = 84-1;
+const int OFFSET_ACC_Y = 94-1;
+const int OFFSET_ACC_Z = 104-1;
 
 
 // SIZE = 113
@@ -156,7 +157,18 @@ always_ff @(posedge CLK) begin
 			
 		end
 		
-		else if (FSM_we) begin
+		/*
+		* FSM_we CONVENTION: FSM_we = 2'b0 : no write
+		* 										2'b1 : write ADDR 1, 2, 3
+		* 										2'b2 : write ADDR 4, 5, 6
+		* 										2'b3 : write ADDR 1, 2, 3, 4, 5, 6
+		*/
+		// TODO :: FSM_we
+		else if (FSM_we == ) begin
+		
+			regfile[FSM_ADDR1] <= FSM_data1;
+			regfile[FSM_ADDR2] <= FSM_data2;
+			regfile[FSM_ADDR3] <= FSM_data3;
 		
 			regfile[FSM_ADDR1] <= FSM_data1;
 			regfile[FSM_ADDR2] <= FSM_data2;
