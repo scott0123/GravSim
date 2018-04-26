@@ -433,7 +433,7 @@ always_comb begin
 				FPadd_opE = datafile[OFFSET_ACC_Z + iterator_i];
 				FPadd_opF = FPmult_outEF;
 				
-				// compute data to output this acceleration value for Planet i
+				// compute data to output this acceleration value for Planet j
 				FPadd_opG = datafile[OFFSET_ACC_X + iterator_j];
 				FPadd_opH = FPmult_outGH;
 				FPadd_opI = datafile[OFFSET_ACC_Y + iterator_j];
