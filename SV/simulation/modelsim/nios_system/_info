@@ -10,15 +10,15 @@ cModel Technology
 Z0 dC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/simulation/modelsim
 vavalon_interface
 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-!s110 1524115649
+!s110 1524786521
 !i10b 1
-!s100 fldzB;aOQz3_O]gbBnn_n1
-Iza=Dic<Anog8T00562W373
+!s100 AjQR0Ajnc<QEIj>Rg][DD0
+IQA2RF]Qfll21A^]2FhTCa0
 VDg1SIo80bB@j0V0VzS_@n1
 !s105 avalon_interface_sv_unit
 S1
 R0
-w1523758299
+w1524779294
 8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv
 FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv
 L0 18
@@ -26,7 +26,7 @@ OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1524115649.000000
+!s108 1524786521.000000
 !s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv|
 !s90 -reportprogress|300|-sv|-work|nios_system|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/nios_system/synthesis/submodules/avalon_interface.sv|
 !i113 1

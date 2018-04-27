@@ -26,7 +26,6 @@ module nios_system (
 		output wire [1:0]  sdram_wire_dqm,                          //                             .dqm
 		output wire        sdram_wire_ras_n,                        //                             .ras_n
 		output wire        sdram_wire_we_n                          //                             .we_n
-		
 		// Added inputs used by ball.sv
 		,
 		input wire			  Reset_h,
@@ -162,7 +161,6 @@ module nios_system (
 		.AVL_WRITE     (mm_interconnect_0_avalon_interface_0_amm_slave_write),      //            .write
 		.AVL_WRITEDATA (mm_interconnect_0_avalon_interface_0_amm_slave_writedata),  //            .writedata
 		.EXPORT_DATA   (avalon_interface_export_data_new_signal)                    // Export_Data.new_signal
-		
 		// Added inputs used by ball.sv
 		,
 		.Reset_h(Reset_h),

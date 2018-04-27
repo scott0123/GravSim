@@ -25,7 +25,7 @@
 module FPinvsqrt (
     input             iCLK,
     input      [31:0] iA,
-    output     [31:0] oInvSqrt
+    output     [31:0] oInvsqrt
 );
 
     // Extract fields of A and B.
@@ -57,7 +57,7 @@ module FPinvsqrt (
 	 
     //Stage 5
     reg [31:0] y_5, mult_5_in;
-    FPmult s5_mult ( .iA(y_5), .iB(mult_5_in), .oProd(oInvSqrt) );
+    FPmult s5_mult ( .iA(y_5), .iB(mult_5_in), .oProd(oInvsqrt) );
 
     always @(posedge iCLK) begin
 		 //Stage 1 to 2
@@ -153,7 +153,7 @@ module FPinv (
 
 		.iCLK(iCLK),
 		.iA(in),
-		.oInvSqrt(Out_invsqrt)
+		.oInvsqrt(Out_invsqrt)
 		
 	);
 
@@ -342,7 +342,7 @@ endmodule
 // f1 = {s1, e1, m1)
 // If f1 is zero, set output to max number (about 1e38)
 ///////////////////////////////////////////////////////////	
-module FPinv (f1, fout);
+module FPinv_prof (f1, fout);
 
 	input [31:0] f1 ;
 	output [31:0] fout ;

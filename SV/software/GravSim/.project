@@ -39,17 +39,17 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/main.c</name>
+			<name>main.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/main.c</locationURI>
 		</link>
 		<link>
-			<name>src/physics.c</name>
+			<name>physics.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/physics.c</locationURI>
 		</link>
 		<link>
-			<name>src/physics.h</name>
+			<name>physics.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/physics.h</locationURI>
 		</link>

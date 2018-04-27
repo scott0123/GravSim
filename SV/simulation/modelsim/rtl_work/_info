@@ -8,188 +8,239 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/simulation/modelsim
+vball
+Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z2 !s110 1524786521
+!i10b 1
+!s100 =6m>mJdQ;MSkGOlDRl]gT0
+I<<T:95nDYKP0m?g]oi[c40
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s105 ball_sv_unit
+S1
+R0
+w1524683758
+8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/ball.sv
+FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/ball.sv
+L0 8
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1524786521.000000
+!s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/ball.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/ball.sv|
+!i113 1
+Z6 o-sv -work work
+Z7 !s92 -sv -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV
+Z8 tCvgOpt 0
 vfp2int
-Z1 !s110 1524625472
-!i10b 1
-!s100 D8TN_;WH=PbOGUInK3<eQ0
-Ijj06P;K=czk7Pi[iohgLY2
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-R0
-Z3 w1524625368
-Z4 8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v
-Z5 FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v
-L0 307
-Z6 OV;L;10.5b;63
-r1
-!s85 0
-31
-Z7 !s108 1524625472.000000
-Z8 !s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v|
-Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v|
-!i113 1
-Z10 o-vlog01compat -work work
-Z11 !s92 -vlog01compat -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV
-Z12 tCvgOpt 0
-vFPadd
-R1
-!i10b 1
-!s100 g:zL5CbT4YI1TAbN4aQh00
-IRCz9RJVan_XJ]NZczA3Yh2
 R2
-R0
+!i10b 1
+!s100 V?W:BT18k]TOTM^_z5j6g1
+IQcbL_YCGV`SPSDlO8ZU5a0
 R3
+R0
+Z9 w1524778411
+Z10 8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v
+Z11 FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v
+L0 311
 R4
-R5
-L0 170
-R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+R5
+Z12 !s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v|
+Z13 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FPU.v|
 !i113 1
+Z14 o-vlog01compat -work work
+Z15 !s92 -vlog01compat -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV
+R8
+vFPadd
+R2
+!i10b 1
+!s100 W8N^XPT9W;<TU@aVcHQ`E0
+IAkaX0:0eTVACkL:^g3cJL0
+R3
+R0
+R9
 R10
 R11
+L0 174
+R4
+r1
+!s85 0
+31
+R5
 R12
+R13
+!i113 1
+R14
+R15
+R8
 n@f@padd
 vfpadd
-R1
-!i10b 1
-!s100 b>7Qhno8ChVeKzUbT1LHS1
-Ih[13IokhN`mRlc;`bonUI2
 R2
-R0
+!i10b 1
+!s100 Nz2;7@e3PXgEJSck[ZmBf2
+IGZVESAlAgn^Q6Mn6TiYRK2
 R3
+R0
+R9
+R10
+R11
+L0 434
 R4
-R5
-L0 430
-R6
 r1
 !s85 0
 31
-R7
-R8
-R9
-!i113 1
-R10
-R11
+R5
 R12
+R13
+!i113 1
+R14
+R15
+R8
 vFPinv
-R1
-!i10b 1
-!s100 gT_HHFL5m^];7b=?<1X193
-IlIYaSmQI7k^I>T;J7BAlb1
 R2
-R0
+!i10b 1
+!s100 n39jOP[4zRh`DFA>0lGHn0
+IGdPl1OSFdYJ=l`@>b<[_U3
 R3
+R0
+R9
+R10
+R11
+L0 142
 R4
-R5
-L0 341
-R6
 r1
 !s85 0
 31
-R7
-R8
-R9
-!i113 1
-R10
-R11
+R5
 R12
+R13
+!i113 1
+R14
+R15
+R8
 n@f@pinv
-vFPinvsqrt
-R1
-!i10b 1
-!s100 LM1YQ0_FH06:7M]0X[ibS0
-ISE_5QXR2>bo=V5zXjBWjE3
+vFPinv_prof
 R2
-R0
+!i10b 1
+!s100 I0R2RRlV;H[Bn=MGS9QSf1
+I;[W;DSUZCnXQ57PVIF@7C2
 R3
+R0
+R9
+R10
+R11
+L0 345
 R4
-R5
-L0 25
-R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+R5
+R12
+R13
 !i113 1
+R14
+R15
+R8
+n@f@pinv_prof
+vFPinvsqrt
+R2
+!i10b 1
+!s100 G`_hThFH9Q`zm<j4lMD@J2
+I=fmWPThQi5HoidSoIh5:Q2
+R3
+R0
+R9
 R10
 R11
+L0 25
+R4
+r1
+!s85 0
+31
+R5
 R12
+R13
+!i113 1
+R14
+R15
+R8
 n@f@pinvsqrt
 vFPmult
-R1
+R2
 !i10b 1
 !s100 bKV_mdk0FMJOFPAeC[L]m1
 IGSMBe;c>Z9oEc1a[eO3`B1
-R2
-R0
 R3
-R4
-R5
+R0
+R9
+R10
+R11
 L0 87
-R6
-r1
-!s85 0
-31
-R7
-R8
-R9
-!i113 1
-R10
-R11
-R12
-n@f@pmult
-vFPU
-R1
-!i10b 1
-!s100 _[z]bgXmz<0nY>QP0@Z4_1
-IO=J[mNm63I^e75]Xc8O_m3
-R2
-R0
-R3
 R4
-R5
-L0 138
-R6
 r1
 !s85 0
 31
-R7
-R8
-R9
-!i113 1
-R10
-R11
+R5
 R12
-n@f@p@u
-vtestbench_FPU
-DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+R13
+!i113 1
+R14
+R15
+R8
+n@f@pmult
+vFSM
 R1
-!i10b 1
-!s100 f5nBKW?JA`dJ?z8NG6]2`0
-ITo4CVfH95MHZ;O[Ca:CU^3
 R2
-!s105 testbench_FPU_sv_unit
+!i10b 1
+!s100 =iZZK<[Wd2k=Dg5bi=Q6G0
+I?VzJQO@XaPk8c?6zoVWCF2
+R3
+!s105 FSM_sv_unit
 S1
 R0
-w1524605237
-8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv
-FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv
-L0 6
-R6
+w1524786430
+8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FSM.sv
+FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FSM.sv
+L0 15
+R4
 r1
 !s85 0
 31
-R7
-!s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FPU.sv|
+R5
+!s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FSM.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/FSM.sv|
 !i113 1
-o-sv -work work
-!s92 -sv -work work +incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV
-R12
-ntestbench_@f@p@u
+R6
+R7
+R8
+n@f@s@m
+vtestbench_FSM
+R1
+R2
+!i10b 1
+!s100 YYQQb>[Pb;PS2Dd;Q1WaF3
+IWS9P>cgKmeNhNgN;fDTj]1
+R3
+!s105 testbench_FSM_sv_unit
+S1
+R0
+w1524784438
+8C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FSM.sv
+FC:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FSM.sv
+L0 6
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FSM.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV|C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FSM.sv|
+!i113 1
+R6
+R7
+R8
+ntestbench_@f@s@m

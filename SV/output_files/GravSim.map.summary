@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Tue Apr 24 14:41:26 2018
+Analysis & Synthesis Status : Successful - Thu Apr 26 20:13:32 2018
 Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 Revision Name : GravSim
-Top-level Entity Name : FPU
+Top-level Entity Name : GravSim
 Family : Cyclone IV E
-Total logic elements : 516
-    Total combinational functions : 516
-    Dedicated logic registers : 0
-Total registers : 0
-Total pins : 96
+Total logic elements : 43,622
+    Total combinational functions : 41,691
+    Dedicated logic registers : 7,376
+Total registers : 7376
+Total pins : 112
 Total virtual pins : 0
-Total memory bits : 0
-Embedded Multiplier 9-bit elements : 0
-Total PLLs : 0
+Total memory bits : 11,443
+Embedded Multiplier 9-bit elements : 227
+Total PLLs : 2

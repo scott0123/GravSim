@@ -14,20 +14,21 @@ timeprecision 1ns;
 logic CLK = 0;
 
 
-const int OFFSET_NUM = 0;
-const int OFFSET_START = 1;
-const int OFFSET_DONE = 2;
-const int OFFSET_MASS = 3-1;
-const int OFFSET_RAD = 13-1;
-const int OFFSET_POS_X = 23-1;
-const int OFFSET_POS_Y = 33-1;
-const int OFFSET_POS_Z = 43-1;
-const int OFFSET_VEL_X = 53-1;
-const int OFFSET_VEL_Y = 63-1;
-const int OFFSET_VEL_Z = 73-1;
-const int OFFSET_ACC_X = 83-1;
-const int OFFSET_ACC_Y = 93-1;
-const int OFFSET_ACC_Z = 103-1;
+const int OFFSET_G = 0;
+const int OFFSET_NUM = 1;
+const int OFFSET_START = 2;
+const int OFFSET_DONE = 3;
+const int OFFSET_MASS = 4-1;
+const int OFFSET_RAD = 14-1;
+const int OFFSET_POS_X = 24-1;
+const int OFFSET_POS_Y = 34-1;
+const int OFFSET_POS_Z = 44-1;
+const int OFFSET_VEL_X = 54-1;
+const int OFFSET_VEL_Y = 64-1;
+const int OFFSET_VEL_Z = 74-1;
+const int OFFSET_ACC_X = 84-1;
+const int OFFSET_ACC_Y = 94-1;
+const int OFFSET_ACC_Z = 104-1;
 
 
 // inputs
@@ -37,13 +38,35 @@ logic FSM_START;
 logic [31:0] regfile [113];
 
 // outputs
+logic clear_accs;
 logic FSM_DONE;
-logic FSM_we;
-logic [31:0] ADDR1, ADDR2, ADDR3;
-logic [31:0] data1, data2, data3;
+logic [1:0] FSM_we;
+logic [31:0] ADDR1, ADDR2, ADDR3, ADDR4, ADDR5, ADDR6;
+logic [31:0] DATA1, DATA2, DATA3, DATA4, DATA5, DATA6;
 
 
 
+// other internal signals to monitor
+
+//logic [5:0] state, next_state;					
+//assign state = FSM_instance.state;
+//assign next_state = FSM_instance.next_state;
+
+logic [31:0] FPadd_opA_int, FPadd_opB_int, FPadd_outAB_int;
+assign FPadd_opA_int = FSM_instance.FPadd_AB.iA;
+assign FPadd_opB_int = FSM_instance.FPadd_AB.iB;
+assign FPadd_outAB_int = FSM_instance.FPadd_AB.oSum;
+
+logic [31:0] FPmult_opA_int, FPmult_opB_int, FPmult_outAB_int;
+assign FPmult_opA_int = FSM_instance.FPmult_AB.iA;
+assign FPmult_opB_int = FSM_instance.FPmult_AB.iB;
+assign FPmult_outAB_int = FSM_instance.FPmult_AB.oProd;
+
+logic [31:0] FPadd_outAB_cached, FPmult_outEF_cached, FPinv_out, FP_invsqrt_out;
+assign FPadd_outAB_cached = FSM_instance.FPadd_outAB_cached;
+assign FPmult_outEF_cached = FSM_instance.FPmult_outEF_cached;
+assign FPinv_out = FSM_instance.FPinv_out;
+assign FP_invsqrt_out = FSM_instance.FP_invsqrt_out;
 
 // Instantiating the DUT
 // Make sure the module and signal names match with those in your design
@@ -52,20 +75,25 @@ FSM FSM_instance (
 	// inputs
 	.CLK(CLK),
 	.RESET(RESET),
-	.FSM_START(regfile[OFFSET_START][0]),
+	.FSM_START,
 	.datafile(regfile),
 	
 	// outputs
+	.clear_accs,
 	.FSM_DONE,
-	
-	// added outputs
 	.FSM_we,
 	.ADDR1,
 	.ADDR2,
 	.ADDR3,
-	.data1,
-	.data2,
-	.data3
+	.ADDR4,
+	.ADDR5,
+	.ADDR6,
+	.DATA1,
+	.DATA2,
+	.DATA3,
+	.DATA4,
+	.DATA5,
+	.DATA6
 
 );
 
@@ -85,6 +113,7 @@ end
 // as in a software program
 initial begin: TEST_VECTORS
 RESET = 1;
+FSM_START = 0;
 
 //for (integer i = 0; i < 113; i += 1) begin
 //	datafile[i] = 32'b0;
@@ -93,18 +122,51 @@ RESET = 1;
 #10
 RESET = 0;
 
-regfile[OFFSET_RAD + 1] = 32'h3f800000; // 1 
-regfile[OFFSET_POS_X + 1] = 32'h0; // 0 
+// G constant
+regfile[OFFSET_G] = 32'h40800000; // float(4)
+
+// Planet 1
+regfile[OFFSET_RAD + 1] = 32'h3f800000; // 1
+regfile[OFFSET_MASS + 1] = 32'h3f800000; // 1
+regfile[OFFSET_POS_X + 1] = 32'h3f800000; // 1
 regfile[OFFSET_POS_Y + 1] = 32'h0; // 0 
 regfile[OFFSET_POS_Z + 1] = 32'h0; // 0
-regfile[OFFSET_VEL_X + 1] = 32'h3f800000; // 1 
-regfile[OFFSET_VEL_Y + 1] = 32'h0; // 0
+regfile[OFFSET_VEL_X + 1] = 32'h0; // 0
+regfile[OFFSET_VEL_Y + 1] = 32'h3f800000; // 1 
 regfile[OFFSET_VEL_Z + 1] = 32'h0; // 0 
 regfile[OFFSET_ACC_X + 1] = 32'h0; // 0
 regfile[OFFSET_ACC_Y + 1] = 32'h0; // 0 
-regfile[OFFSET_ACC_Z + 1] = 32'h0; // 0 
+regfile[OFFSET_ACC_Z + 1] = 32'h3f800000; // 1
 
-regfile[OFFSET_START] = 32'b1; // 1
+// Planet 2
+regfile[OFFSET_RAD + 2] = 32'h3f800000; // 1 
+regfile[OFFSET_MASS + 2] = 32'h3f800000; // 1
+regfile[OFFSET_POS_X + 2] = 32'hbf800000; // -1
+regfile[OFFSET_POS_Y + 2] = 32'h0; // 0 
+regfile[OFFSET_POS_Z + 2] = 32'h0; // 0
+regfile[OFFSET_VEL_X + 2] = 32'h0; // 0
+regfile[OFFSET_VEL_Y + 2] = 32'hbf800000; // -1 
+regfile[OFFSET_VEL_Z + 2] = 32'h0; // 0 
+regfile[OFFSET_ACC_X + 2] = 32'h0; // 0
+regfile[OFFSET_ACC_Y + 2] = 32'h0; // 0 
+regfile[OFFSET_ACC_Z + 2] = 32'hbf800000; // -1 
+
+#10
+// start
+FSM_START = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

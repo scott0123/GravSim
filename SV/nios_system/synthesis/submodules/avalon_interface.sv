@@ -46,21 +46,27 @@ module avalon_interface (
 
 );
 
-const int OFFSET_NUM = 0;
-const int OFFSET_START = 1;
-const int OFFSET_DONE = 2;
-const int OFFSET_MASS = 3-1;
-const int OFFSET_RAD = 13-1;
-const int OFFSET_POS_X = 23-1;
-const int OFFSET_POS_Y = 33-1;
-const int OFFSET_POS_Z = 43-1;
-const int OFFSET_VEL_X = 53-1;
-const int OFFSET_VEL_Y = 63-1;
-const int OFFSET_VEL_Z = 73-1;
-const int OFFSET_ACC_X = 83-1;
-const int OFFSET_ACC_Y = 93-1;
-const int OFFSET_ACC_Z = 103-1;
+const int OFFSET_G = 0;
+const int OFFSET_NUM = 1;
+const int OFFSET_START = 2;
+const int OFFSET_DONE = 3;
+const int OFFSET_MASS = 4-1;
+const int OFFSET_RAD = 14-1;
+const int OFFSET_POS_X = 24-1;
+const int OFFSET_POS_Y = 34-1;
+const int OFFSET_POS_Z = 44-1;
+const int OFFSET_VEL_X = 54-1;
+const int OFFSET_VEL_Y = 64-1;
+const int OFFSET_VEL_Z = 74-1;
+const int OFFSET_ACC_X = 84-1;
+const int OFFSET_ACC_Y = 94-1;
+const int OFFSET_ACC_Z = 104-1;
 
+// added internal logic for FSM
+logic FSM_clear_accs;
+logic [1:0] FSM_we;
+logic [31:0] FSM_ADDR1, FSM_ADDR2, FSM_ADDR3, FSM_ADDR4, FSM_ADDR5, FSM_ADDR6;
+logic [31:0] FSM_DATA1, FSM_DATA2, FSM_DATA3, FSM_DATA4, FSM_DATA5, FSM_DATA6;
 
 // SIZE = 113
 // 3 "Misc" data:
@@ -156,22 +162,50 @@ always_ff @(posedge CLK) begin
 			
 		end
 		
-		else if (FSM_we) begin
-		
-			regfile[FSM_ADDR1] <= FSM_data1;
-			regfile[FSM_ADDR2] <= FSM_data2;
-			regfile[FSM_ADDR3] <= FSM_data3;
-		
-		end
-		
-//		else if (!(AVL_CS && AVL_READ)) begin
+		/*
+		* FSM_we CONVENTION: FSM_we = 2'b0 : no write
+		* 										2'b1 : write ADDR 1, 2, 3
+		* 										2'b2 : write ADDR 4, 5, 6
+		* 										2'b3 : write ADDR 1, 2, 3, 4, 5, 6
+		*/
 		else begin
-
+			if (FSM_clear_accs) begin
+				for (int i = 0; i < 10; i += 1) begin
+					regfile[OFFSET_ACC_X + i] = 32'b0;
+					regfile[OFFSET_ACC_Y + i] = 32'b0;
+					regfile[OFFSET_ACC_Z + i] = 32'b0;
+				end
+			end
+			if (FSM_we == 2'd1) begin
+		
+				regfile[FSM_ADDR1] <= FSM_DATA1;
+				regfile[FSM_ADDR2] <= FSM_DATA2;
+				regfile[FSM_ADDR3] <= FSM_DATA3;
+		
+			end
+			else if (FSM_we == 2'd2) begin
+		
+				regfile[FSM_ADDR4] <= FSM_DATA4;
+				regfile[FSM_ADDR5] <= FSM_DATA5;
+				regfile[FSM_ADDR6] <= FSM_DATA6;
+		
+			end
+			else if (FSM_we == 2'd3) begin
+		
+				regfile[FSM_ADDR1] <= FSM_DATA1;
+				regfile[FSM_ADDR2] <= FSM_DATA2;
+				regfile[FSM_ADDR3] <= FSM_DATA3;
+	
+				regfile[FSM_ADDR4] <= FSM_DATA4;
+				regfile[FSM_ADDR5] <= FSM_DATA5;
+				regfile[FSM_ADDR6] <= FSM_DATA6;
+		
+			end
+			
 			regfile[OFFSET_DONE][0] <= FSM_DONE_temp;
 			
 		end
-		
-	
+			
 	end
 
 end
@@ -183,13 +217,7 @@ end
 
 // -----------------------------------------------------------------
 
-
-// added internal logic for FSM
-logic FSM_we;
-logic [31:0] FSM_ADDR1, FSM_ADDR2, FSM_ADDR3;
-logic [31:0] FSM_data1, FSM_data2, FSM_data3;
-
-FSM RESOLVE_FORCE (
+FSM FSM_instance (
 
 	// inputs
 	.CLK,
@@ -201,13 +229,23 @@ FSM RESOLVE_FORCE (
 	.FSM_DONE(FSM_DONE_temp),
 	
 	// added outputs
+	.clear_accs(FSM_clear_accs),
+	
 	.FSM_we,
+	
 	.ADDR1(FSM_ADDR1),
 	.ADDR2(FSM_ADDR2),
 	.ADDR3(FSM_ADDR3),
-	.data1(FSM_data1),
-	.data2(FSM_data2),
-	.data3(FSM_data3)
+	.ADDR4(FSM_ADDR4),
+	.ADDR5(FSM_ADDR5),
+	.ADDR6(FSM_ADDR6),
+	
+	.DATA1(FSM_DATA1),
+	.DATA2(FSM_DATA2),
+	.DATA3(FSM_DATA3),
+	.DATA4(FSM_DATA4),
+	.DATA5(FSM_DATA5),
+	.DATA6(FSM_DATA6)
 	
 );
 

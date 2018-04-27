@@ -1,11 +1,11 @@
 /***********************************************************************************
  
- ██████╗ ██████╗  █████╗ ██╗   ██╗███████╗██╗███╗   ███╗
- ██╔════╝ ██╔══██╗██╔══██╗██║   ██║██╔════╝██║████╗ ████║
- ██║  ███╗██████╔╝███████║██║   ██║███████╗██║██╔████╔██║
- ██║   ██║██╔══██╗██╔══██║╚██╗ ██╔╝╚════██║██║██║╚██╔╝██║
- ╚██████╔╝██║  ██║██║  ██║ ╚████╔╝ ███████║██║██║ ╚═╝ ██║
- ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝╚═╝     ╚═╝
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ–ˆâ•—
+ â–ˆâ–ˆâ•”â•�â•�â•�â•�â•� â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ•‘
+ â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â–ˆâ–ˆâ–ˆâ–ˆâ•”â–ˆâ–ˆâ•‘
+ â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•”â•�â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ•‘
+ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•� â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘ â•šâ•�â•� â–ˆâ–ˆâ•‘
+ â•šâ•�â•�â•�â•�â•�â•� â•šâ•�â•�  â•šâ•�â•�â•šâ•�â•�  â•šâ•�â•�  â•šâ•�â•�â•�â•�  â•šâ•�â•�â•�â•�â•�â•�â•�â•šâ•�â•�â•šâ•�â•�     â•šâ•�â•�
  
  GravSim main file
  
@@ -13,12 +13,12 @@
  
  For use in
  
- ███████╗ ██████╗███████╗██████╗  █████╗ ███████╗
- ██╔════╝██╔════╝██╔════╝╚════██╗██╔══██╗██╔════╝
- █████╗  ██║     █████╗   █████╔╝╚█████╔╝███████╗
- ██╔══╝  ██║     ██╔══╝   ╚═══██╗██╔══██╗╚════██║
- ███████╗╚██████╗███████╗██████╔╝╚█████╔╝███████║
- ╚══════╝ ╚═════╝╚══════╝╚═════╝  ╚════╝ ╚══════╝
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
+ â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
+ â–ˆâ–ˆâ•”â•�â•�â•�  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•”â•�â•�â•�   â•šâ•�â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•‘
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘
+ â•šâ•�â•�â•�â•�â•�â•�â•� â•šâ•�â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â•�â•�  â•šâ•�â•�â•�â•�â•� â•šâ•�â•�â•�â•�â•�â•�â•�
  
  University of Illinois Electrical & Computer Engineering Department
  (This is used to prevent a simple Google search giving free code to future students)
@@ -378,6 +378,13 @@ void hardware_simulation(){
     MEM_PTR[OFFSET_POS_Y + 2] = comb.i;
     comb.f = p2.pos_z;
     MEM_PTR[OFFSET_POS_Z + 2] = comb.i;
+
+    comb.f = p2.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 2] = comb.i;
+    comb.f = p2.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 2] = comb.i;
+    comb.f = p2.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 2] = comb.i;
     
     // body 3
     comb.f = p3.rad;
@@ -388,6 +395,13 @@ void hardware_simulation(){
     MEM_PTR[OFFSET_POS_Y + 3] = comb.i;
     comb.f = p3.pos_z;
     MEM_PTR[OFFSET_POS_Z + 3] = comb.i;
+
+    comb.f = p3.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 3] = comb.i;
+    comb.f = p3.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 3] = comb.i;
+    comb.f = p3.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 3] = comb.i;
     
     // body 4
     comb.f = p4.rad;
@@ -398,6 +412,13 @@ void hardware_simulation(){
     MEM_PTR[OFFSET_POS_Y + 4] = comb.i;
     comb.f = p4.pos_z;
     MEM_PTR[OFFSET_POS_Z + 4] = comb.i;
+
+    comb.f = p4.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 4] = comb.i;
+    comb.f = p4.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 4] = comb.i;
+    comb.f = p4.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 4] = comb.i;
 
 
     // hard-code delay to make up for screen refresh time
@@ -420,6 +441,7 @@ void hardware_simulation(){
         // MEM_PTR[3] = (int)(p1.pos_z * 2 + 20);
 
         // body 2
+    	/*
         comb.f = p2.rad;
         MEM_PTR[OFFSET_RAD + 2] = comb.i;
         comb.f = p2.pos_x;
@@ -428,6 +450,7 @@ void hardware_simulation(){
         MEM_PTR[OFFSET_POS_Y + 2] = comb.i;
         comb.f = p2.pos_z;
         MEM_PTR[OFFSET_POS_Z + 2] = comb.i;
+        */
         /*
         for(int i = 0; i < 100; i++){
             union {
@@ -454,6 +477,7 @@ void hardware_simulation(){
         //printf("var: %.2f\n", comb.f);
 
         // body 3
+    	/*
         comb.f = p3.rad;
         MEM_PTR[OFFSET_RAD + 3] = comb.i;
         comb.f = p3.pos_x;
@@ -510,20 +534,20 @@ void hardware_simulation(){
         MEM_PTR[OFFSET_ACC_Y + 1] = comb.i;
         comb.f = p1.acc_z;
         MEM_PTR[OFFSET_ACC_Z + 1] = comb.i;
-        
+        */
         // initiate the start signal
         MEM_PTR[OFFSET_START] = 1;
-        
+
+        printf("iteration %d", i);
         // wait for the calculation to be done
         while(MEM_PTR[OFFSET_DONE] == 0);
-        
         // zero the start signal
 		MEM_PTR[OFFSET_START] = 0;
         
         //timestep(&p1);
-        timestep(&p2);
-        timestep(&p3);
-        timestep(&p4);
+        //timestep(&p2);
+        //timestep(&p3);
+        //timestep(&p4);
         
         //printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
         //printf("After timestep %d, planet 2 is at (%.2f, %.2f, %.2f)\n", i, p2.pos_x, p2.pos_y, p2.pos_z);
