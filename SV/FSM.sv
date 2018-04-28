@@ -99,10 +99,10 @@ logic [31:0] FPinvsqrt_op;
 logic [31:0] FPinvsqrt_out;
 
 // planet counters
-logic [3:0] iterator_i;
-logic [3:0] iterator_j;
-logic [3:0] iterator_i_next;
-logic [3:0] iterator_j_next;
+logic [31:0] iterator_i;
+logic [31:0] iterator_j;
+logic [31:0] iterator_i_next;
+logic [31:0] iterator_j_next;
 
 // next state holders for module outputs
 
@@ -199,8 +199,8 @@ always_comb begin
 	FSM_we = 2'b0;
 	
 	next_state = state;
-	iterator_i_next = 4'b0;
-	iterator_j_next = 4'b0;
+	iterator_i_next = iterator_i;
+	iterator_j_next = iterator_j;
 
 	FPadd_opA = 32'b0;
 	FPadd_opB = 32'b0;
@@ -269,8 +269,8 @@ always_comb begin
 			begin
 				if (FSM_START == 1) begin
 					next_state = ClearAcc;
-					iterator_i_next = 4'b0;
-					iterator_j_next = 4'b1;
+					iterator_i_next = 32'b0;
+					iterator_j_next = 32'b1;
 				end
 			end
 		
@@ -316,17 +316,17 @@ always_comb begin
 		ApplyAcc_2:
 			begin
 				
-				if (iterator_i == datafile[OFFSET_NUM] - 32'b1 && iterator_j == datafile[OFFSET_NUM]) begin
-					iterator_i_next = 4'b0;
+				if (iterator_i == datafile[OFFSET_NUM] - 32'd2 && iterator_j == datafile[OFFSET_NUM] - 32'd1) begin
+					iterator_i_next = 32'b0;
 					next_state = ResolveForce_CalcVel_1;
 				end
 				else begin
-					if (iterator_j == datafile[OFFSET_NUM]) begin
-						iterator_i_next = iterator_i + 4'b1;
-						iterator_j_next = iterator_i + 4'd2;
+					if (iterator_j == datafile[OFFSET_NUM] - 32'd1) begin
+						iterator_i_next = iterator_i + 32'd1;
+						iterator_j_next = iterator_i + 32'd2;
 					end
 					else begin
-						iterator_j_next = iterator_j + 4'b1;
+						iterator_j_next = iterator_j + 32'd1;
 					end
 					next_state = GetAcc_1;
 				end
@@ -350,11 +350,11 @@ always_comb begin
 		ResolveForce_CalcPos_2:
 			begin
 			
-				if (iterator_i == datafile[OFFSET_NUM]) begin
+				if (iterator_i == datafile[OFFSET_NUM] - 32'd1) begin
 					next_state = DONE;
 				end
 				else begin
-					iterator_i_next = iterator_i + 4'b1;
+					iterator_i_next = iterator_i + 32'b1;
 					next_state = ResolveForce_CalcVel_1;
 				end
 			
@@ -405,12 +405,12 @@ always_comb begin
 			begin
 				
 				// generates delta_x, delta_y, delta_z (Planet_B - Planet_A)
-				FPadd_opA = datafile[OFFSET_POS_X + iterator_i + 1] ^ 32'h80000000; // flips sign bit
-				FPadd_opB = datafile[OFFSET_POS_X + iterator_j + 1];
-				FPadd_opC = datafile[OFFSET_POS_Y + iterator_i + 1] ^ 32'h80000000; // flips sign bit
-				FPadd_opD = datafile[OFFSET_POS_Y + iterator_j + 1];
-				FPadd_opE = datafile[OFFSET_POS_Z + iterator_i + 1] ^ 32'h80000000; // flips sign bit
-				FPadd_opF = datafile[OFFSET_POS_Z + iterator_j + 1];
+				FPadd_opA = datafile[OFFSET_POS_X + iterator_i + 32'b1] ^ 32'h80000000; // flips sign bit
+				FPadd_opB = datafile[OFFSET_POS_X + iterator_j + 32'b1];
+				FPadd_opC = datafile[OFFSET_POS_Y + iterator_i + 32'b1] ^ 32'h80000000; // flips sign bit
+				FPadd_opD = datafile[OFFSET_POS_Y + iterator_j + 32'b1];
+				FPadd_opE = datafile[OFFSET_POS_Z + iterator_i + 32'b1] ^ 32'h80000000; // flips sign bit
+				FPadd_opF = datafile[OFFSET_POS_Z + iterator_j + 32'b1];
 				
 			end
 	
@@ -457,7 +457,7 @@ always_comb begin
 				
 				// G*m_j
 				FPmult_opA = datafile[OFFSET_G];
-				FPmult_opB = datafile[OFFSET_MASS + iterator_j + 1];
+				FPmult_opB = datafile[OFFSET_MASS + iterator_j + 32'b1];
 				
 				// (G*m_j) * result
 				FPmult_opC = FPmult_outAB;
@@ -467,7 +467,7 @@ always_comb begin
 				
 				// G*m_i
 				FPmult_opE = datafile[OFFSET_G];
-				FPmult_opF = datafile[OFFSET_MASS + iterator_i + 1];
+				FPmult_opF = datafile[OFFSET_MASS + iterator_i + 32'b1];
 				
 				// (G*m_i) * result
 				FPmult_opG = FPmult_outEF;
@@ -516,19 +516,19 @@ always_comb begin
 				FPmult_opL = acc_mag_j ^ 32'h80000000; // negative for Planet j
 				
 				// compute data to output this acceleration value for Planet i
-				FPadd_opA = datafile[OFFSET_ACC_X + iterator_i + 1];
+				FPadd_opA = datafile[OFFSET_ACC_X + iterator_i + 32'b1];
 				FPadd_opB = FPmult_outAB;
-				FPadd_opC = datafile[OFFSET_ACC_Y + iterator_i + 1];
+				FPadd_opC = datafile[OFFSET_ACC_Y + iterator_i + 32'b1];
 				FPadd_opD = FPmult_outCD;
-				FPadd_opE = datafile[OFFSET_ACC_Z + iterator_i + 1];
+				FPadd_opE = datafile[OFFSET_ACC_Z + iterator_i + 32'b1];
 				FPadd_opF = FPmult_outEF;
 				
 				// compute data to output this acceleration value for Planet j
-				FPadd_opG = datafile[OFFSET_ACC_X + iterator_j + 1];
+				FPadd_opG = datafile[OFFSET_ACC_X + iterator_j + 32'b1];
 				FPadd_opH = FPmult_outGH;
-				FPadd_opI = datafile[OFFSET_ACC_Y + iterator_j + 1];
+				FPadd_opI = datafile[OFFSET_ACC_Y + iterator_j + 32'b1];
 				FPadd_opJ = FPmult_outIJ;
-				FPadd_opK = datafile[OFFSET_ACC_Z + iterator_j + 1];
+				FPadd_opK = datafile[OFFSET_ACC_Z + iterator_j + 32'b1];
 				FPadd_opL = FPmult_outKL;
 				
 			end
@@ -547,9 +547,9 @@ always_comb begin
 				DATA3 = FPadd_outEF;
 				
 				// set ADDR for Planet j acceleration updates
-				ADDR4 = OFFSET_ACC_X + iterator_j + 1;
-				ADDR5 = OFFSET_ACC_Y + iterator_j + 1;
-				ADDR6 = OFFSET_ACC_Z + iterator_j + 1;
+				ADDR4 = OFFSET_ACC_X + iterator_j + 32'b1;
+				ADDR5 = OFFSET_ACC_Y + iterator_j + 32'b1;
+				ADDR6 = OFFSET_ACC_Z + iterator_j + 32'b1;
 				
 				// set DATA output for Planet j acceleration updates
 				DATA4 = FPadd_outGH;
@@ -567,33 +567,33 @@ always_comb begin
 			begin
 			
 				// multiply DT * new_ACC
-				FPmult_opA = datafile[OFFSET_ACC_X + iterator_i + 1];
+				FPmult_opA = datafile[OFFSET_ACC_X + iterator_i + 32'b1];
 				FPmult_opB = DT;
 				
-				FPmult_opC = datafile[OFFSET_ACC_Y + iterator_i + 1];
+				FPmult_opC = datafile[OFFSET_ACC_Y + iterator_i + 32'b1];
 				FPmult_opD = DT;
 				
-				FPmult_opE = datafile[OFFSET_ACC_Z + iterator_i + 1];
+				FPmult_opE = datafile[OFFSET_ACC_Z + iterator_i + 32'b1];
 				FPmult_opF = DT;
 				
 				// add new_VEL = old_VEL + DVEL
 				FPadd_opA = FPmult_outAB;
-				FPadd_opB = datafile[OFFSET_VEL_X + iterator_i + 1];
+				FPadd_opB = datafile[OFFSET_VEL_X + iterator_i + 32'b1];
 				
 				FPadd_opC = FPmult_outCD;
-				FPadd_opD = datafile[OFFSET_VEL_Y + iterator_i + 1];
+				FPadd_opD = datafile[OFFSET_VEL_Y + iterator_i + 32'b1];
 				
 				FPadd_opE = FPmult_outEF;
-				FPadd_opF = datafile[OFFSET_VEL_Z + iterator_i + 1];
+				FPadd_opF = datafile[OFFSET_VEL_Z + iterator_i + 32'b1];
 								
 			end
 			
 		ResolveForce_CalcVel_2:
 			begin
 				
-				ADDR1 = OFFSET_VEL_X + iterator_i + 1;
-				ADDR2 = OFFSET_VEL_Y + iterator_i + 1;
-				ADDR3 = OFFSET_VEL_Z + iterator_i + 1;
+				ADDR1 = OFFSET_VEL_X + iterator_i + 32'b1;
+				ADDR2 = OFFSET_VEL_Y + iterator_i + 32'b1;
+				ADDR3 = OFFSET_VEL_Z + iterator_i + 32'b1;
 				
 				DATA1 = FPadd_outAB;
 				DATA2 = FPadd_outCD;
@@ -607,33 +607,33 @@ always_comb begin
 			begin
 				
 				// multiply DT * new_VEL
-				FPmult_opA = datafile[OFFSET_POS_X + iterator_i + 1];
+				FPmult_opA = datafile[OFFSET_POS_X + iterator_i + 32'b1];
 				FPmult_opB = DT;
 				
-				FPmult_opC = datafile[OFFSET_POS_Y + iterator_i + 1];
+				FPmult_opC = datafile[OFFSET_POS_Y + iterator_i + 32'b1];
 				FPmult_opD = DT;
 				
-				FPmult_opE = datafile[OFFSET_POS_Z + iterator_i + 1];
+				FPmult_opE = datafile[OFFSET_POS_Z + iterator_i + 32'b1];
 				FPmult_opF = DT;
 				
 				// add new_POS = old_POS + DVEL
 				FPadd_opA = FPmult_outAB;
-				FPadd_opB = datafile[OFFSET_POS_X + iterator_i + 1];
+				FPadd_opB = datafile[OFFSET_POS_X + iterator_i + 32'b1];
 				
 				FPadd_opC = FPmult_outCD;
-				FPadd_opD = datafile[OFFSET_POS_Y + iterator_i + 1];
+				FPadd_opD = datafile[OFFSET_POS_Y + iterator_i + 32'b1];
 				
 				FPadd_opE = FPmult_outEF;
-				FPadd_opF = datafile[OFFSET_POS_Z + iterator_i + 1];
+				FPadd_opF = datafile[OFFSET_POS_Z + iterator_i + 32'b1];
 				
 			end
 		
 		ResolveForce_CalcPos_2:
 			begin
 			
-				ADDR1 = OFFSET_POS_X + iterator_i + 1;
-				ADDR2 = OFFSET_POS_Y + iterator_i + 1;
-				ADDR3 = OFFSET_POS_Z + iterator_i + 1;
+				ADDR1 = OFFSET_POS_X + iterator_i + 32'b1;
+				ADDR2 = OFFSET_POS_Y + iterator_i + 32'b1;
+				ADDR3 = OFFSET_POS_Z + iterator_i + 32'b1;
 				
 				DATA1 = FPadd_outAB;
 				DATA2 = FPadd_outCD;

@@ -1,0 +1,561 @@
+/***********************************************************************************
+ 
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ–ˆâ•—
+ â–ˆâ–ˆâ•”â•�â•�â•�â•�â•� â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ•‘
+ â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â–ˆâ–ˆâ–ˆâ–ˆâ•”â–ˆâ–ˆâ•‘
+ â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•”â•�â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ•‘
+ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•� â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘ â•šâ•�â•� â–ˆâ–ˆâ•‘
+ â•šâ•�â•�â•�â•�â•�â•� â•šâ•�â•�  â•šâ•�â•�â•šâ•�â•�  â•šâ•�â•�  â•šâ•�â•�â•�â•�  â•šâ•�â•�â•�â•�â•�â•�â•�â•šâ•�â•�â•šâ•�â•�     â•šâ•�â•�
+ 
+ GravSim main file
+ 
+ Scott Liu, Spring 2018
+ 
+ For use in
+ 
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
+ â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
+ â–ˆâ–ˆâ•”â•�â•�â•�  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•”â•�â•�â•�   â•šâ•�â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â•šâ•�â•�â•�â•�â–ˆâ–ˆâ•‘
+ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘
+ â•šâ•�â•�â•�â•�â•�â•�â•� â•šâ•�â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â•�â•�â•�â•šâ•�â•�â•�â•�â•�â•�  â•šâ•�â•�â•�â•�â•� â•šâ•�â•�â•�â•�â•�â•�â•�
+ 
+ University of Illinois Electrical & Computer Engineering Department
+ (This is used to prevent a simple Google search giving free code to future students)
+ 
+ ************************************************************************************/
+
+#define CPP_COMPILE 0
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <math.h>
+#include <time.h>
+#include "physics.h"
+
+#if CPP_COMPILE == 1
+#include "GifGenerator.h"
+#endif
+
+// 0 for debug, 1 for software simulation, 2 for hardware simulation
+#define SIM_MODE 2
+#define SIM_TIME 40 // (seconds)
+
+// constants for mem regfile
+#define OFFSET_G 0
+#define OFFSET_NUM 1
+#define OFFSET_START 2
+#define OFFSET_DONE 3
+#define OFFSET_MASS 4-1
+#define OFFSET_RAD 14-1
+#define OFFSET_POS_X 24-1
+#define OFFSET_POS_Y 34-1
+#define OFFSET_POS_Z 44-1
+#define OFFSET_VEL_X 54-1
+#define OFFSET_VEL_Y 64-1
+#define OFFSET_VEL_Z 74-1
+#define OFFSET_ACC_X 84-1
+#define OFFSET_ACC_Y 94-1
+#define OFFSET_ACC_Z 104-1
+
+
+void unit_test();
+void software_simulation();
+void hardware_simulation();
+
+// Pointer to base address of GravSim Hardware memory,
+// this needs to exactly match the address in Qsys
+volatile unsigned int * MEM_PTR = (unsigned int *) 0x00000400;
+
+/* 
+ *  main()
+ *
+ *  Execute the simulation type of choice.
+ */
+int main(){
+	printf("main.c entered1\n");
+    srand(time(NULL));
+    clock_t begin = clock();
+	printf("main.c entered2\n");
+    #if SIM_MODE == 0
+    unit_test();
+    #elif SIM_MODE == 1
+    software_simulation();
+    #elif SIM_MODE == 2
+
+	printf("sim mode 2 entered\n");
+    hardware_simulation();
+    #endif
+    clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Computational cycles elapsed: %d\n", (int)(end - begin));
+    printf("Time spent: %.2fs\n", time_spent);
+
+	return 0;
+}
+
+
+void unit_test(){
+
+    #if CPP_COMPILE == 1
+    GifGenerator gif(400, 400);
+    #endif
+    #if CPP_COMPILE == 0
+    //for(int l = -10; l <= 10; l++){
+    //for(int k = -10; k <= 10; k++){
+    //for(int j = -10; j <= 10; j++){
+    #endif
+    planet p1 = { 1.0, 1.0, 
+                1.0, 0.0, 0.0, 
+                0.0, 1.0, 0.0, 
+                0.0, 0.0, 1.0 };
+    planet p2 = { 1.0, 1.0, 
+                -1.0, 0.0, 0.0, 
+                0.0, -1.0, 0.0, 
+                0.0, 0.0, -1.0 };
+    planet p3 = { 1.0, 1.0, 
+                0.0, 1.0, 0.0, 
+                -1.0, 0.0, 0.0, 
+                0.0, 0.0, -1.0 };
+    #if CPP_COMPILE == 1
+    planet p4 = { 0.92, 1.0, 
+                0.0, -1.07, 0.0, 
+                0.97, 0.0, 0.0, 
+                0.0, 0.0, -1.0 };
+    #endif
+    #if CPP_COMPILE == 0
+    planet p4 = { 0.92, 1.0, 
+                0.0, -1.07, 0.0, 
+                0.97, 0.0, 0.0, 
+                0.0, 0.0, -1.0 };
+    //planet p4 = { 1.0+(float)k/100, 1.0, 
+    //            0.0, -1.0+(float)l/100, 0.0, 
+    //           1.0f+(float)j/100, 0.0, 0.0, 
+    //            0.0, 0.0, -1.0 };
+    #endif
+    force f = get_force_between_planets(p1, p2);
+    force n = negative_force(f);
+    printf("Planet 1 is at (%.2f, %.2f, %.2f)\n", p1.pos_x, p1.pos_y, p1.pos_z);
+    printf("Planet 2 is at (%.2f, %.2f, %.2f)\n", p2.pos_x, p2.pos_y, p2.pos_z);
+    printf("This force has magnitude %.2fN\n", f.magnitude);
+    printf("This force is in direction (%.2f, %.2f, %.2f)\n", f.dir_x, f.dir_y, f.dir_z);
+    printf("Neg force has magnitude %.2fN\n", n.magnitude);
+    printf("Neg force is in direction (%.2f, %.2f, %.2f)\n", n.dir_x, n.dir_y, n.dir_z);
+    
+    printf("===== Begin Simulation =====\n");
+    for(int i = 0; i < SIM_FPS * SIM_TIME; i++){
+        #if CPP_COMPILE == 1
+        gif.newFrame();
+        #endif
+
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        clear_acceleration(&p3);
+        clear_acceleration(&p4);
+
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
+        f = get_force_between_planets(p1, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p1, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p2, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p2, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p3, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p3);
+        apply_force_to_planet(n, &p4);
+
+        timestep(&p1);
+        timestep(&p2);
+        timestep(&p3);
+        timestep(&p4);
+        printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+
+        #if CPP_COMPILE == 1
+        gif.drawLargePixel((int)(p1.pos_x * 100), (int)(p1.pos_y * 100));
+        gif.drawLargePixel((int)(p2.pos_x * 100), (int)(p2.pos_y * 100));
+        gif.drawLargePixel((int)(p3.pos_x * 100), (int)(p3.pos_y * 100));
+        gif.drawLargePixel((int)(p4.pos_x * 100), (int)(p4.pos_y * 100));
+
+        gif.addFrame();
+        #endif
+    }
+    #if CPP_COMPILE == 1
+    char fp[20] = "sample.gif";
+    gif.output(fp);
+    #endif
+    #if CPP_COMPILE == 0
+    /*if( p1.pos_x <= 1 && p1.pos_y <= 1 &&
+        p2.pos_x <= 1 && p2.pos_y <= 1 &&
+        p3.pos_x <= 1 && p3.pos_y <= 1 &&
+        p4.pos_x <= 1 && p4.pos_y <= 1)
+        printf("mass %.2f, pos %.2f and vel %.2f works\n", 1+(float)k/100, -1.0+(float)l/100, 1+(float)j/100);
+    }
+    }
+    }*/
+    #endif
+}
+
+/* 
+ *  software_simulation()
+ *
+ *  This function handles the entirety of the software simulation.
+ */
+void software_simulation(){
+
+    // for this simulation we need G to be equal to 4
+    planet p1 = { 1.0, 1.0,
+        //                    1.0, 0.0, 0.0,
+        1.0, 0.0, -3.0,
+        //                    0.0, 1.0, 0.0,
+        0.0, 1.0, 3.0,
+        0.0, 0.0, 1.0 };
+    planet p2 = { 1.0, 1.0,
+        -1.0, 0.0, 0.0,
+        0.0, -1.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p3 = { 1.0, 1.0,
+        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
+        -1.0, 0.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p4 = { 0.92, 1.0,
+        //                    0.0, -0.98, 0.0,
+        0.0, -0.98, 3.0,
+        //                    1.04, 0.0, 0.0,
+        1.04, 0.0, -3.0,
+        0.0, 0.0, -1.0 };
+    
+    // hard-code delay to make up for screen refresh time
+    for(int i = 0; i < 10000 * SIM_FPS; i++) ;
+    
+    
+    for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
+        
+        // wait until the state machine wants to continue
+        //        while(MEM_PTR[15] == 0);
+        
+        // send the data through the memory pointer
+        
+        // body 1
+        MEM_PTR[0] = (int)(10 * p1.rad);
+        MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
+        MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
+        MEM_PTR[3] = (int)(p1.pos_z * 2 + 20);
+        
+        // body 2
+        MEM_PTR[4] = (int)(10 * p2.rad);
+        MEM_PTR[5] = (int)(320 + 100 * p2.pos_x);
+        MEM_PTR[6] = (int)(240 + 100 * p2.pos_y);
+        MEM_PTR[7] = (int)(p2.pos_z * 2 + 20);
+        
+        // body 3
+        MEM_PTR[8] = (int)(10 * p3.rad);
+        MEM_PTR[9] = (int)(320 + 100 * p3.pos_x);
+        MEM_PTR[10] = (int)(240 + 100 * p3.pos_y);
+        MEM_PTR[11] = (int)(p3.pos_z * 2 + 20);
+        
+        // body 4
+        MEM_PTR[12] = (int)(10 * p4.rad);
+        MEM_PTR[13] = (int)(320 + 100 * p4.pos_x);
+        MEM_PTR[14] = (int)(240 + 100 * p4.pos_y);
+        MEM_PTR[15] = (int)(p4.pos_z * 2 + 20);
+        
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        clear_acceleration(&p3);
+        clear_acceleration(&p4);
+        
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
+        f = get_force_between_planets(p1, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p1, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p2, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p2, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p3, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p3);
+        apply_force_to_planet(n, &p4);
+        
+        timestep(&p1);
+        timestep(&p2);
+        timestep(&p3);
+        timestep(&p4);
+        
+        printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+    }
+}
+
+/* 
+ *  hardware_simulation()
+ *
+ *  This function handles the entirety of the hardware simulation.
+ */
+void hardware_simulation(){
+
+	printf("hardware simulation entered\n");
+    // for this simulation we need G to be equal to 4
+    planet p1 = { 1.0, 1.0,
+//                        1.0, 0.0, 0.0,
+        1.0, 0.0, -2.0,
+//                          0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0,
+        0.0, 0.0, 1.0 };
+    planet p2 = { 1.0, 1.0,
+        -1.0, 0.0, 0.0,
+        0.0, -1.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p3 = { 1.0, 1.0,
+        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
+        -1.0, 0.0, 0.0,
+        0.0, 0.0, -1.0 };
+    planet p4 = { 0.92, 1.0,
+        //                    0.0, -0.98, 0.0,
+        0.0, -0.98, 3.0,
+        //                    1.04, 0.0, 0.0,
+        1.04, 0.0, -3.0,
+        0.0, 0.0, -1.0 };
+
+    union {
+    	float f;
+    	uint32_t i;
+    }comb;
+
+    // set G
+    MEM_PTR[OFFSET_G] = G;
+    // set num planets
+    MEM_PTR[OFFSET_NUM] = 4;
+    // body 1
+    comb.f = p1.rad;
+    MEM_PTR[OFFSET_RAD + 1] = comb.i;
+    comb.f = p1.pos_x;
+    MEM_PTR[OFFSET_POS_X + 1] = comb.i;
+    comb.f = p1.pos_y;
+    MEM_PTR[OFFSET_POS_Y + 1] = comb.i;
+    comb.f = p1.pos_z;
+    MEM_PTR[OFFSET_POS_Z + 1] = comb.i;
+
+    comb.f = p1.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 1] = comb.i;
+    comb.f = p1.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 1] = comb.i;
+    comb.f = p1.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 1] = comb.i;
+
+    // body 2
+    comb.f = p2.rad;
+    MEM_PTR[OFFSET_RAD + 2] = comb.i;
+    comb.f = p2.pos_x;
+    MEM_PTR[OFFSET_POS_X + 2] = comb.i;
+    comb.f = p2.pos_y;
+    MEM_PTR[OFFSET_POS_Y + 2] = comb.i;
+    comb.f = p2.pos_z;
+    MEM_PTR[OFFSET_POS_Z + 2] = comb.i;
+
+    comb.f = p2.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 2] = comb.i;
+    comb.f = p2.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 2] = comb.i;
+    comb.f = p2.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 2] = comb.i;
+    
+    // body 3
+    comb.f = p3.rad;
+    MEM_PTR[OFFSET_RAD + 3] = comb.i;
+    comb.f = p3.pos_x;
+    MEM_PTR[OFFSET_POS_X + 3] = comb.i;
+    comb.f = p3.pos_y;
+    MEM_PTR[OFFSET_POS_Y + 3] = comb.i;
+    comb.f = p3.pos_z;
+    MEM_PTR[OFFSET_POS_Z + 3] = comb.i;
+
+    comb.f = p3.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 3] = comb.i;
+    comb.f = p3.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 3] = comb.i;
+    comb.f = p3.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 3] = comb.i;
+    
+    // body 4
+    comb.f = p4.rad;
+    MEM_PTR[OFFSET_RAD + 4] = comb.i;
+    comb.f = p4.pos_x;
+    MEM_PTR[OFFSET_POS_X + 4] = comb.i;
+    comb.f = p4.pos_y;
+    MEM_PTR[OFFSET_POS_Y + 4] = comb.i;
+    comb.f = p4.pos_z;
+    MEM_PTR[OFFSET_POS_Z + 4] = comb.i;
+
+    comb.f = p4.vel_x;
+    MEM_PTR[OFFSET_VEL_X + 4] = comb.i;
+    comb.f = p4.vel_y;
+    MEM_PTR[OFFSET_VEL_Y + 4] = comb.i;
+    comb.f = p4.vel_z;
+    MEM_PTR[OFFSET_VEL_Z + 4] = comb.i;
+
+
+    // hard-code delay to make up for screen refresh time
+    for(int i = 0; i < 10000 * SIM_FPS; i++) ;
+
+    printf("===== Begin Simulation =====\n");
+
+    for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
+        
+        // wait until the state machine wants to continue
+        //        while(MEM_PTR[15] == 0);
+        
+        // send the data through the memory pointer
+        
+        // body 1
+
+        // MEM_PTR[0] = (int)(10 * p1.rad);
+        // MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
+        // MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
+        // MEM_PTR[3] = (int)(p1.pos_z * 2 + 20);
+
+        // body 2
+    	/*
+        comb.f = p2.rad;
+        MEM_PTR[OFFSET_RAD + 2] = comb.i;
+        comb.f = p2.pos_x;
+        MEM_PTR[OFFSET_POS_X + 2] = comb.i;
+        comb.f = p2.pos_y;
+        MEM_PTR[OFFSET_POS_Y + 2] = comb.i;
+        comb.f = p2.pos_z;
+        MEM_PTR[OFFSET_POS_Z + 2] = comb.i;
+        */
+        /*
+        for(int i = 0; i < 100; i++){
+            union {
+            	float f;
+            	unsigned int i;
+            }comb;
+            comb.i = MEM_PTR[i];
+            //printf("reg[%d]: %.2f\n",i, comb.f);
+            printf("reg[%d]: %x\n",i, comb.i);
+        }
+        */
+        /*
+        union {
+        	float f;
+        	unsigned int i;
+        }comb;
+        
+        comb.f = 1.5f;
+        */
+        //MEM_PTR[3] = 1.5f;
+//        printf("reg[23]: %x\n",  MEM_PTR[23]);
+//        printf("reg[24]: %x\n",  MEM_PTR[24]);
+        //printf("var (hex): %x\n", comb.i);
+        //printf("var: %.2f\n", comb.f);
+
+        // body 3
+    	/*
+        comb.f = p3.rad;
+        MEM_PTR[OFFSET_RAD + 3] = comb.i;
+        comb.f = p3.pos_x;
+        MEM_PTR[OFFSET_POS_X + 3] = comb.i;
+        comb.f = p3.pos_y;
+        MEM_PTR[OFFSET_POS_Y + 3] = comb.i;
+        comb.f = p3.pos_z;
+        MEM_PTR[OFFSET_POS_Z + 3] = comb.i;
+        
+        // body 4
+        comb.f = p4.rad;
+        MEM_PTR[OFFSET_RAD + 4] = comb.i;
+        comb.f = p4.pos_x;
+        MEM_PTR[OFFSET_POS_X + 4] = comb.i;
+        comb.f = p4.pos_y;
+        MEM_PTR[OFFSET_POS_Y + 4] = comb.i;
+        comb.f = p4.pos_z;
+        MEM_PTR[OFFSET_POS_Z + 4] = comb.i;
+        
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        clear_acceleration(&p3);
+        clear_acceleration(&p4);
+        
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
+        f = get_force_between_planets(p1, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p1, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p2, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p2, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p3, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p3);
+        apply_force_to_planet(n, &p4);
+        
+        // provide the acceleration
+        comb.f = p1.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 1] = comb.i;
+        comb.f = p1.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 1] = comb.i;
+        comb.f = p1.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 1] = comb.i;
+        */
+
+    	// added pause
+    	for (int i = 0; i < 10000; i++);
+
+        // initiate the start signal
+        MEM_PTR[OFFSET_START] = 1;
+
+        printf("iteration %d", i);
+        // wait for the calculation to be done
+        while(MEM_PTR[OFFSET_DONE] == 0);
+        // zero the start signal
+		MEM_PTR[OFFSET_START] = 0;
+        
+        //timestep(&p1);
+        //timestep(&p2);
+        //timestep(&p3);
+        //timestep(&p4);
+        
+        //printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+        //printf("After timestep %d, planet 2 is at (%.2f, %.2f, %.2f)\n", i, p2.pos_x, p2.pos_y, p2.pos_z);
+    }
+
+}
+

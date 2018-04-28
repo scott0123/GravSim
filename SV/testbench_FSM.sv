@@ -62,11 +62,11 @@ assign FPmult_opA_int = FSM_instance.FPmult_AB.iA;
 assign FPmult_opB_int = FSM_instance.FPmult_AB.iB;
 assign FPmult_outAB_int = FSM_instance.FPmult_AB.oProd;
 
-logic [31:0] FPadd_outAB_cached, FPmult_outEF_cached, FPinv_out, FP_invsqrt_out;
+logic [31:0] FPadd_outAB_cached, FPmult_outEF_cached, FPinv_out; //FP_invsqrt_out;
 assign FPadd_outAB_cached = FSM_instance.FPadd_outAB_cached;
 assign FPmult_outEF_cached = FSM_instance.FPmult_outEF_cached;
 assign FPinv_out = FSM_instance.FPinv_out;
-assign FP_invsqrt_out = FSM_instance.FP_invsqrt_out;
+//assign FP_invsqrt_out = FSM_instance.FP_invsqrt_out;
 
 // Instantiating the DUT
 // Make sure the module and signal names match with those in your design
@@ -124,6 +124,9 @@ RESET = 0;
 
 // G constant
 regfile[OFFSET_G] = 32'h40800000; // float(4)
+
+// number of planets
+regfile[OFFSET_NUM] = 32'd2; // int(2)
 
 // Planet 1
 regfile[OFFSET_RAD + 1] = 32'h3f800000; // 1

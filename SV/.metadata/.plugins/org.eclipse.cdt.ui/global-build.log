@@ -5411,3 +5411,345 @@ Info: Building ../GravSim_bsp/
 C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
 [BSP build complete]
 [GravSim build complete]
+00:33:54 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+00:33:56 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+00:38:27 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:20:25 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:20:45 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:21:19 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:23:02 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:25:35 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 89 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+01:25:42 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+01:25:58 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:25:59 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+01:26:03 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:27:07 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+01:28:22 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+11:42:36 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+../../main.c: In function 'hardware_simulation':
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+         printf("Planet 1 ACC_X: %f\n", MEM_PTR[OFFSET_ACC_X + 1])
+                ^
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+../../main.c:553:3: error: expected ';' before 'MEM_PTR'
+   MEM_PTR[OFFSET_START] = 0;
+   ^
+make: *** [obj/default/main.o] Error 1
+11:42:59 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+../../main.c: In function 'hardware_simulation':
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+         printf("Planet 1 ACC_X: %f\n", MEM_PTR[OFFSET_ACC_X + 1])
+                ^
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+../../main.c:553:3: error: expected ';' before 'MEM_PTR'
+   MEM_PTR[OFFSET_START] = 0;
+   ^
+make: *** [obj/default/main.o] Error 1
+11:43:00 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+11:43:11 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+../../main.c: In function 'hardware_simulation':
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+         printf("Planet 1 ACC_X: %f\n", MEM_PTR[OFFSET_ACC_X + 1])
+                ^
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+../../main.c:553:3: error: expected ';' before 'MEM_PTR'
+   MEM_PTR[OFFSET_START] = 0;
+   ^
+make: *** [obj/default/main.o] Error 1
+11:43:12 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+11:44:18 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+../../main.c: In function 'hardware_simulation':
+../../main.c:550:16: warning: unknown conversion type character 0xa in format [-Wformat=]
+         printf("Planet 1 ACC_X: %l\n", MEM_PTR[OFFSET_ACC_X + 1]);
+                ^
+../../main.c:550:16: warning: too many arguments for format [-Wformat-extra-args]
+../../main.c:550:16: warning: unknown conversion type character 0xa in format [-Wformat=]
+../../main.c:550:16: warning: too many arguments for format [-Wformat-extra-args]
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 89 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+11:44:23 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+11:45:06 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+11:46:04 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+../../main.c: In function 'hardware_simulation':
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+         printf("Planet 1 ACC_X: %f\n", MEM_PTR[OFFSET_ACC_X + 1]);
+                ^
+../../main.c:550:16: warning: format '%f' expects argument of type 'double', but argument 2 has type 'unsigned int' [-Wformat=]
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 89 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+11:46:07 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+11:46:29 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+11:46:30 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+11:50:28 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 90 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+11:51:04 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+11:51:35 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 89 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+11:52:06 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+11:53:11 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 90 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+11:53:35 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 90 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+11:58:20 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+11:58:21 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+11:58:29 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 90 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+12:05:29 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]
+12:07:16 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 90 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+12:13:25 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+Info: Compiling ../../main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../GravSim_bsp//HAL/inc -I../GravSim_bsp/ -I../GravSim_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o ../../main.c
+Info: Linking GravSim.elf
+nios2-elf-g++  -T'../GravSim_bsp//linker.x' -msys-crt0='../GravSim_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../GravSim_bsp/   -Wl,-Map=GravSim.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o GravSim.elf obj/default/main.o obj/default/physics.o -lm -msys-lib=m
+nios2-elf-insert GravSim.elf --thread_model hal --cpu_name nios2_qsys_1 --qsys true --simulation_enabled false --id 0 --sidp 0x148 --timestamp 1524779287 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios_system --quartus_project_dir "C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV" --jdi ../..//output_files/GravSim.jdi --sopcinfo C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/software/GravSim_bsp/../../nios_system.sopcinfo
+Info: (GravSim.elf) 89 KBytes program size (code + initialized data).
+Info:               65439 KBytes free for stack + heap.
+Info: Creating GravSim.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source GravSim.elf >GravSim.objdump
+[GravSim build complete]
+12:13:28 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+make all 
+[BSP build complete]
+12:13:31 **** Incremental Build of configuration Nios II for project GravSim ****
+make all 
+Info: Building ../GravSim_bsp/
+C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
+[BSP build complete]
+[GravSim build complete]

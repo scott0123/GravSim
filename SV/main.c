@@ -535,12 +535,22 @@ void hardware_simulation(){
         comb.f = p1.acc_z;
         MEM_PTR[OFFSET_ACC_Z + 1] = comb.i;
         */
+
+    	// added pause
+    	for (int i = 0; i < 1000; i++);
+
         // initiate the start signal
         MEM_PTR[OFFSET_START] = 1;
 
-        printf("iteration %d", i);
+        printf("iteration %d\n", i);
         // wait for the calculation to be done
         while(MEM_PTR[OFFSET_DONE] == 0);
+
+        // added print for debugging
+        printf("Planet 1 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 2]);
+        printf("Planet 1 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 2]);
+        printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
+
         // zero the start signal
 		MEM_PTR[OFFSET_START] = 0;
         
