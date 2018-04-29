@@ -1,6 +1,6 @@
 language: c
 compiler: clang
-before-script: cd code
+before_script: cd code
 script:
     - make clean
     - make
