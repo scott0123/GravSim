@@ -1,5 +1,5 @@
 default:
-	clang main.c physics.c -o test
+	clang main.c physics.c -lm -o test
 #clean:
 #	-rm -f *.o
 
