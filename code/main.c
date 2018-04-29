@@ -38,7 +38,7 @@ University of Illinois Electrical & Computer Engineering Department
 #endif
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
-#define SIM_MODE 0
+#define SIM_MODE 1
 #define SIM_TIME 20 // (seconds)
 
 void unit_test();
@@ -223,7 +223,8 @@ void software_simulation(){
                 0.0, -1.0, 0.0, 
                 0.0, 0.0, -1.0 };
     
-    for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
+    //for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
+    for(int i = 0; i < 5; i++){
 
         // wait until the state machine wants to continue
         //while(MEM_PTR[15] == 0);
@@ -247,7 +248,8 @@ void software_simulation(){
         timestep(&p1);
         timestep(&p2);
 
-        printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+        //printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+        printf("After timestep %d, planet 1 acceleration is (%.2f, %.2f, %.2f)\n", i, p1.acc_x, p1.acc_y, p1.acc_z);
     }
 }
 

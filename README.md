@@ -1,4 +1,6 @@
 # GravSim
+[![Build Status](https://travis-ci.org/scott0123/GravSim.svg?branch=master)](https://travis-ci.org/scott0123/GravSim)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/scott0123/GravSim/blob/master/LICENSE)
 A gravitational simulation of the N-body problem using hardware acceleration from a FPGA.
 
 ## Overview
