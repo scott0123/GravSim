@@ -537,7 +537,7 @@ void hardware_simulation(){
         */
 
     	// added pause
-    	for (int i = 0; i < 1000; i++);
+    	for (int i = 0; i < 100000; i++);
 
         // initiate the start signal
         MEM_PTR[OFFSET_START] = 1;
@@ -547,9 +547,9 @@ void hardware_simulation(){
         while(MEM_PTR[OFFSET_DONE] == 0);
 
         // added print for debugging
-        printf("Planet 1 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 2]);
-        printf("Planet 1 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 2]);
-        printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
+        printf("Planet 1 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 1]);
+        printf("Planet 1 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 1]);
+        printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
 
         // zero the start signal
 		MEM_PTR[OFFSET_START] = 0;

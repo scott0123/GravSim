@@ -448,12 +448,12 @@ always_comb begin
 			begin
 				
 				// generates delta_x, delta_y, delta_z (Planet_B - Planet_A)
-				FPadd_opA = DATA1 ^ 32'h80000000; // flips sign bit
-				FPadd_opB = DATA2;
-				FPadd_opC = DATA3 ^ 32'h80000000; // flips sign bit
-				FPadd_opD = DATA4;
-				FPadd_opE = DATA5 ^ 32'h80000000; // flips sign bit
-				FPadd_opF = DATA6;
+				FPadd_opA = DATA1in ^ 32'h80000000; // flips sign bit
+				FPadd_opB = DATA2in;
+				FPadd_opC = DATA3in ^ 32'h80000000; // flips sign bit
+				FPadd_opD = DATA4in;
+				FPadd_opE = DATA5in ^ 32'h80000000; // flips sign bit
+				FPadd_opF = DATA6in;
 				
 			end
 	
@@ -506,7 +506,7 @@ always_comb begin
 				
 				// G*m_j
 				FPmult_opA = G;
-				FPmult_opB = DATA1;
+				FPmult_opB = DATA1in;
 				
 				// (G*m_j) * result
 				FPmult_opC = FPmult_outAB;
@@ -516,7 +516,7 @@ always_comb begin
 				
 				// G*m_i
 				FPmult_opE = G;
-				FPmult_opF = DATA2;
+				FPmult_opF = DATA2in;
 				
 				// (G*m_i) * result
 				FPmult_opG = FPmult_outEF;
@@ -574,19 +574,19 @@ always_comb begin
 				FPmult_opL = acc_mag_j ^ 32'h80000000; // negative for Planet j
 				
 				// compute data to output this acceleration value for Planet i
-				FPadd_opA = DATA1;
+				FPadd_opA = DATA1in;
 				FPadd_opB = FPmult_outAB;
-				FPadd_opC = DATA2;
+				FPadd_opC = DATA2in;
 				FPadd_opD = FPmult_outCD;
-				FPadd_opE = DATA3;
+				FPadd_opE = DATA3in;
 				FPadd_opF = FPmult_outEF;
 				
 				// compute data to output this acceleration value for Planet j
-				FPadd_opG = DATA4;
+				FPadd_opG = DATA4in;
 				FPadd_opH = FPmult_outGH;
-				FPadd_opI = DATA5;
+				FPadd_opI = DATA5in;
 				FPadd_opJ = FPmult_outIJ;
-				FPadd_opK = DATA6;
+				FPadd_opK = DATA6in;
 				FPadd_opL = FPmult_outKL;
 				
 			end
@@ -638,24 +638,24 @@ always_comb begin
 			begin
 			
 				// multiply DT * new_ACC
-				FPmult_opA = DATA1;
+				FPmult_opA = DATA1in;
 				FPmult_opB = DT;
 				
-				FPmult_opC = DATA2;
+				FPmult_opC = DATA2in;
 				FPmult_opD = DT;
 				
-				FPmult_opE = DATA3;
+				FPmult_opE = DATA3in;
 				FPmult_opF = DT;
 				
 				// add new_VEL = old_VEL + DVEL
 				FPadd_opA = FPmult_outAB;
-				FPadd_opB = DATA4;
+				FPadd_opB = DATA4in;
 				
 				FPadd_opC = FPmult_outCD;
-				FPadd_opD = DATA5;
+				FPadd_opD = DATA5in;
 				
 				FPadd_opE = FPmult_outEF;
-				FPadd_opF = DATA6;
+				FPadd_opF = DATA6in;
 				
 			end
 			
@@ -692,24 +692,24 @@ always_comb begin
 			begin
 				
 				// multiply DT * new_VEL
-				FPmult_opA = DATA1;
+				FPmult_opA = DATA1in;
 				FPmult_opB = DT;
 				
-				FPmult_opC = DATA2;
+				FPmult_opC = DATA2in;
 				FPmult_opD = DT;
 				
-				FPmult_opE = DATA3;
+				FPmult_opE = DATA3in;
 				FPmult_opF = DT;
 				
 				// add new_POS = old_POS + DVEL
 				FPadd_opA = FPmult_outAB;
-				FPadd_opB = DATA4;
+				FPadd_opB = DATA4in;
 				
 				FPadd_opC = FPmult_outCD;
-				FPadd_opD = DATA5;
+				FPadd_opD = DATA5in;
 				
 				FPadd_opE = FPmult_outEF;
-				FPadd_opF = DATA6;
+				FPadd_opF = DATA6in;
 
 			end
 		

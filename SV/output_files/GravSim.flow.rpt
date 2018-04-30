@@ -1,5 +1,5 @@
 Flow report for GravSim
-Mon Apr 30 01:06:18 2018
+Mon Apr 30 02:07:51 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,21 +40,21 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Apr 30 01:06:18 2018       ;
+; Flow Status                        ; Successful - Mon Apr 30 02:07:51 2018       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; GravSim                                     ;
 ; Top-level Entity Name              ; GravSim                                     ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 52,311 / 114,480 ( 46 % )                   ;
-;     Total combinational functions  ; 51,563 / 114,480 ( 45 % )                   ;
-;     Dedicated logic registers      ; 6,864 / 114,480 ( 6 % )                     ;
-; Total registers                    ; 6933                                        ;
+; Total logic elements               ; 73,035 / 114,480 ( 64 % )                   ;
+;     Total combinational functions  ; 72,117 / 114,480 ( 63 % )                   ;
+;     Dedicated logic registers      ; 7,501 / 114,480 ( 7 % )                     ;
+; Total registers                    ; 7570                                        ;
 ; Total pins                         ; 112 / 529 ( 21 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 11,443 / 3,981,312 ( < 1 % )                ;
-; Embedded Multiplier 9-bit elements ; 227 / 532 ( 43 % )                          ;
+; Embedded Multiplier 9-bit elements ; 289 / 532 ( 54 % )                          ;
 ; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 +------------------------------------+---------------------------------------------+
 
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/30/2018 00:50:30 ;
+; Start date & time ; 04/30/2018 01:45:22 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GravSim             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                                         ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 169736358548164.152506742905648                               ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 169736358548164.152507072108320                               ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                            ; --            ; --          ; testbench_FSM  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench_FSM                                                 ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                                             ; --            ; --          ; eda_simulation ;
@@ -110,12 +110,12 @@ refer to the applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:07:14     ; 1.0                     ; 1207 MB             ; 00:07:37                           ;
-; Fitter                    ; 00:06:51     ; 1.0                     ; 1926 MB             ; 00:09:54                           ;
-; Assembler                 ; 00:00:07     ; 1.0                     ; 756 MB              ; 00:00:07                           ;
-; TimeQuest Timing Analyzer ; 00:00:18     ; 1.2                     ; 1117 MB             ; 00:00:21                           ;
-; EDA Netlist Writer        ; 00:00:55     ; 1.0                     ; 967 MB              ; 00:00:53                           ;
-; Total                     ; 00:15:25     ; --                      ; --                  ; 00:18:52                           ;
+; Analysis & Synthesis      ; 00:07:52     ; 1.0                     ; 1277 MB             ; 00:08:21                           ;
+; Fitter                    ; 00:12:25     ; 1.0                     ; 2197 MB             ; 00:18:21                           ;
+; Assembler                 ; 00:00:08     ; 1.0                     ; 811 MB              ; 00:00:08                           ;
+; TimeQuest Timing Analyzer ; 00:00:24     ; 1.2                     ; 1239 MB             ; 00:00:28                           ;
+; EDA Netlist Writer        ; 00:01:11     ; 1.0                     ; 1077 MB             ; 00:01:09                           ;
+; Total                     ; 00:22:00     ; --                      ; --                  ; 00:28:27                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
