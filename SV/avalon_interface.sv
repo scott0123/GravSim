@@ -64,9 +64,10 @@ const int OFFSET_ACC_Z = 104-1;
 
 // added internal logic for FSM
 logic FSM_clear_accs;
-logic [1:0] FSM_we;
+logic [1:0] FSM_re, FSM_we;
 logic [31:0] FSM_ADDR1, FSM_ADDR2, FSM_ADDR3, FSM_ADDR4, FSM_ADDR5, FSM_ADDR6;
 logic [31:0] FSM_DATA1, FSM_DATA2, FSM_DATA3, FSM_DATA4, FSM_DATA5, FSM_DATA6;
+logic [31:0] FSM_DATA1in, FSM_DATA2in, FSM_DATA3in, FSM_DATA4in, FSM_DATA5in, FSM_DATA6in;
 
 // SIZE = 113
 // 3 "Misc" data:
@@ -169,13 +170,18 @@ always_ff @(posedge CLK) begin
 		* 										2'b3 : write ADDR 1, 2, 3, 4, 5, 6
 		*/
 		else begin
+		
 			if (FSM_clear_accs) begin
+			
 				for (int i = 0; i < 10; i += 1) begin
-					regfile[OFFSET_ACC_X + i] = 32'b0;
-					regfile[OFFSET_ACC_Y + i] = 32'b0;
-					regfile[OFFSET_ACC_Z + i] = 32'b0;
+					regfile[OFFSET_ACC_X + i] <= 32'b0;
+					regfile[OFFSET_ACC_Y + i] <= 32'b0;
+					regfile[OFFSET_ACC_Z + i] <= 32'b0;
 				end
+				
 			end
+			
+			// FSM write enable
 			if (FSM_we == 2'd1) begin
 		
 				regfile[FSM_ADDR1] <= FSM_DATA1;
@@ -202,6 +208,33 @@ always_ff @(posedge CLK) begin
 		
 			end
 			
+			// FSM read enable
+			if (FSM_re == 2'd1) begin
+		
+				FSM_DATA1in <= regfile[FSM_ADDR1];
+				FSM_DATA2in <= regfile[FSM_ADDR2];
+				FSM_DATA3in <= regfile[FSM_ADDR3];
+		
+			end
+			else if (FSM_re == 2'd2) begin
+			
+				FSM_DATA4in <= regfile[FSM_ADDR4];
+				FSM_DATA5in <= regfile[FSM_ADDR5];
+				FSM_DATA6in <= regfile[FSM_ADDR6];
+				
+			end
+			else if (FSM_re == 2'd3) begin
+		
+				FSM_DATA1in <= regfile[FSM_ADDR1];
+				FSM_DATA2in <= regfile[FSM_ADDR2];
+				FSM_DATA3in <= regfile[FSM_ADDR3];
+	
+				FSM_DATA4in <= regfile[FSM_ADDR4];
+				FSM_DATA5in <= regfile[FSM_ADDR5];
+				FSM_DATA6in <= regfile[FSM_ADDR6];
+		
+			end
+			
 			regfile[OFFSET_DONE][0] <= FSM_DONE_temp;
 			
 		end
@@ -223,7 +256,7 @@ FSM FSM_instance (
 	.CLK,
 	.RESET,
 	.FSM_START(regfile[OFFSET_START][0]),
-	.datafile(regfile),
+//	.datafile(regfile),
 	
 	// outputs
 	.FSM_DONE(FSM_DONE_temp),
@@ -231,7 +264,11 @@ FSM FSM_instance (
 	// added outputs
 	.clear_accs(FSM_clear_accs),
 	
+	.FSM_re,
 	.FSM_we,
+	
+	.PLANET_NUM(regfile[OFFSET_NUM]),
+	.G(regfile[OFFSET_G]),
 	
 	.ADDR1(FSM_ADDR1),
 	.ADDR2(FSM_ADDR2),
@@ -245,7 +282,15 @@ FSM FSM_instance (
 	.DATA3(FSM_DATA3),
 	.DATA4(FSM_DATA4),
 	.DATA5(FSM_DATA5),
-	.DATA6(FSM_DATA6)
+	.DATA6(FSM_DATA6),
+	
+	.DATA1in(FSM_DATA1in),
+	.DATA2in(FSM_DATA2in),
+	.DATA3in(FSM_DATA3in),
+	.DATA4in(FSM_DATA4in),
+	.DATA5in(FSM_DATA5in),
+	.DATA6in(FSM_DATA6in)
+
 	
 );
 
