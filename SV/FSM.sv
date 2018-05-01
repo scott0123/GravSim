@@ -350,7 +350,7 @@ always_comb begin
 				
 				if (iterator_i == PLANET_NUM - 32'd2 && iterator_j == PLANET_NUM - 32'd1) begin
 					iterator_i_next = 32'b0;
-					next_state = DONE;
+					next_state = ResolveForce_CalcVel_1_getdata;
 				end
 				else begin
 					if (iterator_j == PLANET_NUM - 32'd1) begin

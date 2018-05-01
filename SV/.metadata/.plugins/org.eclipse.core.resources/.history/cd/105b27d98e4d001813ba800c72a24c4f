@@ -349,9 +349,7 @@ void hardware_simulation(){
     }comb;
 
     // set G
-    float G_const = G;
-    MEM_PTR[OFFSET_G] = *(unsigned long*)&G_const;
-    printf("\n\n\nVariable_G: %f\n\n\n", G);
+    MEM_PTR[OFFSET_G] = G;
     // set num planets
     MEM_PTR[OFFSET_NUM] = 4;
     // body 1
@@ -619,12 +617,7 @@ void hardware_simulation(){
 //		printf("Planet 2 ACC_Y: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_Y + 2]);
 //		printf("Planet 2 ACC_Z: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_Z + 2]);
 		printf("G: %f\n", *(float*)&MEM_PTR[OFFSET_G]);
-		printf("PLANET_NUM: %d\n", MEM_PTR[OFFSET_NUM]);
-		float test = 1.9f;
-		printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
-		MEM_PTR[OFFSET_ACC_X + 1] = *(unsigned long*)&test;
-		printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
-
+		printf("PLANET_NUM: %d\n", MEM_PTR[PLANET_NUM]);
 
 		// zero the start signal
 		MEM_PTR[OFFSET_START] = 0;

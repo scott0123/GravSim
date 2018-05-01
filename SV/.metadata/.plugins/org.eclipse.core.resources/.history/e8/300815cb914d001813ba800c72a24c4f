@@ -622,7 +622,6 @@ void hardware_simulation(){
 		printf("PLANET_NUM: %d\n", MEM_PTR[OFFSET_NUM]);
 		float test = 1.9f;
 		printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
-		MEM_PTR[OFFSET_ACC_X + 1] = *(unsigned long*)&test;
 		printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
 
 
