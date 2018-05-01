@@ -291,8 +291,9 @@ always_comb begin
 		WAIT:
 			begin
 				if (FSM_START == 1) begin
-					//next_state = ClearAcc;
+//					next_state = ClearAcc;
 					next_state = ResolveForce_CalcVel_1_getdata;
+//					next_state = DONE;
 					iterator_i_next = 32'b0;
 					iterator_j_next = 32'b1;
 				end
@@ -300,7 +301,7 @@ always_comb begin
 		/*
 		ClearAcc:
 			begin
-				next_state = GetAcc_1;
+				next_state = DONE;
 			end
 		
 		// Calculation states
@@ -342,7 +343,7 @@ always_comb begin
 				
 				if (iterator_i == PLANET_NUM - 32'd2 && iterator_j == PLANET_NUM - 32'd1) begin
 					iterator_i_next = 32'b0;
-					next_state = ResolveForce_CalcVel_1_getdata;
+					next_state = DONE;
 				end
 				else begin
 					if (iterator_j == PLANET_NUM - 32'd1) begin
@@ -424,9 +425,9 @@ always_comb begin
 			begin
 				FSM_DONE = 0;
 			end
-	
-		// Calculation states
 		
+		// Calculation states
+		/*
 		ClearAcc:
 			begin
 				clear_accs = 1;
@@ -618,7 +619,7 @@ always_comb begin
 				FSM_we = 2'd3; // write to all 6 ADDRs
 				
 			end
-		
+		*/
 		// Resolve Force
 		
 		ResolveForce_CalcVel_1_getdata:

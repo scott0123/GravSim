@@ -4,13 +4,13 @@
 // universal constants
 //#define G 6.673E-11
 //#define G 2 // unit tests are mostly built around this
-#define G 10 // this is good for 2 planet orbit
+#define G 4 // this is good for 2 planet orbit
 
 // standard constants
 #define THREE_HALFS 1.5f
-//#define DT 0.01667f // for 60 fps
-#define DT 0.03333f // for 30 fps
-#define SIM_FPS 30
+#define DT 0.01667f // for 60 fps
+//#define DT 0.03333f // for 30 fps
+#define SIM_FPS 60
 
 // magic numbers
 #define QUAKE_MAGIC 0x5f3759df

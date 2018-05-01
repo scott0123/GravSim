@@ -1,5 +1,5 @@
 Flow report for GravSim
-Mon Apr 30 23:50:18 2018
+Tue May 01 01:27:11 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,21 +40,21 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Apr 30 23:50:18 2018       ;
+; Flow Status                        ; Successful - Tue May 01 01:27:11 2018       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; GravSim                                     ;
 ; Top-level Entity Name              ; GravSim                                     ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 45,042 / 114,480 ( 39 % )                   ;
-;     Total combinational functions  ; 44,383 / 114,480 ( 39 % )                   ;
+; Total logic elements               ; 34,867 / 114,480 ( 30 % )                   ;
+;     Total combinational functions  ; 34,291 / 114,480 ( 30 % )                   ;
 ;     Dedicated logic registers      ; 6,486 / 114,480 ( 6 % )                     ;
 ; Total registers                    ; 6555                                        ;
 ; Total pins                         ; 112 / 529 ( 21 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 11,392 / 3,981,312 ( < 1 % )                ;
-; Embedded Multiplier 9-bit elements ; 177 / 532 ( 33 % )                          ;
+; Embedded Multiplier 9-bit elements ; 157 / 532 ( 30 % )                          ;
 ; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 +------------------------------------+---------------------------------------------+
 
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/30/2018 23:39:30 ;
+; Start date & time ; 05/01/2018 01:18:25 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GravSim             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                                         ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 169736358548164.152514957009824                               ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 169736358548164.152515550411520                               ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                            ; --            ; --          ; testbench_FSM  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench_FSM                                                 ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                                             ; --            ; --          ; eda_simulation ;
@@ -110,12 +110,12 @@ refer to the applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:04:49     ; 1.0                     ; 1200 MB             ; 00:05:18                           ;
-; Fitter                    ; 00:04:35     ; 1.0                     ; 1835 MB             ; 00:06:34                           ;
-; Assembler                 ; 00:00:06     ; 1.0                     ; 739 MB              ; 00:00:06                           ;
-; TimeQuest Timing Analyzer ; 00:00:15     ; 1.2                     ; 1063 MB             ; 00:00:18                           ;
-; EDA Netlist Writer        ; 00:00:43     ; 1.0                     ; 921 MB              ; 00:00:42                           ;
-; Total                     ; 00:10:28     ; --                      ; --                  ; 00:12:58                           ;
+; Analysis & Synthesis      ; 00:04:03     ; 1.0                     ; 1048 MB             ; 00:04:35                           ;
+; Fitter                    ; 00:03:23     ; 1.0                     ; 1723 MB             ; 00:04:54                           ;
+; Assembler                 ; 00:00:06     ; 1.0                     ; 712 MB              ; 00:00:06                           ;
+; TimeQuest Timing Analyzer ; 00:00:14     ; 1.2                     ; 1002 MB             ; 00:00:16                           ;
+; EDA Netlist Writer        ; 00:00:41     ; 1.0                     ; 867 MB              ; 00:00:39                           ;
+; Total                     ; 00:08:27     ; --                      ; --                  ; 00:10:30                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
