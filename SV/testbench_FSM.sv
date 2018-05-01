@@ -49,28 +49,28 @@ logic [31:0] DATA1, DATA2, DATA3, DATA4, DATA5, DATA6;
 
 // other internal signals to monitor
 
-logic[31:0] D1, D2, D3, D4, D5, D6, D1in, D2in, D3in, D4in, D5in, D6in, A1, A2, A3, A4, A5, A6;
-
-assign D1 = FSM_instance.DATA1;
-assign D2 = FSM_instance.DATA2;
-assign D3 = FSM_instance.DATA3;
-assign D4 = FSM_instance.DATA4;
-assign D5 = FSM_instance.DATA5;
-assign D6 = FSM_instance.DATA6;
-
-assign D1in = FSM_instance.DATA1in;
-assign D2in = FSM_instance.DATA2in;
-assign D3in = FSM_instance.DATA3in;
-assign D4in = FSM_instance.DATA4in;
-assign D5in = FSM_instance.DATA5in;
-assign D6in = FSM_instance.DATA6in;
-
-assign A1 = FSM_instance.ADDR1;
-assign A2 = FSM_instance.ADDR2;
-assign A3 = FSM_instance.ADDR3;
-assign A4 = FSM_instance.ADDR4;
-assign A5 = FSM_instance.ADDR5;
-assign A6 = FSM_instance.ADDR6;
+//logic[31:0] D1, D2, D3, D4, D5, D6, D1in, D2in, D3in, D4in, D5in, D6in, A1, A2, A3, A4, A5, A6;
+//
+//assign D1 = FSM_instance.DATA1;
+//assign D2 = FSM_instance.DATA2;
+//assign D3 = FSM_instance.DATA3;
+//assign D4 = FSM_instance.DATA4;
+//assign D5 = FSM_instance.DATA5;
+//assign D6 = FSM_instance.DATA6;
+//
+//assign D1in = FSM_instance.DATA1in;
+//assign D2in = FSM_instance.DATA2in;
+//assign D3in = FSM_instance.DATA3in;
+//assign D4in = FSM_instance.DATA4in;
+//assign D5in = FSM_instance.DATA5in;
+//assign D6in = FSM_instance.DATA6in;
+//
+//assign A1 = FSM_instance.ADDR1;
+//assign A2 = FSM_instance.ADDR2;
+//assign A3 = FSM_instance.ADDR3;
+//assign A4 = FSM_instance.ADDR4;
+//assign A5 = FSM_instance.ADDR5;
+//assign A6 = FSM_instance.ADDR6;
 
 //logic [5:0] state, next_state;					
 //assign state = FSM_instance.state;
@@ -268,7 +268,7 @@ end
 initial begin: TEST_VECTORS
 RESET = 1;
 FSM_START = 0;
-G = 32'h40800000; // float(4)
+G = 32'h41200000; // float(10)
 PLANET_NUM = 32'd4; // int(2)
 
 #10

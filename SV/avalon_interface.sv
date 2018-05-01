@@ -98,7 +98,7 @@ logic [31:0] FSM_DATA1in, FSM_DATA2in, FSM_DATA3in, FSM_DATA4in, FSM_DATA5in, FS
 //						Z_acc
 //						 ...
 
-logic [31:0] regfile [113];
+logic [31:0] regfile [114];
 logic FSM_DONE_temp;
 
 always_comb begin
@@ -174,9 +174,9 @@ always_ff @(posedge CLK) begin
 			if (FSM_clear_accs) begin
 			
 				for (int i = 0; i < 10; i += 1) begin
-					regfile[OFFSET_ACC_X + i] <= 32'b0;
-					regfile[OFFSET_ACC_Y + i] <= 32'b0;
-					regfile[OFFSET_ACC_Z + i] <= 32'b0;
+					regfile[OFFSET_ACC_X + i + 1] <= 32'b0;
+					regfile[OFFSET_ACC_Y + i + 1] <= 32'b0;
+					regfile[OFFSET_ACC_Z + i + 1] <= 32'b0;
 				end
 				
 			end

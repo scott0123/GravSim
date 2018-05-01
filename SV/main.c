@@ -496,7 +496,7 @@ void hardware_simulation(){
         MEM_PTR[OFFSET_POS_Y + 4] = comb.i;
         comb.f = p4.pos_z;
         MEM_PTR[OFFSET_POS_Z + 4] = comb.i;
-        
+        */
         clear_acceleration(&p1);
         clear_acceleration(&p2);
         clear_acceleration(&p3);
@@ -534,10 +534,29 @@ void hardware_simulation(){
         MEM_PTR[OFFSET_ACC_Y + 1] = comb.i;
         comb.f = p1.acc_z;
         MEM_PTR[OFFSET_ACC_Z + 1] = comb.i;
-        */
 
-    	// added pause
-    	for (int i = 0; i < 10000; i++);
+        comb.f = p2.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 2] = comb.i;
+        comb.f = p2.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 2] = comb.i;
+        comb.f = p2.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 2] = comb.i;
+
+        comb.f = p3.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 3] = comb.i;
+        comb.f = p3.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 3] = comb.i;
+        comb.f = p3.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 3] = comb.i;
+
+        comb.f = p4.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 4] = comb.i;
+        comb.f = p4.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 4] = comb.i;
+        comb.f = p4.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 4] = comb.i;
+
+
 
         // initiate the start signal
         MEM_PTR[OFFSET_START] = 1;
@@ -547,9 +566,9 @@ void hardware_simulation(){
         while(MEM_PTR[OFFSET_DONE] == 0);
 
         // added print for debugging
-        printf("Planet 1 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 1]);
-        printf("Planet 1 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 1]);
-        printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
+        printf("Planet 2 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 2]);
+        printf("Planet 2 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 2]);
+        printf("Planet 2 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
 
         // zero the start signal
 		MEM_PTR[OFFSET_START] = 0;

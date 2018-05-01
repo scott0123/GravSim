@@ -291,12 +291,13 @@ always_comb begin
 		WAIT:
 			begin
 				if (FSM_START == 1) begin
-					next_state = ClearAcc;
+					//next_state = ClearAcc;
+					next_state = ResolveForce_CalcVel_1_getdata;
 					iterator_i_next = 32'b0;
 					iterator_j_next = 32'b1;
 				end
 			end
-		
+		/*
 		ClearAcc:
 			begin
 				next_state = GetAcc_1;
@@ -354,7 +355,7 @@ always_comb begin
 					next_state = GetAcc_1;
 				end
 			end
-		
+		*/
 		ResolveForce_CalcVel_1_getdata:
 			begin
 				next_state = ResolveForce_CalcVel_1;
@@ -595,9 +596,9 @@ always_comb begin
 			begin
 				
 				// set ADDR for Planet i acceleration updates
-				ADDR1 = OFFSET_ACC_X + iterator_i;
-				ADDR2 = OFFSET_ACC_Y + iterator_i;
-				ADDR3 = OFFSET_ACC_Z + iterator_i;
+				ADDR1 = OFFSET_ACC_X + iterator_i + 32'b1;
+				ADDR2 = OFFSET_ACC_Y + iterator_i + 32'b1;
+				ADDR3 = OFFSET_ACC_Z + iterator_i + 32'b1;
 				
 				// set DATA output for Planet i acceleration updates
 				DATA1 = FPadd_outAB;
