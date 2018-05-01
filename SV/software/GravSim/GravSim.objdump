@@ -2934,16 +2934,16 @@ void hardware_simulation(){
  8001dcc:	e0bfe015 	stw	r2,-128(fp)
  8001dd0:	e03fe115 	stw	zero,-124(fp)
  8001dd4:	e03fe215 	stw	zero,-120(fp)
- 8001dd8:	e03fe315 	stw	zero,-116(fp)
- 8001ddc:	00afe034 	movhi	r2,49024
- 8001de0:	e0bfe415 	stw	r2,-112(fp)
+ 8001dd8:	00afe034 	movhi	r2,49024
+ 8001ddc:	e0bfe315 	stw	r2,-116(fp)
+ 8001de0:	e03fe415 	stw	zero,-112(fp)
  8001de4:	e03fe515 	stw	zero,-108(fp)
  8001de8:	e03fe615 	stw	zero,-104(fp)
  8001dec:	e03fe715 	stw	zero,-100(fp)
  8001df0:	00afe034 	movhi	r2,49024
  8001df4:	e0bfe815 	stw	r2,-96(fp)
         -1.0, 0.0, 0.0,
-        0.0, -1.0, 0.0,
+        -1.0, 0.0, 0.0,
         0.0, 0.0, -1.0 };
     planet p3 = { 1.0, 1.0,
  8001df8:	008fe034 	movhi	r2,16256
@@ -2991,7 +2991,7 @@ void hardware_simulation(){
         0.0, 0.0, 1.0 };
     planet p2 = { 1.0, 1.0,
         -1.0, 0.0, 0.0,
-        0.0, -1.0, 0.0,
+        -1.0, 0.0, 0.0,
         0.0, 0.0, -1.0 };
     planet p3 = { 1.0, 1.0,
  8001e9c:	1009883a 	mov	r4,r2
@@ -3040,7 +3040,7 @@ void hardware_simulation(){
     // set G
     MEM_PTR[OFFSET_G] = G;
  8001f28:	d0a00017 	ldw	r2,-32768(gp)
- 8001f2c:	00c00104 	movi	r3,4
+ 8001f2c:	00c00284 	movi	r3,10
  8001f30:	10c00015 	stw	r3,0(r2)
     // set num planets
     MEM_PTR[OFFSET_NUM] = 4;
@@ -3341,9 +3341,9 @@ void hardware_simulation(){
  800226c:	103ffc26 	beq	r2,zero,8002260 <__alt_data_end+0xfc002260>
 
         // added print for debugging
-        printf("Planet 2 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 2]);
+        printf("Planet 1 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 1]);
  8002270:	d0a00017 	ldw	r2,-32768(gp)
- 8002274:	10801904 	addi	r2,r2,100
+ 8002274:	10801804 	addi	r2,r2,96
  8002278:	10c00017 	ldw	r3,0(r2)
  800227c:	1809883a 	mov	r4,r3
  8002280:	80070300 	call	8007030 <__extendsfdf2>
@@ -3354,9 +3354,9 @@ void hardware_simulation(){
  8002294:	01020074 	movhi	r4,2049
  8002298:	2111fa04 	addi	r4,r4,18408
  800229c:	8007c340 	call	8007c34 <printf>
-        printf("Planet 2 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 2]);
+        printf("Planet 1 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 1]);
  80022a0:	d0a00017 	ldw	r2,-32768(gp)
- 80022a4:	10803704 	addi	r2,r2,220
+ 80022a4:	10803604 	addi	r2,r2,216
  80022a8:	10c00017 	ldw	r3,0(r2)
  80022ac:	1809883a 	mov	r4,r3
  80022b0:	80070300 	call	8007030 <__extendsfdf2>
@@ -3367,9 +3367,9 @@ void hardware_simulation(){
  80022c4:	01020074 	movhi	r4,2049
  80022c8:	2111ff04 	addi	r4,r4,18428
  80022cc:	8007c340 	call	8007c34 <printf>
-        printf("Planet 2 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
+        printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
  80022d0:	d0a00017 	ldw	r2,-32768(gp)
- 80022d4:	10805504 	addi	r2,r2,340
+ 80022d4:	10805404 	addi	r2,r2,336
  80022d8:	10c00017 	ldw	r3,0(r2)
  80022dc:	1809883a 	mov	r4,r3
  80022e0:	80070300 	call	8007030 <__extendsfdf2>
@@ -3906,7 +3906,7 @@ force get_force_between_planets(planet a, planet b){
 
     force f = {G * a.mass * b.mass / rel_pos_squared, dir_x, dir_y, dir_z};
  80029d8:	e0800217 	ldw	r2,8(fp)
- 80029dc:	01502034 	movhi	r5,16512
+ 80029dc:	01504834 	movhi	r5,16672
  80029e0:	1009883a 	mov	r4,r2
  80029e4:	80040500 	call	8004050 <__mulsf3>
  80029e8:	1009883a 	mov	r4,r2
@@ -4182,7 +4182,7 @@ force get_force_between_planets_fast(planet a, planet b){
 
     force f = {G * a.mass * b.mass / rel_pos_squared, dir_x, dir_y, dir_z};
  8002da4:	e0800217 	ldw	r2,8(fp)
- 8002da8:	01502034 	movhi	r5,16512
+ 8002da8:	01504834 	movhi	r5,16672
  8002dac:	1009883a 	mov	r4,r2
  8002db0:	80040500 	call	8004050 <__mulsf3>
  8002db4:	1009883a 	mov	r4,r2
