@@ -537,7 +537,7 @@ void hardware_simulation(){
         */
 
     	// added pause
-    	for (int i = 0; i < 100000; i++);
+    	for (int i = 0; i < 10000; i++);
 
         // initiate the start signal
         MEM_PTR[OFFSET_START] = 1;

@@ -3,7 +3,7 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="47" />
+   <connections preferredWidth="175" />
    <irq preferredWidth="34" />
    <name preferredWidth="336" />
    <description preferredWidth="355" />
@@ -13,7 +13,7 @@
    <endaddress preferredWidth="189" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project" />
+ <library expandedCategories="Project/GravSim IPs,Project,Library" />
  <window width="3000" height="1920" x="0" y="0" />
  <hdlexample language="VHDL" />
 </preferences>

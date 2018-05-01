@@ -37,7 +37,8 @@ logic [31:0] regfile [113];
 logic RESET;
 logic FSM_START;
 logic [31:0] DATA1in, DATA2in, DATA3in, DATA4in, DATA5in, DATA6in;
-logic [31:0] PLANET_NUM, G;
+logic [31:0] G;
+logic [3:0] PLANET_NUM;
 
 // outputs
 logic clear_accs;
@@ -140,9 +141,7 @@ initial begin: CLOCK_INITIALIZATION
 end 
 
 
-always_comb begin
-
-	DATA1in
+always_ff @(posedge CLK) begin
 
 	// FSM read enable
 	if (FSM_re == 2'd1) begin
@@ -171,7 +170,6 @@ always_comb begin
 
 	end
 
-
 end
 
 
@@ -198,7 +196,7 @@ G = 32'h40800000; // float(4)
 
 // number of planets
 regfile[OFFSET_NUM] = 32'd2; // int(2)
-PLANET_NUM = 32'd2; // int(2)
+PLANET_NUM = 4'd2; // int(2)
 
 // Planet 1
 regfile[OFFSET_RAD + 1] = 32'h3f800000; // 1
