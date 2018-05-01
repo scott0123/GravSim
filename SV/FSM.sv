@@ -148,6 +148,7 @@ enum logic [5:0] {
 					
 					ClearAcc,
 					
+					GetAcc_1_getdata,
 					GetAcc_1,
 					GetAcc_2,
 					GetAcc_3,
@@ -197,7 +198,7 @@ always_ff @(posedge CLK) begin
 			FPadd_outAB_cached <= FPadd_outAB;
 		end
 		
-		if (state == GetAcc_4) begin
+		if (state == GetAcc_4 && state_counter == 3'd4) begin
 			acc_mag_i <= FPmult_outCD;
 			acc_mag_j <= FPmult_outGH;
 		end
@@ -291,22 +292,28 @@ always_comb begin
 		WAIT:
 			begin
 				if (FSM_START == 1) begin
-//					next_state = ClearAcc;
-					next_state = ResolveForce_CalcVel_1_getdata;
+					next_state = ClearAcc;
+//					next_state = ResolveForce_CalcVel_1_getdata;
 //					next_state = DONE;
 					iterator_i_next = 32'b0;
 					iterator_j_next = 32'b1;
 				end
 			end
-		/*
+		
 		ClearAcc:
 			begin
-				next_state = DONE;
+				next_state = GetAcc_1_getdata;
 			end
 		
 		// Calculation states
 		
 		// getting acceleration instead of force so that we don't have to divide by mass afterwards
+		
+		GetAcc_1_getdata:
+			begin
+				next_state = GetAcc_1;
+			end
+			
 		GetAcc_1:
 			begin
 				next_state = GetAcc_2;
@@ -353,10 +360,10 @@ always_comb begin
 					else begin
 						iterator_j_next = iterator_j + 32'd1;
 					end
-					next_state = GetAcc_1;
+					next_state = GetAcc_1_getdata;
 				end
 			end
-		*/
+		
 		ResolveForce_CalcVel_1_getdata:
 			begin
 				next_state = ResolveForce_CalcVel_1;
@@ -427,11 +434,19 @@ always_comb begin
 			end
 		
 		// Calculation states
-		/*
+		
 		ClearAcc:
 			begin
-				clear_accs = 1;
 				
+				clear_accs = 1;
+								
+			end
+		
+		// Get Acceleration
+		
+		GetAcc_1_getdata:
+			begin
+			
 				// prepare for next state
 				ADDR1 = OFFSET_POS_X + iterator_i + 32'b1;
 				ADDR2 = OFFSET_POS_X + iterator_j + 32'b1;
@@ -441,10 +456,8 @@ always_comb begin
 				ADDR6 = OFFSET_POS_Z + iterator_j + 32'b1;
 				
 				FSM_re = 2'd3;
-				
+
 			end
-		
-		// Get Acceleration
 		
 		GetAcc_1:
 			begin
@@ -619,7 +632,7 @@ always_comb begin
 				FSM_we = 2'd3; // write to all 6 ADDRs
 				
 			end
-		*/
+		
 		// Resolve Force
 		
 		ResolveForce_CalcVel_1_getdata:

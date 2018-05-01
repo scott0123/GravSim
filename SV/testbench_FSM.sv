@@ -202,6 +202,16 @@ always_ff @(posedge CLK) begin
 	
 	end
 
+	if (clear_accs) begin
+	
+		for (int i = 0; i < 10; i += 1) begin
+			regfile[OFFSET_ACC_X + i + 1] <= 32'b0;
+			regfile[OFFSET_ACC_Y + i + 1] <= 32'b0;
+			regfile[OFFSET_ACC_Z + i + 1] <= 32'b0;
+		end
+		
+	end
+	
 	// FSM write enable
 	if (FSM_we == 2'd1) begin
 

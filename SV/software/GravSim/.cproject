@@ -17,21 +17,21 @@
 							</builder>
 							<tool id="altera.tool.gnu.c.compiler.mingw.694206506" name="Nios II GCC C Compiler" superClass="altera.tool.gnu.c.compiler.mingw">
 								<option id="gnu.c.compiler.option.include.paths.528468764" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="../GravSim/src"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\anish\Documents\ECE_385\Final_Project\GravSim\SV&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.261417215" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="altera.tool.gnu.cpp.compiler.mingw.1589807202" name="Nios II GCC C++ Compiler" superClass="altera.tool.gnu.cpp.compiler.mingw">
-								<option id="gnu.cpp.compiler.option.include.paths.70731414" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="../GravSim/src"/>
+								<option id="gnu.cpp.compiler.option.include.paths.70731414" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;C:\Users\anish\Documents\ECE_385\Final_Project\GravSim\SV&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1640731810" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="altera.tool.gnu.archiver.mingw.1524114295" name="Nios II GCC Archiver" superClass="altera.tool.gnu.archiver.mingw"/>
 							<tool id="altera.tool.gnu.c.linker.mingw.1125136873" name="Nios II GCC C Linker" superClass="altera.tool.gnu.c.linker.mingw"/>
 							<tool id="altera.tool.gnu.assembler.mingw.533893728" name="Nios II GCC Assembler" superClass="altera.tool.gnu.assembler.mingw">
-								<option id="gnu.both.asm.option.include.paths.18767874" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="../GravSim/src"/>
+								<option id="gnu.both.asm.option.include.paths.18767874" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;C:\Users\anish\Documents\ECE_385\Final_Project\GravSim\SV&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.167276137" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>

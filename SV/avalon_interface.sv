@@ -119,7 +119,7 @@ end
 always_ff @(posedge CLK) begin
 	
 	if (RESET) begin
-		for (integer i = 0; i < 113; i += 1) begin
+		for (integer i = 0; i < 114; i += 1) begin
 			regfile[i] <= 32'b0;
 		end
 	end
@@ -189,13 +189,6 @@ always_ff @(posedge CLK) begin
 				regfile[FSM_ADDR3] <= FSM_DATA3;
 		
 			end
-			else if (FSM_we == 2'd2) begin
-		
-				regfile[FSM_ADDR4] <= FSM_DATA4;
-				regfile[FSM_ADDR5] <= FSM_DATA5;
-				regfile[FSM_ADDR6] <= FSM_DATA6;
-		
-			end
 			else if (FSM_we == 2'd3) begin
 		
 				regfile[FSM_ADDR1] <= FSM_DATA1;
@@ -215,13 +208,6 @@ always_ff @(posedge CLK) begin
 				FSM_DATA2in <= regfile[FSM_ADDR2];
 				FSM_DATA3in <= regfile[FSM_ADDR3];
 		
-			end
-			else if (FSM_re == 2'd2) begin
-			
-				FSM_DATA4in <= regfile[FSM_ADDR4];
-				FSM_DATA5in <= regfile[FSM_ADDR5];
-				FSM_DATA6in <= regfile[FSM_ADDR6];
-				
 			end
 			else if (FSM_re == 2'd3) begin
 		

@@ -394,7 +394,7 @@ void hardware_simulation(){
 
 
     // hard-code delay to make up for screen refresh time
-    for(int i = 0; i < 10000 * SIM_FPS; i++) ;
+//    for(int i = 0; i < 10000 * SIM_FPS; i++) ;
 
     printf("===== Begin Simulation =====\n");
 
@@ -499,7 +499,7 @@ void hardware_simulation(){
 //        comb.f = p4.acc_z;
 //        MEM_PTR[OFFSET_ACC_Z + 4] = comb.i;
 
-
+/*
         p1.vel_x = *(float*)&MEM_PTR[OFFSET_VEL_X + 1];
         p1.vel_y = *(float*)&MEM_PTR[OFFSET_VEL_Y + 1];
         p1.vel_z = *(float*)&MEM_PTR[OFFSET_VEL_Z + 1];
@@ -530,6 +530,7 @@ void hardware_simulation(){
         clear_acceleration(&p2);
         clear_acceleration(&p3);
         clear_acceleration(&p4);
+        */
 
 //        p1.acc_x = *(float*)&MEM_PTR[OFFSET_ACC_X + 1];
 //        p1.acc_y = *(float*)&MEM_PTR[OFFSET_ACC_Y + 1];
@@ -544,6 +545,7 @@ void hardware_simulation(){
 //        p4.acc_y = *(float*)&MEM_PTR[OFFSET_ACC_Y + 4];
 //        p4.acc_z = *(float*)&MEM_PTR[OFFSET_ACC_Z + 4];
 
+    	/*
         force f = get_force_between_planets(p1, p2);
         force n = negative_force(f);
         apply_force_to_planet(f, &p1);
@@ -597,18 +599,12 @@ void hardware_simulation(){
         MEM_PTR[OFFSET_ACC_Y + 4] = comb.i;
         comb.f = p4.acc_z;
         MEM_PTR[OFFSET_ACC_Z + 4] = comb.i;
+        */
 
         // initiate the start signal
 		MEM_PTR[OFFSET_START] = 1;
 
 		printf("iteration %d\n", i);
-
-		// added print for debugging
-
-		printf("Planet 2 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 2]);
-		printf("Planet 2 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 2]);
-		printf("Planet 2 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
-		printf("Planet 2 acc_var_x: %f\n", p2.acc_x);
 
 		// wait for the calculation to be done
 		while(MEM_PTR[OFFSET_DONE] == 0);
