@@ -3341,9 +3341,9 @@ void hardware_simulation(){
  800226c:	103ffc26 	beq	r2,zero,8002260 <__alt_data_end+0xfc002260>
 
         // added print for debugging
-        printf("Planet 1 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 1]);
+        printf("Planet 2 POS_X: %f\n", *(float*)&MEM_PTR[OFFSET_POS_X + 2]);
  8002270:	d0a00017 	ldw	r2,-32768(gp)
- 8002274:	10801804 	addi	r2,r2,96
+ 8002274:	10801904 	addi	r2,r2,100
  8002278:	10c00017 	ldw	r3,0(r2)
  800227c:	1809883a 	mov	r4,r3
  8002280:	80070300 	call	8007030 <__extendsfdf2>
@@ -3354,9 +3354,9 @@ void hardware_simulation(){
  8002294:	01020074 	movhi	r4,2049
  8002298:	2111fa04 	addi	r4,r4,18408
  800229c:	8007c340 	call	8007c34 <printf>
-        printf("Planet 1 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 1]);
+        printf("Planet 2 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 2]);
  80022a0:	d0a00017 	ldw	r2,-32768(gp)
- 80022a4:	10803604 	addi	r2,r2,216
+ 80022a4:	10803704 	addi	r2,r2,220
  80022a8:	10c00017 	ldw	r3,0(r2)
  80022ac:	1809883a 	mov	r4,r3
  80022b0:	80070300 	call	8007030 <__extendsfdf2>
@@ -3367,9 +3367,9 @@ void hardware_simulation(){
  80022c4:	01020074 	movhi	r4,2049
  80022c8:	2111ff04 	addi	r4,r4,18428
  80022cc:	8007c340 	call	8007c34 <printf>
-        printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
+        printf("Planet 2 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
  80022d0:	d0a00017 	ldw	r2,-32768(gp)
- 80022d4:	10805404 	addi	r2,r2,336
+ 80022d4:	10805504 	addi	r2,r2,340
  80022d8:	10c00017 	ldw	r3,0(r2)
  80022dc:	1809883a 	mov	r4,r3
  80022e0:	80070300 	call	8007030 <__extendsfdf2>

@@ -38,7 +38,7 @@ logic RESET;
 logic FSM_START;
 logic [31:0] DATA1in, DATA2in, DATA3in, DATA4in, DATA5in, DATA6in;
 logic [31:0] G;
-logic [3:0] PLANET_NUM;
+logic [31:0] PLANET_NUM;
 
 // outputs
 logic clear_accs;
@@ -143,6 +143,92 @@ end
 
 always_ff @(posedge CLK) begin
 
+	if (RESET) begin
+	
+		regfile[OFFSET_G] = 32'h40800000; // float(4)
+		regfile[OFFSET_NUM] = 32'd4; // int(4)
+	
+		// Planet 1
+		regfile[OFFSET_RAD + 1] <= 32'h3f800000; // 1
+		regfile[OFFSET_MASS + 1] <= 32'h3f800000; // 1
+		regfile[OFFSET_POS_X + 1] <= 32'h3f800000; // 1
+		regfile[OFFSET_POS_Y + 1] <= 32'h0; // 0 
+		regfile[OFFSET_POS_Z + 1] <= 32'h3f800000; // 1
+		regfile[OFFSET_VEL_X + 1] <= 32'h0; // 0
+		regfile[OFFSET_VEL_Y + 1] <= 32'h3f800000; // 1 
+		regfile[OFFSET_VEL_Z + 1] <= 32'h0; // 0 
+		regfile[OFFSET_ACC_X + 1] <= 32'h0; // 0
+		regfile[OFFSET_ACC_Y + 1] <= 32'h0; // 0 
+		regfile[OFFSET_ACC_Z + 1] <= 32'h3f800000; // 1
+
+		// Planet 2
+		regfile[OFFSET_RAD + 2] <= 32'h3f800000; // 1 
+		regfile[OFFSET_MASS + 2] <= 32'h3f800000; // 1
+		regfile[OFFSET_POS_X + 2] <= 32'hbf800000; // -1
+		regfile[OFFSET_POS_Y + 2] <= 32'h0; // 0 
+		regfile[OFFSET_POS_Z + 2] <= 32'h0; // 0
+		regfile[OFFSET_VEL_X + 2] <= 32'h0; // 0
+		regfile[OFFSET_VEL_Y + 2] <= 32'hbf800000; // -1 
+		regfile[OFFSET_VEL_Z + 2] <= 32'h0; // 0 
+		regfile[OFFSET_ACC_X + 2] <= 32'h0; // 0
+		regfile[OFFSET_ACC_Y + 2] <= 32'h0; // 0 
+		regfile[OFFSET_ACC_Z + 2] <= 32'hbf800000; // -1 
+
+		// Planet 3
+		regfile[OFFSET_RAD + 3] <= 32'h3f800000; // 1 
+		regfile[OFFSET_MASS + 3] <= 32'h3f800000; // 1
+		regfile[OFFSET_POS_X + 3] <= 32'h0; // 0
+		regfile[OFFSET_POS_Y + 3] <= 32'h3f800000; // 1
+		regfile[OFFSET_POS_Z + 3] <= 32'h0; // 0
+		regfile[OFFSET_VEL_X + 3] <= 32'hbf800000; // -1
+		regfile[OFFSET_VEL_Y + 3] <= 32'h0; // 0
+		regfile[OFFSET_VEL_Z + 3] <= 32'h0; // 0 
+		regfile[OFFSET_ACC_X + 3] <= 32'h0; // 0
+		regfile[OFFSET_ACC_Y + 3] <= 32'h0; // 0 
+		regfile[OFFSET_ACC_Z + 3] <= 32'hbf800000; // -1 
+
+		// Planet 4
+		regfile[OFFSET_RAD + 4] <= 32'h3f800000; // 1 
+		regfile[OFFSET_MASS + 4] <= 32'h3f800000; // 1
+		regfile[OFFSET_POS_X + 4] <= 32'h0; // 0
+		regfile[OFFSET_POS_Y + 4] <= 32'hbf800000; // -1
+		regfile[OFFSET_POS_Z + 4] <= 32'h3f800000; // 1
+		regfile[OFFSET_VEL_X + 4] <= 32'hbf800000; // 1
+		regfile[OFFSET_VEL_Y + 4] <= 32'h0; // 0
+		regfile[OFFSET_VEL_Z + 4] <= 32'hbf800000; // -1
+		regfile[OFFSET_ACC_X + 4] <= 32'h0; // 0
+		regfile[OFFSET_ACC_Y + 4] <= 32'h0; // 0 
+		regfile[OFFSET_ACC_Z + 4] <= 32'hbf800000; // -1 
+	
+	end
+
+	// FSM write enable
+	if (FSM_we == 2'd1) begin
+
+		regfile[ADDR1] <= DATA1;
+		regfile[ADDR2] <= DATA2;
+		regfile[ADDR3] <= DATA3;
+
+	end
+	else if (FSM_we == 2'd2) begin
+
+		regfile[ADDR4] <= DATA4;
+		regfile[ADDR5] <= DATA5;
+		regfile[ADDR6] <= DATA6;
+
+	end
+	else if (FSM_we == 2'd3) begin
+
+		regfile[ADDR1] <= DATA1;
+		regfile[ADDR2] <= DATA2;
+		regfile[ADDR3] <= DATA3;
+
+		regfile[ADDR4] <= DATA4;
+		regfile[ADDR5] <= DATA5;
+		regfile[ADDR6] <= DATA6;
+
+	end
+
 	// FSM read enable
 	if (FSM_re == 2'd1) begin
 
@@ -182,58 +268,53 @@ end
 initial begin: TEST_VECTORS
 RESET = 1;
 FSM_START = 0;
-
-//for (integer i = 0; i < 113; i += 1) begin
-//	datafile[i] = 32'b0;
-//end
+G = 32'h40800000; // float(4)
+PLANET_NUM = 32'd4; // int(2)
 
 #10
 RESET = 0;
-
-// G constant
-regfile[OFFSET_G] = 32'h40800000; // float(4)
-G = 32'h40800000; // float(4)
-
-// number of planets
-regfile[OFFSET_NUM] = 32'd2; // int(2)
-PLANET_NUM = 4'd2; // int(2)
-
-// Planet 1
-regfile[OFFSET_RAD + 1] = 32'h3f800000; // 1
-regfile[OFFSET_MASS + 1] = 32'h3f800000; // 1
-regfile[OFFSET_POS_X + 1] = 32'h3f800000; // 1
-regfile[OFFSET_POS_Y + 1] = 32'h0; // 0 
-regfile[OFFSET_POS_Z + 1] = 32'h0; // 0
-regfile[OFFSET_VEL_X + 1] = 32'h0; // 0
-regfile[OFFSET_VEL_Y + 1] = 32'h3f800000; // 1 
-regfile[OFFSET_VEL_Z + 1] = 32'h0; // 0 
-regfile[OFFSET_ACC_X + 1] = 32'h0; // 0
-regfile[OFFSET_ACC_Y + 1] = 32'h0; // 0 
-regfile[OFFSET_ACC_Z + 1] = 32'h3f800000; // 1
-
-// Planet 2
-regfile[OFFSET_RAD + 2] = 32'h3f800000; // 1 
-regfile[OFFSET_MASS + 2] = 32'h3f800000; // 1
-regfile[OFFSET_POS_X + 2] = 32'hbf800000; // -1
-regfile[OFFSET_POS_Y + 2] = 32'h0; // 0 
-regfile[OFFSET_POS_Z + 2] = 32'h0; // 0
-regfile[OFFSET_VEL_X + 2] = 32'h0; // 0
-regfile[OFFSET_VEL_Y + 2] = 32'hbf800000; // -1 
-regfile[OFFSET_VEL_Z + 2] = 32'h0; // 0 
-regfile[OFFSET_ACC_X + 2] = 32'h0; // 0
-regfile[OFFSET_ACC_Y + 2] = 32'h0; // 0 
-regfile[OFFSET_ACC_Z + 2] = 32'hbf800000; // -1 
 
 #10
 // start
 FSM_START = 1;
 
+#5
+FSM_START = 0;
 
+#300
+// start
+FSM_START = 1;
 
+#5
+FSM_START = 0;
 
+#300
+// start
+FSM_START = 1;
 
+#5
+FSM_START = 0;
 
+#300
+// start
+FSM_START = 1;
 
+#5
+FSM_START = 0;
+
+#300
+// start
+FSM_START = 1;
+
+#5
+FSM_START = 0;
+
+#300
+// start
+FSM_START = 1;
+
+#5
+FSM_START = 0;
 
 
 

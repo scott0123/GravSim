@@ -15,3 +15,4 @@ Warning (10273): Verilog HDL warning at avalon_interface.sv(306): extended using
 Warning (10273): Verilog HDL warning at hpi_io_intf.sv(37): extended using "x" or "z" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/hpi_io_intf.sv Line: 37
 Warning (10273): Verilog HDL warning at hpi_io_intf.sv(43): extended using "x" or "z" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/hpi_io_intf.sv Line: 43
 Warning (10273): Verilog HDL warning at HexDriver.sv(23): extended using "x" or "z" File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/HexDriver.sv Line: 23
+Warning (10268): Verilog HDL information at testbench_FSM.sv(144): always construct contains both blocking and non-blocking assignments File: C:/Users/anish/Documents/ECE_385/Final_Project/GravSim/SV/testbench_FSM.sv Line: 144

@@ -267,7 +267,7 @@ FSM FSM_instance (
 	.FSM_re,
 	.FSM_we,
 	
-	.PLANET_NUM(regfile[OFFSET_NUM][3:0]),
+	.PLANET_NUM(regfile[OFFSET_NUM]),
 	.G(regfile[OFFSET_G]),
 	
 	.ADDR1(FSM_ADDR1),

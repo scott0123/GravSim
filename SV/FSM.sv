@@ -19,7 +19,7 @@ module FSM (
 	output logic FSM_DONE,
 //	input  logic [31:0] datafile [113],
 	
-	input logic [3:0] PLANET_NUM,
+	input logic [31:0] PLANET_NUM,
 	input logic [31:0] G,
 	output logic clear_accs,
 	output logic [1:0] FSM_re,
