@@ -64,6 +64,7 @@ parameter [6:0] OFFSET_ACC_X = 7'd83;
 parameter [6:0] OFFSET_ACC_Y = 7'd93;
 parameter [6:0] OFFSET_ACC_Z = 7'd103;
 
+parameter [7:0] KEYCODE_SPACE = 8'd4;                  // Keycode for the key SPACE (in this case: ' ')
 parameter [7:0] KEYCODE_UP = 8'd26;                  // Keycode for the key UP (in this case: W)
 parameter [7:0] KEYCODE_DOWN = 8'd22;                  // Keycode for the key DOWN (in this case: S)
 parameter [7:0] KEYCODE_LEFT = 8'd4;                  // Keycode for the key LEFT (in this case: A)
@@ -79,6 +80,12 @@ logic FSM_START;
 logic PAUSED;
 logic SPACE_PRESSED;
 logic SPACE_PRESSED_ALREADY;
+logic UP_PRESSED;
+logic DOWN_PRESSED;
+logic LEFT_PRESSED;
+logic RIGHT_PRESSED;
+
+logic [31:0] relative_shift_x, relative_shift_y, relative_shift_z;
 
 // SIZE = 114
 // 3 "Misc" data:
@@ -124,8 +131,20 @@ always_comb begin
 	EXPORT_DATA[21:12] = regfile[2][9:0];
 	EXPORT_DATA[11:2] = regfile[3][9:0];
 
-    if (keycode == 8'd44) SPACE_PRESSED = 1'b1;
+    if (keycode == KEYCODE_SPACE) SPACE_PRESSED = 1'b1;
     else SPACE_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_UP) UP_PRESSED = 1'b1;
+    else UP_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_DOWN) DOWN_PRESSED = 1'b1;
+    else DOWN_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_LEFT) LEFT_PRESSED = 1'b1;
+    else LEFT_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_RIGHT) RIGHT_PRESSED = 1'b1;
+    else RIGHT_PRESSED = 1'b0;
 
     if (AVL_VS == 1'b1 && ~PAUSED) begin
         FSM_START = 1'b1;
@@ -142,6 +161,9 @@ always_ff @(posedge CLK) begin
 		for (integer i = 0; i < 114; i += 1) begin
 			regfile[i] <= 32'b0;
 		end
+        relative_shift_x <= 32'b0;
+        relative_shift_y <= 32'b0;
+        relative_shift_z <= 32'b0;
 	end
 	
 	else begin
@@ -252,6 +274,19 @@ always_ff @(posedge CLK) begin
         else if (SPACE_PRESSED == 1'b0) begin
             SPACE_READY <= 1'b1;
         end
+
+        if(SPACE_UP == 1'b1 && VGA_VS == 1'b1) begin
+            relative_shift_y <= relative_shift_y + 32'b1;
+        end
+        if(SPACE_DOWN == 1'b1 && VGA_VS == 1'b1) begin
+            relative_shift_x <= relative_shift_y - 32'b1;
+        end
+        if(SPACE_LEFT == 1'b1 && VGA_VS == 1'b1) begin
+            relative_shift_x <= relative_shift_x - 32'b1;
+        end
+        if(SPACE_RIGHT == 1'b1 && VGA_VS == 1'b1) begin
+            relative_shift_x <= relative_shift_x + 32'b1;
+        end
 	end
 
 end
@@ -336,6 +371,9 @@ ball ball_1 (
 //.keycode,
 .DrawX,
 .DrawY,
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd1]),
 .posX(regfile[OFFSET_POS_X+7'd1]),
 .posY(regfile[OFFSET_POS_Y+7'd1]),
@@ -352,6 +390,9 @@ ball ball_2 (
 //.keycode,
 .DrawX,
 .DrawY,
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd2]),
 .posX(regfile[OFFSET_POS_X+7'd2]),
 .posY(regfile[OFFSET_POS_Y+7'd2]),
@@ -368,6 +409,9 @@ ball ball_3 (
 //.keycode,
 .DrawX,
 .DrawY,
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd3]),
 .posX(regfile[OFFSET_POS_X+7'd3]),
 .posY(regfile[OFFSET_POS_Y+7'd3]),
@@ -384,6 +428,9 @@ ball ball_4 (
 //.keycode,
 .DrawX,
 .DrawY,
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd4]),
 .posX(regfile[OFFSET_POS_X+7'd4]),
 .posY(regfile[OFFSET_POS_Y+7'd4]),
