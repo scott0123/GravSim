@@ -69,6 +69,9 @@ parameter [7:0] KEYCODE_UP = 8'd26;                  // Keycode for the key UP (
 parameter [7:0] KEYCODE_DOWN = 8'd22;                  // Keycode for the key DOWN (in this case: S)
 parameter [7:0] KEYCODE_LEFT = 8'd4;                  // Keycode for the key LEFT (in this case: A)
 parameter [7:0] KEYCODE_RIGHT = 8'd7;                  // Keycode for the key RIGHT (in this case: D)
+parameter [7:0] KEYCODE_PAGEUP = 8'd75;                  // Keycode for the key PAGE UP
+parameter [7:0] KEYCODE_PAGEDOWN = 8'd77;                  // Keycode for the key PAGE DOWN
+
 // added internal logic for FSM
 logic FSM_clear_accs;
 logic [1:0] FSM_re, FSM_we;
@@ -84,6 +87,8 @@ logic UP_PRESSED;
 logic DOWN_PRESSED;
 logic LEFT_PRESSED;
 logic RIGHT_PRESSED;
+logic PAGEUP_PRESSED;
+logic PAGEDOWN_PRESSED;
 
 logic [31:0] relative_shift_x, relative_shift_y, relative_shift_z;
 
@@ -146,6 +151,12 @@ always_comb begin
     if (keycode == KEYCODE_RIGHT) RIGHT_PRESSED = 1'b1;
     else RIGHT_PRESSED = 1'b0;
 
+    if (keycode == KEYCODE_PAGEUP) PAGEUP_PRESSED = 1'b1;
+    else PAGEUP_PRESSED = 1'b0;
+    
+    if (keycode == KEYCODE_PAGEDOWN) PAGEDOWN_PRESSED = 1'b1;
+    else PAGEDOWN_PRESSED = 1'b0;
+    
     if (AVL_VS == 1'b1 && ~PAUSED) begin
         FSM_START = 1'b1;
     end
@@ -286,6 +297,12 @@ always_ff @(posedge CLK) begin
         end
         if(SPACE_RIGHT == 1'b1 && VGA_VS == 1'b1) begin
             relative_shift_x <= relative_shift_x + 32'b1;
+        end
+        if(SPACE_PAGEUP == 1'b1 && VGA_VS == 1'b1) begin
+            relative_shift_z <= relative_shift_z + 32'b1;
+        end
+        if(SPACE_PAGEDOWN == 1'b1 && VGA_VS == 1'b1) begin
+            relative_shift_z <= relative_shift_z - 32'b1;
         end
 	end
 
