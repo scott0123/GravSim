@@ -1,6 +1,6 @@
-02:42:50 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
+03:28:53 **** Incremental Build of configuration Nios II for project GravSim_bsp ****
 make all 
 [BSP build complete]
 
-02:42:51 Build Finished (took 863ms)
+03:28:54 Build Finished (took 846ms)
 

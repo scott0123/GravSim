@@ -40,7 +40,7 @@
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
 #define SIM_MODE 2
-#define SIM_TIME 400 // (seconds)
+#define SIM_TIME 40 // (seconds)
 
 // constants for mem regfile
 #define OFFSET_G 0
@@ -108,15 +108,15 @@ void unit_test(){
     #endif
     planet p1 = { 1.0, 1.0, 
                 1.0, 0.0, 0.0, 
-                0.0, 1.0, 0.0,
+                0.0, 1.0, 0.0, 
                 0.0, 0.0, 1.0 };
     planet p2 = { 1.0, 1.0, 
                 -1.0, 0.0, 0.0, 
-                0.0, -1.0, 0.0,
+                0.0, -1.0, 0.0, 
                 0.0, 0.0, -1.0 };
     planet p3 = { 1.0, 1.0, 
                 0.0, 1.0, 0.0, 
-                -1.0, 0.0, 0.0,
+                -1.0, 0.0, 0.0, 
                 0.0, 0.0, -1.0 };
     #if CPP_COMPILE == 1
     planet p4 = { 0.92, 1.0, 
@@ -127,7 +127,7 @@ void unit_test(){
     #if CPP_COMPILE == 0
     planet p4 = { 0.92, 1.0, 
                 0.0, -1.07, 0.0, 
-                0.97, 0.0, 0.0,
+                0.97, 0.0, 0.0, 
                 0.0, 0.0, -1.0 };
     //planet p4 = { 1.0+(float)k/100, 1.0, 
     //            0.0, -1.0+(float)l/100, 0.0, 

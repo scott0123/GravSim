@@ -349,21 +349,21 @@ always_comb begin
 		ApplyAcc_2:
 			begin
 				
-//				if (iterator_i == PLANET_NUM - 32'd2 && iterator_j == PLANET_NUM - 32'd1) begin
-//					iterator_i_next = 32'b0;
+				if (iterator_i == PLANET_NUM - 7'd2 && iterator_j == PLANET_NUM - 7'd1) begin
+					iterator_i_next = 7'b0;
 					next_state = ResolveForce_CalcVel_1_getdata;
 //					next_state = DONE;
-//				end
-//				else begin
-//					if (iterator_j == PLANET_NUM - 32'd1) begin
-//						iterator_i_next = iterator_i + 32'd1;
-//						iterator_j_next = iterator_i + 32'd2;
-//					end
-//					else begin
-//						iterator_j_next = iterator_j + 32'd1;
-//					end
-//					next_state = GetAcc_1_getdata;
-//				end
+				end
+				else begin
+					if (iterator_j == PLANET_NUM - 7'd1) begin
+						iterator_i_next = iterator_i + 7'd1;
+						iterator_j_next = iterator_i + 7'd2;
+					end
+					else begin
+						iterator_j_next = iterator_j + 7'd1;
+					end
+					next_state = GetAcc_1_getdata;
+				end
 			end
 		
 		ResolveForce_CalcVel_1_getdata:

@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 2, 2018 2:40:16 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1525246816241</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>May 2, 2018 3:20:03 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1525249203137</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\anish\Documents\ECE_385\Final_Project\GravSim\SV\software\GravSim_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\nios_system.sopcinfo</SopcDesignFile>

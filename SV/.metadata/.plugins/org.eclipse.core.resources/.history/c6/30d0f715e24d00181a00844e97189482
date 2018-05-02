@@ -40,7 +40,7 @@
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
 #define SIM_MODE 2
-#define SIM_TIME 400 // (seconds)
+#define SIM_TIME 40 // (seconds)
 
 // constants for mem regfile
 #define OFFSET_G 0
@@ -108,15 +108,15 @@ void unit_test(){
     #endif
     planet p1 = { 1.0, 1.0, 
                 1.0, 0.0, 0.0, 
-                0.0, 1.0, 0.0,
+                0.0, 1.0, 0.0, 
                 0.0, 0.0, 1.0 };
     planet p2 = { 1.0, 1.0, 
                 -1.0, 0.0, 0.0, 
-                0.0, -1.0, 0.0,
+                0.0, -1.0, 0.0, 
                 0.0, 0.0, -1.0 };
     planet p3 = { 1.0, 1.0, 
                 0.0, 1.0, 0.0, 
-                -1.0, 0.0, 0.0,
+                -1.0, 0.0, 0.0, 
                 0.0, 0.0, -1.0 };
     #if CPP_COMPILE == 1
     planet p4 = { 0.92, 1.0, 
@@ -127,7 +127,7 @@ void unit_test(){
     #if CPP_COMPILE == 0
     planet p4 = { 0.92, 1.0, 
                 0.0, -1.07, 0.0, 
-                0.97, 0.0, 0.0,
+                0.97, 0.0, 0.0, 
                 0.0, 0.0, -1.0 };
     //planet p4 = { 1.0+(float)k/100, 1.0, 
     //            0.0, -1.0+(float)l/100, 0.0, 
@@ -406,6 +406,195 @@ void hardware_simulation(){
 
     for(int i = 0; i < SIM_TIME * SIM_FPS; i++){
         
+        // wait until the state machine wants to continue
+        //        while(MEM_PTR[15] == 0);
+        
+        // send the data through the memory pointer
+        
+        // body 1
+
+        // MEM_PTR[0] = (int)(10 * p1.rad);
+        // MEM_PTR[1] = (int)(320 + 100 * p1.pos_x);
+        // MEM_PTR[2] = (int)(240 + 100 * p1.pos_y);
+        // MEM_PTR[3] = (int)(p1.pos_z * 2 + 20);
+
+        // body 2
+    	/*
+        comb.f = p2.rad;
+        MEM_PTR[OFFSET_RAD + 2] = comb.i;
+        comb.f = p2.pos_x;
+        MEM_PTR[OFFSET_POS_X + 2] = comb.i;
+        comb.f = p2.pos_y;
+        MEM_PTR[OFFSET_POS_Y + 2] = comb.i;
+        comb.f = p2.pos_z;
+        MEM_PTR[OFFSET_POS_Z + 2] = comb.i;
+        */
+        /*
+        for(int i = 0; i < 100; i++){
+            union {
+            	float f;
+            	unsigned int i;
+            }comb;
+            comb.i = MEM_PTR[i];
+            //printf("reg[%d]: %.2f\n",i, comb.f);
+            printf("reg[%d]: %x\n",i, comb.i);
+        }
+        */
+        /*
+        union {
+        	float f;
+        	unsigned int i;
+        }comb;
+        
+        comb.f = 1.5f;
+
+        //MEM_PTR[3] = 1.5f;
+//        printf("reg[23]: %x\n",  MEM_PTR[23]);
+//        printf("reg[24]: %x\n",  MEM_PTR[24]);
+        //printf("var (hex): %x\n", comb.i);
+        //printf("var: %.2f\n", comb.f);
+
+        // body 3
+
+        comb.f = p3.rad;
+        MEM_PTR[OFFSET_RAD + 3] = comb.i;
+        comb.f = p3.pos_x;
+        MEM_PTR[OFFSET_POS_X + 3] = comb.i;
+        comb.f = p3.pos_y;
+        MEM_PTR[OFFSET_POS_Y + 3] = comb.i;
+        comb.f = p3.pos_z;
+        MEM_PTR[OFFSET_POS_Z + 3] = comb.i;
+        
+        // body 4
+        comb.f = p4.rad;
+        MEM_PTR[OFFSET_RAD + 4] = comb.i;
+        comb.f = p4.pos_x;
+        MEM_PTR[OFFSET_POS_X + 4] = comb.i;
+        comb.f = p4.pos_y;
+        MEM_PTR[OFFSET_POS_Y + 4] = comb.i;
+        comb.f = p4.pos_z;
+        MEM_PTR[OFFSET_POS_Z + 4] = comb.i;
+		*/
+
+//        // provide the acceleration
+//        comb.f = p1.acc_x;
+//        MEM_PTR[OFFSET_ACC_X + 1] = comb.i;
+//        comb.f = p1.acc_y;
+//        MEM_PTR[OFFSET_ACC_Y + 1] = comb.i;
+//        comb.f = p1.acc_z;
+//        MEM_PTR[OFFSET_ACC_Z + 1] = comb.i;
+//
+//        comb.f = p2.acc_x;
+//        MEM_PTR[OFFSET_ACC_X + 2] = comb.i;
+//        comb.f = p2.acc_y;
+//        MEM_PTR[OFFSET_ACC_Y + 2] = comb.i;
+//        comb.f = p2.acc_z;
+//        MEM_PTR[OFFSET_ACC_Z + 2] = comb.i;
+//
+//        comb.f = p3.acc_x;
+//        MEM_PTR[OFFSET_ACC_X + 3] = comb.i;
+//        comb.f = p3.acc_y;
+//        MEM_PTR[OFFSET_ACC_Y + 3] = comb.i;
+//        comb.f = p3.acc_z;
+//        MEM_PTR[OFFSET_ACC_Z + 3] = comb.i;
+//
+//        comb.f = p4.acc_x;
+//        MEM_PTR[OFFSET_ACC_X + 4] = comb.i;
+//        comb.f = p4.acc_y;
+//        MEM_PTR[OFFSET_ACC_Y + 4] = comb.i;
+//        comb.f = p4.acc_z;
+//        MEM_PTR[OFFSET_ACC_Z + 4] = comb.i;
+
+/*
+        p1.vel_x = *(float*)&MEM_PTR[OFFSET_VEL_X + 1];
+        p1.vel_y = *(float*)&MEM_PTR[OFFSET_VEL_Y + 1];
+        p1.vel_z = *(float*)&MEM_PTR[OFFSET_VEL_Z + 1];
+        p2.vel_x = *(float*)&MEM_PTR[OFFSET_VEL_X + 2];
+        p2.vel_y = *(float*)&MEM_PTR[OFFSET_VEL_Y + 2];
+        p2.vel_z = *(float*)&MEM_PTR[OFFSET_VEL_Z + 2];
+        p3.vel_x = *(float*)&MEM_PTR[OFFSET_VEL_X + 3];
+        p3.vel_y = *(float*)&MEM_PTR[OFFSET_VEL_Y + 3];
+        p3.vel_z = *(float*)&MEM_PTR[OFFSET_VEL_Z + 3];
+        p4.vel_x = *(float*)&MEM_PTR[OFFSET_VEL_X + 4];
+        p4.vel_y = *(float*)&MEM_PTR[OFFSET_VEL_Y + 4];
+        p4.vel_z = *(float*)&MEM_PTR[OFFSET_VEL_Z + 4];
+
+        p1.pos_x = *(float*)&MEM_PTR[OFFSET_POS_X + 1];
+        p1.pos_y = *(float*)&MEM_PTR[OFFSET_POS_Y + 1];
+        p1.pos_z = *(float*)&MEM_PTR[OFFSET_POS_Z + 1];
+        p2.pos_x = *(float*)&MEM_PTR[OFFSET_POS_X + 2];
+        p2.pos_y = *(float*)&MEM_PTR[OFFSET_POS_Y + 2];
+        p2.pos_z = *(float*)&MEM_PTR[OFFSET_POS_Z + 2];
+        p3.pos_x = *(float*)&MEM_PTR[OFFSET_POS_X + 3];
+        p3.pos_y = *(float*)&MEM_PTR[OFFSET_POS_Y + 3];
+        p3.pos_z = *(float*)&MEM_PTR[OFFSET_POS_Z + 3];
+        p4.pos_x = *(float*)&MEM_PTR[OFFSET_POS_X + 4];
+        p4.pos_y = *(float*)&MEM_PTR[OFFSET_POS_Y + 4];
+        p4.pos_z = *(float*)&MEM_PTR[OFFSET_POS_Z + 4];
+
+        clear_acceleration(&p1);
+        clear_acceleration(&p2);
+        clear_acceleration(&p3);
+        clear_acceleration(&p4);
+        */
+
+
+
+    	/*
+        force f = get_force_between_planets(p1, p2);
+        force n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p2);
+        f = get_force_between_planets(p1, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p1, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p1);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p2, p3);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p3);
+        f = get_force_between_planets(p2, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p2);
+        apply_force_to_planet(n, &p4);
+        f = get_force_between_planets(p3, p4);
+        n = negative_force(f);
+        apply_force_to_planet(f, &p3);
+        apply_force_to_planet(n, &p4);
+
+        // provide the acceleration
+        comb.f = p1.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 1] = comb.i;
+        comb.f = p1.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 1] = comb.i;
+        comb.f = p1.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 1] = comb.i;
+
+        comb.f = p2.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 2] = comb.i;
+        comb.f = p2.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 2] = comb.i;
+        comb.f = p2.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 2] = comb.i;
+
+        comb.f = p3.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 3] = comb.i;
+        comb.f = p3.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 3] = comb.i;
+        comb.f = p3.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 3] = comb.i;
+
+        comb.f = p4.acc_x;
+        MEM_PTR[OFFSET_ACC_X + 4] = comb.i;
+        comb.f = p4.acc_y;
+        MEM_PTR[OFFSET_ACC_Y + 4] = comb.i;
+        comb.f = p4.acc_z;
+        MEM_PTR[OFFSET_ACC_Z + 4] = comb.i;
+        */
 
         // initiate the start signal
 		MEM_PTR[OFFSET_START] = 1;
@@ -418,12 +607,24 @@ void hardware_simulation(){
 		// zero the start signal
 		MEM_PTR[OFFSET_START] = 0;
 
-
-		printf("p1 acc x: %f\n", p1.acc_x);
-		printf("p1 acc y: %f\n", p1.acc_y);
-		printf("p1 acc z: %f\n", p1.acc_z);
-		printf("\n");
+//		p1.acc_x = *(float*)&MEM_PTR[OFFSET_ACC_X + 1];
+//		p1.acc_y = *(float*)&MEM_PTR[OFFSET_ACC_Y + 1];
+//		p1.acc_z = *(float*)&MEM_PTR[OFFSET_ACC_Z + 1];
+//		p2.acc_x = *(float*)&MEM_PTR[OFFSET_ACC_X + 2];
+//		p2.acc_y = *(float*)&MEM_PTR[OFFSET_ACC_Y + 2];
+//		p2.acc_z = *(float*)&MEM_PTR[OFFSET_ACC_Z + 2];
+//		p3.acc_x = *(float*)&MEM_PTR[OFFSET_ACC_X + 3];
+//		p3.acc_y = *(float*)&MEM_PTR[OFFSET_ACC_Y + 3];
+//		p3.acc_z = *(float*)&MEM_PTR[OFFSET_ACC_Z + 3];
+//		p4.acc_x = *(float*)&MEM_PTR[OFFSET_ACC_X + 4];
+//		p4.acc_y = *(float*)&MEM_PTR[OFFSET_ACC_Y + 4];
+//		p4.acc_z = *(float*)&MEM_PTR[OFFSET_ACC_Z + 4];
 //
+//		printf("p1 acc x: %f\n", p1.acc_x);
+//		printf("p1 acc y: %f\n", p1.acc_y);
+//		printf("p1 acc z: %f\n", p1.acc_z);
+//		printf("\n");
+////
 //		printf("p2 acc x: %f\n", p2.acc_x);
 //		printf("p2 acc y: %f\n", p2.acc_y);
 //		printf("p2 acc z: %f\n", p2.acc_z);
@@ -438,7 +639,74 @@ void hardware_simulation(){
 //		printf("p4 acc y: %f\n", p4.acc_y);
 //		printf("p4 acc z: %f\n", p4.acc_z);
 
+//        timestep(&p1);
+//        timestep(&p2);
+//        timestep(&p3);
+//        timestep(&p4);
 
+        // add VEL and POS to regfile
+
+        // body 1
+//		MEM_PTR[OFFSET_RAD + 1] = *(unsigned long*)&p1.rad;
+//		MEM_PTR[OFFSET_POS_X + 1] = *(unsigned long*)&p1.pos_x;
+//		MEM_PTR[OFFSET_POS_Y + 1] = *(unsigned long*)&p1.pos_y;
+//		MEM_PTR[OFFSET_POS_Z + 1] = *(unsigned long*)&p1.pos_z;
+//
+//		MEM_PTR[OFFSET_VEL_X + 1] = *(unsigned long*)&p1.vel_x;
+//		MEM_PTR[OFFSET_VEL_Y + 1] = *(unsigned long*)&p1.vel_y;
+//		MEM_PTR[OFFSET_VEL_Z + 1] = *(unsigned long*)&p1.vel_z;
+//
+//		// body 2
+//		MEM_PTR[OFFSET_RAD + 2] = *(unsigned long*)&p2.rad;
+//		MEM_PTR[OFFSET_POS_X + 2] = *(unsigned long*)&p2.pos_x;
+//		MEM_PTR[OFFSET_POS_Y + 2] = *(unsigned long*)&p2.pos_y;
+//		MEM_PTR[OFFSET_POS_Z + 2] = *(unsigned long*)&p2.pos_z;
+//
+//		MEM_PTR[OFFSET_VEL_X + 2] = *(unsigned long*)&p2.vel_x;
+//		MEM_PTR[OFFSET_VEL_Y + 2] = *(unsigned long*)&p2.vel_y;
+//		MEM_PTR[OFFSET_VEL_Z + 2] = *(unsigned long*)&p2.vel_z;
+//
+//		// body 3
+//		MEM_PTR[OFFSET_RAD + 3] = *(unsigned long*)&p3.rad;
+//		MEM_PTR[OFFSET_POS_X + 3] = *(unsigned long*)&p3.pos_x;
+//		MEM_PTR[OFFSET_POS_Y + 3] = *(unsigned long*)&p3.pos_y;
+//		MEM_PTR[OFFSET_POS_Z + 3] = *(unsigned long*)&p3.pos_z;
+//
+//		MEM_PTR[OFFSET_VEL_X + 3] = *(unsigned long*)&p3.vel_x;
+//		MEM_PTR[OFFSET_VEL_Y + 3] = *(unsigned long*)&p3.vel_y;
+//		MEM_PTR[OFFSET_VEL_Z + 3] = *(unsigned long*)&p3.vel_z;
+//
+//		// body 4
+//		MEM_PTR[OFFSET_RAD + 4] = *(unsigned long*)&p4.rad;
+//		MEM_PTR[OFFSET_POS_X + 4] = *(unsigned long*)&p4.pos_x;
+//		MEM_PTR[OFFSET_POS_Y + 4] = *(unsigned long*)&p4.pos_y;
+//		MEM_PTR[OFFSET_POS_Z + 4] = *(unsigned long*)&p4.pos_z;
+//
+//		MEM_PTR[OFFSET_VEL_X + 4] = *(unsigned long*)&p4.vel_x;
+//		MEM_PTR[OFFSET_VEL_Y + 4] = *(unsigned long*)&p4.vel_y;
+//		MEM_PTR[OFFSET_VEL_Z + 4] = *(unsigned long*)&p4.vel_z;
+        
+		// added print for debugging
+//		printf("Planet 2 POS_Y: %f\n", *(float*)&MEM_PTR[OFFSET_POS_Y + 2]);
+//		printf("Planet 2 POS_Y var: %f\n", *(float*)&p2.pos_y);
+//		printf("Planet 2 VEL_X: %f\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 2]);
+//		printf("Planet 2 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
+//		printf("Planet 2 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 2]);
+//		printf("Planet 2 ACC_Y: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_Y + 2]);
+//		printf("Planet 2 ACC_Z: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_Z + 2]);
+//		printf("G: %f\n", *(float*)&MEM_PTR[OFFSET_G]);
+//		printf("PLANET_NUM: %d\n", MEM_PTR[OFFSET_NUM]);
+//		float test = 1.9f;
+//		printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
+//		MEM_PTR[OFFSET_ACC_X + 1] = *(unsigned long*)&test;
+//		printf("Planet 1 ACC_X: %f\n", *(float*)&MEM_PTR[OFFSET_ACC_X + 1]);
+
+//		printf("\n\nPlanet 1 VEL_X: %f\n\n", *(float*)&MEM_PTR[OFFSET_VEL_X + 1]);
+//		printf("\n\nPlanet 1 VEL_Y: %f\n\n", *(float*)&MEM_PTR[OFFSET_VEL_Y + 1]);
+//		printf("\n\nPlanet 1 VEL_Z: %f\n\n", *(float*)&MEM_PTR[OFFSET_VEL_Z + 1]);
+
+        //printf("After timestep %d, planet 1 is at (%.2f, %.2f, %.2f)\n", i, p1.pos_x, p1.pos_y, p1.pos_z);
+        //printf("After timestep %d, planet 2 is at (%.2f, %.2f, %.2f)\n", i, p2.pos_x, p2.pos_y, p2.pos_z);
     }
 
 }
