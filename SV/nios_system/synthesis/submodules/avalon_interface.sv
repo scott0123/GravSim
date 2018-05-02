@@ -1,17 +1,6 @@
 /************************************************************************
+
 Avalon-MM Interface
-
-Register Map:
-
-0: P1 scaled radius
-1: P1 scaled x position
-2: P1 scaled y position
-3: P1 scaled z position
-
-4: P2 scaled radius
-5: P2 scaled x position
-6: P2 scaled y position
-7: P2 scaled z position
 
 ************************************************************************/
 
@@ -109,9 +98,9 @@ always_comb begin
 	end
 	
 	// pos x, y, z (scaled)
-	EXPORT_DATA[31:22] = regfile[1][9:0];
-	EXPORT_DATA[21:12] = regfile[2][9:0];
-	EXPORT_DATA[11:2] = regfile[3][9:0];
+	EXPORT_DATA[31:0] = regfile[OFFSET_ACC_Y + 32'd1];
+//	EXPORT_DATA[21:12] = regfile[2][9:0];
+//	EXPORT_DATA[11:2] = regfile[3][9:0];
 	
 end
 

@@ -1,5 +1,5 @@
 Assembler report for GravSim
-Tue May 01 17:09:53 2018
+Wed May 02 01:51:18 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -38,7 +38,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue May 01 17:09:53 2018 ;
+; Assembler Status      ; Successful - Wed May 02 01:51:18 2018 ;
 ; Revision Name         ; GravSim                               ;
 ; Top-level Entity Name ; GravSim                               ;
 ; Family                ; Cyclone IV E                          ;
@@ -77,8 +77,8 @@ refer to the applicable agreement for further details.
 +----------------+---------------------------------------------------------------------------------------------+
 ; Option         ; Setting                                                                                     ;
 +----------------+---------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x02C4C893                                                                                  ;
-; Checksum       ; 0x02C4C893                                                                                  ;
+; JTAG usercode  ; 0x015E14E1                                                                                  ;
+; Checksum       ; 0x015E14E1                                                                                  ;
 +----------------+---------------------------------------------------------------------------------------------+
 
 
@@ -88,15 +88,15 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Tue May 01 17:09:46 2018
+    Info: Processing started: Wed May 02 01:51:12 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off GravSim -c GravSim
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 760 megabytes
-    Info: Processing ended: Tue May 01 17:09:54 2018
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:07
+    Info: Peak virtual memory: 693 megabytes
+    Info: Processing ended: Wed May 02 01:51:18 2018
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
 
 

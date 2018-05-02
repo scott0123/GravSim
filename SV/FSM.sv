@@ -72,8 +72,6 @@ logic [2:0] state_counter;
 logic [2:0] state_counter_next;
 
 // declare internal data here
-//logic updateV;
-//logic updateP;
 logic [31:0] FPadd_opA;
 logic [31:0] FPadd_opB;
 logic [31:0] FPadd_opC;
@@ -194,7 +192,7 @@ always_ff @(posedge CLK) begin
 			FPmult_outEF_cached <= FPmult_outEF;
 		end
 		
-		if (state == GetAcc_3) begin
+		if (state == GetAcc_4 && state_counter == 3'd0) begin // changed from state == GetAcc_3
 			FPadd_outAB_cached <= FPadd_outAB;
 		end
 		
@@ -311,9 +309,10 @@ always_comb begin
 		
 		GetAcc_1_getdata:
 			begin
+//				next_state = DONE;
 				next_state = GetAcc_1;
 			end
-			
+		
 		GetAcc_1:
 			begin
 				next_state = GetAcc_2;
@@ -322,6 +321,7 @@ always_comb begin
 		GetAcc_2:
 			begin
 				next_state = GetAcc_3;
+//				next_state = DONE;
 			end
 		
 		GetAcc_3:
@@ -331,6 +331,7 @@ always_comb begin
 		
 		GetAcc_4:
 			begin
+//				next_state = DONE;
 				if (state_counter > 3'd4)
 					next_state = GetAcc_5;
 			end
@@ -348,22 +349,23 @@ always_comb begin
 		ApplyAcc_2:
 			begin
 				
-				if (iterator_i == PLANET_NUM - 32'd2 && iterator_j == PLANET_NUM - 32'd1) begin
-					iterator_i_next = 32'b0;
-					next_state = ResolveForce_CalcVel_1_getdata;
-				end
-				else begin
-					if (iterator_j == PLANET_NUM - 32'd1) begin
-						iterator_i_next = iterator_i + 32'd1;
-						iterator_j_next = iterator_i + 32'd2;
-					end
-					else begin
-						iterator_j_next = iterator_j + 32'd1;
-					end
-					next_state = GetAcc_1_getdata;
-				end
+//				if (iterator_i == PLANET_NUM - 32'd2 && iterator_j == PLANET_NUM - 32'd1) begin
+//					iterator_i_next = 32'b0;
+//					next_state = ResolveForce_CalcVel_1_getdata;
+					next_state = DONE;
+//				end
+//				else begin
+//					if (iterator_j == PLANET_NUM - 32'd1) begin
+//						iterator_i_next = iterator_i + 32'd1;
+//						iterator_j_next = iterator_i + 32'd2;
+//					end
+//					else begin
+//						iterator_j_next = iterator_j + 32'd1;
+//					end
+//					next_state = GetAcc_1_getdata;
+//				end
 			end
-		
+		/*
 		ResolveForce_CalcVel_1_getdata:
 			begin
 				next_state = ResolveForce_CalcVel_1;
@@ -401,7 +403,7 @@ always_comb begin
 				end
 			
 			end
-		
+		*/
 		
 		
 		default: ;
@@ -439,7 +441,18 @@ always_comb begin
 			begin
 				
 				clear_accs = 1;
-								
+				
+//				// added for debugging
+//				ADDR1 = OFFSET_VEL_X + iterator_i + 32'b1;
+//				ADDR2 = OFFSET_VEL_Y + iterator_i + 32'b1;
+//				ADDR3 = OFFSET_VEL_Z + iterator_i + 32'b1;
+//				
+//				DATA1 = 32'h40800000;
+//				DATA2 = 32'h40800000;
+//				DATA3 = 32'h40800000;
+//				
+//				FSM_we = 2'b1;
+				
 			end
 		
 		// Get Acceleration
@@ -456,6 +469,23 @@ always_comb begin
 				ADDR6 = OFFSET_POS_Z + iterator_j + 32'b1;
 				
 				FSM_re = 2'd3;
+
+//				// prepare for next state
+//				ADDR1 = OFFSET_ACC_X + 32'd1;
+//				ADDR2 = OFFSET_ACC_X + 32'd4;
+//				ADDR3 = OFFSET_ACC_Y + 32'd1;
+//				ADDR4 = OFFSET_ACC_Y + 32'd4;
+//				ADDR5 = OFFSET_ACC_Z + 32'd1;
+//				ADDR6 = OFFSET_ACC_Z + 32'd4;
+//				
+//				DATA1 = 32'b0;
+//				DATA2 = 32'b0;
+//				DATA3 = 32'h3f800000;
+//				DATA4 = 32'h3f800000;
+//				DATA5 = 32'b0;
+//				DATA6 = 32'b0;
+//				
+//				FSM_we = 2'd3;
 
 			end
 		
@@ -487,8 +517,31 @@ always_comb begin
 				FPadd_opA = FPmult_outAB;
 				FPadd_opB = FPmult_outCD;
 				
+//				// added for testing
+//				// set ADDR for Planet i acceleration updates
+//				ADDR1 = OFFSET_ACC_X + iterator_i + 32'b1;
+//				ADDR2 = OFFSET_ACC_Y + iterator_i + 32'b1;
+//				ADDR3 = OFFSET_ACC_Z + iterator_i + 32'b1;
+//				
+//				// set DATA output for Planet i acceleration updates
+//				DATA1 = FPmult_outAB;
+//				DATA2 = FPmult_outCD;
+//				DATA3 = FPmult_outEF;
+//				
+//				// set ADDR for Planet j acceleration updates
+//				ADDR4 = OFFSET_ACC_X + iterator_j + 32'b1;
+//				ADDR5 = OFFSET_ACC_Y + iterator_j + 32'b1;
+//				ADDR6 = OFFSET_ACC_Z + iterator_j + 32'b1;
+//				
+//				// set DATA output for Planet j acceleration updates
+//				DATA4 = FPadd_outAB;
+//				DATA5 = FPadd_outCD;
+//				DATA6 = FPadd_outEF;
+//				
+//				FSM_we = 2'd3;
+				
 			end
-	
+		
 		GetAcc_3:
 			begin
 				
@@ -504,19 +557,56 @@ always_comb begin
 				
 			end
 		
+//		GetAcc_4:
+//			begin
+//				
+//				// added for testing
+//				// set ADDR for Planet i acceleration updates
+//				ADDR1 = OFFSET_ACC_X + iterator_i + 32'b1;
+//				ADDR2 = OFFSET_ACC_Y + iterator_i + 32'b1;
+//				ADDR3 = OFFSET_ACC_Z + iterator_i + 32'b1;
+//				
+//				// set DATA output for Planet i acceleration updates
+//				DATA1 = FPadd_outAB;
+//				DATA2 = FPadd_outAB;
+//				DATA3 = FPadd_outAB;
+//				
+//				// set ADDR for Planet j acceleration updates
+//				ADDR4 = OFFSET_ACC_X + iterator_j + 32'b1;
+//				ADDR5 = OFFSET_ACC_Y + iterator_j + 32'b1;
+//				ADDR6 = OFFSET_ACC_Z + iterator_j + 32'b1;
+//				
+//				// set DATA output for Planet j acceleration updates
+//				DATA4 = DATA1in;
+//				DATA5 = DATA3in;
+//				DATA6 = 32'h3f800000; // 1
+//				
+//				FSM_we = 2'd3;
+//				
+//			end
+		
+		
 		// now we have R2
 		GetAcc_4:
 			begin
-							
+				
+				// prepare for this state
+				ADDR1 = OFFSET_MASS + iterator_j + 32'b1;
+				ADDR2 = OFFSET_MASS + iterator_i + 32'b1;
+				
+				FSM_re = 2'b1;
+				
 				if (state_counter < 3'd5)
 					state_counter_next = state_counter + 3'b1;
 				
 				// generate 1/sqrt(R2)
 				FPinvsqrt_op = FPadd_outAB_cached;
+//				FPinvsqrt_op = 32'h3f800000; // 1 for testing
 				
 				// generate 1/R2
 				FPinv_op = FPadd_outAB_cached;
-				
+//				FPinv_op = 32'h3f800000; // 1 for testing
+
 				// G * m_j * result
 				
 				// G*m_j
@@ -632,7 +722,7 @@ always_comb begin
 				FSM_we = 2'd3; // write to all 6 ADDRs
 				
 			end
-		
+		/*
 		// Resolve Force
 		
 		ResolveForce_CalcVel_1_getdata:
@@ -743,7 +833,7 @@ always_comb begin
 				
 			end
 
-		
+		*/
 		
 		default: ;
 		

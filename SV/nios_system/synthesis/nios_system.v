@@ -171,7 +171,6 @@ module nios_system (
 		// Added outputs that must go to top-level entity
 		.is_ball_out(is_ball),
 		.ballID(ballID)
-
 	);
 
 	nios_system_TIMER timer (

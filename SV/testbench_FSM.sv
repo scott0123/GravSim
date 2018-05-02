@@ -30,7 +30,7 @@ const int OFFSET_ACC_Y = 94-1;
 const int OFFSET_ACC_Z = 104-1;
 
 // data storage
-logic [31:0] regfile [113];
+logic [31:0] regfile [114];
 
 // inputs
 //input	 logic CLK;
