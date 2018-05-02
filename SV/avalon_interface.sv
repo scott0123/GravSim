@@ -35,21 +35,21 @@ module avalon_interface (
 
 );
 
-const int OFFSET_G = 0;
-const int OFFSET_NUM = 1;
-const int OFFSET_START = 2;
-const int OFFSET_DONE = 3;
-const int OFFSET_MASS = 4-1;
-const int OFFSET_RAD = 14-1;
-const int OFFSET_POS_X = 24-1;
-const int OFFSET_POS_Y = 34-1;
-const int OFFSET_POS_Z = 44-1;
-const int OFFSET_VEL_X = 54-1;
-const int OFFSET_VEL_Y = 64-1;
-const int OFFSET_VEL_Z = 74-1;
-const int OFFSET_ACC_X = 84-1;
-const int OFFSET_ACC_Y = 94-1;
-const int OFFSET_ACC_Z = 104-1;
+parameter [6:0] OFFSET_G = 7'd0;
+parameter [6:0] OFFSET_NUM = 7'd1;
+parameter [6:0] OFFSET_START = 7'd2;
+parameter [6:0] OFFSET_DONE = 7'd3;
+parameter [6:0] OFFSET_MASS = 7'd3;
+parameter [6:0] OFFSET_RAD = 7'd13;
+parameter [6:0] OFFSET_POS_X = 7'd23;
+parameter [6:0] OFFSET_POS_Y = 7'd33;
+parameter [6:0] OFFSET_POS_Z = 7'd43;
+parameter [6:0] OFFSET_VEL_X = 7'd53;
+parameter [6:0] OFFSET_VEL_Y = 7'd63;
+parameter [6:0] OFFSET_VEL_Z = 7'd73;
+parameter [6:0] OFFSET_ACC_X = 7'd83;
+parameter [6:0] OFFSET_ACC_Y = 7'd93;
+parameter [6:0] OFFSET_ACC_Z = 7'd103;
 
 // added internal logic for FSM
 logic FSM_clear_accs;
@@ -98,7 +98,7 @@ always_comb begin
 	end
 	
 	// pos x, y, z (scaled)
-	EXPORT_DATA[31:0] = regfile[OFFSET_ACC_Y + 32'd1];
+	EXPORT_DATA[31:0] = regfile[OFFSET_ACC_Y + 7'd1];
 //	EXPORT_DATA[21:12] = regfile[2][9:0];
 //	EXPORT_DATA[11:2] = regfile[3][9:0];
 	
@@ -163,9 +163,9 @@ always_ff @(posedge CLK) begin
 			if (FSM_clear_accs) begin
 			
 				for (int i = 0; i < 10; i += 1) begin
-					regfile[OFFSET_ACC_X + i + 1] <= 32'b0;
-					regfile[OFFSET_ACC_Y + i + 1] <= 32'b0;
-					regfile[OFFSET_ACC_Z + i + 1] <= 32'b0;
+					regfile[OFFSET_ACC_X + i + 7'b1] <= 32'b0;
+					regfile[OFFSET_ACC_Y + i + 7'b1] <= 32'b0;
+					regfile[OFFSET_ACC_Z + i + 7'b1] <= 32'b0;
 				end
 				
 			end
@@ -242,7 +242,7 @@ FSM FSM_instance (
 	.FSM_re,
 	.FSM_we,
 	
-	.PLANET_NUM(regfile[OFFSET_NUM]),
+	.PLANET_NUM(regfile[OFFSET_NUM][6:0]),
 	.G(regfile[OFFSET_G]),
 	
 	.ADDR1(FSM_ADDR1),
@@ -298,10 +298,10 @@ ball ball_1 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[OFFSET_RAD+32'd1]),
-.posX(regfile[OFFSET_POS_X+32'd1]),
-.posY(regfile[OFFSET_POS_Y+32'd1]),
-.posZ(regfile[OFFSET_POS_Z+32'd1]),
+.radius(regfile[OFFSET_RAD+7'b1]),
+.posX(regfile[OFFSET_POS_X+7'b1]),
+.posY(regfile[OFFSET_POS_Y+7'b1]),
+.posZ(regfile[OFFSET_POS_Z+7'b1]),
 //outputs
 .is_ball(is_ball_1)
 );
@@ -314,10 +314,10 @@ ball ball_2 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[OFFSET_RAD+32'd2]),
-.posX(regfile[OFFSET_POS_X+32'd2]),
-.posY(regfile[OFFSET_POS_Y+32'd2]),
-.posZ(regfile[OFFSET_POS_Z+32'd2]),
+.radius(regfile[OFFSET_RAD+7'd2]),
+.posX(regfile[OFFSET_POS_X+7'd2]),
+.posY(regfile[OFFSET_POS_Y+7'd2]),
+.posZ(regfile[OFFSET_POS_Z+7'd2]),
 //outputs
 .is_ball(is_ball_2)
 );
@@ -330,10 +330,10 @@ ball ball_3 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[OFFSET_RAD+32'd3]),
-.posX(regfile[OFFSET_POS_X+32'd3]),
-.posY(regfile[OFFSET_POS_Y+32'd3]),
-.posZ(regfile[OFFSET_POS_Z+32'd3]),
+.radius(regfile[OFFSET_RAD+7'd3]),
+.posX(regfile[OFFSET_POS_X+7'd3]),
+.posY(regfile[OFFSET_POS_Y+7'd3]),
+.posZ(regfile[OFFSET_POS_Z+7'd3]),
 //outputs
 .is_ball(is_ball_3)
 );
@@ -346,10 +346,10 @@ ball ball_4 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[OFFSET_RAD+32'd4]),
-.posX(regfile[OFFSET_POS_X+32'd4]),
-.posY(regfile[OFFSET_POS_Y+32'd4]),
-.posZ(regfile[OFFSET_POS_Z+32'd4]),
+.radius(regfile[OFFSET_RAD+7'd4]),
+.posX(regfile[OFFSET_POS_X+7'd4]),
+.posY(regfile[OFFSET_POS_Y+7'd4]),
+.posZ(regfile[OFFSET_POS_Z+7'd4]),
 //outputs
 .is_ball(is_ball_4)
 );

@@ -19,12 +19,12 @@ module FSM (
 	output logic FSM_DONE,
 //	input  logic [31:0] datafile [113],
 	
-	input logic [31:0] PLANET_NUM,
+	input logic [6:0] PLANET_NUM, // shortened inside avalon_interface
 	input logic [31:0] G,
 	output logic clear_accs,
 	output logic [1:0] FSM_re,
 	output logic [1:0] FSM_we,
-	output logic [31:0] ADDR1, ADDR2, ADDR3, ADDR4, ADDR5, ADDR6,
+	output logic [6:0] ADDR1, ADDR2, ADDR3, ADDR4, ADDR5, ADDR6,
 	output logic [31:0] DATA1, DATA2, DATA3, DATA4, DATA5, DATA6,
 	input logic [31:0] DATA1in, DATA2in, DATA3in, DATA4in, DATA5in, DATA6in
 	
@@ -49,21 +49,21 @@ module FSM (
 //assign DATA6 = 32'b0;
 
 // declare constants here
-const int OFFSET_G = 0;
-const int OFFSET_NUM = 1;
-const int OFFSET_START = 2;
-const int OFFSET_DONE = 3;
-const int OFFSET_MASS = 4-1;
-const int OFFSET_RAD = 14-1;
-const int OFFSET_POS_X = 24-1;
-const int OFFSET_POS_Y = 34-1;
-const int OFFSET_POS_Z = 44-1;
-const int OFFSET_VEL_X = 54-1;
-const int OFFSET_VEL_Y = 64-1;
-const int OFFSET_VEL_Z = 74-1;
-const int OFFSET_ACC_X = 84-1;
-const int OFFSET_ACC_Y = 94-1;
-const int OFFSET_ACC_Z = 104-1;
+parameter [6:0] OFFSET_G = 7'd0;
+parameter [6:0] OFFSET_NUM = 7'd1;
+parameter [6:0] OFFSET_START = 7'd2;
+parameter [6:0] OFFSET_DONE = 7'd3;
+parameter [6:0] OFFSET_MASS = 7'd3;
+parameter [6:0] OFFSET_RAD = 7'd13;
+parameter [6:0] OFFSET_POS_X = 7'd23;
+parameter [6:0] OFFSET_POS_Y = 7'd33;
+parameter [6:0] OFFSET_POS_Z = 7'd43;
+parameter [6:0] OFFSET_VEL_X = 7'd53;
+parameter [6:0] OFFSET_VEL_Y = 7'd63;
+parameter [6:0] OFFSET_VEL_Z = 7'd73;
+parameter [6:0] OFFSET_ACC_X = 7'd83;
+parameter [6:0] OFFSET_ACC_Y = 7'd93;
+parameter [6:0] OFFSET_ACC_Z = 7'd103;
 
 const int DT = 32'h3c888889; // 1/60 in single precision float
 
@@ -117,10 +117,10 @@ logic [31:0] FPinvsqrt_op;
 logic [31:0] FPinvsqrt_out;
 
 // planet counters
-logic [31:0] iterator_i;
-logic [31:0] iterator_j;
-logic [31:0] iterator_i_next;
-logic [31:0] iterator_j_next;
+logic [6:0] iterator_i;
+logic [6:0] iterator_j;
+logic [6:0] iterator_i_next;
+logic [6:0] iterator_j_next;
 
 // next state holders for module outputs
 
@@ -293,8 +293,8 @@ always_comb begin
 					next_state = ClearAcc;
 //					next_state = ResolveForce_CalcVel_1_getdata;
 //					next_state = DONE;
-					iterator_i_next = 32'b0;
-					iterator_j_next = 32'b1;
+					iterator_i_next = 7'b0;
+					iterator_j_next = 7'b1;
 				end
 			end
 		
@@ -351,8 +351,8 @@ always_comb begin
 				
 //				if (iterator_i == PLANET_NUM - 32'd2 && iterator_j == PLANET_NUM - 32'd1) begin
 //					iterator_i_next = 32'b0;
-//					next_state = ResolveForce_CalcVel_1_getdata;
-					next_state = DONE;
+					next_state = ResolveForce_CalcVel_1_getdata;
+//					next_state = DONE;
 //				end
 //				else begin
 //					if (iterator_j == PLANET_NUM - 32'd1) begin
@@ -365,7 +365,7 @@ always_comb begin
 //					next_state = GetAcc_1_getdata;
 //				end
 			end
-		/*
+		
 		ResolveForce_CalcVel_1_getdata:
 			begin
 				next_state = ResolveForce_CalcVel_1;
@@ -394,16 +394,16 @@ always_comb begin
 		ResolveForce_CalcPos_2:
 			begin
 			
-				if (iterator_i == PLANET_NUM - 32'd1) begin
+				if (iterator_i == PLANET_NUM - 7'd1) begin
 					next_state = DONE;
 				end
 				else begin
-					iterator_i_next = iterator_i + 32'b1;
+					iterator_i_next = iterator_i + 7'b1;
 					next_state = ResolveForce_CalcVel_1_getdata;
 				end
 			
 			end
-		*/
+		
 		
 		
 		default: ;
@@ -461,12 +461,12 @@ always_comb begin
 			begin
 			
 				// prepare for next state
-				ADDR1 = OFFSET_POS_X + iterator_i + 32'b1;
-				ADDR2 = OFFSET_POS_X + iterator_j + 32'b1;
-				ADDR3 = OFFSET_POS_Y + iterator_i + 32'b1;
-				ADDR4 = OFFSET_POS_Y + iterator_j + 32'b1;
-				ADDR5 = OFFSET_POS_Z + iterator_i + 32'b1;
-				ADDR6 = OFFSET_POS_Z + iterator_j + 32'b1;
+				ADDR1 = OFFSET_POS_X + iterator_i + 7'b1;
+				ADDR2 = OFFSET_POS_X + iterator_j + 7'b1;
+				ADDR3 = OFFSET_POS_Y + iterator_i + 7'b1;
+				ADDR4 = OFFSET_POS_Y + iterator_j + 7'b1;
+				ADDR5 = OFFSET_POS_Z + iterator_i + 7'b1;
+				ADDR6 = OFFSET_POS_Z + iterator_j + 7'b1;
 				
 				FSM_re = 2'd3;
 
@@ -550,8 +550,8 @@ always_comb begin
 				FPadd_opB = FPmult_outEF_cached;
 				
 				// prepare for next state
-				ADDR1 = OFFSET_MASS + iterator_j + 32'b1;
-				ADDR2 = OFFSET_MASS + iterator_i + 32'b1;
+				ADDR1 = OFFSET_MASS + iterator_j + 7'b1;
+				ADDR2 = OFFSET_MASS + iterator_i + 7'b1;
 				
 				FSM_re = 2'b1;
 				
@@ -591,8 +591,8 @@ always_comb begin
 			begin
 				
 				// prepare for this state
-				ADDR1 = OFFSET_MASS + iterator_j + 32'b1;
-				ADDR2 = OFFSET_MASS + iterator_i + 32'b1;
+				ADDR1 = OFFSET_MASS + iterator_j + 7'b1;
+				ADDR2 = OFFSET_MASS + iterator_i + 7'b1;
 				
 				FSM_re = 2'b1;
 				
@@ -646,12 +646,12 @@ always_comb begin
 				FPmult_opF = FPinvsqrt_out;
 				
 				// prepare for next state
-				ADDR1 = OFFSET_ACC_X + iterator_i + 32'b1;
-				ADDR2 = OFFSET_ACC_Y + iterator_i + 32'b1;
-				ADDR3 = OFFSET_ACC_Z + iterator_i + 32'b1;
-				ADDR4 = OFFSET_ACC_X + iterator_j + 32'b1;
-				ADDR5 = OFFSET_ACC_Y + iterator_j + 32'b1;
-				ADDR6 = OFFSET_ACC_Z + iterator_j + 32'b1;
+				ADDR1 = OFFSET_ACC_X + iterator_i + 7'b1;
+				ADDR2 = OFFSET_ACC_Y + iterator_i + 7'b1;
+				ADDR3 = OFFSET_ACC_Z + iterator_i + 7'b1;
+				ADDR4 = OFFSET_ACC_X + iterator_j + 7'b1;
+				ADDR5 = OFFSET_ACC_Y + iterator_j + 7'b1;
+				ADDR6 = OFFSET_ACC_Z + iterator_j + 7'b1;
 				
 				FSM_re = 2'd3;
 				
@@ -700,9 +700,9 @@ always_comb begin
 			begin
 				
 				// set ADDR for Planet i acceleration updates
-				ADDR1 = OFFSET_ACC_X + iterator_i + 32'b1;
-				ADDR2 = OFFSET_ACC_Y + iterator_i + 32'b1;
-				ADDR3 = OFFSET_ACC_Z + iterator_i + 32'b1;
+				ADDR1 = OFFSET_ACC_X + iterator_i + 7'b1;
+				ADDR2 = OFFSET_ACC_Y + iterator_i + 7'b1;
+				ADDR3 = OFFSET_ACC_Z + iterator_i + 7'b1;
 				
 				// set DATA output for Planet i acceleration updates
 				DATA1 = FPadd_outAB;
@@ -710,9 +710,9 @@ always_comb begin
 				DATA3 = FPadd_outEF;
 				
 				// set ADDR for Planet j acceleration updates
-				ADDR4 = OFFSET_ACC_X + iterator_j + 32'b1;
-				ADDR5 = OFFSET_ACC_Y + iterator_j + 32'b1;
-				ADDR6 = OFFSET_ACC_Z + iterator_j + 32'b1;
+				ADDR4 = OFFSET_ACC_X + iterator_j + 7'b1;
+				ADDR5 = OFFSET_ACC_Y + iterator_j + 7'b1;
+				ADDR6 = OFFSET_ACC_Z + iterator_j + 7'b1;
 				
 				// set DATA output for Planet j acceleration updates
 				DATA4 = FPadd_outGH;
@@ -722,18 +722,18 @@ always_comb begin
 				FSM_we = 2'd3; // write to all 6 ADDRs
 				
 			end
-		/*
+		
 		// Resolve Force
 		
 		ResolveForce_CalcVel_1_getdata:
 			begin
 				
-				ADDR1 = OFFSET_ACC_X + iterator_i + 32'b1;
-				ADDR2 = OFFSET_ACC_Y + iterator_i + 32'b1;
-				ADDR3 = OFFSET_ACC_Z + iterator_i + 32'b1;
-				ADDR4 = OFFSET_VEL_X + iterator_i + 32'b1;
-				ADDR5 = OFFSET_VEL_Y + iterator_i + 32'b1;
-				ADDR6 = OFFSET_VEL_Z + iterator_i + 32'b1;
+				ADDR1 = OFFSET_ACC_X + iterator_i + 7'b1;
+				ADDR2 = OFFSET_ACC_Y + iterator_i + 7'b1;
+				ADDR3 = OFFSET_ACC_Z + iterator_i + 7'b1;
+				ADDR4 = OFFSET_VEL_X + iterator_i + 7'b1;
+				ADDR5 = OFFSET_VEL_Y + iterator_i + 7'b1;
+				ADDR6 = OFFSET_VEL_Z + iterator_i + 7'b1;
 				
 				FSM_re = 2'd3;
 				
@@ -767,9 +767,9 @@ always_comb begin
 		ResolveForce_CalcVel_2:
 			begin
 				
-				ADDR1 = OFFSET_VEL_X + iterator_i + 32'b1;
-				ADDR2 = OFFSET_VEL_Y + iterator_i + 32'b1;
-				ADDR3 = OFFSET_VEL_Z + iterator_i + 32'b1;
+				ADDR1 = OFFSET_VEL_X + iterator_i + 7'b1;
+				ADDR2 = OFFSET_VEL_Y + iterator_i + 7'b1;
+				ADDR3 = OFFSET_VEL_Z + iterator_i + 7'b1;
 				
 				DATA1 = FPadd_outAB;
 				DATA2 = FPadd_outCD;
@@ -782,12 +782,12 @@ always_comb begin
 		ResolveForce_CalcPos_1_getdata:
 			begin
 				
-				ADDR1 = OFFSET_VEL_X + iterator_i + 32'b1;
-				ADDR2 = OFFSET_VEL_Y + iterator_i + 32'b1;
-				ADDR3 = OFFSET_VEL_Z + iterator_i + 32'b1;
-				ADDR4 = OFFSET_POS_X + iterator_i + 32'b1;
-				ADDR5 = OFFSET_POS_Y + iterator_i + 32'b1;
-				ADDR6 = OFFSET_POS_Z + iterator_i + 32'b1;
+				ADDR1 = OFFSET_VEL_X + iterator_i + 7'b1;
+				ADDR2 = OFFSET_VEL_Y + iterator_i + 7'b1;
+				ADDR3 = OFFSET_VEL_Z + iterator_i + 7'b1;
+				ADDR4 = OFFSET_POS_X + iterator_i + 7'b1;
+				ADDR5 = OFFSET_POS_Y + iterator_i + 7'b1;
+				ADDR6 = OFFSET_POS_Z + iterator_i + 7'b1;
 				
 				FSM_re = 2'd3;
 				
@@ -821,9 +821,9 @@ always_comb begin
 		ResolveForce_CalcPos_2:
 			begin
 			
-				ADDR1 = OFFSET_POS_X + iterator_i + 32'b1;
-				ADDR2 = OFFSET_POS_Y + iterator_i + 32'b1;
-				ADDR3 = OFFSET_POS_Z + iterator_i + 32'b1;
+				ADDR1 = OFFSET_POS_X + iterator_i + 7'b1;
+				ADDR2 = OFFSET_POS_Y + iterator_i + 7'b1;
+				ADDR3 = OFFSET_POS_Z + iterator_i + 7'b1;
 				
 				DATA1 = FPadd_outAB;
 				DATA2 = FPadd_outCD;
@@ -833,7 +833,7 @@ always_comb begin
 				
 			end
 
-		*/
+		
 		
 		default: ;
 		

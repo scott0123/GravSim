@@ -647,44 +647,44 @@ void hardware_simulation(){
         // add VEL and POS to regfile
 
         // body 1
-//		MEM_PTR[OFFSET_RAD + 1] = *(unsigned long*)&p1.rad;
-//		MEM_PTR[OFFSET_POS_X + 1] = *(unsigned long*)&p1.pos_x;
-//		MEM_PTR[OFFSET_POS_Y + 1] = *(unsigned long*)&p1.pos_y;
-//		MEM_PTR[OFFSET_POS_Z + 1] = *(unsigned long*)&p1.pos_z;
-//
-//		MEM_PTR[OFFSET_VEL_X + 1] = *(unsigned long*)&p1.vel_x;
-//		MEM_PTR[OFFSET_VEL_Y + 1] = *(unsigned long*)&p1.vel_y;
-//		MEM_PTR[OFFSET_VEL_Z + 1] = *(unsigned long*)&p1.vel_z;
-//
-//		// body 2
-//		MEM_PTR[OFFSET_RAD + 2] = *(unsigned long*)&p2.rad;
-//		MEM_PTR[OFFSET_POS_X + 2] = *(unsigned long*)&p2.pos_x;
-//		MEM_PTR[OFFSET_POS_Y + 2] = *(unsigned long*)&p2.pos_y;
-//		MEM_PTR[OFFSET_POS_Z + 2] = *(unsigned long*)&p2.pos_z;
-//
-//		MEM_PTR[OFFSET_VEL_X + 2] = *(unsigned long*)&p2.vel_x;
-//		MEM_PTR[OFFSET_VEL_Y + 2] = *(unsigned long*)&p2.vel_y;
-//		MEM_PTR[OFFSET_VEL_Z + 2] = *(unsigned long*)&p2.vel_z;
-//
-//		// body 3
-//		MEM_PTR[OFFSET_RAD + 3] = *(unsigned long*)&p3.rad;
-//		MEM_PTR[OFFSET_POS_X + 3] = *(unsigned long*)&p3.pos_x;
-//		MEM_PTR[OFFSET_POS_Y + 3] = *(unsigned long*)&p3.pos_y;
-//		MEM_PTR[OFFSET_POS_Z + 3] = *(unsigned long*)&p3.pos_z;
-//
-//		MEM_PTR[OFFSET_VEL_X + 3] = *(unsigned long*)&p3.vel_x;
-//		MEM_PTR[OFFSET_VEL_Y + 3] = *(unsigned long*)&p3.vel_y;
-//		MEM_PTR[OFFSET_VEL_Z + 3] = *(unsigned long*)&p3.vel_z;
-//
-//		// body 4
-//		MEM_PTR[OFFSET_RAD + 4] = *(unsigned long*)&p4.rad;
-//		MEM_PTR[OFFSET_POS_X + 4] = *(unsigned long*)&p4.pos_x;
-//		MEM_PTR[OFFSET_POS_Y + 4] = *(unsigned long*)&p4.pos_y;
-//		MEM_PTR[OFFSET_POS_Z + 4] = *(unsigned long*)&p4.pos_z;
-//
-//		MEM_PTR[OFFSET_VEL_X + 4] = *(unsigned long*)&p4.vel_x;
-//		MEM_PTR[OFFSET_VEL_Y + 4] = *(unsigned long*)&p4.vel_y;
-//		MEM_PTR[OFFSET_VEL_Z + 4] = *(unsigned long*)&p4.vel_z;
+		MEM_PTR[OFFSET_RAD + 1] = *(unsigned long*)&p1.rad;
+		MEM_PTR[OFFSET_POS_X + 1] = *(unsigned long*)&p1.pos_x;
+		MEM_PTR[OFFSET_POS_Y + 1] = *(unsigned long*)&p1.pos_y;
+		MEM_PTR[OFFSET_POS_Z + 1] = *(unsigned long*)&p1.pos_z;
+
+		MEM_PTR[OFFSET_VEL_X + 1] = *(unsigned long*)&p1.vel_x;
+		MEM_PTR[OFFSET_VEL_Y + 1] = *(unsigned long*)&p1.vel_y;
+		MEM_PTR[OFFSET_VEL_Z + 1] = *(unsigned long*)&p1.vel_z;
+
+		// body 2
+		MEM_PTR[OFFSET_RAD + 2] = *(unsigned long*)&p2.rad;
+		MEM_PTR[OFFSET_POS_X + 2] = *(unsigned long*)&p2.pos_x;
+		MEM_PTR[OFFSET_POS_Y + 2] = *(unsigned long*)&p2.pos_y;
+		MEM_PTR[OFFSET_POS_Z + 2] = *(unsigned long*)&p2.pos_z;
+
+		MEM_PTR[OFFSET_VEL_X + 2] = *(unsigned long*)&p2.vel_x;
+		MEM_PTR[OFFSET_VEL_Y + 2] = *(unsigned long*)&p2.vel_y;
+		MEM_PTR[OFFSET_VEL_Z + 2] = *(unsigned long*)&p2.vel_z;
+
+		// body 3
+		MEM_PTR[OFFSET_RAD + 3] = *(unsigned long*)&p3.rad;
+		MEM_PTR[OFFSET_POS_X + 3] = *(unsigned long*)&p3.pos_x;
+		MEM_PTR[OFFSET_POS_Y + 3] = *(unsigned long*)&p3.pos_y;
+		MEM_PTR[OFFSET_POS_Z + 3] = *(unsigned long*)&p3.pos_z;
+
+		MEM_PTR[OFFSET_VEL_X + 3] = *(unsigned long*)&p3.vel_x;
+		MEM_PTR[OFFSET_VEL_Y + 3] = *(unsigned long*)&p3.vel_y;
+		MEM_PTR[OFFSET_VEL_Z + 3] = *(unsigned long*)&p3.vel_z;
+
+		// body 4
+		MEM_PTR[OFFSET_RAD + 4] = *(unsigned long*)&p4.rad;
+		MEM_PTR[OFFSET_POS_X + 4] = *(unsigned long*)&p4.pos_x;
+		MEM_PTR[OFFSET_POS_Y + 4] = *(unsigned long*)&p4.pos_y;
+		MEM_PTR[OFFSET_POS_Z + 4] = *(unsigned long*)&p4.pos_z;
+
+		MEM_PTR[OFFSET_VEL_X + 4] = *(unsigned long*)&p4.vel_x;
+		MEM_PTR[OFFSET_VEL_Y + 4] = *(unsigned long*)&p4.vel_y;
+		MEM_PTR[OFFSET_VEL_Z + 4] = *(unsigned long*)&p4.vel_z;
         
 		// added print for debugging
 //		printf("Planet 2 POS_Y: %f\n", *(float*)&MEM_PTR[OFFSET_POS_Y + 2]);
