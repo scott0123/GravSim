@@ -5,16 +5,13 @@
 //-------------------------------------------------------------------------
 
 
-module  ball ( input         Clk,                // 50 MHz clock
-                             Reset,              // Active-high reset signal
-                             frame_clk,          // The clock indicating a new frame (~60Hz)
-//               input [7:0]   keycode,            // Keycode from the keyboard
-               input [9:0]   DrawX, DrawY,       // Current pixel coordinates
+module  ball ( 
+               input [9:0]   DrawX, DrawY,             // Current pixel coordinates
 					
-                    input [31:0]  relative_shift_x, relative_shift_y, relative_shift_z,
+               input [31:0]  relative_shift_z,
 					input [31:0]  radius, posX, posY, posZ, // floats
 					
-               output logic  is_ball             // Whether current pixel belongs to ball or background
+               output logic  is_ball                   // Whether current pixel belongs to ball or background
               );
     
 	 // consts needed to scale radius, posX, posY, posZ
@@ -32,23 +29,14 @@ module  ball ( input         Clk,                // 50 MHz clock
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
     logic [9:0] Ball_X_Pos_in, Ball_X_Motion_in, Ball_Y_Pos_in, Ball_Y_Motion_in;
-    
 
-    //////// Do not modify the always_ff blocks. ////////
-    // Detect rising edge of frame_clk
-    logic frame_clk_delayed, frame_clk_rising_edge;
-    always_ff @ (posedge Clk) begin
-        frame_clk_delayed <= frame_clk;
-        frame_clk_rising_edge <= (frame_clk == 1'b1) && (frame_clk_delayed == 1'b0);
-    end
-    //////// Do not modify the always_ff blocks. ////////
     
     // Compute whether the pixel corresponds to ball or background
     /* Since the multiplicants are required to be signed, we have to first cast them
        from logic to int (signed by default) before they are multiplied. */
     int DistX, DistY, Size;
-    assign DistX = DrawX - (intPosX + 32'd320 + relative_shift_x);
-    assign DistY = DrawY - (intPosY + 32'd240 + relative_shift_y);
+    assign DistX = DrawX - (intPosX + 32'd320);
+    assign DistY = DrawY - (intPosY + 32'd240);
 	 
 	 // absolute value of Dists
 	 int absDistX, absDistY;

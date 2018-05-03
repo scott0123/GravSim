@@ -60,7 +60,7 @@ parameter [7:0] KEYCODE_DOWN = 8'd22;                  // Keycode for the key DO
 parameter [7:0] KEYCODE_LEFT = 8'd4;                  // Keycode for the key LEFT (in this case: A)
 parameter [7:0] KEYCODE_RIGHT = 8'd7;                  // Keycode for the key RIGHT (in this case: D)
 parameter [7:0] KEYCODE_PAGEUP = 8'd75;                  // Keycode for the key PAGE UP
-parameter [7:0] KEYCODE_PAGEDOWN = 8'd77;                  // Keycode for the key PAGE DOWN
+parameter [7:0] KEYCODE_PAGEDOWN = 8'd78;                  // Keycode for the key PAGE DOWN
 
 // added internal logic for FSM
 logic FSM_clear_accs;
@@ -80,7 +80,13 @@ logic RIGHT_PRESSED;
 logic PAGEUP_PRESSED;
 logic PAGEDOWN_PRESSED;
 
-logic [31:0] relative_shift_x, relative_shift_y, relative_shift_z;
+logic [9:0] relative_shift_x, relative_shift_y;
+logic [31:0] relative_shift_z;
+logic [9:0] shifted_x, shifted_y;
+
+assign shifted_x = DrawX + relative_shift_x;
+assign shifted_y = DrawY + relative_shift_y;
+
 
 logic [31:0] regfile [114];
 logic FSM_DONE_temp;
@@ -133,8 +139,8 @@ always_ff @(posedge CLK) begin
 		for (integer i = 0; i < 114; i += 1) begin
 			regfile[i] <= 32'b0;
 		end
-        relative_shift_x <= 32'b0;
-        relative_shift_y <= 32'b0;
+        relative_shift_x <= 10'b0;
+        relative_shift_y <= 10'b0;
         relative_shift_z <= 32'b0;
 		  PAUSED <= 1'b0;
 		  SPACE_READY <= 1'b1;
@@ -249,29 +255,36 @@ always_ff @(posedge CLK) begin
 			SPACE_READY <= 1'b1;
 	  end
 
-	  if(UP_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
-			relative_shift_y <= relative_shift_y - 32'b1;
+	  if(UP_PRESSED == 1'b1 && frame_clk_rising_edge == 1'b1) begin
+			relative_shift_y <= relative_shift_y - 10'b1;
 	  end
-	  if(DOWN_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
-			relative_shift_y <= relative_shift_y + 32'b1;
+	  if(DOWN_PRESSED == 1'b1 && frame_clk_rising_edge == 1'b1) begin
+			relative_shift_y <= relative_shift_y + 10'b1;
 	  end
-	  if(LEFT_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
-			relative_shift_x <= relative_shift_x - 32'b1;
+	  if(LEFT_PRESSED == 1'b1 && frame_clk_rising_edge == 1'b1) begin
+			relative_shift_x <= relative_shift_x - 10'b1;
 	  end
-	  if(RIGHT_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
-			relative_shift_x <= relative_shift_x + 32'b1;
+	  if(RIGHT_PRESSED == 1'b1 && frame_clk_rising_edge == 1'b1) begin
+			relative_shift_x <= relative_shift_x + 10'b1;
 	  end
-	  if(PAGEUP_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+	  if(PAGEUP_PRESSED == 1'b1 && frame_clk_rising_edge == 1'b1) begin
 			relative_shift_z <= relative_shift_z + 32'b1;
 	  end
-	  if(PAGEDOWN_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+	  if(PAGEDOWN_PRESSED == 1'b1 && frame_clk_rising_edge == 1'b1) begin
 			relative_shift_z <= relative_shift_z - 32'b1;
 	  end
 	  
 	end
 
 end
+    
 
+// Detect rising edge of frame_clk
+logic frame_clk_delayed, frame_clk_rising_edge;
+always_ff @ (posedge CLK) begin
+    frame_clk_delayed <= VGA_VS;
+    frame_clk_rising_edge <= (VGA_VS == 1'b1) && (frame_clk_delayed == 1'b0);
+end
 
 // -----------------------------------------------------------------
 
@@ -346,14 +359,8 @@ end
 
 ball ball_1 (
 // inputs
-.Reset(Reset_h),		// not sure how to deal with this
-.Clk(CLK),				// 50 MHz clock from top_level
-.frame_clk(VGA_VS),
-//.keycode,
-.DrawX,
-.DrawY,
-.relative_shift_x,
-.relative_shift_y,
+.DrawX(shifted_x),
+.DrawY(shifted_y),
 .relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd1]),
 .posX(regfile[OFFSET_POS_X+7'd1]),
@@ -365,14 +372,8 @@ ball ball_1 (
 
 ball ball_2 (
 // inputs
-.Reset(Reset_h),		// not sure how to deal with this
-.Clk(CLK),				// 50 MHz clock from top_level
-.frame_clk(VGA_VS),
-//.keycode,
-.DrawX,
-.DrawY,
-.relative_shift_x,
-.relative_shift_y,
+.DrawX(shifted_x),
+.DrawY(shifted_y),
 .relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd2]),
 .posX(regfile[OFFSET_POS_X+7'd2]),
@@ -384,14 +385,8 @@ ball ball_2 (
 
 ball ball_3 (
 // inputs
-.Reset(Reset_h),		// not sure how to deal with this
-.Clk(CLK),				// 50 MHz clock from top_level
-.frame_clk(VGA_VS),
-//.keycode,
-.DrawX,
-.DrawY,
-.relative_shift_x,
-.relative_shift_y,
+.DrawX(shifted_x),
+.DrawY(shifted_y),
 .relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd3]),
 .posX(regfile[OFFSET_POS_X+7'd3]),
@@ -403,14 +398,8 @@ ball ball_3 (
 
 ball ball_4 (
 // inputs
-.Reset(Reset_h),		// not sure how to deal with this
-.Clk(CLK),				// 50 MHz clock from top_level
-.frame_clk(VGA_VS),
-//.keycode,
-.DrawX,
-.DrawY,
-.relative_shift_x,
-.relative_shift_y,
+.DrawX(shifted_x),
+.DrawY(shifted_y),
 .relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd4]),
 .posX(regfile[OFFSET_POS_X+7'd4]),
