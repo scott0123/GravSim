@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete 3 resources" deleteContents="false" description="Delete 3 resources" element1="/GravSim/main.c" element2="/GravSim/physics.c" element3="/GravSim/physics.h" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="3" stamp="1525300057463"/>&#x0A;<refactoring comment="Delete resource &apos;GravSim/physics.h&apos;" deleteContents="false" description="Delete resource &apos;GravSim/physics.h&apos;" element1="/GravSim/physics.h" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1525302612142"/>
+</session>

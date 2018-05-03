@@ -11,6 +11,7 @@ module  ball ( input         Clk,                // 50 MHz clock
 //               input [7:0]   keycode,            // Keycode from the keyboard
                input [9:0]   DrawX, DrawY,       // Current pixel coordinates
 					
+                    input [31:0]  relative_shift_x, relative_shift_y, relative_shift_z,
 					input [31:0]  radius, posX, posY, posZ, // floats
 					
                output logic  is_ball             // Whether current pixel belongs to ball or background
@@ -28,29 +29,6 @@ module  ball ( input         Clk,                // 50 MHz clock
 	// integer (pixel) versions of radius, posX, posY, posZ
 	logic [31:0] intRad, intPosX, intPosY, intPosZ;
 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-    parameter [9:0] Ball_X_Center = 10'd320;  // Center position on the X axis
-    parameter [9:0] Ball_Y_Center = 10'd240;  // Center position on the Y axis
-    parameter [9:0] Ball_X_Min = 10'd0;       // Leftmost point on the X axis
-    parameter [9:0] Ball_X_Max = 10'd639;     // Rightmost point on the X axis
-    parameter [9:0] Ball_Y_Min = 10'd0;       // Topmost point on the Y axis
-    parameter [9:0] Ball_Y_Max = 10'd479;     // Bottommost point on the Y axis
-    parameter [9:0] Ball_X_Step = 10'd1;      // Step size on the X axis
-    parameter [9:0] Ball_Y_Step = 10'd1;      // Step size on the Y axis
-    parameter [9:0] Ball_Size = 10'd4;        // Ball size
-
-//    parameter [7:0] KEYCODE_UP = 8'd26;                  // Keycode for the key UP (in this case: W)
-//    parameter [7:0] KEYCODE_DOWN = 8'd22;                  // Keycode for the key DOWN (in this case: S)
-//    parameter [7:0] KEYCODE_LEFT = 8'd4;                  // Keycode for the key LEFT (in this case: A)
-//    parameter [7:0] KEYCODE_RIGHT = 8'd7;                  // Keycode for the key RIGHT (in this case: D)
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
     logic [9:0] Ball_X_Pos_in, Ball_X_Motion_in, Ball_Y_Pos_in, Ball_Y_Motion_in;
@@ -69,8 +47,8 @@ module  ball ( input         Clk,                // 50 MHz clock
     /* Since the multiplicants are required to be signed, we have to first cast them
        from logic to int (signed by default) before they are multiplied. */
     int DistX, DistY, Size;
-    assign DistX = DrawX - (intPosX + 32'd320);
-    assign DistY = DrawY - (intPosY + 32'd240);
+    assign DistX = DrawX - (intPosX + 32'd320 + relative_shift_x);
+    assign DistY = DrawY - (intPosY + 32'd240 + relative_shift_y);
 	 
 	 // absolute value of Dists
 	 int absDistX, absDistY;
@@ -83,7 +61,7 @@ module  ball ( input         Clk,                // 50 MHz clock
 		
 		// radius adjust
 		
-		temp_posZadd = intPosZ + 32'd20;
+		temp_posZadd = intPosZ + 32'd20 + relative_shift_z;
 		
 		// added to ensure that negative temp_posZadd < positive 1
 		if ( temp_posZadd[31] == 1 ) begin

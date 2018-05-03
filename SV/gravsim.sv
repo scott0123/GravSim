@@ -7,7 +7,7 @@
 
 module GravSim( input            CLOCK_50,
              input        [3:0]  KEY,          //bit 0 is set up as Reset
-             output logic [6:0]  HEX0, HEX1,
+             output logic [6:0]  HEX0, HEX1, HEX2, HEX3,
              // VGA Interface 
              output logic [7:0]  VGA_R,        //VGA Red
                                  VGA_G,        //VGA Green
@@ -106,15 +106,15 @@ module GravSim( input            CLOCK_50,
 	  .is_ball,
 	  .ballID
 	);
- 
+	
 	// Use PLL to generate the 25MHZ VGA_CLK.
 	// Must be generated differently for simulation
 	vga_clk vga_clk_instance(.inclk0(Clk), .c0(VGA_CLK));
-
+	
 	logic [9:0] DrawX, DrawY;
 	logic is_ball;
 	logic [1:0] ballID;
-	 
+	
 	VGA_controller vga_controller_instance(
 		// inputs
 		.Reset(Reset_h),
@@ -142,10 +142,12 @@ module GravSim( input            CLOCK_50,
 	);
 	
 	// Display keycode on hex display
-	HexDriver hex_inst_1 (EXPORT_DATA[31:28], HEX1);
-	HexDriver hex_inst_0 (EXPORT_DATA[27:24], HEX0);
+//	HexDriver hex_inst_1 (keycode[7:4], HEX1);
+//	HexDriver hex_inst_0 (keycode[3:0], HEX0);
 
-//	HexDriver hex_inst_0 (EXPORT_DATA[31:28], HEX0);
-//	HexDriver hex_inst_1 (, HEX1);
+	HexDriver hex_inst_0 (EXPORT_DATA[27:24], HEX0);
+	HexDriver hex_inst_1 (EXPORT_DATA[31:28], HEX1);
+	HexDriver hex_inst_2 (keycode[3:0], HEX2);
+	HexDriver hex_inst_3 (keycode[7:4], HEX3);
 
 endmodule

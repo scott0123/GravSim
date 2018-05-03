@@ -1,3 +1,37 @@
-obj/default/main.o: ../../main.c ../../physics.h
+obj/default/main.o: ../software_code/main.c \
+ ../software_code/../../physics.h ../software_code/keyboard.h \
+ ../GravSim_bsp//HAL/inc/io.h ../GravSim_bsp//HAL/inc/alt_types.h \
+ ../GravSim_bsp/system.h ../GravSim_bsp/linker.h \
+ ../GravSim_bsp//HAL/inc/alt_types.h \
+ ../GravSim_bsp//HAL/inc/sys/alt_irq.h ../GravSim_bsp//HAL/inc/nios2.h \
+ ../software_code/io_handler.h ../software_code/cy7c67200.h \
+ ../software_code/usb.h ../software_code/lcp_cmd.h \
+ ../software_code/lcp_data.h
 
-../../physics.h:
+../software_code/../../physics.h:
+
+../software_code/keyboard.h:
+
+../GravSim_bsp//HAL/inc/io.h:
+
+../GravSim_bsp//HAL/inc/alt_types.h:
+
+../GravSim_bsp/system.h:
+
+../GravSim_bsp/linker.h:
+
+../GravSim_bsp//HAL/inc/alt_types.h:
+
+../GravSim_bsp//HAL/inc/sys/alt_irq.h:
+
+../GravSim_bsp//HAL/inc/nios2.h:
+
+../software_code/io_handler.h:
+
+../software_code/cy7c67200.h:
+
+../software_code/usb.h:
+
+../software_code/lcp_cmd.h:
+
+../software_code/lcp_data.h:

@@ -31,13 +31,16 @@ module avalon_interface (
 	
 	// Added outputs that must go to top-level entity
 	output logic        is_ball_out,
-	output logic [1:0]  ballID
+	output logic [1:0]  ballID,
+	
+	// Added for keyboard use here
+	input logic [7:0]		keycode
 
 );
 
 parameter [6:0] OFFSET_G = 7'd0;
 parameter [6:0] OFFSET_NUM = 7'd1;
-parameter [6:0] OFFSET_START = 7'd2;
+parameter [6:0] OFFSET_READY = 7'd2;
 parameter [6:0] OFFSET_DONE = 7'd3;
 parameter [6:0] OFFSET_MASS = 7'd3;
 parameter [6:0] OFFSET_RAD = 7'd13;
@@ -51,6 +54,14 @@ parameter [6:0] OFFSET_ACC_X = 7'd83;
 parameter [6:0] OFFSET_ACC_Y = 7'd93;
 parameter [6:0] OFFSET_ACC_Z = 7'd103;
 
+parameter [7:0] KEYCODE_SPACE = 8'd4;                  // Keycode for the key SPACE (in this case: ' ')
+parameter [7:0] KEYCODE_UP = 8'd26;                  // Keycode for the key UP (in this case: W)
+parameter [7:0] KEYCODE_DOWN = 8'd22;                  // Keycode for the key DOWN (in this case: S)
+parameter [7:0] KEYCODE_LEFT = 8'd4;                  // Keycode for the key LEFT (in this case: A)
+parameter [7:0] KEYCODE_RIGHT = 8'd7;                  // Keycode for the key RIGHT (in this case: D)
+parameter [7:0] KEYCODE_PAGEUP = 8'd75;                  // Keycode for the key PAGE UP
+parameter [7:0] KEYCODE_PAGEDOWN = 8'd77;                  // Keycode for the key PAGE DOWN
+
 // added internal logic for FSM
 logic FSM_clear_accs;
 logic [1:0] FSM_re, FSM_we;
@@ -58,34 +69,18 @@ logic [31:0] FSM_ADDR1, FSM_ADDR2, FSM_ADDR3, FSM_ADDR4, FSM_ADDR5, FSM_ADDR6;
 logic [31:0] FSM_DATA1, FSM_DATA2, FSM_DATA3, FSM_DATA4, FSM_DATA5, FSM_DATA6;
 logic [31:0] FSM_DATA1in, FSM_DATA2in, FSM_DATA3in, FSM_DATA4in, FSM_DATA5in, FSM_DATA6in;
 
-// SIZE = 113
-// 3 "Misc" data:
-//						Number of balls being used
-// 					FSM_START bit
-//						FSM_DONE bit
-// Body data (x10 size per var):
-//						Mass
-//						 ...
-//						Radius
-//						 ...
-//						X_pos
-//						 ...
-//						Y_pos
-//						 ...
-//						Z_pos
-//						 ...
-//						X_vel
-//						 ...
-//						Y_vel
-//						 ...
-//						Z_vel
-//						 ...
-//						X_acc
-//						 ...
-//						Y_acc
-//						 ...
-//						Z_acc
-//						 ...
+logic FSM_START;
+logic PAUSED;
+logic SPACE_PRESSED;
+logic SPACE_READY;
+logic UP_PRESSED;
+logic DOWN_PRESSED;
+logic LEFT_PRESSED;
+logic RIGHT_PRESSED;
+logic PAGEUP_PRESSED;
+logic PAGEDOWN_PRESSED;
+
+logic [31:0] relative_shift_x, relative_shift_y, relative_shift_z;
 
 logic [31:0] regfile [114];
 logic FSM_DONE_temp;
@@ -98,10 +93,37 @@ always_comb begin
 	end
 	
 	// pos x, y, z (scaled)
-	EXPORT_DATA[31:0] = regfile[OFFSET_ACC_Y + 7'd1];
+	EXPORT_DATA[31:24] = keycode;
 //	EXPORT_DATA[21:12] = regfile[2][9:0];
 //	EXPORT_DATA[11:2] = regfile[3][9:0];
-	
+
+    if (keycode == KEYCODE_SPACE) SPACE_PRESSED = 1'b1;
+    else SPACE_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_UP) UP_PRESSED = 1'b1;
+    else UP_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_DOWN) DOWN_PRESSED = 1'b1;
+    else DOWN_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_LEFT) LEFT_PRESSED = 1'b1;
+    else LEFT_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_RIGHT) RIGHT_PRESSED = 1'b1;
+    else RIGHT_PRESSED = 1'b0;
+
+    if (keycode == KEYCODE_PAGEUP) PAGEUP_PRESSED = 1'b1;
+    else PAGEUP_PRESSED = 1'b0;
+    
+    if (keycode == KEYCODE_PAGEDOWN) PAGEDOWN_PRESSED = 1'b1;
+    else PAGEDOWN_PRESSED = 1'b0;
+    
+    if (VGA_VS == 1'b1 && PAUSED == 1'b0 && regfile[OFFSET_READY] == 1'b1) begin
+        FSM_START = 1'b1;
+    end
+    else begin
+        FSM_START = 1'b0;
+    end
 end
 
 
@@ -111,6 +133,11 @@ always_ff @(posedge CLK) begin
 		for (integer i = 0; i < 114; i += 1) begin
 			regfile[i] <= 32'b0;
 		end
+        relative_shift_x <= 32'b0;
+        relative_shift_y <= 32'b0;
+        relative_shift_z <= 32'b0;
+		  PAUSED <= 1'b0;
+		  SPACE_READY <= 1'b1;
 	end
 	
 	else begin
@@ -163,9 +190,9 @@ always_ff @(posedge CLK) begin
 			if (FSM_clear_accs) begin
 			
 				for (int i = 0; i < 10; i += 1) begin
-					regfile[OFFSET_ACC_X + i + 7'b1] <= 32'b0;
-					regfile[OFFSET_ACC_Y + i + 7'b1] <= 32'b0;
-					regfile[OFFSET_ACC_Z + i + 7'b1] <= 32'b0;
+					regfile[OFFSET_ACC_X + i + 7'd1] <= 32'b0;
+					regfile[OFFSET_ACC_Y + i + 7'd1] <= 32'b0;
+					regfile[OFFSET_ACC_Z + i + 7'd1] <= 32'b0;
 				end
 				
 			end
@@ -214,6 +241,33 @@ always_ff @(posedge CLK) begin
 			
 		end
 			
+	  if (SPACE_READY == 1'b1 && SPACE_PRESSED == 1'b1) begin
+			SPACE_READY <= 1'b0;
+			PAUSED <= ~PAUSED;
+	  end
+	  else if (SPACE_PRESSED == 1'b0) begin
+			SPACE_READY <= 1'b1;
+	  end
+
+	  if(UP_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+			relative_shift_y <= relative_shift_y - 32'b1;
+	  end
+	  if(DOWN_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+			relative_shift_y <= relative_shift_y + 32'b1;
+	  end
+	  if(LEFT_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+			relative_shift_x <= relative_shift_x - 32'b1;
+	  end
+	  if(RIGHT_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+			relative_shift_x <= relative_shift_x + 32'b1;
+	  end
+	  if(PAGEUP_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+			relative_shift_z <= relative_shift_z + 32'b1;
+	  end
+	  if(PAGEDOWN_PRESSED == 1'b1 && VGA_VS == 1'b1) begin
+			relative_shift_z <= relative_shift_z - 32'b1;
+	  end
+	  
 	end
 
 end
@@ -224,13 +278,13 @@ end
 //	   Modules are instantiated here so they have access to regfile
 
 // -----------------------------------------------------------------
-
+/*
 FSM FSM_instance (
 
 	// inputs
 	.CLK,
 	.RESET,
-	.FSM_START(regfile[OFFSET_START][0]),
+	.FSM_START(FSM_START),
 //	.datafile(regfile),
 	
 	// outputs
@@ -268,7 +322,7 @@ FSM FSM_instance (
 
 	
 );
-
+*/
 
 
 
@@ -298,10 +352,13 @@ ball ball_1 (
 //.keycode,
 .DrawX,
 .DrawY,
-.radius(regfile[OFFSET_RAD+7'b1]),
-.posX(regfile[OFFSET_POS_X+7'b1]),
-.posY(regfile[OFFSET_POS_Y+7'b1]),
-.posZ(regfile[OFFSET_POS_Z+7'b1]),
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
+.radius(regfile[OFFSET_RAD+7'd1]),
+.posX(regfile[OFFSET_POS_X+7'd1]),
+.posY(regfile[OFFSET_POS_Y+7'd1]),
+.posZ(regfile[OFFSET_POS_Z+7'd1]),
 //outputs
 .is_ball(is_ball_1)
 );
@@ -314,6 +371,9 @@ ball ball_2 (
 //.keycode,
 .DrawX,
 .DrawY,
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd2]),
 .posX(regfile[OFFSET_POS_X+7'd2]),
 .posY(regfile[OFFSET_POS_Y+7'd2]),
@@ -330,6 +390,9 @@ ball ball_3 (
 //.keycode,
 .DrawX,
 .DrawY,
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd3]),
 .posX(regfile[OFFSET_POS_X+7'd3]),
 .posY(regfile[OFFSET_POS_Y+7'd3]),
@@ -346,6 +409,9 @@ ball ball_4 (
 //.keycode,
 .DrawX,
 .DrawY,
+.relative_shift_x,
+.relative_shift_y,
+.relative_shift_z,
 .radius(regfile[OFFSET_RAD+7'd4]),
 .posX(regfile[OFFSET_POS_X+7'd4]),
 .posY(regfile[OFFSET_POS_Y+7'd4]),

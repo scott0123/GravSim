@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 2, 2018 3:20:03 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1525249203137</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>May 2, 2018 8:33:57 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1525311237254</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\anish\Documents\ECE_385\Final_Project\GravSim\SV\software\GravSim_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\nios_system.sopcinfo</SopcDesignFile>
@@ -911,55 +911,55 @@
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>keycode</slaveDescriptor>
+                <slaveDescriptor>sdram_pll</slaveDescriptor>
                 <addressRange>0x000000B0 - 0x000000BF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>otg_hpi_reset</slaveDescriptor>
+                <slaveDescriptor>keycode</slaveDescriptor>
                 <addressRange>0x000000C0 - 0x000000CF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>otg_hpi_cs</slaveDescriptor>
+                <slaveDescriptor>otg_hpi_reset</slaveDescriptor>
                 <addressRange>0x000000D0 - 0x000000DF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>otg_hpi_w</slaveDescriptor>
+                <slaveDescriptor>otg_hpi_cs</slaveDescriptor>
                 <addressRange>0x000000E0 - 0x000000EF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>otg_hpi_r</slaveDescriptor>
+                <slaveDescriptor>otg_hpi_w</slaveDescriptor>
                 <addressRange>0x000000F0 - 0x000000FF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>otg_hpi_data</slaveDescriptor>
+                <slaveDescriptor>otg_hpi_r</slaveDescriptor>
                 <addressRange>0x00000100 - 0x0000010F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>otg_hpi_address</slaveDescriptor>
+                <slaveDescriptor>otg_hpi_data</slaveDescriptor>
                 <addressRange>0x00000110 - 0x0000011F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>led</slaveDescriptor>
+                <slaveDescriptor>otg_hpi_address</slaveDescriptor>
                 <addressRange>0x00000120 - 0x0000012F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sdram_pll</slaveDescriptor>
+                <slaveDescriptor>led</slaveDescriptor>
                 <addressRange>0x00000130 - 0x0000013F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>

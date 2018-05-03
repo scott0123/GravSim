@@ -41,17 +41,7 @@
 		<link>
 			<name>main.c</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/main.c</locationURI>
-		</link>
-		<link>
-			<name>physics.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/physics.c</locationURI>
-		</link>
-		<link>
-			<name>physics.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/physics.h</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/software_code/main.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

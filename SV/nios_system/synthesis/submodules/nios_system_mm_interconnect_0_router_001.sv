@@ -44,7 +44,7 @@
 
 module nios_system_mm_interconnect_0_router_001_default_decode
   #(
-     parameter DEFAULT_CHANNEL = 4,
+     parameter DEFAULT_CHANNEL = 11,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
                DEFAULT_DESTID = 14 
@@ -142,7 +142,7 @@ module nios_system_mm_interconnect_0_router_001
     localparam PAD5 = log2ceil(64'h100 - 64'hf0); 
     localparam PAD6 = log2ceil(64'h110 - 64'h100); 
     localparam PAD7 = log2ceil(64'h120 - 64'h110); 
-    localparam PAD8 = log2ceil(64'h140 - 64'h130); 
+    localparam PAD8 = log2ceil(64'h130 - 64'h120); 
     localparam PAD9 = log2ceil(64'h150 - 64'h148); 
     localparam PAD10 = log2ceil(64'h1800 - 64'h1000); 
     localparam PAD11 = log2ceil(64'hc000000 - 64'h8000000); 
@@ -212,50 +212,50 @@ module nios_system_mm_interconnect_0_router_001
 
     // ( 0xb0 .. 0xc0 )
     if ( {address[RG:PAD1],{PAD1{1'b0}}} == 28'hb0   ) begin
-            src_channel = 16'b100000000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
+            src_channel = 16'b000000000100;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 13;
     end
 
     // ( 0xc0 .. 0xd0 )
     if ( {address[RG:PAD2],{PAD2{1'b0}}} == 28'hc0   ) begin
             src_channel = 16'b010000000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 11;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
     end
 
     // ( 0xd0 .. 0xe0 )
     if ( {address[RG:PAD3],{PAD3{1'b0}}} == 28'hd0   ) begin
             src_channel = 16'b001000000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 8;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 11;
     end
 
     // ( 0xe0 .. 0xf0 )
     if ( {address[RG:PAD4],{PAD4{1'b0}}} == 28'he0   ) begin
             src_channel = 16'b000100000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 12;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 8;
     end
 
     // ( 0xf0 .. 0x100 )
     if ( {address[RG:PAD5],{PAD5{1'b0}}} == 28'hf0   ) begin
             src_channel = 16'b000010000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 10;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 12;
     end
 
     // ( 0x100 .. 0x110 )
     if ( {address[RG:PAD6],{PAD6{1'b0}}} == 28'h100   ) begin
             src_channel = 16'b000001000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 9;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 10;
     end
 
     // ( 0x110 .. 0x120 )
     if ( {address[RG:PAD7],{PAD7{1'b0}}} == 28'h110   ) begin
             src_channel = 16'b000000100000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 9;
     end
 
-    // ( 0x130 .. 0x140 )
-    if ( {address[RG:PAD8],{PAD8{1'b0}}} == 28'h130   ) begin
-            src_channel = 16'b000000000100;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 13;
+    // ( 0x120 .. 0x130 )
+    if ( {address[RG:PAD8],{PAD8{1'b0}}} == 28'h120   ) begin
+            src_channel = 16'b000000010000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
     end
 
     // ( 0x148 .. 0x150 )
@@ -272,7 +272,7 @@ module nios_system_mm_interconnect_0_router_001
 
     // ( 0x8000000 .. 0xc000000 )
     if ( {address[RG:PAD11],{PAD11{1'b0}}} == 28'h8000000   ) begin
-            src_channel = 16'b000000010000;
+            src_channel = 16'b100000000000;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 14;
     end
 

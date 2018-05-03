@@ -142,8 +142,10 @@ ACDS_VERSION := 17.1
 ELF := GravSim.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS += ../../physics.c
-C_SRCS += ../../main.c
+C_SRCS += ../software_code/io_handler.c
+C_SRCS += ../software_code/usb.c
+C_SRCS += ../software_code/keyboard.c
+C_SRCS += ../software_code/main.c
 CXX_SRCS :=
 ASM_SRCS :=
 
