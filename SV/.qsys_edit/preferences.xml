@@ -3,7 +3,7 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="175" />
+   <connections preferredWidth="47" />
    <irq preferredWidth="34" />
    <name preferredWidth="336" />
    <description preferredWidth="355" />
@@ -14,6 +14,6 @@
   </columns>
  </systemtable>
  <library expandedCategories="Library,Project" />
- <window width="3026" height="1946" x="-13" y="-13" />
+ <window width="3000" height="1920" x="0" y="0" />
  <hdlexample language="VHDL" />
 </preferences>

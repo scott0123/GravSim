@@ -197,4 +197,6 @@ set_location_assignment PIN_AA21 -to HEX3[3]
 set_location_assignment PIN_AB20 -to HEX3[2]
 set_location_assignment PIN_U21 -to HEX3[1]
 set_location_assignment PIN_V21 -to HEX3[0]
+set_global_assignment -name SYSTEMVERILOG_FILE testbench_FSM.sv
+set_global_assignment -name SYSTEMVERILOG_FILE FSM.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

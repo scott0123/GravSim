@@ -55,7 +55,6 @@ volatile unsigned int * MEM_PTR = (unsigned int *) 0x00000400;
  */
 int main(){
 
-	srand(NULL);
     // set the ready signal signal to 0
    	MEM_PTR[OFFSET_READY] = 0;
     

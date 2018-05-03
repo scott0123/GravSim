@@ -54,7 +54,7 @@ parameter [6:0] OFFSET_ACC_X = 7'd83;
 parameter [6:0] OFFSET_ACC_Y = 7'd93;
 parameter [6:0] OFFSET_ACC_Z = 7'd103;
 
-parameter [7:0] KEYCODE_SPACE = 8'd4;                  // Keycode for the key SPACE (in this case: ' ')
+parameter [7:0] KEYCODE_SPACE = 8'd44;                  // Keycode for the key SPACE (in this case: ' ')
 parameter [7:0] KEYCODE_UP = 8'd26;                  // Keycode for the key UP (in this case: W)
 parameter [7:0] KEYCODE_DOWN = 8'd22;                  // Keycode for the key DOWN (in this case: S)
 parameter [7:0] KEYCODE_LEFT = 8'd4;                  // Keycode for the key LEFT (in this case: A)
@@ -142,7 +142,7 @@ always_ff @(posedge CLK) begin
         relative_shift_x <= 10'b0;
         relative_shift_y <= 10'b0;
         relative_shift_z <= 32'b0;
-		  PAUSED <= 1'b0;
+		  PAUSED <= 1'b1;
 		  SPACE_READY <= 1'b1;
 	end
 	
@@ -291,7 +291,7 @@ end
 //	   Modules are instantiated here so they have access to regfile
 
 // -----------------------------------------------------------------
-/*
+
 FSM FSM_instance (
 
 	// inputs
@@ -335,7 +335,6 @@ FSM FSM_instance (
 
 	
 );
-*/
 
 
 
