@@ -26,7 +26,7 @@ module avalon_interface (
 	// Added inputs used by ball.sv
 	input logic			  Reset_h,
 	input logic			  VGA_VS,
-	input logic [9:0]	  DrawX,
+	input logic [9:0]	  DrawX, // increase to larger bit length for larger universe
 	input logic [9:0]	  DrawY,
 	
 	// Added outputs that must go to top-level entity
@@ -124,7 +124,7 @@ always_comb begin
     if (keycode == KEYCODE_PAGEDOWN) PAGEDOWN_PRESSED = 1'b1;
     else PAGEDOWN_PRESSED = 1'b0;
     
-    if (VGA_VS == 1'b1 && PAUSED == 1'b0 && regfile[OFFSET_READY] == 1'b1) begin
+    if (VGA_VS == 1'b1 && PAUSED == 1'b0 && regfile[OFFSET_READY] == 1'b1) begin // PAUSED == 1'b1 for immediate start
         FSM_START = 1'b1;
     end
     else begin

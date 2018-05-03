@@ -1,0 +1,146 @@
+/***********************************************************************************
+
+ // TODO add back the cool font here
+ 
+ GravSim main file
+ 
+ Scott Liu, Spring 2018
+ 
+ For use in
+ 
+ // TODO add back the cool font here
+ 
+ University of Illinois Electrical & Computer Engineering Department
+ (This is used to prevent a simple Google search giving free code to future students)
+ 
+ ************************************************************************************/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <math.h>
+#include <time.h>
+#include "../../physics.h"
+#include "keyboard.h"
+
+//#define G 1.0f
+
+#define SIM_TIME 40 // (seconds)
+#define SIM_FPS 60
+
+// constants for mem regfile
+#define OFFSET_G 0
+#define OFFSET_NUM 1
+#define OFFSET_READY 2
+#define OFFSET_DONE 3
+#define OFFSET_MASS 4-1
+#define OFFSET_RAD 14-1
+#define OFFSET_POS_X 24-1
+#define OFFSET_POS_Y 34-1
+#define OFFSET_POS_Z 44-1
+#define OFFSET_VEL_X 54-1
+#define OFFSET_VEL_Y 64-1
+#define OFFSET_VEL_Z 74-1
+#define OFFSET_ACC_X 84-1
+#define OFFSET_ACC_Y 94-1
+#define OFFSET_ACC_Z 104-1
+
+
+// Pointer to base address of GravSim Hardware memory,
+// this needs to exactly match the address in Qsys
+volatile unsigned int * MEM_PTR = (unsigned int *) 0x00000400;
+
+/* 
+ *  main()
+ */
+int main(){
+
+	srand(NULL);
+    // set the ready signal signal to 0
+   	MEM_PTR[OFFSET_READY] = 0;
+    
+    // set G
+    float G_const = 2.0f;
+    planet p1 = {
+    		3.0, 1.0,
+			-2,  0.61823732, -0.00513608,
+			1,  2 , -1,
+        0.0, 0.0, 0.0
+    };
+    planet p2 = {
+    		9.0, 1.0,
+			3,  0.49813863, -0.51380826,
+			-2, -.5 ,  3,
+        0.0, 0.0, 0.0
+    };
+    planet p3 = {
+    		3.0, 1.0,
+			-0.67716948, -1.45619187,  0.11757935,
+			1, -2,  1,
+        0.0, 0.0, 0.0
+    };
+    planet p4 = {
+    		15, 1.0,
+			0.20094575, -0.1882801 , -1.55392523,
+			-0.13717857, -0.09190546, -0.16407359,
+        0.0, 0.0, 0.0
+    };
+
+    MEM_PTR[OFFSET_G] = *(unsigned long*)&G_const;
+
+    // set num planets
+    MEM_PTR[OFFSET_NUM] = 4;
+
+    // body 1
+    MEM_PTR[OFFSET_MASS + 1] = *(unsigned long*)&p1.mass;
+    MEM_PTR[OFFSET_RAD + 1] = *(unsigned long*)&p1.rad;
+    MEM_PTR[OFFSET_POS_X + 1] = *(unsigned long*)&p1.pos_x;
+    MEM_PTR[OFFSET_POS_Y + 1] = *(unsigned long*)&p1.pos_y;
+    MEM_PTR[OFFSET_POS_Z + 1] = *(unsigned long*)&p1.pos_z;
+
+    MEM_PTR[OFFSET_VEL_X + 1] = *(unsigned long*)&p1.vel_x;
+    MEM_PTR[OFFSET_VEL_Y + 1] = *(unsigned long*)&p1.vel_y;
+    MEM_PTR[OFFSET_VEL_Z + 1] = *(unsigned long*)&p1.vel_z;
+
+    // body 2
+    MEM_PTR[OFFSET_MASS + 2] = *(unsigned long*)&p2.mass;
+    MEM_PTR[OFFSET_RAD + 2] = *(unsigned long*)&p2.rad;
+    MEM_PTR[OFFSET_POS_X + 2] = *(unsigned long*)&p2.pos_x;
+    MEM_PTR[OFFSET_POS_Y + 2] = *(unsigned long*)&p2.pos_y;
+    MEM_PTR[OFFSET_POS_Z + 2] = *(unsigned long*)&p2.pos_z;
+
+    MEM_PTR[OFFSET_VEL_X + 2] = *(unsigned long*)&p2.vel_x;
+    MEM_PTR[OFFSET_VEL_Y + 2] = *(unsigned long*)&p2.vel_y;
+    MEM_PTR[OFFSET_VEL_Z + 2] = *(unsigned long*)&p2.vel_z;
+    
+    // body 3
+    MEM_PTR[OFFSET_MASS + 13] = *(unsigned long*)&p3.mass;
+    MEM_PTR[OFFSET_RAD + 3] = *(unsigned long*)&p3.rad;
+    MEM_PTR[OFFSET_POS_X + 3] = *(unsigned long*)&p3.pos_x;
+    MEM_PTR[OFFSET_POS_Y + 3] = *(unsigned long*)&p3.pos_y;
+    MEM_PTR[OFFSET_POS_Z + 3] = *(unsigned long*)&p3.pos_z;
+
+    MEM_PTR[OFFSET_VEL_X + 3] = *(unsigned long*)&p3.vel_x;
+    MEM_PTR[OFFSET_VEL_Y + 3] = *(unsigned long*)&p3.vel_y;
+    MEM_PTR[OFFSET_VEL_Z + 3] = *(unsigned long*)&p3.vel_z;
+    
+    // body 4
+    MEM_PTR[OFFSET_MASS + 4] = *(unsigned long*)&p4.mass;
+    MEM_PTR[OFFSET_RAD + 4] = *(unsigned long*)&p4.rad;
+    MEM_PTR[OFFSET_POS_X + 4] = *(unsigned long*)&p4.pos_x;
+    MEM_PTR[OFFSET_POS_Y + 4] = *(unsigned long*)&p4.pos_y;
+    MEM_PTR[OFFSET_POS_Z + 4] = *(unsigned long*)&p4.pos_z;
+
+    MEM_PTR[OFFSET_VEL_X + 4] = *(unsigned long*)&p4.vel_x;
+    MEM_PTR[OFFSET_VEL_Y + 4] = *(unsigned long*)&p4.vel_y;
+    MEM_PTR[OFFSET_VEL_Z + 4] = *(unsigned long*)&p4.vel_z;
+
+
+    // initiate the ready signal
+   	MEM_PTR[OFFSET_READY] = 1;
+
+
+    int ret_val = keyboard_main();
+	return ret_val;
+}
+

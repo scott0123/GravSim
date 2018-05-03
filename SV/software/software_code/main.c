@@ -23,9 +23,9 @@
 #include "../../physics.h"
 #include "keyboard.h"
 
-#define G 4.0f
+//#define G 1.0f
 
-#define SIM_TIME 40 // (seconds)
+#define SIM_TIME 4000 // (seconds)
 #define SIM_FPS 60
 
 // constants for mem regfile
@@ -55,34 +55,33 @@ volatile unsigned int * MEM_PTR = (unsigned int *) 0x00000400;
  */
 int main(){
 
-	srand(NULL);
+//	srand(NULL);
     // set the ready signal signal to 0
    	MEM_PTR[OFFSET_READY] = 0;
     
-    // for this simulation we need G to be equal to 4
-    planet p1 = { 1.0, 1.0,
-//                        1.0, 0.0, 0.0,
-        1.0, 0.0, -2.0,
-//                          0.0, 1.0, 0.0,
-        0.0, 1.0, 0.0,
-        0.0, 0.0, 1.0 };
-    planet p2 = { 1.0, 1.0,
-        -1.0, 0.0, 0.0,
-        0.0, -1.0, 0.0,
-        0.0, 0.0, -1.0 };
-    planet p3 = { 1.0, 1.0,
-        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
-        -1.0, 0.0, 0.0,
-        0.0, 0.0, -1.0 };
-    planet p4 = { 0.92, 1.0,
-        //                    0.0, -0.98, 0.0,
-        0.0, -0.98, 3.0,
-        //                    1.04, 0.0, 0.0,
-        1.04, 0.0, -3.0,
-        0.0, 0.0, -1.0 };
-    
-    // set G
-    float G_const = G;
+   	// slow binary star system with very fast large orbit comets
+   	 // for this simulation we need G to be equal to 4
+   	    planet p1 = { 2.0, 1.0,
+   	        -0.8, 0.0, 0.0,
+   	        0.0, 0.5, 0.0,
+   	        0.0, 0.0, 0.0 };
+   	    planet p2 = { 2.0, 1.0,
+   	        0.3, 0.0, 0.0,
+   	        0.0, -0.5, 0.0,
+   	        0.0, 0.0, 0.0 };
+   	    planet p3 = { 1, 1.0,
+   	//        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
+   	        -1.0, -1.0, -10.0,
+   	        0.0, 1.0, 0.0,
+   	        0.0, 0.0, 0.0 };
+   	    planet p4 = { 0, 1.0,
+   	        10.0, 1.0, -100.0,
+   	        0.0, 0.0, 0.0,
+   	        0.0, 0.0, 0.0 };
+
+   	    // set G
+   	    float G_const = 20.0f;
+
     MEM_PTR[OFFSET_G] = *(unsigned long*)&G_const;
 
     // set num planets

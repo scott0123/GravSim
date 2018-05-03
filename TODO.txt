@@ -1,0 +1,10 @@
+
+add radius scaling in ball.sv (multiply the zposadd or something by a scaled radius)
+
+increase drawX drawY size for larger universe
+
+color gradient for each ball -- output ball centers from ball modules into colormapper (colors R-G-B)
+	mars from b95700 (orange) to 9a0000 (deep red)
+	earth from 00066f (blue) to 008808 (green)
+	sun from ffff00 (yellow) to af4e00 (burnt orange)
+	jupiter from b76f0b (light brown) to 3d220c (dark brown) (stripe: ffedb5)

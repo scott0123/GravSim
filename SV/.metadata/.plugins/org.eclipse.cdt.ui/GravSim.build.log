@@ -1,9 +1,9 @@
-23:59:16 **** Incremental Build of configuration Nios II for project GravSim ****
+03:00:32 **** Incremental Build of configuration Nios II for project GravSim ****
 make all 
 Info: Building ../GravSim_bsp/
 C:/intelFPGA_lite/17.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../GravSim_bsp/
 [BSP build complete]
 [GravSim build complete]
 
-23:59:17 Build Finished (took 1s.17ms)
+03:00:33 Build Finished (took 1s.70ms)
 
