@@ -26,8 +26,8 @@ module avalon_interface (
 	// Added inputs used by ball.sv
 	input logic			  Reset_h,
 	input logic			  VGA_VS,
-	input logic [9:0]	  DrawX,
-	input logic [9:0]	  DrawY,
+	input logic [31:0]	  DrawX, // increase to larger bit length for larger universe
+	input logic [31:0]	  DrawY,
 	
 	// Added outputs that must go to top-level entity
 	output logic        is_ball_out,
@@ -80,9 +80,9 @@ logic RIGHT_PRESSED;
 logic PAGEUP_PRESSED;
 logic PAGEDOWN_PRESSED;
 
-logic [9:0] relative_shift_x, relative_shift_y;
+logic [31:0] relative_shift_x, relative_shift_y;
 logic [31:0] relative_shift_z;
-logic [9:0] shifted_x, shifted_y;
+logic [31:0] shifted_x, shifted_y;
 
 assign shifted_x = DrawX + relative_shift_x;
 assign shifted_y = DrawY + relative_shift_y;
@@ -100,6 +100,7 @@ always_comb begin
 	
 	// pos x, y, z (scaled)
 	EXPORT_DATA[31:24] = keycode;
+	EXPORT_DATA[23:16] = regfile[OFFSET_NUM][7:0];
 //	EXPORT_DATA[21:12] = regfile[2][9:0];
 //	EXPORT_DATA[11:2] = regfile[3][9:0];
 
@@ -124,7 +125,7 @@ always_comb begin
     if (keycode == KEYCODE_PAGEDOWN) PAGEDOWN_PRESSED = 1'b1;
     else PAGEDOWN_PRESSED = 1'b0;
     
-    if (VGA_VS == 1'b1 && PAUSED == 1'b0 && regfile[OFFSET_READY] == 1'b1) begin
+    if (frame_clk_rising_edge == 1'b1 && PAUSED == 1'b0 && regfile[OFFSET_READY] == 1'b1) begin // PAUSED == 1'b1 for immediate start
         FSM_START = 1'b1;
     end
     else begin

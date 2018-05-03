@@ -111,7 +111,7 @@ module GravSim( input            CLOCK_50,
 	// Must be generated differently for simulation
 	vga_clk vga_clk_instance(.inclk0(Clk), .c0(VGA_CLK));
 	
-	logic [9:0] DrawX, DrawY;
+	logic [31:0] DrawX, DrawY;
 	logic is_ball;
 	logic [1:0] ballID;
 	
@@ -147,7 +147,7 @@ module GravSim( input            CLOCK_50,
 
 	HexDriver hex_inst_0 (EXPORT_DATA[27:24], HEX0);
 	HexDriver hex_inst_1 (EXPORT_DATA[31:28], HEX1);
-	HexDriver hex_inst_2 (keycode[3:0], HEX2);
-	HexDriver hex_inst_3 (keycode[7:4], HEX3);
+	HexDriver hex_inst_2 (EXPORT_DATA[19:16], HEX2);
+	HexDriver hex_inst_3 (EXPORT_DATA[23:20], HEX3);
 
 endmodule

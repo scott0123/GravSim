@@ -59,33 +59,36 @@ int main(){
     // set the ready signal signal to 0
    	MEM_PTR[OFFSET_READY] = 0;
     
-   	// slow binary star system with very fast large orbit comets
-   	 // for this simulation we need G to be equal to 4
-   	    planet p1 = { 2.0, 1.0,
-   	        -0.8, 0.0, 0.0,
-   	        0.0, 0.5, 0.0,
-   	        0.0, 0.0, 0.0 };
-   	    planet p2 = { 2.0, 1.0,
-   	        0.3, 0.0, 0.0,
-   	        0.0, -0.5, 0.0,
-   	        0.0, 0.0, 0.0 };
-   	    planet p3 = { 1, 1.0,
-   	//        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
-   	        -1.0, -1.0, -10.0,
-   	        0.0, 1.0, 0.0,
-   	        0.0, 0.0, 0.0 };
-   	    planet p4 = { 0, 1.0,
-   	        10.0, 1.0, -100.0,
+
+   	//		INITIAL CONDITIONS		//
+
+   	// large central mass
+   	    // set G
+   	    float G_const = 1.0f;
+		// set num planets
+		MEM_PTR[OFFSET_NUM] = 3;
+   	    // for this simulation we need G to be equal to 4
+   	    planet p1 = { 100.0, 1.0,
+   	        0.0, 0.0, 0.0,
    	        0.0, 0.0, 0.0,
    	        0.0, 0.0, 0.0 };
+   	    planet p2 = { 0.1, 1.0,
+   	        -1.0, 0.0, 0.0,
+   	        0.0, -10.0, 0.0,
+   	        0.0, 0.0, 0.0 };
+   	    planet p3 = { 0.1, 1.0,
+   	//        0.0, 1.0 + ((rand() % 500) / 1000.0) - 0.25, 0.0,
+   	        0.0, 1.0, 0.0,
+   	        -10.0, 0.0, 0.0,
+   	        0.0, 0.0, 0.0 };
+   	    planet p4 = { 0.1, 0.0,
+   	        0.0, -1.07, 0.0,
+   	        0.97, 0.0, 0.0,
+   	        0.0, 0.0, -0.0 };
 
-   	    // set G
-   	    float G_const = 20.0f;
+//		END: INITIAL CONDITIONS		 //
 
     MEM_PTR[OFFSET_G] = *(unsigned long*)&G_const;
-
-    // set num planets
-    MEM_PTR[OFFSET_NUM] = 4;
 
     // body 1
     MEM_PTR[OFFSET_MASS + 1] = *(unsigned long*)&p1.mass;
@@ -135,6 +138,10 @@ int main(){
     // initiate the ready signal
    	MEM_PTR[OFFSET_READY] = 1;
 
+   	printf("Radius of Planet 1: %f\n", *(float*)&MEM_PTR[OFFSET_RAD + 1]);
+   	printf("Radius of Planet 2: %f\n", *(float*)&MEM_PTR[OFFSET_RAD + 2]);
+   	printf("Radius of Planet 3: %f\n", *(float*)&MEM_PTR[OFFSET_RAD + 3]);
+   	printf("Radius of Planet 4: %f\n", *(float*)&MEM_PTR[OFFSET_RAD + 4]);
 
     int ret_val = keyboard_main();
 	return ret_val;

@@ -30,13 +30,12 @@ module nios_system (
 		,
 		input wire			  Reset_h,
 		input wire			  VGA_VS,
-		input wire [9:0]	  DrawX,
-		input wire [9:0]	  DrawY,
+		input wire [31:0]	  DrawX,
+		input wire [31:0]	  DrawY,
 		
 		// Added outputs that must go to top-level entity
 		output wire        is_ball,
 		output wire [1:0]  ballID
-
 	);
 
 	wire         sdram_pll_c0_clk;                                             // sdram_pll:c0 -> [mm_interconnect_0:sdram_pll_c0_clk, rst_controller_002:clk, sdram:clk]
@@ -175,7 +174,6 @@ module nios_system (
 		
 		// Added for keyboard use within AMM
 		.keycode(keycode_export)
-
 	);
 
 	nios_system_TIMER timer (

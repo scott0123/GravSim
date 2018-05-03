@@ -31,7 +31,7 @@ module  VGA_controller (input              Clk,         // 50 MHz clock
                         output logic       VGA_BLANK_N, // Blanking interval indicator.  Active low.
                                            VGA_SYNC_N,  // Composite Sync signal.  Active low.  We don't use it in this lab,
                                                         // but the video DAC on the DE2 board requires an input for it.
-                        output logic [9:0] DrawX,       // horizontal coordinate
+                        output logic [31:0] DrawX,       // horizontal coordinate
                                            DrawY        // vertical coordinate
                         );     
     

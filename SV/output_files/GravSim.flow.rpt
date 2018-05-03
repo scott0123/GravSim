@@ -1,5 +1,5 @@
 Flow report for GravSim
-Wed May 02 23:52:33 2018
+Thu May 03 15:26:59 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,21 +40,21 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed May 02 23:52:33 2018       ;
+; Flow Status                        ; Successful - Thu May 03 15:26:59 2018       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; GravSim                                     ;
 ; Top-level Entity Name              ; GravSim                                     ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 54,861 / 114,480 ( 48 % )                   ;
-;     Total combinational functions  ; 54,121 / 114,480 ( 47 % )                   ;
-;     Dedicated logic registers      ; 7,542 / 114,480 ( 7 % )                     ;
-; Total registers                    ; 7611                                        ;
+; Total logic elements               ; 56,249 / 114,480 ( 49 % )                   ;
+;     Total combinational functions  ; 55,530 / 114,480 ( 49 % )                   ;
+;     Dedicated logic registers      ; 7,586 / 114,480 ( 7 % )                     ;
+; Total registers                    ; 7655                                        ;
 ; Total pins                         ; 126 / 529 ( 24 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 11,443 / 3,981,312 ( < 1 % )                ;
-; Embedded Multiplier 9-bit elements ; 275 / 532 ( 52 % )                          ;
+; Embedded Multiplier 9-bit elements ; 303 / 532 ( 57 % )                          ;
 ; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 +------------------------------------+---------------------------------------------+
 
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/02/2018 23:32:11 ;
+; Start date & time ; 05/03/2018 15:07:20 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GravSim             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                                         ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 169736358548164.152532193003296                               ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 169736358548164.152537803901320                               ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                            ; --            ; --          ; testbench_FSM  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench_FSM                                                 ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                                             ; --            ; --          ; eda_simulation ;
@@ -99,7 +99,7 @@ refer to the applicable agreement for further details.
 ; PROJECT_OUTPUT_DIRECTORY             ; output_files                                                  ; --            ; --          ; --             ;
 ; SLD_FILE                             ; nios_system/synthesis/nios_system.regmap                      ; --            ; --          ; --             ;
 ; SLD_FILE                             ; nios_system/synthesis/nios_system.debuginfo                   ; --            ; --          ; --             ;
-; SLD_INFO                             ; QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1525321881 ; --            ; nios_system ; --             ;
+; SLD_INFO                             ; QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1525377984 ; --            ; nios_system ; --             ;
 ; SOPCINFO_FILE                        ; nios_system/synthesis/../../nios_system.sopcinfo              ; --            ; --          ; --             ;
 ; SYNTHESIS_ONLY_QIP                   ; On                                                            ; --            ; --          ; --             ;
 +--------------------------------------+---------------------------------------------------------------+---------------+-------------+----------------+
@@ -110,12 +110,12 @@ refer to the applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:05:40     ; 1.0                     ; 1151 MB             ; 00:06:12                           ;
-; Fitter                    ; 00:12:43     ; 1.0                     ; 2083 MB             ; 00:19:11                           ;
-; Assembler                 ; 00:00:07     ; 1.0                     ; 768 MB              ; 00:00:07                           ;
-; TimeQuest Timing Analyzer ; 00:00:31     ; 1.5                     ; 1283 MB             ; 00:00:40                           ;
-; EDA Netlist Writer        ; 00:00:56     ; 1.0                     ; 991 MB              ; 00:00:54                           ;
-; Total                     ; 00:19:57     ; --                      ; --                  ; 00:27:04                           ;
+; Analysis & Synthesis      ; 00:05:57     ; 1.0                     ; 1128 MB             ; 00:06:26                           ;
+; Fitter                    ; 00:11:47     ; 1.1                     ; 2059 MB             ; 00:17:45                           ;
+; Assembler                 ; 00:00:07     ; 1.0                     ; 771 MB              ; 00:00:07                           ;
+; TimeQuest Timing Analyzer ; 00:00:30     ; 1.5                     ; 1269 MB             ; 00:00:39                           ;
+; EDA Netlist Writer        ; 00:00:56     ; 1.0                     ; 1003 MB             ; 00:00:55                           ;
+; Total                     ; 00:19:17     ; --                      ; --                  ; 00:25:52                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

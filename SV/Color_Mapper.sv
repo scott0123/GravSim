@@ -17,7 +17,7 @@
 module  color_mapper ( input              is_ball,            // Whether current pixel belongs to ball 
                                                               //   or background (computed in ball.sv)
 							  input			[1:0]		ballID,
-                       input        [9:0] DrawX, DrawY,       // Current pixel coordinates
+                       input        [31:0] DrawX, DrawY,       // Current pixel coordinates
                        output logic [7:0] VGA_R, VGA_G, VGA_B // VGA RGB output
                      );
     
@@ -40,30 +40,30 @@ module  color_mapper ( input              is_ball,            // Whether current
 		
 			if (ballID == 2'd0) begin
 				// Red ball
-				Red = 8'hff;
-				Green = 8'h99;
-				Blue = 8'h99;
+				Red = 8'h9a;
+				Green = 8'h00;
+				Blue = 8'h00;
 			end
 			
 			else if (ballID == 2'd1) begin
 				// Green ball
-				Red = 8'h99;
-				Green = 8'hff;
-				Blue = 8'h99;
+				Red = 8'h00;
+				Green = 8'h88;
+				Blue = 8'h08;
 			end
 			
 			else if (ballID == 2'd2) begin
 				// Blue ball
-				Red = 8'hcc;
-				Green = 8'hff;
-				Blue = 8'hff;
+				Red = 8'h00;
+				Green = 8'h06;
+				Blue = 8'h6f;
 			end
 			
 			else if (ballID == 2'd3) begin
 				// Yellow ball
 				Red = 8'hff;
 				Green = 8'hff;
-				Blue = 8'h99;
+				Blue = 8'h00;
 			end
 		
 	 end
@@ -74,6 +74,11 @@ module  color_mapper ( input              is_ball,            // Whether current
 		  Red = 8'h00; 
 		  Green = 8'h00;
 		  Blue = 8'h00;
+		  
+//			// gradient background
+//			Red = 8'h46 - {1'b0, DrawX[9:3]}; 
+//			Green = 8'h46 - {1'b0, DrawX[9:3]};
+//			Blue = 8'h46 - {1'b0, DrawX[9:3]};
 		  
 		end
 		

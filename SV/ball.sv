@@ -6,7 +6,7 @@
 
 
 module  ball ( 
-               input [9:0]   DrawX, DrawY,             // Current pixel coordinates
+               input [31:0]   DrawX, DrawY,             // Current pixel coordinates
 					
                input [31:0]  relative_shift_z,
 					input [31:0]  radius, posX, posY, posZ, // floats
@@ -27,8 +27,8 @@ module  ball (
 	logic [31:0] intRad, intPosX, intPosY, intPosZ;
 
     
-    logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
-    logic [9:0] Ball_X_Pos_in, Ball_X_Motion_in, Ball_Y_Pos_in, Ball_Y_Motion_in;
+//    logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
+//    logic [9:0] Ball_X_Pos_in, Ball_X_Motion_in, Ball_Y_Pos_in, Ball_Y_Motion_in;
 
     
     // Compute whether the pixel corresponds to ball or background
@@ -42,6 +42,7 @@ module  ball (
 	 int absDistX, absDistY;
 	 
 	 logic [31:0] temp_posZadd;
+	 logic [31:0] temp_posZaddmult;
 	 logic [31:0] adjRadius;
 
 	 // perform absolute value operations and calculate Z size adjust limit
@@ -49,21 +50,21 @@ module  ball (
 		
 		// radius adjust
 		
-		temp_posZadd = intPosZ + 32'd20 + relative_shift_z;
+		temp_posZadd = intPosZ + 32'd10 + relative_shift_z;
+		temp_posZaddmult = temp_posZadd + intRad;
 		
 		// added to ensure that negative temp_posZadd < positive 1
-		if ( temp_posZadd[31] == 1 ) begin
+		if ( radius == 32'b0 ) begin
+			adjRadius = 32'b0;
+		end
+		else if ( temp_posZaddmult[31] == 1 ) begin
 			adjRadius = 32'd1;
 		end
-
-		else if ( temp_posZadd < 32'd1 ) begin
-			adjRadius = 32'd1;
-		end
-		else if ( temp_posZadd > 32'd80 ) begin
+		else if ( temp_posZaddmult > 32'd80 ) begin
 			adjRadius = 32'd80;
 		end
 		else begin
-			adjRadius = temp_posZadd;
+			adjRadius = temp_posZaddmult;
 		end
 		
 	 end
@@ -72,7 +73,10 @@ module  ball (
     assign Size = adjRadius;
 	 
     always_comb begin
-        if ( ( DistX*DistX + DistY*DistY) <= (Size*Size) )
+			if ( Size == 32'b0 ) begin
+				is_ball = 1'b0;
+			end
+        else if ( ( DistX*DistX + DistY*DistY) <= (Size*Size) )
 //			if ( ( absDistX + absDistY) <= (Size) )
             is_ball = 1'b1;
         else
@@ -93,7 +97,7 @@ module  ball (
 FPmult FPmultRad (
 	// inputs
 	.iA(radius),
-	.iB(FLOAT10),
+	.iB(FLOAT10), // adjRadius
 	// outputs
 	.oProd(FPmultRad_out)
 );
