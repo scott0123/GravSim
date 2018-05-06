@@ -3,7 +3,7 @@
 
 // universal constants
 //#define G 6.673E-11
-#define G 1 // unit tests are mostly built around this
+#define G 4 // unit tests are mostly built around this
 //#define G 4 // this is good for 2 planet orbit
 
 // standard constants

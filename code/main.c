@@ -38,7 +38,7 @@ University of Illinois Electrical & Computer Engineering Department
 #endif
 
 // 0 for debug, 1 for software simulation, 2 for hardware simulation
-#define SIM_MODE 1
+#define SIM_MODE 0
 #define SIM_TIME 20 // (seconds)
 
 void unit_test();
@@ -59,8 +59,8 @@ int main(){
 
     clock_t begin = clock();
     #if SIM_MODE == 0
-    unit_test();
-    //quake_test();
+    //unit_test();
+    quake_test();
     #elif SIM_MODE == 1
     software_simulation();
     #elif SIM_MODE == 2
@@ -189,19 +189,21 @@ void quake_test(){
 
     printf("Number --- actual_invsqrt --- fast_invsqrt --- accuracy\n");
 
-    for(int i = 0; i < 100; i++){
-        float number = (i + 1) / 100.0;
+    for(int i = 0; i < 10; i++){
+        float number = (i + 1) / 10.0;
         float actual = 1.0 / sqrt(number);
         float fast = fast_invsqrt(number);
-        printf("%.6f ---    %.6f      ---    %.6f    ---    %.6f\n",
-        number, actual, fast, 1 - fabs(actual - fast) / actual);
+        //printf("%.6f ---    %.6f      ---    %.6f    ---    %.6f\n",
+        printf("%.1f & %.5f & %.5f & %.5f \\\\ \\hline\n",
+        number, actual, fast, fabs(actual - fast) / actual * 100);
     }
     for(int i = 0; i < 10; i++){
         float number = 10.0 * (i + 1);
         float actual = 1.0 / sqrt(number);
         float fast = fast_invsqrt(number);
-        printf("%.6f ---    %.6f      ---    %.6f    ---    %.6f\n",
-        number, actual, fast, 1 - fabs(actual - fast) / actual);
+        //printf("%.6f ---    %.6f      ---    %.6f    ---    %.6f\n",
+        printf("%.0f & %.5f & %.5f & %.5f \\\\ \\hline\n",
+        number, actual, fast, fabs(actual - fast) / actual * 100);
     }
 }
 

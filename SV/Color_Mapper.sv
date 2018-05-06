@@ -6,10 +6,11 @@
 //    Modified by David Kesler  07-16-2008                               --
 //    Translated by Joe Meng    07-07-2013                               --
 //    Modified by Po-Han Huang  10-06-2017                               --
+//                Scott Liu     03-05-2018                               --
 //                                                                       --
 //    Fall 2017 Distribution                                             --
 //                                                                       --
-//    For use with ECE 385 Lab 8                                         --
+//    For use with Electrical Engineering Three Eighty Five              --
 //    University of Illinois ECE Department                              --
 //-------------------------------------------------------------------------
 

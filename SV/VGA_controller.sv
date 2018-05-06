@@ -8,6 +8,7 @@
 //                                03-12-2007                             --
 //      Translated by Joe Meng    07-07-2013                             --
 //      Modified by Po-Han Huang  12-08-2017                             --
+//                  Scott Liu     03-05-2018                             --
 //      Spring 2018 Distribution                                         --
 //                                                                       --
 //      Used standard 640x480 vga found at epanorama                     --
@@ -18,7 +19,7 @@
 //      note: The standard is changed slightly because of 25 mhz instead --
 //            of 25.175 mhz pixel clock. Refresh rate drops slightly.    --
 //                                                                       --
-//      For use with ECE 385 Lab 8 and Final Project                     --
+//      For use with Electrical Engineering Three Eighty Five            --
 //      ECE Department @ UIUC                                            --
 //-------------------------------------------------------------------------
 
